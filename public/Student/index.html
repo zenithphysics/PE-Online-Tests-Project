@@ -81,7 +81,7 @@ n<!DOCTYPE html>
 				<div class="login-content">
 					<form method="POST" name="loginform" class="margin-bottom-0" id="PE_Loginform">
 						<div class="form-group m-b-15">
-							<input type="text" class="form-control form-control-lg" name="username" id="username" placeholder="Student ID" required />
+							<input type="text" class="form-control form-control-lg" name="username" id="studentID" placeholder="Student ID" required />
 						</div>
 						<div class="form-group m-b-15">
 							<input type="password" class="form-control form-control-lg" name="password" id="password" placeholder="Password" required />
@@ -121,51 +121,58 @@ n<!DOCTYPE html>
 	<!-- ================== END BASE JS ================== -->
 
 	<script>
-
+  var studentID = document.getElementById("studentID").value;
+	   var password = document.getElementById("password").value;
 		// Verify Page
 		
 		// On Login API Call
 		const loginform = document.getElementById("PE_Loginform");
 		loginform.addEventListener("submit",(e)=>{
 			e.preventDefault();
-	   var username = document.getElementById("username").value;
-	   var password = document.getElementById("password").value;
-	   var data={username:username,password:password}
-		// Call the /loginUser API
-		fetch("/api/loginUser",{
+	    studentID = document.getElementById("studentID").value;
+	    password = document.getElementById("password").value;
+
+	   // Login Student Api Call
+	   fetch("/loginStudent",{
 			method:'POST',
 			headers: {
-            'Content-Type': 'application/json',
-            // 'Content-Type': 'application/x-www-form-urlencoded',
+			'Content-Type': 'application/json'
         },
-			body:JSON.stringify(data)
+			body:JSON.stringify({"studentID":studentID,"password":password})
 		}).then(response=>response.json()).then((data)=>{
-			console.log(data)
-			if(data.logged_in==false)
+			if(data.is_successful=="false")
 			{
 				alert("login failed");
+				console.log('%c Login Failed :( ', 'font-weight:bold;color: red');
+
 			}
 			else
 			{
-				localStorage.setItem("access_token",data.token)
-				fetch("/verify",{
+				console.log('%c Login Successful', 'font-weight:bold;color: green');
+
+				localStorage.setItem("student_token",data.student_token)
+				fetch("/verifyStudent",{
 					method:"GET",
 					headers:{
-						authorization:data.token
+						"authorization":data.student_token
 					}
 				}).then((response)=>response.json()).then(data=>{
 					console.log(data);
-					if(data.is_verified)
+					if(data.is_successful)
 					{
-						localStorage.setItem("authData",data.authData)
-						document.location.href="/PE_Pages/dashboard.html";
+						localStorage.setItem("student",JSON.stringify(data.student))
+						location.href='./pages/dashboard.html';
+					}
+					else
+					{
+						alert("Failed to login! ");
 					}
 				}).catch(err=>console.log(err));
-			}
+			} 
 		}
 			).catch((err)=>{
 			console.log(err);
-	});
+	}); 
 		
 		
 		});

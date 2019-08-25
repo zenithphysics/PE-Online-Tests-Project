@@ -14,8 +14,9 @@ mongoose.connect(config.database)
 // </Database>
 
 // <MongooseModels>
-var Syllabus = require('./Models/SyllabusModel')
-var Admin = require('./Models/AdminModel')
+var Syllabus = require('./Models/SyllabusModel');
+var Admin = require('./Models/AdminModel');
+var Student = require('./Models/StudentModel');
 // </Mongoose Models>
 
 // <Initialzations>
@@ -81,6 +82,22 @@ app.get('/',(req,res)=>{
         })
     })
 
+    app.get("/verifyStudent",verifyToken ,(req,res)=>{
+        console.log("[/verifyStudent - Verifying Student")
+        jwt.verify(req.token,'pe-tests-student',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/verifyStudent] - Student Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/verifyStudent] - Student Verification Successful');  
+                res.json({is_verified:true,student:authData.student,is_successful:true})
+            }
+        })
+    })
+
 
 // Admin Related API Calls
 
@@ -126,7 +143,7 @@ app.get('/',(req,res)=>{
                 var adminID = req.body.adminID;
                 var password = hash.sha256().update(req.body.password).digest('hex')
                 console.log('\x1b[33m%s\x1b[1m', '[/loginAdmin] - Verifying Admin...'); //yellow log
-                Admin.findOne({"adminID":adminID,"password":password},(err,admin)=>{
+                Admin.findOne({$and:[{"adminID":adminID},{"password":password}]},(err,admin)=>{
                     if(err || !admin){
                         console.log('\x1b[31m%s\x1b[1m', '[/loginAdmin] - Admin Does not exist.');  //red log
                         console.log(err)
@@ -247,4 +264,282 @@ app.get('/',(req,res)=>{
     })
     })
 
+// Student Related API Calls
+
+    // Create Student
+
+    app.post('/createStudent',verifyToken,(req,res)=>
+    {
+        jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/createStudent] - Admin Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/createStudent] - Admin Verification Successful');  
+                console.log('\x1b[33m%s\x1b[1m',"[/createStudent] - Creating Student...."); // yellow log
+                console.log(req.body);
+                var student = new Student({"studentID":req.body.studentID,"name":req.body.studentName,"password":hash.sha256().update(req.body.password).digest('hex'),"email":req.body.studentEmail,"contact":req.body.studentContact,"packs":req.body.packs});
+                student.save((err,output)=>{
+                    if(err)
+                    {
+                        console.log('\x1b[31m%s\x1b[1m', "[/createStudent] - Failed to create student :'( ");
+                        console.log(err);
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/createStudent] - Student created successfully');                  
+                        res.json({is_verified:true,is_successful:true})
+                    }
+                })
+            }
+
+    })
+    })
+
+     // Student Login
+     app.post('/loginStudent',(req,res)=>{
+        var password = req.body.password;
+        console.log(password);
+        var hashed_password = hash.sha256().update(req.body.password).digest('hex');
+        console.log('\x1b[33m%s\x1b[1m', '[/loginStudent] - Verifying Student...'); //yellow log
+        Student.findOne({$and:[{"studentID":req.body.studentID},{"password": hashed_password}]},(err,student)=>{
+            if(err || !student){
+                console.log('\x1b[31m%s\x1b[1m', '[/loginStudent] - Student Does not exist.');  //red log
+                console.log(err)
+                res.json({logged_in:false})
+            }
+            else{
+                console.log('\x1b[32m%s\x1b[1m',"[/loginStudent - Student Found"); // green log
+                console.log('\x1b[33m%s\x1b[1m',"[/loginStudent - Generating Token...."); // yellow log
+                jwt.sign({"student":student},"pe-tests-student",(err,token)=>{
+                    if(err){
+                        console.log('\x1b[31m%s\x1b[1m',"[/loginStudent] - Error Generating Student Token:"); //red log
+                        console.log(err)
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else {
+                        console.log('\x1b[32m%s\x1b[1m',"[/loginStudent] - Student Token Generated"); // green log
+                        res.json({is_verified:true,"student_token":token,"student":student,is_successful:true});
+                    }
+                })
+            }
+        })
+})
+
+    // get Student Packs
+    app.post("/getStudentPacks",verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/getStudentPacks] - Admin Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/getStudentPacks] - Admin Verification Successful');  
+                var student = Student.find({"studentID":req.body.studentID},(err,student)=>{
+                    if(err || !student)
+                    {
+                        console.log('\x1b[31m%s\x1b[1m', '[/getStudentPacks] - Failed to get Student'); 
+                        console.log(err); 
+                        res.json({is_verified:true,is_successful:false})
+
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/getStudentPacks] - Student Fetched'); 
+                        console.log(student);
+                        res.json({is_verified:true,is_successful:true,packs:student[0].packs})
+                    }
+                })
+            }
+
+    })})
+    // get Students
+    app.get("/getStudents",verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/getStudents] - Admin Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/getStudents] - Admin Verification Successful');  
+                
+                var students = Student.find({},(err,students)=>{
+                    if(err || !students)
+                    {
+                        console.log('\x1b[31m%s\x1b[1m', '[/getStudents] - Failed to get Students'); 
+                        console.log(err); 
+                        res.json({is_verified:true,is_successful:false})
+
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/getStudents] - Students Fetched Successful'); 
+                        console.log(students) 
+                        res.json({is_verified:true,is_successful:true,students:students})
+                    }
+                })
+            }
+
+    })})
+
+    // change student Password
+    app.post("/changeStudentPassword",verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/changeStudentPassword] - Admin Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/changeStudentPassword] - Admin Verification Successful');  
+                var new_password = hash.sha256().update(req.body.new_password).digest('hex');
+                console.log('\x1b[33m%s\x1b[1m',"[/changeStudentPassword - Changing Password...."); // yellow log
+                Student.findOneAndUpdate({"studentID":req.body.studentID},{"$set":{"password":new_password}},(err,callback)=>{
+                    if(err){
+                        console.log('\x1b[31m%s\x1b[1m', "[/changeStudentPassword] - Failed to change password :'( ");
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/changeStudentPassword] - Password Changed Successfully ^_^');  
+                        res.json({is_verified:true,is_successful:true})
+                    }
+                })
+            
+            }
+
+    })
+    })
     
+    // Delete Student
+    app.post("/addStudentPack",verifyToken,(req,res)=>{
+        console.log(`REQUEST BODY`);
+        jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/addStudentPack] - Admin Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/addStudentPack] - Admin Verification Successful');  
+                Student.findOneAndUpdate({"studentID":req.body.studentID},{$addToSet:{"packs":req.body.pack}},(err,output)=>{
+                    if(err)
+                    {
+                        console.log('\x1b[31m%s\x1b[1m', '[/addStudentPack] - Failed To add Pack');  
+                        console.log(err);
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/addStudentPack] - Pack Registered');  
+                        res.json({is_verified:true,is_successful:true})
+
+                    }
+                })
+            
+            }
+
+    })
+    })
+
+    // Add Student Pack
+    app.post("/deleteStudent",verifyToken,(req,res)=>{
+        console.log(`REQUEST BODY`);
+        jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/deleteStudent] - Admin Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/deleteStudent] - Admin Verification Successful');  
+                Student.findOneAndRemove({"studentID":req.body.studentID},(err,output)=>{
+                    if(err)
+                    {
+                        console.log('\x1b[31m%s\x1b[1m', '[/deleteStudent] - Failed To Delete Student');  
+                        console.log(err);
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/deleteStudent] - Admin Student Successfully');  
+                        res.json({is_verified:true,is_successful:true})
+
+                    }
+                })
+            
+            }
+
+    })
+    })
+
+    // Change Student Email
+
+    app.post("/changeStudentEmail",verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/changeStudentEmail] - Admin Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/changeStudentEmail] - Admin Verification Successful');  
+                var new_email = req.body.new_email;
+                console.log('\x1b[33m%s\x1b[1m',"[/changeStudentemail - Changing Email ID...."); // yellow log
+                Student.findOneAndUpdate({"studentID":req.body.studentID},{"$set":{"email":new_email}},(err,callback)=>{
+                    if(err){
+                        console.log('\x1b[31m%s\x1b[1m', "[/changeStudentEmail] - Failed to change email :'( ");
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/changeStudentEmail] - Email Changed Successfully ^_^');  
+                        res.json({is_verified:true,is_successful:true})
+                    }
+                })
+            
+            }
+
+    })
+    })
+    // Change Student Contact
+    app.post("/changeStudentContact",verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/changeStudentContact] - Admin Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/changeStudentContact] - Admin Verification Successful');  
+                var new_contact = req.body.new_contact;
+                console.log('\x1b[33m%s\x1b[1m',"[/changeStudentContact - Changing Contact No...."); // yellow log
+                Student.findOneAndUpdate({"studentID":req.body.studentID},{"$set":{"contact":new_contact}},(err,callback)=>{
+                    if(err){
+                        console.log('\x1b[31m%s\x1b[1m', "[/changeStudentContact] - Failed to change contact no :'( ");
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/changeStudentContact] - Contact No.  Changed Successfully ^_^');  
+                        res.json({is_verified:true,is_successful:true})
+                    }
+                })
+            
+            }
+            
+    })
+    })

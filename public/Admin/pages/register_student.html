@@ -122,7 +122,7 @@
 						</a>
 						<ul class="sub-menu">
 							<li class="active"><a href="#">Register Student</a></li>
-							<li><a href="./manage_student.html">Manage Students</a></li>
+							<li><a href="./manage_students.html">Manage Students</a></li>
 						</ul>
 					</li>
 					<!-- menu 2-->
@@ -155,76 +155,76 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>&nbspStudent Full Name</label>
-                        <input type="text" id="studentName" placeholder="Full Name " class="form-control">
+                        <input type="text" id="studentName" placeholder="Full Name " class="form-control" required>
                         <br>
                         <label>&nbspStudentID</label>
-                        <input type="text" id="studentID" placeholder="Set Student ID (Unique) " class="form-control">
+                        <input type="text" id="studentID" placeholder="Set Student ID (Unique) " class="form-control" required>
                         <br>
                         <label>&nbspPassword</label>
-                        <input type="password" id="password" placeholder="Set Password" class="form-control">
+                        <input type="password" id="password" placeholder="Set Password" class="form-control" required>
                         <br>
                         <label>&nbspEmail Address</label>
-                        <input type="email" id="studentEmail" placeholder="Set EmailID" class="form-control">
+                        <input type="email" id="studentEmail" placeholder="Set EmailID" class="form-control" required>
                         <br>
                         <label>&nbspContact No.</label>
-                        <input type="number" min=0 id="studentContact" placeholder="Student's Contact number" class="form-control">
+                        <input type="number" min=0 id="studentContact" placeholder="Student's Contact number" class="form-control" required>
                         <br>
                         <label>&nbsp Select Student Packs</label>
                         <br>
 						<br>
 						<h4>
-                        &nbsp&nbsp<input type="checkbox" name="packs[]" value="JEE_MAINS_P" style="check"><b>&nbsp&nbspJEE MAINS PHYSICS (JEE_MAINS_P)</b>
+                        &nbsp&nbsp<input type="checkbox" class="packs" value="JEE_MAINS_P" ><b>&nbsp&nbspJEE MAINS PHYSICS (JEE_MAINS_P)</b>
                         <br>
                         <br>
-                        &nbsp&nbsp<input type="checkbox" name="packs[]" value="JEE_MAINS_C" style="check"><b>&nbsp&nbspJEE MAINS CHEMISTRY (JEE_MAINS_C)</b>
+                        &nbsp&nbsp<input type="checkbox" class="packs" value="JEE_MAINS_C" ><b>&nbsp&nbspJEE MAINS CHEMISTRY (JEE_MAINS_C)</b>
                         <br>
                         <br>
-                        &nbsp&nbsp<input type="checkbox" name="packs[]" value="JEE_MAINS_M" style="check"><b>&nbsp&nbspJEE MAINS MATHS (JEE_MAINS_M)</b>
+                        &nbsp&nbsp<input type="checkbox" class="packs" value="JEE_MAINS_M" ><b>&nbsp&nbspJEE MAINS MATHS (JEE_MAINS_M)</b>
                         <br>
                         <br>           
-						&nbsp&nbsp<input type="checkbox" name="packs[]" value="JEE_MAINS_PCM" style="check"><b>&nbsp&nbspJEE MAINS PCM</b>
+						&nbsp&nbsp<input type="checkbox" class="packs" value="JEE_MAINS_PCM" ><b>&nbsp&nbspJEE MAINS PCM</b>
                         <br>
                         <br>          
-						&nbsp&nbsp<input type="checkbox" name="packs[]" value="JEE_ADVANCED_P" style="check"><b>&nbsp&nbspJEE ADVANCED PHYSICS (JEE_ADVANCED_P)</b>
+						&nbsp&nbsp<input type="checkbox" class="packs" value="JEE_ADVANCED_P" ><b>&nbsp&nbspJEE ADVANCED PHYSICS (JEE_ADVANCED_P)</b>
                         <br>
                         <br> 
-                        &nbsp&nbsp<input type="checkbox" name="packs[]" value="JEE_ADVANCED_C" style="check"><b>&nbsp&nbspJEE ADVANCED CHEMISTRY (JEE_ADVANCED_C)</b>
+                        &nbsp&nbsp<input type="checkbox" class="packs" value="JEE_ADVANCED_C" ><b>&nbsp&nbspJEE ADVANCED CHEMISTRY (JEE_ADVANCED_C)</b>
                         <br>
 						<br>   
-						&nbsp&nbsp<input type="checkbox" name="packs[]" value="JEE_ADVANCED_M" style="check"><b>&nbsp&nbspJEE ADVANCED MATHS (JEE_ADVANCED_M)</b>
+						&nbsp&nbsp<input type="checkbox" class="packs" value="JEE_ADVANCED_M" ><b>&nbsp&nbspJEE ADVANCED MATHS (JEE_ADVANCED_M)</b>
 						<br>
 						<br>   
-						&nbsp&nbsp<input type="checkbox" name="packs[]" value="JEE_ADVANCED_PCM" style="check"><b>&nbsp&nbspJEE ADVANCED PCM </b>
+						&nbsp&nbsp<input type="checkbox" class="packs" value="JEE_ADVANCED_PCM" ><b>&nbsp&nbspJEE ADVANCED PCM </b>
                         <br>
 						<br> 
-						&nbsp&nbsp<input type="checkbox" name="packs[]" value="NEET_P" style="check"><b>&nbsp&nbspNEET PHYSICS (NEET_P)</b>
+						&nbsp&nbsp<input type="checkbox" class="packs" value="NEET_P" ><b>&nbsp&nbspNEET PHYSICS (NEET_P)</b>
                         <br>
 						<br>     
-						&nbsp&nbsp<input type="checkbox" name="packs[]" value="NEET_C" style="check"><b>&nbsp&nbspNEET CHEMISTRY (NEET_C)</b>
+						&nbsp&nbsp<input type="checkbox" class="packs" value="NEET_C" ><b>&nbsp&nbspNEET CHEMISTRY (NEET_C)</b>
 						<br>
 						<br>
-						&nbsp&nbsp<input type="checkbox" name="packs[]" value="NEET_B" style="check"><b>&nbsp&nbspNEET BIOLOGY (NEET_B)</b>
+						&nbsp&nbsp<input type="checkbox" class="packs" value="NEET_B" ><b>&nbsp&nbspNEET BIOLOGY (NEET_B)</b>
 						<br>
 						<br>
-						&nbsp&nbsp<input type="checkbox" name="packs[]" value="NEET_PCB" style="check"><b>&nbsp&nbspNEET PCB</b>
+						&nbsp&nbsp<input type="checkbox" class="packs" value="NEET_PCB" ><b>&nbsp&nbspNEET PCB</b>
 						<br>
 						<br>
-						&nbsp&nbsp<input type="checkbox" name="packs[]" value="STATE_BOARD_P" style="check"><b>&nbsp&nbspSTATE BOARD PHYSICS (STATE_BOARD_P)</b>
+						&nbsp&nbsp<input type="checkbox" class="packs" value="STATE_BOARD_P" ><b>&nbsp&nbspSTATE BOARD PHYSICS (STATE_BOARD_P)</b>
 						<br>
 						<br>
-						&nbsp&nbsp<input type="checkbox" name="packs[]" value="STATE_BOARD_C" style="check"><b>&nbsp&nbspSTATE BOARD CHEMISTRY (STATE_BOARD_C)</b>
+						&nbsp&nbsp<input type="checkbox" class="packs" value="STATE_BOARD_C" ><b>&nbsp&nbspSTATE BOARD CHEMISTRY (STATE_BOARD_C)</b>
 						<br>
 						<br>
-						&nbsp&nbsp<input type="checkbox" name="packs[]" value="STATE_BOARD_M" style="check"><b>&nbsp&nbspSTATE BOARD MATHS (STATE_BOARD_M)
+						&nbsp&nbsp<input type="checkbox" class="packs" value="STATE_BOARD_M" ><b>&nbsp&nbspSTATE BOARD MATHS (STATE_BOARD_M)
 						<br>
 						<br>
-						&nbsp&nbsp<input type="checkbox" name="packs[]" value="STATE_BOARD_B" style="check"><b>&nbsp&nbspSTATE BOARD BIOLOGY (STATE_BOARD_B)</b>
+						&nbsp&nbsp<input type="checkbox" class="packs" value="STATE_BOARD_B" ><b>&nbsp&nbspSTATE BOARD BIOLOGY (STATE_BOARD_B)</b>
 						<br>
 						<br>
-						&nbsp&nbsp<input type="checkbox" name="packs[]" value="STATE_BOARD_PCM" style="check"><b>&nbsp&nbspSTATE BOARD PCM </b>
+						&nbsp&nbsp<input type="checkbox" class="packs" value="STATE_BOARD_PCM" ><b>&nbsp&nbspSTATE BOARD PCM </b>
 						<br>
 						<br>
-						&nbsp&nbsp<input type="checkbox" name="packs[]" value="STATE_BOARD_PCB" style="check"><b>&nbsp&nbspSTATE BOARD PCB </b>
+						&nbsp&nbsp<input type="checkbox" class="packs" value="STATE_BOARD_PCB" ><b>&nbsp&nbspSTATE BOARD PCB </b>
 						</b>
 						</h4>
 						<br>
@@ -258,10 +258,66 @@
 	<!-- ================== END BASE JS ================== -->
 	
 	<script>
-			var pe_username;
-		var pe_email;
+	var pe_username;
+	var pe_email;
 	var user_access_token = localStorage.getItem("admin_token");
-		// All Nameplace holders
+		// Related To Register_Student.html
+		var studentID = document.getElementById("studentID");
+		var studentName = document.getElementById("studentName");
+		var studentContact = document.getElementById("studentContact");
+		var studentEmail = document.getElementById("studentEmail");
+		var password = document.getElementById("password");
+		var packs = document.getElementsByClassName('packs')
+		var registration_form = document.getElementById("createStudentForm");
+
+
+		// Event on Submitting the form
+
+		registration_form.addEventListener("submit",(e)=>{
+			e.preventDefault();
+			studentID = document.getElementById("studentID").value;
+			studentName = document.getElementById("studentName").value;
+			studentContact = document.getElementById("studentContact").value;
+			studentEmail = document.getElementById("studentEmail").value;
+			password = document.getElementById("password").value;
+			selected_packs=[];
+			for(i=0;i<packs.length;i++)
+			{
+				if(packs[i].checked)
+				{
+					selected_packs.push(packs[i].value);
+				}
+			}
+			if(selected_packs.length==0)
+			{
+				alert("Student Must be assigned atleast one pack");
+			}
+			else
+			{
+				console.log("%c Creating Student...","color:blue;font-weight:bold");
+				fetch("/createStudent",{
+					method:"POST",
+					headers:{
+						authorization:user_access_token,
+						'Content-Type': 'application/json'
+					},
+					body:JSON.stringify({"studentID":studentID,"studentName":studentName,"studentContact":studentContact,"studentEmail":studentEmail,"password":password,"packs":selected_packs})
+				}).then(response=>response.json()).then(data=>{
+					if(data.is_successful)
+					{
+						console.log(`%c Student ${studentID} Created Successfully`,"color:green;font-weight:bold");
+						alert("Student Created Successfully");
+					}
+					else
+					{
+						console.log(`%c Failed to create student`,"color:red;font-weight:bold");
+						alert("failed to create student");
+					}
+				})
+			}
+		})
+
+
 
 		// Sidebar Name Holder
 		var sidebarNameHolder = document.getElementById("sidebarNameHolder");
@@ -277,7 +333,7 @@
 	console.log("access token:-"+user_access_token)
 		if(user_access_token==null)
 		{
-			document.location.href="/";
+			document.location.href="/Admin";
 
 		}
 
