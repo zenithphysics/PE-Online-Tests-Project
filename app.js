@@ -14,7 +14,7 @@ mongoose.connect(config.database)
 // </Database>
 
 // <MongooseModels>
-var Syllabus = require('./Models/SyllabusModel');
+var Syllabus = require('./Models/syllabusModel');
 var Admin = require('./Models/AdminModel');
 var Student = require('./Models/StudentModel');
 // </Mongoose Models>
@@ -539,6 +539,101 @@ app.get('/',(req,res)=>{
                     }
                 })
             
+            }
+            
+    })
+    })
+
+
+// Syllabus Related API Calls
+
+    // Get Full Syllabus
+        app.get("/getFullSyllabus",verifyToken,(req,res)=>{
+            jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+                if(err){
+                    console.log('\x1b[31m%s\x1b[1m', '[/getFullSyllabus] - Admin Verification Failed');  
+                    console.log(err);
+                    res.json({is_verified:false})
+                }
+                else
+                {
+                    console.log('\x1b[32m%s\x1b[1m', '[/getFullSyllabus] - Admin Verification Successful');  
+                    console.log('\x1b[33m%s\x1b[1m', '[/getFullSyllabus] - Fetching full syllabus...');
+                    Syllabus.syncIndexes();
+                    Syllabus.find({},(err,syllabus)=>{
+                        if(err || !syllabus){
+                            console.log('\x1b[31m%s\x1b[1m', "[/getFullSyllabus] - Failed to fetch syllabus :'( ");
+                            res.json({is_verified:true,is_successful:false})
+                        }
+                        else
+                        {
+                            console.log('\x1b[32m%s\x1b[1m', '[/getFullSyllabus] - Fetched Syllabus Successfully ^_^');  
+                            console.log(syllabus);
+                            res.json({is_verified:true,is_successful:true,syllabus:syllabus})
+                        }
+                    })
+                
+                }
+                
+        })
+        })
+    // Create Domain
+    app.post("/createDomain",verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/createDomain] - Admin Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false}) 
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/createDomain] - Admin Verification Successful');  
+                console.log('\x1b[33m%s\x1b[1m', '[/createDomain] - Creating new domain...');
+                Syllabus.insertMany({"name":req.body.domain_name},(err,Domain)=>{
+                    if(err || !Domain){
+                        console.log('\x1b[31m%s\x1b[1m', "[/createDomain] - Failed to create domain :'( ");
+                        console.log(err)
+                        res.json({is_verified:true,is_successful:false})
+
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/createDomain] - Created Domain :) ');  
+                        console.log(Domain);
+                        res.json({is_verified:true,is_successful:true,domain:Domain})
+
+                    }
+                })
+            }
+        })
+    })
+    // Add Subject To a Domain
+    app.post("/addSubjectToDomain",verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/addSubjectToDomain] - Admin Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/addSubjectToDomain] - Admin Verification Successful');  
+                console.log('\x1b[33m%s\x1b[1m', '[/addSubjectToDomain] - Adding Subject to domain...');
+                subject_name = req.body.subject_name;
+                domain_id = req.body.domain_id;
+                Syllabus.findByIdAndUpdate(domain_id,{$addToSet:{"Subjects":{"name":subject_name}}},(err,output)=>{
+                    if(err || !output)
+                    {
+                        console.log('\x1b[31m%s\x1b[1m', "[/addSubjectToDomain] - Failed to add subject :'( ");
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/addSubjectToDomain] - Added Subject Successfully ^_^');  
+                        console.log(output);
+                        res.json({is_verified:true,is_successful:true})
+                    }
+                })            
             }
             
     })

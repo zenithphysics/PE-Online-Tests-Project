@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>Syllabus Manager</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+	<link href="../../assets/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+	<link href="../../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link href="../../assets/plugins/animate/animate.min.css" rel="stylesheet" />
+	<link href="../../assets/css/default/style.min.css" rel="stylesheet" />
+	<link href="../../assets/css/default/style-responsive.min.css" rel="stylesheet" />
+	<link href="../../assets/css/default/theme/default.css" rel="stylesheet" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="../../assets/plugins/pace/pace.min.js"></script>
+	<!-- ================== END BASE JS ================== -->
+</head>
+<style>
+.card-header{
+    height:50px;
+}
+.chapter-area {
+    background-color:#70a1ff;
+    color:white;   
+    height:wrap
+}
+.add-button{
+    font-size:1.5em;
+    height:50px;
+}
+.card-header:hover{
+    cursor:pointer
+}
+.domain_title{
+    margin-top: 2px;
+    font-weight: 1em;
+}
+</style>
+<body>
+	<script>
+	
+
+	</script>
+	<!-- begin #page-loader -->
+	<div id="page-loader" class="fade show"><span class="spinner"></span></div>
+	<!-- end #page-loader -->
+	
+	<!-- begin #page-container -->
+	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+		<!-- begin #header -->
+		<div id="header" class="header navbar-default">
+			<!-- begin navbar-header -->
+			<div class="navbar-header">
+				<a  class="navbar-brand"><span ></span> <b>PE</b> Tests Admin.</a>
+				<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<!-- end navbar-header -->
+			
+			<!-- begin header-nav -->
+			<ul class="navbar-nav navbar-right">
+				<li>
+					<form class="navbar-form">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Enter keyword" />
+							<button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+						</div>
+					</form>
+				</li>
+				
+				<li class="dropdown navbar-user">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<div class="image image-icon bg-black text-grey-darker">
+						<img src="../PE_Resources/paathshala_logo_512.png">
+						</div>
+						<span id="navbarNameHolder"></span>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right">
+						<a href="#" id="logoutButton" class="dropdown-item" style="cursor: pointer;" >Log Out</a>
+					</div>
+				</li>
+			</ul>
+			<!-- end header navigation right -->
+		</div>
+		<!-- end #header -->
+		
+		<!-- begin #sidebar -->
+		<div id="sidebar" class="sidebar">
+			<!-- begin sidebar scrollbar -->
+			<div data-scrollbar="true" data-height="100%">
+				<!-- begin sidebar user -->
+				<ul class="nav">
+					<li class="nav-profile">
+						<a href="javascript:;" data-toggle="nav-profile">
+							<div class="cover with-shadow"></div>
+							<div class="info">
+								<p id="sidebarNameHolder"></p>
+								<small>PE Admin</small>
+							</div>
+						</a>
+					</li>
+
+				
+				</ul>
+				<!-- end sidebar user -->
+				<!-- begin sidebar nav -->
+				<ul class="nav">
+					<li class="nav-header">Navigation</li>
+					<li>
+						<a href="./dashboard.html">
+							<i class="fa fa-th-large"></i>
+							<span>Home</span>
+						</a>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<i class="fa fa-user" aria-hidden="true"></i>
+							<span>Admin Settings</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="./create_admin.html">Create Admins</a></li>
+							<li><a href="./manage_admins.html">Manage Admins</a></li>
+						</ul>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<i class="fa fa-graduation-cap" aria-hidden="true"></i>
+							<span>Student Settings</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="./register_student.html">Register Student</a></li>
+							<li><a href="./manage_students.html">Manage Students</a></li>
+						</ul>
+					</li>
+					<li class="active">
+						<a href="./manage_syllabus.html">
+							<i class="fa fa-book" aria-hidden="true"></i>
+							<span>Syllabus Manager</span>
+						</a>
+					</li>
+					<!-- menu 2-->
+					<!-- begin sidebar minify button -->
+					<li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
+					<!-- end sidebar minify button -->
+				</ul>
+				<!-- end sidebar nav -->
+			</div>
+			<!-- end sidebar scrollbar -->
+		</div>
+		<div class="sidebar-bg"></div>
+		<!-- end #sidebar -->
+		
+		<!-- begin #content -->
+		<div id="content" class="content">
+			<!-- begin breadcrumb -->
+			<ol class="breadcrumb pull-right">
+				<li class="breadcrumb-item active"><a href="#">Syllabus Manager</a></li>
+			</ol>
+			<!-- end breadcrumb -->
+			<!-- begin page-header -->
+			<h1 class="page-header">Syllabus Manager</h1>
+			<!-- end page-header -->
+			
+			<!-- begin panel -->
+			<div class="panel panel-inverse">
+				<div class="panel-heading">
+					<div class="panel-heading-btn">
+					</div>
+					<h4 class="panel-title">SYLLABUS </h4>
+				</div>
+				<div class="panel-body">
+					<div id="domain_panel">
+                    </div>
+                    <button class="btn btn-green add-button" onclick="addDomain()" style="width:100%"> <i class="fa fa-plus-circle" aria-hidden="true"></i> Create New Domain</button>
+				</div>
+			</div>
+			<!-- end panel -->
+		</div>
+		<!-- end #content -->
+		
+		<!-- begin scroll to top btn -->
+		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+		<!-- end scroll to top btn -->
+	</div>
+	<!-- end page container -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="../../assets/plugins/jquery/jquery-3.3.1.min.js"></script>
+	<script src="../../assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+	<script src="../../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="../../assets/crossbrowserjs/html5shiv.js"></script>
+		<script src="../../assets/crossbrowserjs/respond.min.js"></script>
+		<script src="../../../admin/template../../assets/crossbrowserjs/excanvas.min.js"></script>
+	<![endif]-->
+	<script src="../../assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="../../assets/plugins/js-cookie/js.cookie.js"></script>
+	<script src="../../../admin/template../../assets/js/theme/default.min.js"></script>
+	<script src="../../assets/js/apps.min.js"></script>
+	<!-- ================== END BASE JS ================== -->
+	
+	<script>
+	var pe_username;
+	var pe_email;
+	var user_access_token = localStorage.getItem("admin_token");
+    // Get Entire Syllabus
+
+	// All Nameplace holders
+
+		// Sidebar Name Holder
+		var sidebarNameHolder = document.getElementById("sidebarNameHolder");
+		// Logout functionality
+		var logout = document.getElementById("logoutButton");
+		logout.addEventListener("click",()=>{
+			localStorage.clear();
+			document.location.href="/Admin";
+
+		})
+		//Navbar name holder
+		var navNameHolder = document.getElementById("navbarNameHolder");
+	console.log("access token:-"+user_access_token)
+		if(user_access_token==null)
+		{
+			document.location.href="/Admin";
+
+		}
+
+		fetch("/verifyAdmin",{
+			headers:{
+				method:"GET",
+				authorization:user_access_token
+			}
+		}).then(response=>response.json()).then(data=>{
+			console.log("is token verified? "+data.is_verified);
+			if(data.is_verified==false)
+			{
+				document.location.href="/";
+			}
+			if(data.is_verified==true)
+			{
+
+				console.log(data.admin);
+				pe_username = data.admin.adminID;
+				console.log("The Logged in user is :"+pe_username);
+				sidebarNameHolder.innerHTML=pe_username;
+                navNameHolder.innerHTML=pe_username;
+                
+                console.log("%c Fetching Syllabus...","color:blue;font-weight:bold")
+                // Get Full Syllabus
+                fetch("/getFullSyllabus",{
+                    method:"GET",
+                    headers:{
+                        authorization:user_access_token
+                    }
+                }).then(response => response.json()).then(syllabusData=>{
+                    if(syllabusData.is_successful)
+                    {
+                        var dp = document.getElementById("domain_panel")
+
+                        console.log("%c Syllabus Fetched ","color:green;font-weight:bold")
+                        console.log(syllabusData)
+                        syllabusData.syllabus.forEach(domain=>{
+                            dp.innerHTML+=` 
+                            <div class="accordion" id="accordionExample">
+                           
+                           <div class="card">
+                                <div class="card-header bg-dark" id="${domain.name}Heading">
+                                    <h4 class="domain_title">
+                                    <p class="collapsed text-white" data-toggle="collapse" data-target="#${domain.name}Collapse" aria-expanded="false" aria-controls="collapseTwo">
+                                            <i class="fa fa-globe" style="font-size:1.3em;text-align:middle" aria-hidden="true"></i>&nbsp ${domain.name}
+                                    </p>
+                                    </h4>
+                                </div>
+                                <div id="${domain.name}Collapse" class="collapse" aria-labelledby="${domain.name}Heading" data-parent="#accordionExample">
+                                    <div class="card-body chapter-area">
+                                    <div id="${domain.name}SubjectsArea">
+
+                                    </div>
+                                   <button class="btn btn-green add-button" onclick="addSubject('${domain._id}','${domain.name}')" style="width:100%"> <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Subject</button>
+                                    </div>
+                                </div>
+                            </div>`
+                            // If Domain Has Subjects
+                            if(domain.Subjects!=null)
+                            {
+                                var subjectpanel = document.getElementById(`${domain.name}SubjectsArea`)
+                                domain.Subjects.forEach(subject=>{
+                                    subjectpanel.innerHTML+=` 
+                            <div class="accordion" id="accordionExample">
+                           
+                           <div class="card">
+                                <div class="card-header bg-dark" id="${domain.name}${subject.name}Heading">
+                                    <h4 class="domain_title">
+                                    <p class="collapsed text-white" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <i class="fa fa-globe" style="font-size:1.3em;text-align:middle" aria-hidden="true"></i>&nbsp ${subject.name}
+                                    </p>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="${domain.name}${subject.name}Heading" data-parent="#accordionExample">
+                                    <div class="card-body chapter-area" id="${domain.name}${subject.name}ChaptersArea">
+                                    </div>
+                                </div>
+                            </div>`
+                                })
+                            }
+                           
+                        })
+                    }
+                    else
+                    {
+                        console.log("%c Failed to fetch syllabus","color:red;font-weight:bold");
+                    }
+                })
+
+
+			}
+		
+        })
+        
+        //Functions Related To Syllabus Manager
+
+        // Create New Domain
+        function addDomain(){
+            var dp = document.getElementById("domain_panel")
+
+            var domain_name = prompt("Enter Domain:");
+            if(domain_name!=null)
+            {
+                fetch("/createDomain",{
+                    method:"POST",
+                    headers:{
+                        authorization:user_access_token,
+                        'Content-Type':'application/json'
+                    },
+                    body:JSON.stringify({"domain_name":domain_name})
+                }).then(response => response.json()).then(data =>{
+                    console.log(data);
+                    dp.innerHTML+=`<div class="accordion" id="accordionExample">
+                           
+                           <div class="card">
+                                <div class="card-header bg-dark" id="${data.domain[0].name}Heading">
+                                    <h4 class="domain_title">
+                                    <p class="collapsed text-white" data-toggle="collapse" data-target="#${data.domain[0].name}Collapse" aria-expanded="false" aria-controls="collapseTwo">
+                                            <i class="fa fa-globe" style="font-size:1.3em;text-align:middle" aria-hidden="true"></i>&nbsp ${data.domain[0].name}
+                                    </p>
+                                    </h4>
+                                </div>
+                                <div id="${data.domain[0].name}Collapse" class="collapse" aria-labelledby="${data.domain[0].name}Heading" data-parent="#accordionExample">
+                                    <div class="card-body chapter-area">
+                                    <div id="${data.domain[0].name}SubjectsArea">
+
+                                    </div>
+                                   <button class="btn btn-green add-button" onclick="addSubject('${data.domain[0]._id}','${data.domain[0].name}')" style="width:100%"> <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Subject</button>
+                                    </div>
+                                </div>
+                            </div>`
+                })
+            }
+        }
+
+
+        // Add A Subject To Domain
+        function addSubject(domainID,domain_name)
+        {
+            console.log(`domain id is ${domainID}`);
+            console.log(`domain name is ${domain_name}`)
+            var subject_name = prompt("Enter Subject Name");
+            if(subject_name!=null)
+            {
+            fetch('/addSubjectToDomain',{
+                method:"POST",
+                headers:{
+                    authorization:user_access_token,
+                    'Content-type':"application/json"
+                },
+                body:JSON.stringify({"domain_id":domainID,"subject_name":subject_name})
+            }).then(response => response.json()).then(data=>{
+                console.log(data);
+            })
+            }
+        }
+		$(document).ready(function() {
+			App.init();
+        });      
+
+	</script>
+</body>
+</html>

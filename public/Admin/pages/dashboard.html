@@ -125,6 +125,12 @@
 							<li><a href="./manage_students.html">Manage Students</a></li>
 						</ul>
 					</li>
+					<li>
+						<a href="./manage_syllabus.html">
+							<i class="fa fa-book" aria-hidden="true"></i>
+							<span>Syllabus Manager</span>
+						</a>
+					</li>
 					<!-- menu 2-->
 					<!-- begin sidebar minify button -->
 					<li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
@@ -210,7 +216,7 @@
 
 		}
 
-		fetch("/verify",{
+		fetch("/verifyAdmin",{
 			headers:{
 				method:"GET",
 				authorization:user_access_token
@@ -223,12 +229,8 @@
 			}
 			if(data.is_verified==true)
 			{
-				var authDetails = data.authData;
-				console.log(authDetails.user);
-				pe_username = authDetails.username;
-				pe_email = authDetails.email;
+				pe_username = data.admin.adminID;
 				console.log("The Logged in user is :"+pe_username);
-				console.log("The logged in users email id is :"+pe_email);
 				sidebarNameHolder.innerHTML=pe_username;
 				navNameHolder.innerHTML=pe_username;
 			}
