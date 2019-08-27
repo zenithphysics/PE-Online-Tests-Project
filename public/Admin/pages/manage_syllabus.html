@@ -46,6 +46,7 @@
 .add-button{
     font-size:1.5em;
     height:50px;
+	margin:10px;
 }
 .delete-button {
     color:red;
@@ -335,8 +336,16 @@
                                 </div>
                                 <div id="${unique_id}Collapse" class="collapse" aria-labelledby="${unique_id}Heading" data-parent="#accordion${unique_id}">
 									<div class="card-body subject-area" id="${unique_id}ChaptersArea">
+										<h4>CHAPTERS</h4>
 									</div>
-									<button class="btn btn-green add-button" onclick="addChapter('${domain.name}','${subject.name}')" style="width:100%"> <i class="fa fa-file-text" aria-hidden="true"></i> Add Chapter</button>
+									<button class="btn btn-green add-button" onclick="addChapter('${domain.name}','${subject.name}')" style="width:100%"> 
+									<i class="fa fa-file-text" aria-hidden="true"></i> Add Chapter</button>
+									<div class="card-body subject-area" id="${unique_id}SectionsArea">
+										<h4>SECTIONS</h4>
+									</div>
+									<button class="btn btn-green add-button" onclick="addSection('${domain.name}','${subject.name}')" style="width:100%"> 
+									
+										<i class="fa fa-info-circle" aria-hidden="true"></i> Add Section</button>
 								</div>
 							</div>`
 							// Load Each Chapters
@@ -366,6 +375,29 @@
 							</div>`
 								})
 							}
+							// Load All Sections
+							if(subject.Sections!=null)
+							{
+								var unique_section_area_id = `${domain.name}${subject.name}`.replace(/ /g,'-');
+								var sections_panel = document.getElementById(`${unique_section_area_id}SectionsArea`);
+								subject.Sections.forEach(section=>{
+									var unique_id=`${domain.name}${subject.name}${section.name}`.replace(/ /g,'-')
+									sections_panel.innerHTML+=`
+									<div class="accordion" id="accordion${unique_id}">
+                           
+                           <div class="card  accordion-chapter">
+                                <div class="card-header bg-dark" id="${unique_id}Heading">
+                                    <h4 class="domain_title">
+                                    <p class="collapsed text-white" data-toggle="collapse" data-target="#${unique_id}Collapse" aria-expanded="false" aria-controls="collapseTwo">
+										<i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp ${section.name}
+										<i class="fa fa-minus-square delete-button" onclick="deleteSection('${domain.name}','${subject.name}','${section.name}')" aria-hidden="true"></i>
+                                    </p>
+                                    </h4>
+                                </div>
+							</div>`
+							})
+						}
+
                                 })
                             }
                            
@@ -500,9 +532,16 @@
                                 </div>
 								<div id="${unique_id}Collapse" class="collapse" aria-labelledby="${unique_id}Heading" data-parent="#accordion${unique_id}">
 									<div class="card-body subject-area" id="${unique_id}ChaptersArea">
+									<h4>CHAPTERS</h4>
 									</div>
 									<button class="btn btn-green add-button" onclick="addChapter('${domain_name}','${data.subject}')" style="width:100%"> <i class="fa fa-file-text" aria-hidden="true"></i> Add Chapter</button>
-								</div>
+									<div class="card-body subject-area" id="${unique_id}SectionsArea">
+										<h4>SECTIONS</h4>
+									</div>
+									<button class="btn btn-green add-button" onclick="addSection('${domain_name}','${data.subject}')" style="width:100%"> 
+									
+										<i class="fa fa-info-circle" aria-hidden="true"></i> Add Section</button>
+									</div>
                             </div>
 					`
 				}
@@ -618,6 +657,97 @@
 					alert("Failed to delete Chapter")
 				}
 			})
+		}
+
+		// Add Section To Subject
+		function addSection(domain_name,subject_name)
+		{
+			var section_name = prompt("Enter Name of Section: ");
+			if(section_name!=null)
+			{
+				fetch("/addSectionToSubject",{
+					method:"POST",
+					headers:{
+						authorization:user_access_token,
+						'Content-type':"application/json"
+					},
+					body:JSON.stringify({"domain_name":domain_name,"subject_name":subject_name,"section_name":section_name})
+				}).then(response=>response.json()).then(data=>{
+					console.log("%c Adding Section","color:blue;font-weight:bold");
+					console.log(data);
+					if(data.is_successful)
+					{
+						console.log("%c Added Section Successfully","color:green;font-weight:bold")
+						console.log(data);
+						var unique_section_area_id = `${domain_name}${subject_name}`.replace(/ /g,'-');
+						var sections_panel = document.getElementById(`${unique_section_area_id}SectionsArea`)
+						var unique_id=`${domain_name}${subject_name}${section_name}`.replace(/ /g,'-')
+
+						sections_panel.innerHTML+=`
+									<div class="accordion" id="accordion${unique_id}">
+                           
+                           <div class="card  accordion-chapter">
+                                <div class="card-header bg-dark" id="${unique_id}Heading">
+                                    <h4 class="domain_title">
+                                    <p class="collapsed text-white" data-toggle="collapse" data-target="#${unique_id}Collapse" aria-expanded="false" aria-controls="collapseTwo">
+										<i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp ${section_name}
+										<i class="fa fa-minus-square delete-button" onclick="deleteSection('${domain_name}','${subject_name}','${section_name}')" aria-hidden="true"></i>
+                                    </p>
+                                    </h4>
+                                </div>
+							</div>`
+					}
+					else
+					{
+						alert("Failed to add Section")
+					}
+				})
+			} 
+		} 
+
+
+		// Delete Section From subject
+		function deleteSection(domain_name,subject_name,section_name){
+			console.log("%c Deleteing Section..","color:blue;font-weight:bold");
+			fetch("/deleteSectionFromSubject",{
+				method:"POST",
+				headers:{
+					authorization:user_access_token,
+					'Content-type':'application/json'
+				},
+				body:JSON.stringify({"subject_name":subject_name,"domain_name":domain_name,"section_name":section_name})
+			}).then(response=>response.json()).then(data=>{
+				if(data.is_successful)
+				{
+					var unique_id = `accordion${domain_name}${subject_name}${section_name}`.replace(/ /g,'-');
+					document.getElementById(unique_id).remove()
+					console.log("%c Section Deleted Successfully","color:green;font-weight:bold")
+				}
+				else
+				{
+					alert("Failed to delete Chapter")
+				}
+			})
+		}
+
+		// add Topic to Chapter
+		function addTopic(domain_name,subject_name,chapter_name)
+		{
+			var topic_name = prompt("Enter Topic Name:");
+			if(topic_name!=null)
+			{
+				fetch("/addTopicToChapter",{
+					method:"POST",
+					headers:{
+						authorization:user_access_token,
+						'Content-type':'application/json'
+					},
+					body:JSON.stringify({"domain_name":domain_name,"subject_name":subject_name,"chapter_name":chapter_name,"topic_name":topic_name})
+				}).then(response => response.json()).then(data=>{
+					console.log("%c Adding Topic....","color:blue;font-weight:bold");
+					console.log(data)
+				})
+			}
 		}
 		$(document).ready(function() {
 			App.init();

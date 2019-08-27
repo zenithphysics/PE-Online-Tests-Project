@@ -765,3 +765,108 @@ app.get('/',(req,res)=>{
             
     })
     })
+    
+
+    // Add Section To Subject
+    app.post("/addSectionToSubject",verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/addSectionToSubject] - Admin Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/addSectionToSubject] - Admin Verification Successful');  
+                console.log('\x1b[33m%s\x1b[1m', '[/addSectionToSubject] - Adding chapter to subject...');
+                subject_name = req.body.subject_name;
+                domain_name = req.body.domain_name;
+                section_name = req.body.section_name;
+                Syllabus.findOneAndUpdate({$and:[{"name":domain_name},{"Subjects.name":subject_name}]},{$addToSet:{"Subjects.$.Sections":{"name":section_name}}},(err,updatedDomain)=>{
+                    if(err || !updatedDomain)
+                    {
+    
+                        console.log('\x1b[31m%s\x1b[1m', "[/addSectionToSubject] - Failed to add section to subject :'( ");
+                        console.log(err);
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/addSectionToSubject] - added section to subject successfully ^_^');  
+                        res.json({is_verified:true,is_successful:true})
+                    }
+                })            
+            }
+            
+    })
+    })
+
+    // Delete Section From Subject
+    app.post("/deleteSectionFromSubject",verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/deleteSectionFromSubject] - Admin Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/deleteSectionFromSubject] - Admin Verification Successful');  
+                console.log('\x1b[33m%s\x1b[1m', '[/deleteSectionFromSubject] - Deleting section from subject...');
+                subject_name = req.body.subject_name;
+                domain_name = req.body.domain_name;
+                section_name = req.body.section_name;
+                Syllabus.findOneAndUpdate({$and:[{"name":domain_name},{"Subjects.name":subject_name}]},{$pull:{"Subjects.$.Sections":{"name":section_name}}},(err,updatedDomain)=>{
+                    if(err || !updatedDomain)
+                    {
+    
+                        console.log('\x1b[31m%s\x1b[1m', "[/deleteSectionFromSubject] - Failed to delete section from subject :'( ");
+                        console.log(err);
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/deleteSectionFromSubject] - deleted section from subject successfully ^_^');  
+                        res.json({is_verified:true,is_successful:true})
+                    }
+                })            
+            }
+    })
+    })
+
+
+    // Add Topic To Chapter
+    app.post("/addTopicToChapter",verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/addTopicToChapter] - Admin Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/addTopicToChapter] - Admin Verification Successful');  
+                console.log('\x1b[33m%s\x1b[1m', '[/addTopicToChapter] - Adding topic to chapter...');
+                subject_name = req.body.subject_name;
+                domain_name = req.body.domain_name;
+                chapter_name = req.body.chapter_name;
+                topic_name = req.body.topic_name;
+                Syllabus.findOneAndUpdate({$and:[{"name":domain_name},{"Subjects.name":subject_name},{"Subjects.Chapters.name":chapter_name}]},{$addToSet:{"Subjects.Chapters.$.Topics":{"name":topic_name}}},(err,updatedDomain)=>{
+                    if(err || !updatedDomain)
+                    {
+    
+                        console.log('\x1b[31m%s\x1b[1m', "[/addTopicToChapter] - Failed to add topic to chapter :'( ");
+                        console.log(err);
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/addTopicToChapter] - added topic to chapter successfully ^_^');  
+                        res.json({is_verified:true,is_successful:true})
+                    }
+                })            
+            }
+            
+    })
+    })
+    
