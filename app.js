@@ -599,7 +599,6 @@ app.get('/',(req,res)=>{
                     else
                     {
                         console.log('\x1b[32m%s\x1b[1m', '[/createDomain] - Created Domain :) ');  
-                        console.log(Domain);
                         res.json({is_verified:true,is_successful:true,domain:Domain})
 
                     }
@@ -607,6 +606,34 @@ app.get('/',(req,res)=>{
             }
         })
     })
+    // Delete Domain
+    app.post("/deleteDomain",verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/deleteDomain] - Admin Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false}) 
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/deleteDomain] - Admin Verification Successful');  
+                console.log('\x1b[33m%s\x1b[1m', '[/deleteDomain] - Deleting Domain...');
+                Syllabus.findOneAndRemove({"name":req.body.domain_name},(err,Domain)=>{
+                    if(err || !Domain){
+                        console.log('\x1b[31m%s\x1b[1m', "[/deleteDomain] - Failed to delete Domain :'( ");
+                        console.log(err)
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/deleteDomain] - Domain Deleted Successfully :) ');  
+                        res.json({is_verified:true,is_successful:true,domain:Domain})
+                    }
+                })
+            }
+        })
+    })
+
     // Add Subject To a Domain
     app.post("/addSubjectToDomain",verifyToken,(req,res)=>{
         jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
@@ -621,8 +648,8 @@ app.get('/',(req,res)=>{
                 console.log('\x1b[33m%s\x1b[1m', '[/addSubjectToDomain] - Adding Subject to domain...');
                 subject_name = req.body.subject_name;
                 domain_id = req.body.domain_id;
-                Syllabus.findByIdAndUpdate(domain_id,{$addToSet:{"Subjects":{"name":subject_name}}},(err,output)=>{
-                    if(err || !output)
+                Syllabus.findByIdAndUpdate(domain_id,{$addToSet:{"Subjects":{"name":subject_name}}},(err,updatedDomain)=>{
+                    if(err || !updatedDomain)
                     {
                         console.log('\x1b[31m%s\x1b[1m', "[/addSubjectToDomain] - Failed to add subject :'( ");
                         res.json({is_verified:true,is_successful:false})
@@ -630,7 +657,73 @@ app.get('/',(req,res)=>{
                     else
                     {
                         console.log('\x1b[32m%s\x1b[1m', '[/addSubjectToDomain] - Added Subject Successfully ^_^');  
-                        console.log(output);
+                        res.json({is_verified:true,is_successful:true,subject:subject_name})
+                    }
+                })            
+            }
+            
+    })
+    })
+
+    // Delete Subject From Domain 
+    app.post("/deleteSubjectFromDomain",verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/deleteSubjectFromDomain] - Admin Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/deleteSubjectFromDomain] - Admin Verification Successful');  
+                console.log('\x1b[33m%s\x1b[1m', '[/deleteSubjectFromDomain] - Deleting Subject from domain...');
+                subject_name = req.body.subject_name;
+                domain_name = req.body.domain_name;
+                Syllabus.findOneAndUpdate({$and:[{"name":domain_name},{Subjects:{"name":subject_name}}]},{$pull:{"Subjects":{"name":subject_name}}},(err,updatedDomain)=>{
+                    if(err || !updatedDomain)
+                    {
+    
+                        console.log('\x1b[31m%s\x1b[1m', "[/deleteSubjectFromDomain] - Failed to delete subject :'( ");
+                        console.log(err);
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/deleteSubjectFromDomain] - Deleted Subject Successfully ^_^');  
+                        res.json({is_verified:true,is_successful:true})
+                    }
+                })            
+            }
+            
+    })
+    })
+
+    // Add Chapter to Subject
+    app.post("/addChapterToSubject",verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/addChapterToSubject] - Admin Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/addChapterToSubject] - Admin Verification Successful');  
+                console.log('\x1b[33m%s\x1b[1m', '[/addChapterToSubject] - Adding chapter to subject...');
+                subject_name = req.body.subject_name;
+                domain_name = req.body.domain_name;
+                chapter_name = req.body.chapter_name;
+                Syllabus.findOneAndUpdate({$and:[{"name":domain_name},{"Subjects.name":subject_name}]},{$addToSet:{"Subjects.$.Chapters":{"name":chapter_name}}},(err,updatedDomain)=>{
+                    if(err || !updatedDomain)
+                    {
+    
+                        console.log('\x1b[31m%s\x1b[1m', "[/addChapterToSubject] - Failed to add chapter to subject :'( ");
+                        console.log(err);
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/addChapterToSubject] - added chapter to subject successfully ^_^');  
                         res.json({is_verified:true,is_successful:true})
                     }
                 })            

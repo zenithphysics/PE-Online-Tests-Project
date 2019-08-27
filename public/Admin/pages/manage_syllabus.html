@@ -35,9 +35,17 @@
     color:white;   
     height:wrap
 }
+.subject-area{
+	background: #dfe4ea;
+	height: wrap;
+}
 .add-button{
     font-size:1.5em;
     height:50px;
+}
+.delete-button {
+    color:red;
+    float:right;
 }
 .card-header:hover{
     cursor:pointer
@@ -275,46 +283,77 @@
                         console.log(syllabusData)
                         syllabusData.syllabus.forEach(domain=>{
                             dp.innerHTML+=` 
-                            <div class="accordion" id="accordionExample">
+                            <div class="accordion" id="accordion${domain.name}">
                            
-                           <div class="card">
+                           <div class="card" id="card${domain.name}">
                                 <div class="card-header bg-dark" id="${domain.name}Heading">
                                     <h4 class="domain_title">
                                     <p class="collapsed text-white" data-toggle="collapse" data-target="#${domain.name}Collapse" aria-expanded="false" aria-controls="collapseTwo">
                                             <i class="fa fa-globe" style="font-size:1.3em;text-align:middle" aria-hidden="true"></i>&nbsp ${domain.name}
+                                            <i class="fa fa-minus-square delete-button" onclick="deleteDomain('${domain.name}')" aria-hidden="true"></i>
+
                                     </p>
                                     </h4>
                                 </div>
-                                <div id="${domain.name}Collapse" class="collapse" aria-labelledby="${domain.name}Heading" data-parent="#accordionExample">
+                                <div id="${domain.name}Collapse" class="collapse" aria-labelledby="${domain.name}Heading" data-parent="#accordion${domain.name}">
                                     <div class="card-body chapter-area">
                                     <div id="${domain.name}SubjectsArea">
 
                                     </div>
-                                   <button class="btn btn-green add-button" onclick="addSubject('${domain._id}','${domain.name}')" style="width:100%"> <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Subject</button>
+                                   <button class="btn btn-green add-button" onclick="addSubject('${domain._id}','${domain.name}')" style="width:100%"> <i class="fa fa-book" aria-hidden="true"></i> Add Subject</button>
                                     </div>
                                 </div>
                             </div>`
                             // If Domain Has Subjects
                             if(domain.Subjects!=null)
                             {
+								// Load Each Subjects
                                 var subjectpanel = document.getElementById(`${domain.name}SubjectsArea`)
                                 domain.Subjects.forEach(subject=>{
                                     subjectpanel.innerHTML+=` 
-                            <div class="accordion" id="accordionExample">
+                            <div class="accordion" id="accordion${domain.name}${subject.name}">
                            
                            <div class="card">
                                 <div class="card-header bg-dark" id="${domain.name}${subject.name}Heading">
                                     <h4 class="domain_title">
-                                    <p class="collapsed text-white" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            <i class="fa fa-globe" style="font-size:1.3em;text-align:middle" aria-hidden="true"></i>&nbsp ${subject.name}
+                                    <p class="collapsed text-white" data-toggle="collapse" data-target="#${domain.name}${subject.name}Collapse" aria-expanded="false" aria-controls="collapseTwo">
+										<i class="fa fa-book" aria-hidden="true"></i></i>&nbsp ${subject.name}
+										<i class="fa fa-minus-square delete-button" onclick="deleteSubject('${domain.name}','${subject.name}')" aria-hidden="true"></i>
+
                                     </p>
                                     </h4>
                                 </div>
-                                <div id="collapseTwo" class="collapse" aria-labelledby="${domain.name}${subject.name}Heading" data-parent="#accordionExample">
-                                    <div class="card-body chapter-area" id="${domain.name}${subject.name}ChaptersArea">
-                                    </div>
+                                <div id="${domain.name}${subject.name}Collapse" class="collapse" aria-labelledby="${domain.name}${subject.name}Heading" data-parent="#accordion${domain.name}${subject.name}">
+									<div class="card-body subject-area" id="${domain.name}${subject.name}ChaptersArea">
+									</div>
+									<button class="btn btn-green add-button" onclick="addChapter('${domain.name}','${subject.name}')" style="width:100%"> <i class="fa fa-file-text" aria-hidden="true"></i> Add Chapter</button>
+								</div>
+							</div>`
+							// Load Each Chapters
+							if(subject.Chapters!=null)
+							{
+								var chapters_panel = document.getElementById(`${domain.name}${subject.name}ChaptersArea`);
+								subject.Chapters.forEach(chapter=>{
+									chapters_panel.innerHTML+=`
+									<div class="accordion" id="accordion${domain.name}${subject.name}${chapter.name}">
+                           
+                           <div class="card">
+                                <div class="card-header bg-dark" id="${domain.name}${subject.name}${chapter.name}Heading">
+                                    <h4 class="domain_title">
+                                    <p class="collapsed text-white" data-toggle="collapse" data-target="#${domain.name}${subject.name}${chapter.name}Collapse" aria-expanded="false" aria-controls="collapseTwo">
+										<i class="fa fa-book" aria-hidden="true"></i></i>&nbsp ${chapter.name}
+										<i class="fa fa-minus-square delete-button" onclick="deleteChapter('${domain.name}','${subject.name}','${chapter.name}')" aria-hidden="true"></i>
+                                    </p>
+                                    </h4>
                                 </div>
-                            </div>`
+                                <div id="${domain.name}${subject.name}${chapter.name}Collapse" class="collapse" aria-labelledby="${domain.name}${subject.name}${chapter.name}Heading" data-parent="#accordion${domain.name}${subject.name}${chapter.name}">
+									<div class="card-body subject-area" id="${domain.name}${subject.name}${chapter.name}ChaptersArea">
+									</div>
+									<button class="btn btn-green add-button" onclick="addTopic('${domain.name}','${subject.name}','${chapter.name}')" style="width:100%"> <i class="fa fa-file-text" aria-hidden="true"></i> Add Topic</button>
+								</div>
+							</div>`
+								})
+							}
                                 })
                             }
                            
@@ -340,6 +379,7 @@
             var domain_name = prompt("Enter Domain:");
             if(domain_name!=null)
             {
+                console.log("%c Creating Domain...","color:blue;font-weight:bold")
                 fetch("/createDomain",{
                     method:"POST",
                     headers:{
@@ -348,18 +388,21 @@
                     },
                     body:JSON.stringify({"domain_name":domain_name})
                 }).then(response => response.json()).then(data =>{
-                    console.log(data);
-                    dp.innerHTML+=`<div class="accordion" id="accordionExample">
+                    if(data.is_successful)
+                    {
+                    console.log("%c Domain Created Successfully","color:green;font-weight:bold");
+                    dp.innerHTML+=`<div class="accordion" id="accordion${data.domain[0].name}">
                            
-                           <div class="card">
+                           <div class="card" id="card${data.domain[0].name}">
                                 <div class="card-header bg-dark" id="${data.domain[0].name}Heading">
                                     <h4 class="domain_title">
                                     <p class="collapsed text-white" data-toggle="collapse" data-target="#${data.domain[0].name}Collapse" aria-expanded="false" aria-controls="collapseTwo">
-                                            <i class="fa fa-globe" style="font-size:1.3em;text-align:middle" aria-hidden="true"></i>&nbsp ${data.domain[0].name}
+                                            <i class="fa fa-globe" style="font-size:1.3em;text-align:middle" aria-hidden="true"></i>&nbsp ${data.domain[0].name}<i class="fa fa-minus-square delete-button" onclick="deleteDomain('${data.domain[0].name}')" aria-hidden="true"></i>
+
                                     </p>
                                     </h4>
                                 </div>
-                                <div id="${data.domain[0].name}Collapse" class="collapse" aria-labelledby="${data.domain[0].name}Heading" data-parent="#accordionExample">
+                                <div id="${data.domain[0].name}Collapse" class="collapse" aria-labelledby="${data.domain[0].name}Heading" data-parent="#accordion${data.domain[0].name}">
                                     <div class="card-body chapter-area">
                                     <div id="${data.domain[0].name}SubjectsArea">
 
@@ -368,8 +411,39 @@
                                     </div>
                                 </div>
                             </div>`
+                    }
+                    else
+                    {
+                        console.log("%c Failed to create Domain","color:red;font-weight:bold");
+
+                    }
                 })
+        
             }
+        }
+
+        // deleteDomain
+        function deleteDomain(domain_name)
+        {
+            console.log("%c Deleting Domain","color:blue;font-weight:bold")
+            fetch('/deleteDomain',{
+                method:"POST",
+                headers:{
+                    authorization:user_access_token,
+                    'Content-type':'application/json'
+                },
+                body:JSON.stringify({"domain_name":domain_name})
+            }).then(response => response.json()).then(data=>{
+                console.log(data)
+                if(data.is_successful)
+                {
+                    document.getElementById(`card${domain_name}`).remove();
+                }
+                else
+                {
+                    console.log("%c Failed to delete domain","color:red;font-weight:bold")
+                }
+            })
         }
 
 
@@ -389,10 +463,88 @@
                 },
                 body:JSON.stringify({"domain_id":domainID,"subject_name":subject_name})
             }).then(response => response.json()).then(data=>{
-                console.log(data);
+				if(data.is_successful)
+				{
+					console.log("%c Subject added successfully","color:green;font-weight:bold");
+					var subjects_panel = document.getElementById(`${domain_name}SubjectsArea`);
+					console.log("This is subject Panel");
+					console.log(subjects_panel);
+					subjects_panel.innerHTML+=`
+					<div class="accordion" id="accordion${domain_name}${data.subject}">
+                           <div class="card" id="card${domain_name}${data.subject}">
+                                <div class="card-header bg-dark" id="${domain_name}${data.subject}Heading">
+                                    <h4 class="domain_title">
+                                    <p class="collapsed text-white" data-toggle="collapse" data-target="#${domain_name}${data.subject}Collapse" aria-expanded="false" aria-controls="collapseTwo">
+										<i class="fa fa-book" aria-hidden="true"></i></i>&nbsp ${data.subject}
+                                            <i class="fa fa-minus-square delete-button" onclick="deleteSubject('${domain_name}','${data.subject}')" aria-hidden="true"></i>
+
+                                    </p>
+                                    </h4>
+                                </div>
+								<div id="${domain_name}${data.subject}Collapse" class="collapse" aria-labelledby="${domain_name}${data.subject}Heading" data-parent="#accordion${domain_name}${data.subject}">
+									<div class="card-body subject-area" id="${domain_name}${data.subject}ChaptersArea">
+									</div>
+									<button class="btn btn-green add-button" onclick="addChapter('${domain_name}','${data.subject}')" style="width:100%"> <i class="fa fa-file-text" aria-hidden="true"></i> Add Chapter</button>
+								</div>
+                            </div>
+					`
+				}
             })
             }
-        }
+		}
+		// Delete Subject From Domain
+
+		function deleteSubject(domain_name,subject_name)
+		{
+			console.log("%c Deleting Subject...","color:blue;font-wegiht:bold")
+			console.log(`Domain name is ${domain_name}`);
+			console.log(`Subject Name is ${subject_name}`);
+			s_name = subject_name;
+			d_name = domain_name;
+			fetch("/deleteSubjectFromDomain",{
+				method:"POST",
+				headers:{
+				method:"POST",
+				authorization:user_access_token,
+				"Content-type":"application/json"
+			},
+				body:JSON.stringify({"subject_name":s_name,"domain_name":d_name})
+			}).then(response => response.json()).then(data =>{
+				if(data.is_successful)
+				{
+				document.getElementById(`accordion${domain_name}${subject_name}`).remove();
+				console.log("%c Deleted Subject Successfully","color:green;font-weight:bold")
+				}
+				else
+				{
+					console.log("%c Failed to delete subject :( ","color:red;font-weight:bold")
+
+				}
+			})
+		}
+
+		// Add A Chapter to subject
+		function addChapter(domain_name,subject_name)
+		{
+			console.log(`domain is ${domain_name}`);
+			console.log(`subject is ${subject_name}`)
+			var chapter_name = prompt("Enter Chapter Name:");
+			if(chapter_name!=null)
+			{
+				fetch("/addChapterToSubject",{
+					method:"POST",
+					headers:{
+						authorization:user_access_token,
+						"Content-Type":"application/json"
+					},
+					body:JSON.stringify({"domain_name":domain_name,"subject_name":subject_name,"chapter_name":chapter_name})
+				}).then(response => response.json()).then(data=>{
+					console.log(data);
+					
+				})
+			}
+
+		}
 		$(document).ready(function() {
 			App.init();
         });      
