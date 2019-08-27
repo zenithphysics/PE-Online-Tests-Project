@@ -30,6 +30,10 @@
 .card-header{
     height:50px;
 }
+.topic-area {
+	background-color:#57606f;
+
+}
 .chapter-area {
     background-color:#70a1ff;
     color:white;   
@@ -53,6 +57,10 @@
 .domain_title{
     margin-top: 2px;
     font-weight: 1em;
+}
+.accordion-chapter{
+	margin-bottom:5px;
+	padding-bottom:0;
 }
 </style>
 <body>
@@ -282,22 +290,23 @@
                         console.log("%c Syllabus Fetched ","color:green;font-weight:bold")
                         console.log(syllabusData)
                         syllabusData.syllabus.forEach(domain=>{
+							var unique_id= domain.name.replace(/ /g,'-');
                             dp.innerHTML+=` 
-                            <div class="accordion" id="accordion${domain.name}">
+                            <div class="accordion" id="accordion${unique_id}">
                            
-                           <div class="card" id="card${domain.name}">
-                                <div class="card-header bg-dark" id="${domain.name}Heading">
+                           <div class="card" id="card${unique_id}">
+                                <div class="card-header bg-dark" id="${unique_id}Heading">
                                     <h4 class="domain_title">
-                                    <p class="collapsed text-white" data-toggle="collapse" data-target="#${domain.name}Collapse" aria-expanded="false" aria-controls="collapseTwo">
+                                    <p class="collapsed text-white" data-toggle="collapse" data-target="#${unique_id}Collapse" aria-expanded="false" aria-controls="collapseTwo">
                                             <i class="fa fa-globe" style="font-size:1.3em;text-align:middle" aria-hidden="true"></i>&nbsp ${domain.name}
                                             <i class="fa fa-minus-square delete-button" onclick="deleteDomain('${domain.name}')" aria-hidden="true"></i>
 
                                     </p>
                                     </h4>
                                 </div>
-                                <div id="${domain.name}Collapse" class="collapse" aria-labelledby="${domain.name}Heading" data-parent="#accordion${domain.name}">
+                                <div id="${unique_id}Collapse" class="collapse" aria-labelledby="${unique_id}Heading" data-parent="#accordion${unique_id}">
                                     <div class="card-body chapter-area">
-                                    <div id="${domain.name}SubjectsArea">
+                                    <div id="${unique_id}SubjectsArea">
 
                                     </div>
                                    <button class="btn btn-green add-button" onclick="addSubject('${domain._id}','${domain.name}')" style="width:100%"> <i class="fa fa-book" aria-hidden="true"></i> Add Subject</button>
@@ -310,21 +319,22 @@
 								// Load Each Subjects
                                 var subjectpanel = document.getElementById(`${domain.name}SubjectsArea`)
                                 domain.Subjects.forEach(subject=>{
+									var unique_id = `${domain.name}${subject.name}`.replace(/ /g,'-');
                                     subjectpanel.innerHTML+=` 
-                            <div class="accordion" id="accordion${domain.name}${subject.name}">
+                            <div class="accordion" id="accordion${unique_id}">
                            
                            <div class="card">
-                                <div class="card-header bg-dark" id="${domain.name}${subject.name}Heading">
+                                <div class="card-header bg-dark" id="${unique_id}Heading">
                                     <h4 class="domain_title">
-                                    <p class="collapsed text-white" data-toggle="collapse" data-target="#${domain.name}${subject.name}Collapse" aria-expanded="false" aria-controls="collapseTwo">
+                                    <p class="collapsed text-white" data-toggle="collapse" data-target="#${unique_id}Collapse" aria-expanded="false" aria-controls="collapseTwo">
 										<i class="fa fa-book" aria-hidden="true"></i></i>&nbsp ${subject.name}
 										<i class="fa fa-minus-square delete-button" onclick="deleteSubject('${domain.name}','${subject.name}')" aria-hidden="true"></i>
 
                                     </p>
                                     </h4>
                                 </div>
-                                <div id="${domain.name}${subject.name}Collapse" class="collapse" aria-labelledby="${domain.name}${subject.name}Heading" data-parent="#accordion${domain.name}${subject.name}">
-									<div class="card-body subject-area" id="${domain.name}${subject.name}ChaptersArea">
+                                <div id="${unique_id}Collapse" class="collapse" aria-labelledby="${unique_id}Heading" data-parent="#accordion${unique_id}">
+									<div class="card-body subject-area" id="${unique_id}ChaptersArea">
 									</div>
 									<button class="btn btn-green add-button" onclick="addChapter('${domain.name}','${subject.name}')" style="width:100%"> <i class="fa fa-file-text" aria-hidden="true"></i> Add Chapter</button>
 								</div>
@@ -332,22 +342,24 @@
 							// Load Each Chapters
 							if(subject.Chapters!=null)
 							{
-								var chapters_panel = document.getElementById(`${domain.name}${subject.name}ChaptersArea`);
+								var unique_chapter_area_id = `${domain.name}${subject.name}`.replace(/ /g,'-');
+								var chapters_panel = document.getElementById(`${unique_chapter_area_id}ChaptersArea`);
 								subject.Chapters.forEach(chapter=>{
+									var unique_id=`${domain.name}${subject.name}${chapter.name}`.replace(/ /g,'-')
 									chapters_panel.innerHTML+=`
-									<div class="accordion" id="accordion${domain.name}${subject.name}${chapter.name}">
+									<div class="accordion" id="accordion${unique_id}">
                            
-                           <div class="card">
-                                <div class="card-header bg-dark" id="${domain.name}${subject.name}${chapter.name}Heading">
+                           <div class="card  accordion-chapter">
+                                <div class="card-header bg-dark" id="${unique_id}Heading">
                                     <h4 class="domain_title">
-                                    <p class="collapsed text-white" data-toggle="collapse" data-target="#${domain.name}${subject.name}${chapter.name}Collapse" aria-expanded="false" aria-controls="collapseTwo">
-										<i class="fa fa-book" aria-hidden="true"></i></i>&nbsp ${chapter.name}
+                                    <p class="collapsed text-white" data-toggle="collapse" data-target="#${unique_id}Collapse" aria-expanded="false" aria-controls="collapseTwo">
+										<i class="fa fa-file" aria-hidden="true"></i>&nbsp ${chapter.name}
 										<i class="fa fa-minus-square delete-button" onclick="deleteChapter('${domain.name}','${subject.name}','${chapter.name}')" aria-hidden="true"></i>
                                     </p>
                                     </h4>
                                 </div>
-                                <div id="${domain.name}${subject.name}${chapter.name}Collapse" class="collapse" aria-labelledby="${domain.name}${subject.name}${chapter.name}Heading" data-parent="#accordion${domain.name}${subject.name}${chapter.name}">
-									<div class="card-body subject-area" id="${domain.name}${subject.name}${chapter.name}ChaptersArea">
+                                <div id="${unique_id}Collapse" class="collapse" aria-labelledby="${unique_id}Heading" data-parent="#accordion${unique_id}">
+									<div class="card-body topic-area" id="${unique_id}TopicsArea">
 									</div>
 									<button class="btn btn-green add-button" onclick="addTopic('${domain.name}','${subject.name}','${chapter.name}')" style="width:100%"> <i class="fa fa-file-text" aria-hidden="true"></i> Add Topic</button>
 								</div>
@@ -390,19 +402,20 @@
                 }).then(response => response.json()).then(data =>{
                     if(data.is_successful)
                     {
+						var unique_id = data.domain[0].name.replace(/ /g,'-');
                     console.log("%c Domain Created Successfully","color:green;font-weight:bold");
-                    dp.innerHTML+=`<div class="accordion" id="accordion${data.domain[0].name}">
+                    dp.innerHTML+=`<div class="accordion" id="accordion${unique_id}">
                            
-                           <div class="card" id="card${data.domain[0].name}">
-                                <div class="card-header bg-dark" id="${data.domain[0].name}Heading">
+                           <div class="card" id="card${unique_id}">
+                                <div class="card-header bg-dark" id="${unique_id}Heading">
                                     <h4 class="domain_title">
-                                    <p class="collapsed text-white" data-toggle="collapse" data-target="#${data.domain[0].name}Collapse" aria-expanded="false" aria-controls="collapseTwo">
+                                    <p class="collapsed text-white" data-toggle="collapse" data-target="#${unique_id}Collapse" aria-expanded="false" aria-controls="collapseTwo">
                                             <i class="fa fa-globe" style="font-size:1.3em;text-align:middle" aria-hidden="true"></i>&nbsp ${data.domain[0].name}<i class="fa fa-minus-square delete-button" onclick="deleteDomain('${data.domain[0].name}')" aria-hidden="true"></i>
 
                                     </p>
                                     </h4>
                                 </div>
-                                <div id="${data.domain[0].name}Collapse" class="collapse" aria-labelledby="${data.domain[0].name}Heading" data-parent="#accordion${data.domain[0].name}">
+                                <div id="${unique_id}Collapse" class="collapse" aria-labelledby="${unique_id}Heading" data-parent="#accordion${unique_id}">
                                     <div class="card-body chapter-area">
                                     <div id="${data.domain[0].name}SubjectsArea">
 
@@ -425,7 +438,8 @@
         // deleteDomain
         function deleteDomain(domain_name)
         {
-            console.log("%c Deleting Domain","color:blue;font-weight:bold")
+			console.log("%c Deleting Domain","color:blue;font-weight:bold")
+			console.log(domain_name)
             fetch('/deleteDomain',{
                 method:"POST",
                 headers:{
@@ -437,7 +451,8 @@
                 console.log(data)
                 if(data.is_successful)
                 {
-                    document.getElementById(`card${domain_name}`).remove();
+					unique_id=domain_name.replace(/ /g,'-')
+                    document.getElementById(`card${unique_id}`).remove();
                 }
                 else
                 {
@@ -465,29 +480,35 @@
             }).then(response => response.json()).then(data=>{
 				if(data.is_successful)
 				{
+					var domain_unique = domain_name.replace(/ /g,'-')
 					console.log("%c Subject added successfully","color:green;font-weight:bold");
-					var subjects_panel = document.getElementById(`${domain_name}SubjectsArea`);
+					var subjects_panel = document.getElementById(`${domain_unique}SubjectsArea`);
 					console.log("This is subject Panel");
+					var unique_id = `${domain_name}${data.subject}`.replace(/ /g,'-');
 					console.log(subjects_panel);
 					subjects_panel.innerHTML+=`
-					<div class="accordion" id="accordion${domain_name}${data.subject}">
-                           <div class="card" id="card${domain_name}${data.subject}">
-                                <div class="card-header bg-dark" id="${domain_name}${data.subject}Heading">
+					<div class="accordion" id="accordion${unique_id}">
+                           <div class="card" id="card${unique_id}">
+                                <div class="card-header bg-dark" id="${unique_id}Heading">
                                     <h4 class="domain_title">
-                                    <p class="collapsed text-white" data-toggle="collapse" data-target="#${domain_name}${data.subject}Collapse" aria-expanded="false" aria-controls="collapseTwo">
+                                    <p class="collapsed text-white" data-toggle="collapse" data-target="#${unique_id}Collapse" aria-expanded="false" aria-controls="collapseTwo">
 										<i class="fa fa-book" aria-hidden="true"></i></i>&nbsp ${data.subject}
                                             <i class="fa fa-minus-square delete-button" onclick="deleteSubject('${domain_name}','${data.subject}')" aria-hidden="true"></i>
 
                                     </p>
                                     </h4>
                                 </div>
-								<div id="${domain_name}${data.subject}Collapse" class="collapse" aria-labelledby="${domain_name}${data.subject}Heading" data-parent="#accordion${domain_name}${data.subject}">
-									<div class="card-body subject-area" id="${domain_name}${data.subject}ChaptersArea">
+								<div id="${unique_id}Collapse" class="collapse" aria-labelledby="${unique_id}Heading" data-parent="#accordion${unique_id}">
+									<div class="card-body subject-area" id="${unique_id}ChaptersArea">
 									</div>
 									<button class="btn btn-green add-button" onclick="addChapter('${domain_name}','${data.subject}')" style="width:100%"> <i class="fa fa-file-text" aria-hidden="true"></i> Add Chapter</button>
 								</div>
                             </div>
 					`
+				}
+				else
+				{
+					alert("Failed to add subject")
 				}
             })
             }
@@ -512,13 +533,14 @@
 			}).then(response => response.json()).then(data =>{
 				if(data.is_successful)
 				{
-				document.getElementById(`accordion${domain_name}${subject_name}`).remove();
+			    var unique_id = `${domain_name}${subject_name}`.replace(/ /g,'-')
+				document.getElementById(`accordion${unique_id}`).remove();
 				console.log("%c Deleted Subject Successfully","color:green;font-weight:bold")
 				}
 				else
 				{
 					console.log("%c Failed to delete subject :( ","color:red;font-weight:bold")
-
+					alert("failed to delete Subject")
 				}
 			})
 		}
@@ -539,11 +561,63 @@
 					},
 					body:JSON.stringify({"domain_name":domain_name,"subject_name":subject_name,"chapter_name":chapter_name})
 				}).then(response => response.json()).then(data=>{
-					console.log(data);
+					if(data.is_successful)
+					{
+						chapters_panel_unique_id = `${domain_name}${subject_name}`.replace(/ /g,'-');
+						chapters_panel = document.getElementById(`${chapters_panel_unique_id}ChaptersArea`);
+						console.log(chapters_panel);
+						var unique_id = `${domain_name}${subject_name}${chapter_name}`.replace(/ /g,'-');
+						chapters_panel.innerHTML+=`
+						<div class="accordion" id="accordion${unique_id}">
+                           <div class="card accordion-chapter" id="card${unique_id}">
+                                <div class="card-header bg-dark" id="${unique_id}Heading">
+                                    <h4 class="domain_title">
+                                    <p class="collapsed text-white" data-toggle="collapse" data-target="#${unique_id}Collapse" aria-expanded="false" aria-controls="collapseTwo">
+										<i class="fa fa-file" aria-hidden="true"></i>&nbsp ${chapter_name}
+                                            <i class="fa fa-minus-square delete-button" onclick="deleteChapter('${domain_name}','${subject_name}','${chapter_name}')" aria-hidden="true"></i>
+
+                                    </p>
+                                    </h4>
+                                </div>
+								<div id="${unique_id}Collapse" class="collapse" aria-labelledby="${unique_id}Heading" data-parent="#accordion${unique_id}">
+									<div class="card-body topic-area" id="${unique_id}TopicsArea">
+									</div>
+									<button class="btn btn-green add-button" onclick="addTopic('${domain_name}','${data.subject}','${chapter_name}')" style="width:100%"> <i class="fa fa-file-text" aria-hidden="true"></i> Add Topic</button>
+								</div>
+                            </div>
+						
+						`
+					}
+					else
+					{
+						alert("Failed to add Chapter")
+					}
 					
 				})
 			}
+		}
 
+		// Delete Chapter From Subject
+		function deleteChapter(domain_name,subject_name,chapter_name){
+			console.log("%c Deleteing Chapter..","color:blue;font-weight:bold");
+			fetch("/deleteChapterFromSubject",{
+				method:"POST",
+				headers:{
+					authorization:user_access_token,
+					'Content-type':'application/json'
+				},
+				body:JSON.stringify({"subject_name":subject_name,"domain_name":domain_name,"chapter_name":chapter_name})
+			}).then(response=>response.json()).then(data=>{
+				if(data.is_successful)
+				{
+					var unique_id = `accordion${domain_name}${subject_name}${chapter_name}`.replace(/ /g,'-');
+					document.getElementById(unique_id).remove()
+				}
+				else
+				{
+					alert("Failed to delete Chapter")
+				}
+			})
 		}
 		$(document).ready(function() {
 			App.init();
