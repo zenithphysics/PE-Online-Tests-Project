@@ -31,7 +31,7 @@
     height:50px;
 }
 .topic-area {
-	background-color:#57606f;
+	background-color:#eccc68;
 
 }
 .chapter-area {
@@ -375,6 +375,27 @@
 							</div>`
 								})
 							}
+							if(subject.Topics!=null)
+							{
+								subject.Topics.forEach(topic=>{
+									var unique_topic_area_id = `${domain.name}${subject.name}${topic.chapter}`.replace(/ /g,'-');
+									var topics_panel = document.getElementById(`${unique_topic_area_id}TopicsArea`);
+									var unique_id=`${domain.name}${subject.name}${topic.chapter}${topic.name}`.replace(/ /g,'-')
+									topics_panel.innerHTML+=`
+									<div class="accordion" id="accordion${unique_id}">
+                           
+                           <div class="card  accordion-chapter">
+                                <div class="card-header bg-dark" id="${unique_id}Heading">
+                                    <h4 class="domain_title">
+                                    <p class="collapsed text-white" data-toggle="collapse" data-target="#${unique_id}Collapse" aria-expanded="false" aria-controls="collapseTwo">
+										<i class="fa fa-file" aria-hidden="true"></i>&nbsp ${topic.name}
+										<i class="fa fa-minus-square delete-button" onclick="deleteTopic('${domain.name}','${subject.name}','${topic.chapter}','${topic.name}')" aria-hidden="true"></i>
+                                    </p>
+                                    </h4>
+                                </div>
+							</div>`
+								})
+							}
 							// Load All Sections
 							if(subject.Sections!=null)
 							{
@@ -621,7 +642,7 @@
 								<div id="${unique_id}Collapse" class="collapse" aria-labelledby="${unique_id}Heading" data-parent="#accordion${unique_id}">
 									<div class="card-body topic-area" id="${unique_id}TopicsArea">
 									</div>
-									<button class="btn btn-green add-button" onclick="addTopic('${domain_name}','${data.subject}','${chapter_name}')" style="width:100%"> <i class="fa fa-file-text" aria-hidden="true"></i> Add Topic</button>
+									<button class="btn btn-green add-button" onclick="addTopic('${domain_name}','${subject_name}','${chapter_name}')" style="width:100%"> <i class="fa fa-file-text" aria-hidden="true"></i> Add Topic</button>
 								</div>
                             </div>
 						
@@ -745,9 +766,56 @@
 					body:JSON.stringify({"domain_name":domain_name,"subject_name":subject_name,"chapter_name":chapter_name,"topic_name":topic_name})
 				}).then(response => response.json()).then(data=>{
 					console.log("%c Adding Topic....","color:blue;font-weight:bold");
-					console.log(data)
+					if(data.is_successful)
+					{
+						console.log("%c Added Section Successfully","color:green;font-weight:bold")
+						console.log(data);
+						var unique_topic_area = `${domain_name}${subject_name}${chapter_name}`.replace(/ /g,'-');
+						var topics_panel = document.getElementById(`${unique_topic_area}TopicsArea`)
+						var unique_id=`${domain_name}${subject_name}${chapter_name}${topic_name}`.replace(/ /g,'-')
+
+						var topics_panel = document.getElementById(`${unique_topic_area}TopicsArea`)
+						topics_panel.innerHTML+=`
+									<div class="accordion" id="accordion${unique_id}">
+                           
+                           <div class="card  accordion-chapter">
+                                <div class="card-header bg-dark" id="${unique_id}Heading">
+                                    <h4 class="domain_title">
+                                    <p class="collapsed text-white" data-toggle="collapse" data-target="#${unique_id}Collapse" aria-expanded="false" aria-controls="collapseTwo">
+										<i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp ${topic_name}
+										<i class="fa fa-minus-square delete-button" onclick="deleteTopic('${domain_name}','${subject_name}','${chapter_name}','${topic_name}')" aria-hidden="true"></i>
+                                    </p>
+                                    </h4>
+                                </div>
+							</div>`
+					}
 				})
 			}
+		}
+
+		// Delete Topic
+
+		function deleteTopic(domain_name,subject_name,chapter_name,topic_name)
+		{
+			fetch('/deleteTopicFromChapter',{
+				method:"POST",
+				headers:{
+					authorization:user_access_token,
+					'Content-type':'application/json'
+				},
+				body:JSON.stringify({"domain_name":domain_name,"chapter_name":chapter_name,"topic_name":topic_name,"subject_name":subject_name})
+			}).then(response => response.json()).then(data=>{
+				if(data.is_successful)
+				{
+					var unique_id = `accordion${domain_name}${subject_name}${chapter_name}${topic_name}`.replace(/ /g,'-');
+					document.getElementById(unique_id).remove()
+					console.log("%c Topic Deleted Successfully","color:green;font-weight:bold")
+				}
+				else
+				{
+					alert("Failed to delete topic")
+				}
+			})
 		}
 		$(document).ready(function() {
 			App.init();

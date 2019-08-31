@@ -22,16 +22,7 @@ var syllabusSchema = new Schema(    {
                     unique:true
                 },
                 type:Array,
-                required:false,
-                "Topics":{
-                    type:Array,
-                    required:false,
-                    name:{
-                        type:String,
-                        required:false,
-                        unique:true
-                    }
-                }
+                required:false
             },
             "Sections":{
                 name:{
@@ -40,6 +31,20 @@ var syllabusSchema = new Schema(    {
                 },
                 type:Array,
                 required:false
+            },
+            "Topics":{
+                type:Array,
+                required:false,
+                name:{
+                    type:String,
+                    required:false,
+                    unique:true
+                },
+                chapter:{
+                    type:String,
+                    required:false,
+                    unique:false
+                }
             }
         }
         ,

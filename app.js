@@ -851,7 +851,7 @@ app.get('/',(req,res)=>{
                 domain_name = req.body.domain_name;
                 chapter_name = req.body.chapter_name;
                 topic_name = req.body.topic_name;
-                Syllabus.findOneAndUpdate({$and:[{"name":domain_name},{"Subjects.name":subject_name},{"Subjects.Chapters.name":chapter_name}]},{$addToSet:{"Subjects.$.Chapters.Topics":{"name":topic_name}}},(err,updatedDomain)=>{
+                Syllabus.findOneAndUpdate({$and:[{"name":domain_name},{"Subjects.name":subject_name}]},{$addToSet:{"Subjects.$.Topics":{"name":topic_name,"chapter":chapter_name}}},(err,updatedDomain)=>{
                     if(err || !updatedDomain)
                     {
     
@@ -870,3 +870,35 @@ app.get('/',(req,res)=>{
     })
     })
     
+    app.post("/deleteTopicFromChapter",verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/deleteTopicFromChapter] - Admin Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/deleteTopicFromChapter] - Admin Verification Successful');  
+                console.log('\x1b[33m%s\x1b[1m', '[/deleteTopicFromChapter] - Deleting topic from chapter...');
+                subject_name = req.body.subject_name;
+                domain_name = req.body.domain_name;
+                chapter_name = req.body.chapter_name;
+                topic_name = req.body.topic_name
+                Syllabus.findOneAndUpdate({$and:[{"name":domain_name},{"Subjects.name":subject_name}]},{$pull:{"Subjects.$.Topics":{"name":topic_name,"chapter":chapter_name}}},(err,updatedDomain)=>{
+                    if(err || !updatedDomain)
+                    {
+    
+                        console.log('\x1b[31m%s\x1b[1m', "[/deleteSectionFromSubject] - Failed to delete section from subject :'( ");
+                        console.log(err);
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/deleteSectionFromSubject] - deleted section from subject successfully ^_^');  
+                        res.json({is_verified:true,is_successful:true})
+                    }
+                })            
+            }
+    })
+    })
