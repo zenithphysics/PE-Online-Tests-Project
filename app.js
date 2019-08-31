@@ -851,7 +851,7 @@ app.get('/',(req,res)=>{
                 domain_name = req.body.domain_name;
                 chapter_name = req.body.chapter_name;
                 topic_name = req.body.topic_name;
-                Syllabus.findOneAndUpdate({$and:[{"name":domain_name},{"Subjects.name":subject_name},{"Subjects.Chapters.name":chapter_name}]},{$addToSet:{"Subjects.Chapters.$.Topics":{"name":topic_name}}},(err,updatedDomain)=>{
+                Syllabus.findOneAndUpdate({$and:[{"name":domain_name},{"Subjects.name":subject_name},{"Subjects.Chapters.name":chapter_name}]},{$addToSet:{"Subjects.$.Chapters.Topics":{"name":topic_name}}},(err,updatedDomain)=>{
                     if(err || !updatedDomain)
                     {
     
