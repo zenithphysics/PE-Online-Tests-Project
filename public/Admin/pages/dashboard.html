@@ -131,6 +131,21 @@
 							<span>Syllabus Manager</span>
 						</a>
 					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<i class="fa fa-plus-circle" aria-hidden="true"></i>
+							<span>Create NEET Tests</span>
+						</a>
+						<ul class="sub-menu">
+							<li class="has-sub">
+						<a href="javascript:;">
+							<i class="fa fa-plus-circle" aria-hidden="true"></i>
+							<span>Create NEET Tests</span>
+						</a>
+						
+					</li>
+						</ul>
+					</li>
 					<!-- menu 2-->
 					<!-- begin sidebar minify button -->
 					<li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
@@ -225,7 +240,7 @@
 			console.log("is token verified? "+data.is_verified);
 			if(data.is_verified==false)
 			{
-				document.location.href="/";
+				document.location.href="/Admin";
 			}
 			if(data.is_verified==true)
 			{
