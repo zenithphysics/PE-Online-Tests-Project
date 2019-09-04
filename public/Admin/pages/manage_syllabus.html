@@ -302,7 +302,7 @@
                         console.log("%c Syllabus Fetched ","color:green;font-weight:bold")
                         console.log(syllabusData)
                         syllabusData.syllabus.forEach(domain=>{
-							var unique_id= domain.name.replace(/[ ,.()&':;]/g,"");
+							var unique_id= domain.name.replace(/[ ,.()&':;[[\]]/g,"");
                             dp.innerHTML+=` 
                             <div class="accordion" id="accordion${unique_id}">
                            
@@ -331,7 +331,7 @@
 								// Load Each Subjects
                                 var subjectpanel = document.getElementById(`${domain.name}SubjectsArea`)
                                 domain.Subjects.forEach(subject=>{
-									var unique_id = `${domain.name}${subject.name}`.replace(/[ ,.()&':;]/g,"");
+									var unique_id = `${domain.name}${subject.name}`.replace(/[ ,.()&|':;\[\]]/g,"");
                                     subjectpanel.innerHTML+=` 
                             <div class="accordion" id="accordion${unique_id}">
                            
@@ -362,10 +362,10 @@
 							// Load Each Chapters
 							if(subject.Chapters!=null)
 							{
-								var unique_chapter_area_id = `${domain.name}${subject.name}`.replace(/[ ,.()&':;]/g,"");
+								var unique_chapter_area_id = `${domain.name}${subject.name}`.replace(/[ ,.()&|':;\[\]]/g,"");
 								var chapters_panel = document.getElementById(`${unique_chapter_area_id}ChaptersArea`);
 								subject.Chapters.forEach(chapter=>{
-									var unique_id=`${domain.name}${subject.name}${chapter.name}`.replace(/[ ,.()&':;]/g,"")
+									var unique_id=`${domain.name}${subject.name}${chapter.name}`.replace(/[ ,.()&|':;\[\]]/g,"")
 									chapters_panel.innerHTML+=`
 									<div class="accordion" id="accordion${unique_id}">
                            
@@ -389,9 +389,9 @@
 							if(subject.Topics!=null)
 							{
 								subject.Topics.forEach(topic=>{
-									var unique_topic_area_id = `${domain.name}${subject.name}${topic.chapter}`.replace(/[ ,.()&':;]/g,"");
+									var unique_topic_area_id = `${domain.name}${subject.name}${topic.chapter}`.replace(/[ ,.()&|':;\[\]]/g,"");
 									var topics_panel = document.getElementById(`${unique_topic_area_id}TopicsArea`);
-									var unique_id=`${domain.name}${subject.name}${topic.chapter}${topic.name}`.replace(/[ ,.()&':;]/g,"")
+									var unique_id=`${domain.name}${subject.name}${topic.chapter}${topic.name}`.replace(/[ ,.()&|':;\[\]]/g,"")
 									topics_panel.innerHTML+=`
 									<div class="accordion" id="accordion${unique_id}">
                            
@@ -410,10 +410,10 @@
 							// Load All Sections
 							if(subject.Sections!=null)
 							{
-								var unique_section_area_id = `${domain.name}${subject.name}`.replace(/[ ,.()&':;]/g,"");
+								var unique_section_area_id = `${domain.name}${subject.name}`.replace(/[ ,.()&|':;\[\]]/g,"");
 								var sections_panel = document.getElementById(`${unique_section_area_id}SectionsArea`);
 								subject.Sections.forEach(section=>{
-									var unique_id=`${domain.name}${subject.name}${section.name}`.replace(/[ ,.()&':;]/g,"")
+									var unique_id=`${domain.name}${subject.name}${section.name}`.replace(/[ ,.()&|':;\[\]]/g,"")
 									sections_panel.innerHTML+=`
 									<div class="accordion" id="accordion${unique_id}">
                            
@@ -466,7 +466,7 @@
                 }).then(response => response.json()).then(data =>{
                     if(data.is_successful)
                     {
-					var unique_id = data.domain[0].name.replace(/[ ,.()&':;]/g,"");
+					var unique_id = data.domain[0].name.replace(/[ ,.()&|':;\[\]]/g,"");
                     console.log("%c Domain Created Successfully","color:green;font-weight:bold");
                     dp.innerHTML+=`<div class="accordion" id="accordion${unique_id}">       
                            <div class="card" id="card${unique_id}">
@@ -513,7 +513,7 @@
                 console.log(data)
                 if(data.is_successful)
                 {
-					unique_id=domain_name.replace(/[ ,.()&':;]/g,"")
+					unique_id=domain_name.replace(/[ ,.()&|':;\[\]]/g,"")
                     document.getElementById(`card${unique_id}`).remove();
                 }
                 else
@@ -542,11 +542,11 @@
             }).then(response => response.json()).then(data=>{
 				if(data.is_successful)
 				{
-					var domain_unique = domain_name.replace(/[ ,.()&':;]/g,"")
+					var domain_unique = domain_name.replace(/[ ,.()&|':;\[\]]/g,"")
 					console.log("%c Subject added successfully","color:green;font-weight:bold");
 					var subjects_panel = document.getElementById(`${domain_unique}SubjectsArea`);
 					console.log("This is subject Panel");
-					var unique_id = `${domain_name}${data.subject}`.replace(/[ ,.()&':;]/g,"");
+					var unique_id = `${domain_name}${data.subject}`.replace(/[ ,.()&|':;\[\]]/g,"");
 					console.log(subjects_panel);
 					subjects_panel.innerHTML+=`
 					<div class="accordion" id="accordion${unique_id}">
@@ -602,7 +602,7 @@
 			}).then(response => response.json()).then(data =>{
 				if(data.is_successful)
 				{
-			    var unique_id = `${domain_name}${subject_name}`.replace(/[ ,.()&':;]/g,"")
+			    var unique_id = `${domain_name}${subject_name}`.replace(/[ ,.()&|':;\[\]]/g,"")
 				document.getElementById(`accordion${unique_id}`).remove();
 				console.log("%c Deleted Subject Successfully","color:green;font-weight:bold")
 				}
@@ -632,10 +632,10 @@
 				}).then(response => response.json()).then(data=>{
 					if(data.is_successful)
 					{
-						chapters_panel_unique_id = `${domain_name}${subject_name}`.replace(/[ ,.()&':;]/g,"");
+						chapters_panel_unique_id = `${domain_name}${subject_name}`.replace(/[ ,.()&|':;\[\]]/g,"");
 						chapters_panel = document.getElementById(`${chapters_panel_unique_id}ChaptersArea`);
 						console.log(chapters_panel);
-						var unique_id = `${domain_name}${subject_name}${chapter_name}`.replace(/[ ,.()&':;]/g,"");
+						var unique_id = `${domain_name}${subject_name}${chapter_name}`.replace(/[ ,.()&|':;\[\]]/g,"");
 						chapters_panel.innerHTML+=`
 						<div class="accordion" id="accordion${unique_id}">
                            <div class="card accordion-chapter" id="card${unique_id}">
@@ -679,7 +679,7 @@
 			}).then(response=>response.json()).then(data=>{
 				if(data.is_successful)
 				{
-					var unique_id = `accordion${domain_name}${subject_name}${chapter_name}`.replace(/[ ,.()&':;]/g,"");
+					var unique_id = `accordion${domain_name}${subject_name}${chapter_name}`.replace(/[ ,.()&|':;\[\]]/g,"");
 					document.getElementById(unique_id).remove()
 				}
 				else
@@ -709,9 +709,9 @@
 					{
 						console.log("%c Added Section Successfully","color:green;font-weight:bold")
 						console.log(data);
-						var unique_section_area_id = `${domain_name}${subject_name}`.replace(/[ ,.()&':;]/g,"");
+						var unique_section_area_id = `${domain_name}${subject_name}`.replace(/[ ,.()&|':;\[\]]/g,"");
 						var sections_panel = document.getElementById(`${unique_section_area_id}SectionsArea`)
-						var unique_id=`${domain_name}${subject_name}${section_name}`.replace(/[ ,.()&':;]/g,"")
+						var unique_id=`${domain_name}${subject_name}${section_name}`.replace(/[ ,.()&|':;\[\]]/g,"")
 
 						sections_panel.innerHTML+=`
 									<div class="accordion" id="accordion${unique_id}">
@@ -749,7 +749,7 @@
 			}).then(response=>response.json()).then(data=>{
 				if(data.is_successful)
 				{
-					var unique_id = `accordion${domain_name}${subject_name}${section_name}`.replace(/[ ,.()&':;]/g,"");
+					var unique_id = `accordion${domain_name}${subject_name}${section_name}`.replace(/[ ,.()&|':;\[\]]/g,"");
 					document.getElementById(unique_id).remove()
 					console.log("%c Section Deleted Successfully","color:green;font-weight:bold")
 				}
@@ -779,9 +779,9 @@
 					{
 						console.log("%c Added Section Successfully","color:green;font-weight:bold")
 						console.log(data);
-						var unique_topic_area = `${domain_name}${subject_name}${chapter_name}`.replace(/[ ,.()&':;]/g,"");
+						var unique_topic_area = `${domain_name}${subject_name}${chapter_name}`.replace(/[ ,.()&|':;\[\]]/g,"");
 						var topics_panel = document.getElementById(`${unique_topic_area}TopicsArea`)
-						var unique_id=`${domain_name}${subject_name}${chapter_name}${topic_name}`.replace(/[ ,.()&':;]/g,"")
+						var unique_id=`${domain_name}${subject_name}${chapter_name}${topic_name}`.replace(/[ ,.()&|':;\[\]]/g,"")
 
 						var topics_panel = document.getElementById(`${unique_topic_area}TopicsArea`)
 						topics_panel.innerHTML+=`
@@ -816,7 +816,7 @@
 			}).then(response => response.json()).then(data=>{
 				if(data.is_successful)
 				{
-					var unique_id = `accordion${domain_name}${subject_name}${chapter_name}${topic_name}`.replace(/[ ,.()&':;]/g,"");
+					var unique_id = `accordion${domain_name}${subject_name}${chapter_name}${topic_name}`.replace(/[ ,.()&|':;\[\]]/g,"");
 					document.getElementById(unique_id).remove()
 					console.log("%c Topic Deleted Successfully","color:green;font-weight:bold")
 				}
