@@ -5,7 +5,7 @@
 <!--<![endif]-->
 <head>
 	<meta charset="utf-8" />
-	<title>Register Student</title>
+	<title>Create NEET FST</title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
@@ -26,6 +26,36 @@
 	<script src="../../assets/plugins/pace/pace.min.js"></script>
 	<!-- ================== END BASE JS ================== -->
 </head>
+<style>
+.add-question-btn
+{
+    width:46%;
+    height: 50px;
+    font-size: 1.5em;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.delete-question-btn
+{
+    width:46%;
+    height: 50px;
+    font-size: 1.5em;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.card{
+    box-shadow: 1px 0px 4px 0px black;
+}
+.image_panel{
+    width:98%;
+    margin-left: auto;
+    margin-right: auto;
+    height:230px;
+    border:5px dotted black;
+}
+</style>
 <body>
 	<script>
 	
@@ -115,13 +145,13 @@
 							<li><a href="./manage_admins.html">Manage Admins</a></li>
 						</ul>
 					</li>
-					<li class="has-sub active">
+					<li class="has-sub">
 						<a href="javascript:;">
 							<i class="fa fa-graduation-cap" aria-hidden="true"></i>
 							<span>Student Settings</span>
 						</a>
 						<ul class="sub-menu">
-							<li class="active"><a href="./register_student.html">Register Student</a></li>
+							<li><a href="./register_student.html">Register Student</a></li>
 							<li><a href="./manage_students.html">Manage Students</a></li>
 						</ul>
 					</li>
@@ -131,13 +161,13 @@
 							<span>Syllabus Manager</span>
 						</a>
 					</li>
-					<li class="has-sub">
+					<li class="has-sub active">
 						<a href="javascript:;">
 							<i class="fa fa-plus-circle" aria-hidden="true"></i>
 							<span>Create NEET Tests</span>
 						</a>
 						<ul class="sub-menu">
-							<li><a href="./create_neet_fst.html"> FST Test</a></li>
+							<li class="active"><a href="#"> FST Test</a></li>
 							<li><a href="./create_neet_cwt.html"> CWT Test</a></li>
 							<li><a href="./create_neet_swt.html"> SWT Test</a></li>
 						</ul>
@@ -158,97 +188,41 @@
 		<div id="content" class="content">
 			<!-- begin breadcrumb -->
 			<ol class="breadcrumb pull-right">
-                <li class="breadcrumb-item "><a href="#">Student Settings</a></li>
-                <li class="breadcrumb-item active"><a href="#">Register Student</a></li>
+                <li class="breadcrumb-item "><a href="#">Create NEET Tests</a></li>
+                <li class="breadcrumb-item active"><a href="#">FST</a></li>
 
 			</ol>
 			<!-- end breadcrumb -->
 			<!-- begin page-header -->
-			<h1 class="page-header">Register Student</h1>
+			<h1 class="page-header">Create NEET FST Test</h1>
 			<!-- end page-header -->
 			
 			<!-- begin panel -->
-            <form id="createStudentForm" name="createStudentForm">
-                <div class="row">
-                    <div class="col-md-6">
-                        <label>&nbspStudent Full Name</label>
-                        <input type="text" id="studentName" placeholder="Full Name " class="form-control" required>
-                        <br>
-                        <label>&nbspStudentID</label>
-                        <input type="text" id="studentID" placeholder="Set Student ID (Unique) " class="form-control" required>
-                        <br>
-                        <label>&nbspPassword</label>
-                        <input type="password" id="password" placeholder="Set Password" class="form-control" required>
-                        <br>
-                        <label>&nbspEmail Address</label>
-                        <input type="email" id="studentEmail" placeholder="Set EmailID" class="form-control" required>
-                        <br>
-                        <label>&nbspContact No.</label>
-                        <input type="number" min=0 id="studentContact" placeholder="Student's Contact number" class="form-control" required>
-                        <br>
-                        <label>&nbsp Select Student Packs</label>
-                        <br>
-						<br>
-						<h4>
-                        &nbsp&nbsp<input type="checkbox" class="packs" value="JEE_MAINS_P" ><b>&nbsp&nbspJEE MAINS PHYSICS (JEE_MAINS_P)</b>
-                        <br>
-                        <br>
-                        &nbsp&nbsp<input type="checkbox" class="packs" value="JEE_MAINS_C" ><b>&nbsp&nbspJEE MAINS CHEMISTRY (JEE_MAINS_C)</b>
-                        <br>
-                        <br>
-                        &nbsp&nbsp<input type="checkbox" class="packs" value="JEE_MAINS_M" ><b>&nbsp&nbspJEE MAINS MATHS (JEE_MAINS_M)</b>
-                        <br>
-                        <br>           
-						&nbsp&nbsp<input type="checkbox" class="packs" value="JEE_MAINS_PCM" ><b>&nbsp&nbspJEE MAINS PCM</b>
-                        <br>
-                        <br>          
-						&nbsp&nbsp<input type="checkbox" class="packs" value="JEE_ADVANCED_P" ><b>&nbsp&nbspJEE ADVANCED PHYSICS (JEE_ADVANCED_P)</b>
-                        <br>
-                        <br> 
-                        &nbsp&nbsp<input type="checkbox" class="packs" value="JEE_ADVANCED_C" ><b>&nbsp&nbspJEE ADVANCED CHEMISTRY (JEE_ADVANCED_C)</b>
-                        <br>
-						<br>   
-						&nbsp&nbsp<input type="checkbox" class="packs" value="JEE_ADVANCED_M" ><b>&nbsp&nbspJEE ADVANCED MATHS (JEE_ADVANCED_M)</b>
-						<br>
-						<br>   
-						&nbsp&nbsp<input type="checkbox" class="packs" value="JEE_ADVANCED_PCM" ><b>&nbsp&nbspJEE ADVANCED PCM </b>
-                        <br>
-						<br> 
-						&nbsp&nbsp<input type="checkbox" class="packs" value="NEET_P" ><b>&nbsp&nbspNEET PHYSICS (NEET_P)</b>
-                        <br>
-						<br>     
-						&nbsp&nbsp<input type="checkbox" class="packs" value="NEET_C" ><b>&nbsp&nbspNEET CHEMISTRY (NEET_C)</b>
-						<br>
-						<br>
-						&nbsp&nbsp<input type="checkbox" class="packs" value="NEET_B" ><b>&nbsp&nbspNEET BIOLOGY (NEET_B)</b>
-						<br>
-						<br>
-						&nbsp&nbsp<input type="checkbox" class="packs" value="NEET_PCB" ><b>&nbsp&nbspNEET PCB</b>
-						<br>
-						<br>
-						&nbsp&nbsp<input type="checkbox" class="packs" value="STATE_BOARD_P" ><b>&nbsp&nbspSTATE BOARD PHYSICS (STATE_BOARD_P)</b>
-						<br>
-						<br>
-						&nbsp&nbsp<input type="checkbox" class="packs" value="STATE_BOARD_C" ><b>&nbsp&nbspSTATE BOARD CHEMISTRY (STATE_BOARD_C)</b>
-						<br>
-						<br>
-						&nbsp&nbsp<input type="checkbox" class="packs" value="STATE_BOARD_M" ><b>&nbsp&nbspSTATE BOARD MATHS (STATE_BOARD_M)
-						<br>
-						<br>
-						&nbsp&nbsp<input type="checkbox" class="packs" value="STATE_BOARD_B" ><b>&nbsp&nbspSTATE BOARD BIOLOGY (STATE_BOARD_B)</b>
-						<br>
-						<br>
-						&nbsp&nbsp<input type="checkbox" class="packs" value="STATE_BOARD_PCM" ><b>&nbsp&nbspSTATE BOARD PCM </b>
-						<br>
-						<br>
-						&nbsp&nbsp<input type="checkbox" class="packs" value="STATE_BOARD_PCB" ><b>&nbsp&nbspSTATE BOARD PCB </b>
-						</b>
-						</h4>
-						<br>
-                        <input type="submit" value="Register Student" class="btn btn-green"></button>
+			<div class="panel panel-inverse">
+				<div class="panel-heading">
+					<div class="panel-heading-btn">
+					</div>
+					<h4 class="panel-title"></h4>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-4">
+							<h5><label> Test Version </label></h5>
+							<h6><input type="number" placeholder="Enter Version Number" class="form-control" min="0" step="1" id="test_version"></h6>
+							<br>
+						</div>
+                        <div class="col-md-12" id="questions_panel">
+
+                        </div>
                     </div>
-                </div>
-            </form>
+                    <div class="row">
+                    <button class="btn btn-green add-question-btn" onclick="addQuestion()"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                        ADD QUESTION  </button>
+                    <button class="btn btn-danger delete-question-btn" onclick="deleteQuestion()"><i class="fa fa-minus-circle" aria-hidden="true"></i>
+                        DELETE QUESTION</button>
+                    </div>
+				</div>
+			</div>
 			<!-- end panel -->
 		</div>
 		<!-- end #content -->
@@ -278,63 +252,11 @@
 	var pe_username;
 	var pe_email;
 	var user_access_token = localStorage.getItem("admin_token");
-		// Related To Register_Student.html
-		var studentID = document.getElementById("studentID");
-		var studentName = document.getElementById("studentName");
-		var studentContact = document.getElementById("studentContact");
-		var studentEmail = document.getElementById("studentEmail");
-		var password = document.getElementById("password");
-		var packs = document.getElementsByClassName('packs')
-		var registration_form = document.getElementById("createStudentForm");
-
-
-		// Event on Submitting the form
-
-		registration_form.addEventListener("submit",(e)=>{
-			e.preventDefault();
-			studentID = document.getElementById("studentID").value;
-			studentName = document.getElementById("studentName").value;
-			studentContact = document.getElementById("studentContact").value;
-			studentEmail = document.getElementById("studentEmail").value;
-			password = document.getElementById("password").value;
-			selected_packs=[];
-			for(i=0;i<packs.length;i++)
-			{
-				if(packs[i].checked)
-				{
-					selected_packs.push(packs[i].value);
-				}
-			}
-			if(selected_packs.length==0)
-			{
-				alert("Student Must be assigned atleast one pack");
-			}
-			else
-			{
-				console.log("%c Creating Student...","color:blue;font-weight:bold");
-				fetch("/createStudent",{
-					method:"POST",
-					headers:{
-						authorization:user_access_token,
-						'Content-Type': 'application/json'
-					},
-					body:JSON.stringify({"studentID":studentID,"studentName":studentName,"studentContact":studentContact,"studentEmail":studentEmail,"password":password,"packs":selected_packs})
-				}).then(response=>response.json()).then(data=>{
-					if(data.is_successful)
-					{
-						console.log(`%c Student ${studentID} Created Successfully`,"color:green;font-weight:bold");
-						alert("Student Created Successfully");
-					}
-					else
-					{
-						console.log(`%c Failed to create student`,"color:red;font-weight:bold");
-						alert("failed to create student");
-					}
-				})
-			}
-		})
-
-
+	var no_of_questions = 0 ;
+	
+    // TEST Related
+    var questions_panel = document.getElementById("questions_panel")
+	// All Nameplace holders
 
 		// Sidebar Name Holder
 		var sidebarNameHolder = document.getElementById("sidebarNameHolder");
@@ -363,16 +285,85 @@
 			console.log("is token verified? "+data.is_verified);
 			if(data.is_verified==false)
 			{
-				document.location.href="/";
+				document.location.href="/Admin";
 			}
 			if(data.is_verified==true)
 			{
 				pe_username = data.admin.adminID;
+				console.log("The Logged in user is :"+pe_username);
 				sidebarNameHolder.innerHTML=pe_username;
 				navNameHolder.innerHTML=pe_username;
+				fetch("/getFullSyllabus",{
+					method:"GET",
+					headers:{
+						authorization:user_access_token
+					}
+				}).then(response=> response.json()).then(data=>{
+					if(data.is_successful)
+					{
+						console.log(data);
+					}
+					else
+					{
+						alert("Failed to fetch Syllabus")
+					}
+				})
 			}
 		
 		})
+
+        // FST Related Functions
+        
+            // add Question
+            function addQuestion()
+            {
+                // Increment The Number Of Question
+                no_of_questions+=1;
+                // Add The Question in the UI
+                questions_panel.innerHTML+=`
+                <div class="card" id="question-${no_of_questions}">
+                    <div class="card-header">
+                         Question ${no_of_questions}
+                    </div>
+                    <div class="card-body" style="height:500px">
+                        <h4 style='display:inline-block')">Add / Change Question Image</h4> : <input type="file" name="question-${no_of_questions}-input" onchange="changeQuestionImage(this,'${no_of_questions}')">
+                        <br>
+                        <img class="image_panel" style="width:wrap;height:30%" id="question-${no_of_questions}-image">
+                           
+                        </img>
+						<br>
+						<br>
+						<h4 style='display:inline-block')">Add / Change Answer Image</h4> : <input type="file" name="answer-${no_of_questions}-input" onchange="changeAnswerImage(this,'${no_of_questions}')">
+						<br>
+						<img class="image_panel" style="width:60%;height:30%"id="answer-${no_of_questions}-image">
+                           
+                        </img>
+						<br>
+						<br>
+						<h4><label> Solution Video </label></h4>
+						<input class="form-control" type="text" placeholder=" Enter Solution Video URL">
+                    </div>
+                    <div class="card-footer text-muted">
+                        
+                    </div>
+                </div>
+                `
+            }
+
+			// Change Question image
+			function changeQuestionImage(input,question_number)
+			{
+				var question_image_panel = document.getElementById(`question-${question_number}-image`);
+				var question_image = input.files[0];
+				question_image_panel.src = URL.createObjectURL(question_image)
+			}
+			function changeAnswerImage(input,question_number)
+			{
+				var answer_image_panel = document.getElementById(`answer-${question_number}-image`);
+				var answer_image = input.files[0];
+				answer_image_panel.src = URL.createObjectURL(answer_image)
+			}
+		 
 		$(document).ready(function() {
 			App.init();
 		});
