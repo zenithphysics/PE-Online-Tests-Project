@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>Create NEET CWT</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+	<link href="../../assets/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+	<link href="../../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link href="../../assets/plugins/animate/animate.min.css" rel="stylesheet" />
+	<link href="../../assets/css/default/style.min.css" rel="stylesheet" />
+	<link href="../../assets/css/default/style-responsive.min.css" rel="stylesheet" />
+	<link href="../../assets/css/default/theme/default.css" rel="stylesheet" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="../../assets/plugins/pace/pace.min.js"></script>
+	<!-- ================== END BASE JS ================== -->
+</head>
+<style>
+.add-question-btn
+{
+    width:46%;
+    height: 50px;
+    font-size: 1.5em;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.delete-question-btn
+{
+    width:46%;
+    height: 50px;
+    font-size: 1.5em;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.card{
+    box-shadow: 1px 0px 4px 0px black;
+}
+.image_panel{
+    width:98%;
+    margin-left: auto;
+    margin-right: auto;
+    height:230px;
+    border:5px dotted black;
+}
+</style>
+<body>
+	<script>
+	
+
+	</script>
+	<!-- begin #page-loader -->
+	<div id="page-loader" class="fade show"><span class="spinner"></span></div>
+	<!-- end #page-loader -->
+	
+	<!-- begin #page-container -->
+	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+		<!-- begin #header -->
+		<div id="header" class="header navbar-default">
+			<!-- begin navbar-header -->
+			<div class="navbar-header">
+				<a  class="navbar-brand"><span ></span> <b>PE</b> Tests Admin.</a>
+				<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<!-- end navbar-header -->
+			
+			<!-- begin header-nav -->
+			<ul class="navbar-nav navbar-right">
+				<li>
+					<form class="navbar-form">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Enter keyword" />
+							<button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+						</div>
+					</form>
+				</li>
+				
+				<li class="dropdown navbar-user">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<div class="image image-icon bg-black text-grey-darker">
+						<img src="../PE_Resources/paathshala_logo_512.png">
+						</div>
+						<span id="navbarNameHolder"></span>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right">
+						<a href="#" id="logoutButton" class="dropdown-item" style="cursor: pointer;" >Log Out</a>
+					</div>
+				</li>
+			</ul>
+			<!-- end header navigation right -->
+		</div>
+		<!-- end #header -->
+		
+		<!-- begin #sidebar -->
+		<div id="sidebar" class="sidebar">
+			<!-- begin sidebar scrollbar -->
+			<div data-scrollbar="true" data-height="100%">
+				<!-- begin sidebar user -->
+				<ul class="nav">
+					<li class="nav-profile">
+						<a href="javascript:;" data-toggle="nav-profile">
+							<div class="cover with-shadow"></div>
+							<div class="info">
+								<p id="sidebarNameHolder"></p>
+								<small>PE Admin</small>
+							</div>
+						</a>
+					</li>
+
+				
+				</ul>
+				<!-- end sidebar user -->
+				<!-- begin sidebar nav -->
+				<ul class="nav">
+					<li class="nav-header">Navigation</li>
+					<li>
+						<a href="./dashboard.html">
+							<i class="fa fa-th-large"></i>
+							<span>Home</span>
+						</a>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<i class="fa fa-user" aria-hidden="true"></i>
+							<span>Admin Settings</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="./create_admin.html">Create Admins</a></li>
+							<li><a href="./manage_admins.html">Manage Admins</a></li>
+						</ul>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<i class="fa fa-graduation-cap" aria-hidden="true"></i>
+							<span>Student Settings</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="./register_student.html">Register Student</a></li>
+							<li><a href="./manage_students.html">Manage Students</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="./manage_syllabus.html">
+							<i class="fa fa-book" aria-hidden="true"></i>
+							<span>Syllabus Manager</span>
+						</a>
+					</li>
+					<li class="has-sub active">
+						<a href="javascript:;">
+							<i class="fa fa-plus-circle" aria-hidden="true"></i>
+							<span>Create NEET Tests</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="./create_neet_fst.html"> FST Test</a></li>
+							<li class="active"><a href="#"> CWT Test</a></li>
+							<li><a href="./create_neet_swt.html"> SWT Test</a></li>
+						</ul>
+					</li>
+					<!-- menu 2-->
+					<!-- begin sidebar minify button -->
+					<li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
+					<!-- end sidebar minify button -->
+				</ul>
+				<!-- end sidebar nav -->
+			</div>
+			<!-- end sidebar scrollbar -->
+		</div>
+		<div class="sidebar-bg"></div>
+		<!-- end #sidebar -->
+		
+		<!-- begin #content -->
+		<div id="content" class="content">
+			<!-- begin breadcrumb -->
+			<ol class="breadcrumb pull-right">
+                <li class="breadcrumb-item "><a href="#">Create NEET Tests</a></li>
+                <li class="breadcrumb-item active"><a href="#">FST</a></li>
+
+			</ol>
+			<!-- end breadcrumb -->
+			<!-- begin page-header -->
+			<h1 class="page-header">Create NEET CWT Test</h1>
+			<!-- end page-header -->
+			
+			<!-- begin panel -->
+			<div class="panel panel-inverse">
+				<div class="panel-heading">
+					<div class="panel-heading-btn">
+					</div>
+					<h4 class="panel-title"></h4>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-4">
+							<h5><label> Test Version </label></h5>
+							<h6><input type="number" placeholder="Enter Version Number" class="form-control" min="0" step="1" id="test_version"></h6>
+                            
+                        </div>
+                        <div class="col-md-4">
+                                <h5><label> Subject </label></h5>
+                                <select  class="form-control" id="subject_selectbox" onchange="subjectChanged()">
+
+                                </select>      
+                        </div>
+                        <div class="col-md-4">
+                                <h5><label> Chapter </label></h5>
+                                <select class="form-control" id="chapter_selectbox" onchange="chapterChanged()">
+                                    <option value="N/A"> Select Subject To View Chapters</option>
+                                </select>      
+                        </div>
+                        <br>
+                        <div class="col-md-12" id="questions_panel">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                    <button class="btn btn-green add-question-btn" onclick="addQuestion()"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                        ADD QUESTION  </button>
+                    <button class="btn btn-danger delete-question-btn" onclick="deleteQuestion()"><i class="fa fa-minus-circle" aria-hidden="true"></i>
+                        DELETE QUESTION</button>
+                    </div>
+				</div>
+			</div>
+			<!-- end panel -->
+		</div>
+		<!-- end #content -->
+		
+		<!-- begin scroll to top btn -->
+		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+		<!-- end scroll to top btn -->
+	</div>
+	<!-- end page container -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="../../assets/plugins/jquery/jquery-3.3.1.min.js"></script>
+	<script src="../../assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+	<script src="../../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="../../assets/crossbrowserjs/html5shiv.js"></script>
+		<script src="../../assets/crossbrowserjs/respond.min.js"></script>
+		<script src="../../../admin/template../../assets/crossbrowserjs/excanvas.min.js"></script>
+	<![endif]-->
+	<script src="../../assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="../../assets/plugins/js-cookie/js.cookie.js"></script>
+	<script src="../../../admin/template../../assets/js/theme/default.min.js"></script>
+	<script src="../../assets/js/apps.min.js"></script>
+	<!-- ================== END BASE JS ================== -->
+	
+	<script>
+	var pe_username;
+	var pe_email;
+	var user_access_token = localStorage.getItem("admin_token");
+	var no_of_questions = 0 ;
+	var syllabus;
+	var neet_syllabus;
+    // TEST Related
+    var questions_panel = document.getElementById("questions_panel")
+	// All Nameplace holders
+
+		// Sidebar Name Holder
+		var sidebarNameHolder = document.getElementById("sidebarNameHolder");
+		// Logout functionality
+		var logout = document.getElementById("logoutButton");
+		logout.addEventListener("click",()=>{
+			localStorage.clear();
+			document.location.href="/Admin";
+
+		})
+		//Navbar name holder
+		var navNameHolder = document.getElementById("navbarNameHolder");
+	console.log("access token:-"+user_access_token)
+		if(user_access_token==null)
+		{
+			document.location.href="/Admin";
+
+		}
+
+		fetch("/verifyAdmin",{
+			headers:{
+				method:"GET",
+				authorization:user_access_token
+			}
+		}).then(response=>response.json()).then(data=>{
+			console.log("is token verified? "+data.is_verified);
+			if(data.is_verified==false)
+			{
+				document.location.href="/Admin";
+			}
+			if(data.is_verified==true)
+			{
+				pe_username = data.admin.adminID;
+				console.log("The Logged in user is :"+pe_username);
+				sidebarNameHolder.innerHTML=pe_username;
+				navNameHolder.innerHTML=pe_username;
+				fetch("/getFullSyllabus",{
+					method:"GET",
+					headers:{
+						authorization:user_access_token
+					}
+				}).then(response=> response.json()).then(data=>{
+					if(data.is_successful)
+					{
+						syllabus = data.syllabus;
+							// Processing Functions
+							var subject_selectbox  = document.getElementById("subject_selectbox")
+							var chapter_selectbox  = document.getElementById("chapter_selectbox")
+							var topic_selectbox  = document.getElementById("topic_selectbox")
+							var subjects;
+							// Step 1 - Get Syllabus of NEET
+							if(syllabus!=null)
+							{
+								neet_syllabus = syllabus.filter((domain)=>{
+									return domain.name=="NEET";
+								})
+								console.log("%c NEET SYLLABUS - ","color:blue;font-weight:bold");
+								console.log(neet_syllabus);
+
+                                var subject_selectbox = document.getElementById(`subject_selectbox`);
+				                var chapter_selectbox = document.getElementById(`chapter_selectbox`);
+				
+                                // Load Subjects into Subject Selectbox
+                                neet_syllabus[0].Subjects.forEach((subject)=>{
+                                    subject_selectbox.innerHTML+=`
+                                    <option value="${subject.name}"> ${subject.name} </option>
+                                    `
+                                })
+                                
+                                // Load Chapters Select box of First Subject
+                                chapter_selectbox.innerHTML='';
+                                neet_syllabus[0].Subjects[0].Chapters.forEach(chapter=>{
+                                    chapter_selectbox.innerHTML+=`<option value="${chapter.name}"> ${chapter.name} </option>`;
+                                })
+
+							
+							}
+					}
+					else
+					{
+						alert("Failed to fetch Syllabus")
+					}
+				})
+			}
+		
+		})
+
+        // FST Related Functions
+        
+            // add Question
+            function addQuestion()
+            {
+                document.getElementById("subject_selectbox").disabled="disabled";
+                document.getElementById("chapter_selectbox").disabled="disabled";
+                // Increment The Number Of Question
+                no_of_questions+=1;
+                // Add The Question in the UI
+                questions_panel.innerHTML+=`<br>
+                <div class="card" id="question-${no_of_questions}">
+                    <div class="card-header">
+                         Question ${no_of_questions}
+                    </div>
+                    <div class="card-body" style="height:500px">
+                        <h4 style='display:inline-block')">Add / Change Question Image</h4> : <input type="file" name="question-${no_of_questions}-input" onchange="changeQuestionImage(this,'${no_of_questions}')">
+                        <br>
+                        <img class="image_panel" style="width:wrap;height:30%" id="question-${no_of_questions}-image">
+                           
+                        </img>
+						<br>
+						<br>
+						<h4 style='display:inline-block')">Add / Change Answer Image</h4> : <input type="file" name="answer-${no_of_questions}-input" onchange="changeAnswerImage(this,'${no_of_questions}')">
+						<br>
+						<img class="image_panel" style="width:60%;height:30%"id="answer-${no_of_questions}-image">
+                           
+                        </img>
+						<br>
+						<br>
+						<h4><label> Solution Video </label></h4>
+						<input class="form-control" type="text" placeholder=" Enter Solution Video URL">
+                    </div>
+                    <div class="card-footer text-muted">
+					<div class="row">
+						<div class="col-3">
+							<label> Topic : </label>
+							<select class="form-control" id="question-${no_of_questions}-topic_selectbox">
+							</select>
+						</div>
+						<div class="col-3">
+							<label> Difficulty : </label>
+							<select class="form-control" id="question-${no_of_questions}-DLevel_selectbox">
+							<option value="Level 1"> Level 1 </option>
+							<option value="Level 2"> Level 2 </option>
+							<option value="Level 3"> Level 3 </option>
+							</select>
+						</div>
+                    </div>
+                </div>
+				`
+			    var topic_selectbox = document.getElementById(`question-${no_of_questions}-topic_selectbox`)
+                // Load Topics into topic select_box
+                topic_selectbox.innerHTML=`<option value="Not Specified"> Not Specified </option>`;
+                subject_name = document.getElementById("subject_selectbox").value;
+                chapter_name = document.getElementById("chapter_selectbox").value;
+                subject_object = neet_syllabus[0].Subjects.filter((subject)=>{ return subject.name==subject_name});
+                topics = subject_object[0].Topics.filter((topic)=>{ return topic.chapter == chapter_name });
+                console.log(topics);
+                topics.forEach(topic=>{
+                    topic_selectbox.innerHTML+=`<option value="${topic.name}"> ${topic.name} </option>`;
+                })
+            }
+
+			// Change Question image
+			function changeQuestionImage(input,question_number)
+			{
+				var question_image_panel = document.getElementById(`question-${question_number}-image`);
+				var question_image = input.files[0];
+				question_image_panel.src = URL.createObjectURL(question_image)
+			}
+			// Change Answer Image
+			function changeAnswerImage(input,question_number)
+			{
+				var answer_image_panel = document.getElementById(`answer-${question_number}-image`);
+				var answer_image = input.files[0];
+				answer_image_panel.src = URL.createObjectURL(answer_image)
+			}
+			// Delete Question
+			function deleteQuestion()
+			{
+				document.getElementById(`question-${no_of_questions}`).remove()
+			}
+			// on Subject Change
+			function subjectChanged()
+			{
+				var subject = document.getElementById(`subject_selectbox`).value;
+				console.log(subject);
+				var subject_object = neet_syllabus[0].Subjects.filter((sub)=>{
+					return sub.name==subject;
+                })
+                console.log(subject_object);
+                var chapters_selectbox = document.getElementById(`chapter_selectbox`);
+                chapters_selectbox.innerHTML="";
+				subject_object[0].Chapters.forEach(chapter=>{
+					chapters_selectbox.innerHTML+=`
+					<option value="${chapter.name}"> ${chapter.name} </option>
+					`
+                })	
+                document.getElementById("subject_selectbox").disabled="disabled";
+			}
+            function chapterChanged()
+            {
+                document.getElementById(`chapter_selectbox`).disabled="disabled";
+                document.getElementById(`subject_selectbox`).disabled="disabled";
+            }
+		$(document).ready(function() {
+			App.init();
+		});
+	</script>
+</body>
+</html>
