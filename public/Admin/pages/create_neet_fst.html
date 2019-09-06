@@ -253,7 +253,8 @@
 	var pe_email;
 	var user_access_token = localStorage.getItem("admin_token");
 	var no_of_questions = 0 ;
-	
+	var syllabus;
+	var neet_syllabus;
     // TEST Related
     var questions_panel = document.getElementById("questions_panel")
 	// All Nameplace holders
@@ -301,7 +302,23 @@
 				}).then(response=> response.json()).then(data=>{
 					if(data.is_successful)
 					{
-						console.log(data);
+						syllabus = data.syllabus;
+							// Processing Functions
+							var subject_selectbox  = document.getElementById("subject_selectbox")
+							var chapter_selectbox  = document.getElementById("chapter_selectbox")
+							var topic_selectbox  = document.getElementById("topic_selectbox")
+							var subjects;
+							// Step 1 - Get Syllabus of NEET
+							if(syllabus!=null)
+							{
+								neet_syllabus = syllabus.filter((domain)=>{
+									return domain.name=="NEET";
+								})
+								console.log("%c NEET SYLLABUS - ","color:blue;font-weight:bold");
+								console.log(neet_syllabus);
+
+							
+							}
 					}
 					else
 					{
@@ -344,10 +361,51 @@
 						<input class="form-control" type="text" placeholder=" Enter Solution Video URL">
                     </div>
                     <div class="card-footer text-muted">
-                        
+					<div class="row">
+						<div class="col-3">
+							<label> Subject : </label>
+							<select class="form-control" onchange="subjectChanged('${no_of_questions}')" id="question-${no_of_questions}-subject_selectbox">
+							
+							</select>
+						</div>
+						<div class="col-3">
+							<label> Chapter : </label>
+							<select class="form-control" onchange="chapterChanged('${no_of_questions}')" id="question-${no_of_questions}-chapter_selectbox">
+							</select>
+						</div>
+						<div class="col-3">
+							<label> Topic : </label>
+							<select class="form-control" id="question-${no_of_questions}-topic_selectbox">
+							</select>
+						</div>
+						<div class="col-3">
+							<label> Difficulty : </label>
+							<select class="form-control" id="question-${no_of_questions}-DLevel_selectbox">
+							<option value="Level 1"> Level 1 </option>
+							<option value="Level 2"> Level 2 </option>
+							<option value="Level 3"> Level 3 </option>
+							</select>
+						</div>
                     </div>
                 </div>
-                `
+				`
+				var subject_selectbox = document.getElementById(`question-${no_of_questions}-subject_selectbox`);
+				var chapter_selectbox = document.getElementById(`question-${no_of_questions}-chapter_selectbox`);
+				var topic_selectbox = document.getElementById(`question-${no_of_questions}-topic_selectbox`);
+				
+				// Load Subjects into Subject Selectbox
+				neet_syllabus[0].Subjects.forEach((subject)=>{
+					subject_selectbox.innerHTML+=`
+					<option value="${subject.name}"> ${subject.name} </option>
+					`
+				})
+
+				// Load Chapters Select box of First Subject
+				chapter_selectbox.innerHTML=`<option value="Not Specified"> Not Specified </option>`;
+				neet_syllabus[0].Subjects[0].Chapters.forEach(chapter=>{
+					chapter_selectbox.innerHTML+=`<option value="${chapter.name}"> ${chapter.name} </option>`;
+				})
+				topic_selectbox.innerHTML='<option value="NA"> Select Chapter To View Topics </option>';
             }
 
 			// Change Question image
@@ -357,13 +415,72 @@
 				var question_image = input.files[0];
 				question_image_panel.src = URL.createObjectURL(question_image)
 			}
+			// Change Answer Image
 			function changeAnswerImage(input,question_number)
 			{
 				var answer_image_panel = document.getElementById(`answer-${question_number}-image`);
 				var answer_image = input.files[0];
 				answer_image_panel.src = URL.createObjectURL(answer_image)
 			}
-		 
+			// Delete Question
+			function deleteQuestion()
+			{
+				document.getElementById(`question-${no_of_questions}`).remove()
+			}
+			// on Subject Change
+			function subjectChanged(question_number)
+			{
+				var subject = document.getElementById(`question-${question_number}-subject_selectbox`).value;
+				console.log(subject);
+				var subject_object = neet_syllabus[0].Subjects.filter((sub)=>{
+					return sub.name==subject;
+				})
+				var chapters_selectbox = document.getElementById(`question-${question_number}-chapter_selectbox`);
+				chapters_selectbox.innerHTML=`
+					<option value="Not Specified"> Not Specified </option>
+					`
+				subject_object[0].Chapters.forEach(chapter=>{
+					chapters_selectbox.innerHTML+=`
+					<option value="${chapter.name}"> ${chapter.name} </option>
+					`
+				})	
+				var topic_selectbox = document.getElementById(`question-${question_number}-topic_selectbox`);
+				topic_selectbox.innerHTML='<option value="NA"> Select Chapter To View Topics </option>';
+			}
+			// on Chapter Change
+			function chapterChanged(question_number)
+			{
+				var chapter = document.getElementById(`question-${question_number}-chapter_selectbox`).value;
+				var subject_name = document.getElementById(`question-${question_number}-subject_selectbox`).value;
+				console.log(chapter);
+				var subject_object = neet_syllabus[0].Subjects.filter((sub)=>{
+					return sub.name==subject_name;
+				})
+				var topic_selectbox = document.getElementById(`question-${question_number}-topic_selectbox`);
+				if(chapter!="Not Specified")
+				{
+					var topics = subject_object[0].Topics.filter((topic)=>{
+						return topic.chapter == chapter;
+					})
+					topic_selectbox.innerHTML=`<option value="Not Specified"> Not Specified </option>`;
+					topics.forEach((topic)=>{
+						topic_selectbox.innerHTML+=`
+						<option value="${topic.name}"> ${topic.name} </option>
+						`
+					})
+
+				}
+				var chapters_selectbox = document.getElementById(`question-${question_number}-chapter_selectbox`);
+				chapters_selectbox.innerHTML+=`
+					<option value="Not Specified"> Not Specified </option>
+					`
+				subject_object[0].Chapters.forEach(chapter=>{
+					chapters_selectbox.innerHTML+=`
+					<option value="${chapter.name}"> ${chapter.name} </option>
+					`
+				})	
+			}
+		
 		$(document).ready(function() {
 			App.init();
 		});
