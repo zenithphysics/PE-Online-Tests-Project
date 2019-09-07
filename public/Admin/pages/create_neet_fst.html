@@ -209,12 +209,20 @@
 						<div class="col-md-4">
 							<h5><label> Test Version </label></h5>
 							<h6><input type="number" placeholder="Enter Version Number" class="form-control" min="0" step="1" id="test_version"></h6>
-							<br>
+						</div>
+						<div class="col-md-4">
+							<h5><label> Marks for Correct Answer:</label></h5>
+							<input type="number" class="form-control" id="correct_marks">
+						</div>
+						<div class="col-md-4">	
+							<h5><label> Marks for Wrong Answer:</label></h5>
+							<input type="number" class="form-control" id="wrong_marks">
 						</div>
                         <div class="col-md-12" id="questions_panel">
 
                         </div>
-                    </div>
+					</div>
+					<br>
                     <div class="row">
                     <button class="btn btn-green add-question-btn" onclick="addQuestion()"><i class="fa fa-plus-circle" aria-hidden="true"></i>
                         ADD QUESTION  </button>
