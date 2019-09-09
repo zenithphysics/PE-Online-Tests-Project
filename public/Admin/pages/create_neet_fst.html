@@ -36,6 +36,16 @@
     margin-left: auto;
     margin-right: auto;
 }
+.create-test-btn
+{
+	margin-top: 15px;
+    width:96%;
+    height: 50px;
+    font-size: 1.5em;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
 .delete-question-btn
 {
     width:46%;
@@ -86,7 +96,7 @@
 					<form class="navbar-form">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="Enter keyword" />
-							<button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+							<button type="submit"  class="btn btn-search"><i class="fa fa-search"></i></button>
 						</div>
 					</form>
 				</li>
@@ -208,7 +218,7 @@
 					<div class="row">
 						<div class="col-md-4">
 							<h5><label> Test Version </label></h5>
-							<h6><input type="number" placeholder="Enter Version Number" class="form-control" min="0" step="1" id="test_version"></h6>
+							<h6><input type="number" id="test-version" placeholder="Enter Version Number" class="form-control" min="0" step="1" id="test_version"></h6>
 						</div>
 						<div class="col-md-4">
 							<h5><label> Marks for Correct Answer:</label></h5>
@@ -227,7 +237,9 @@
                     <button class="btn btn-green add-question-btn" onclick="addQuestion()"><i class="fa fa-plus-circle" aria-hidden="true"></i>
                         ADD QUESTION  </button>
                     <button class="btn btn-danger delete-question-btn" onclick="deleteQuestion()"><i class="fa fa-minus-circle" aria-hidden="true"></i>
-                        DELETE QUESTION</button>
+						DELETE QUESTION</button>
+						<br>
+						<button class="btn btn-green create-test-btn" onclick="createTest()"> Submit </button>
                     </div>
 				</div>
 			</div>
@@ -351,14 +363,14 @@
                          Question ${no_of_questions}
                     </div>
                     <div class="card-body" style="height:500px">
-                        <h4 style='display:inline-block')">Add / Change Question Image</h4> : <input type="file" name="question-${no_of_questions}-input" onchange="changeQuestionImage(this,'${no_of_questions}')">
+                        <h4 style='display:inline-block')">Add / Change Question Image</h4> : <input type="file" id="question-${no_of_questions}-input" name="question-${no_of_questions}-input" onchange="changeQuestionImage(this,'${no_of_questions}')">
                         <br>
                         <img class="image_panel" style="width:wrap;height:30%" id="question-${no_of_questions}-image">
                            
                         </img>
 						<br>
 						<br>
-						<h4 style='display:inline-block')">Add / Change Answer Image</h4> : <input type="file" name="answer-${no_of_questions}-input" onchange="changeAnswerImage(this,'${no_of_questions}')">
+						<h4 style='display:inline-block')">Add / Change Answer Image</h4> : <input type="file" id="answer-${no_of_questions}-input" name="answer-${no_of_questions}-input" onchange="changeAnswerImage(this,'${no_of_questions}')">
 						<br>
 						<img class="image_panel" style="width:60%;height:30%"id="answer-${no_of_questions}-image">
                            
@@ -386,7 +398,16 @@
 							<select class="form-control" id="question-${no_of_questions}-topic_selectbox">
 							</select>
 						</div>
-						<div class="col-3">
+						<div class="col-2">
+							<label> Correct Answer : </label>
+							<select class="form-control" id="question-${no_of_questions}-correct_answer">
+							<option value='a'> A </option>
+							<option value='b'> B </option>
+							<option value='c'> C </option>
+							<option value='d'> D </option>
+							</select>
+						</div>
+						<div class="col-1">
 							<label> Difficulty : </label>
 							<select class="form-control" id="question-${no_of_questions}-DLevel_selectbox">
 							<option value="Level 1"> Level 1 </option>
@@ -413,7 +434,7 @@
 				neet_syllabus[0].Subjects[0].Chapters.forEach(chapter=>{
 					chapter_selectbox.innerHTML+=`<option value="${chapter.name}"> ${chapter.name} </option>`;
 				})
-				topic_selectbox.innerHTML='<option value="NA"> Select Chapter To View Topics </option>';
+				topic_selectbox.innerHTML='<option value="Not Specified"> Not Specified </option>';
             }
 
 			// Change Question image
@@ -478,17 +499,48 @@
 					})
 
 				}
-				var chapters_selectbox = document.getElementById(`question-${question_number}-chapter_selectbox`);
-				chapters_selectbox.innerHTML+=`
-					<option value="Not Specified"> Not Specified </option>
-					`
-				subject_object[0].Chapters.forEach(chapter=>{
-					chapters_selectbox.innerHTML+=`
-					<option value="${chapter.name}"> ${chapter.name} </option>
-					`
-				})	
+			
 			}
-		
+			// Create FST
+			function createTest(){
+				//  Get Test Version 
+				var test_version = document.getElementById("test-version").value;
+				//  Get Marks For Correct & Wrong Answers
+				var correct_marks = document.getElementById("correct_marks").value;
+				var wrong_marks = document.getElementById("wrong_marks").value;
+				// Get Total Number of questions
+				var questions_count = no_of_questions;
+				// Parse Each Question & Make Question Object
+
+					// Initialize Questions Array 
+					var questions=[]
+				var all_parsed=false;
+				for(i=1;i<=no_of_questions;i++)
+				{
+					if(i==no_of_questions)
+					{
+						all_parsed=true;
+					}
+					// Get Question Subject,Chapter and Topic
+					var question_subject = document.getElementById(`question-${i}-subject_selectbox`).value;
+					var question_chapter = document.getElementById(`question-${i}-chapter_selectbox`).value;
+					var question_topic = document.getElementById(`question-${i}-topic_selectbox`).value;
+					// Get Question Difficulty Level 
+					var question_DLevel = document.getElementById(`question-${i}-DLevel_selectbox`).value;
+					// Get Question Image
+					var question_image = document.getElementById(`question-${i}-input`).files[0];
+					
+					// Create The Question Object
+					var Question = {"subject":question_subject,"chapter":question_chapter,"topic":question_topic,"DLevel":question_DLevel,"image":question_image}
+					questions.push(Question);
+				}
+
+				// IF all questions are parsed
+				if(all_parsed)
+				{
+					console.log(questions);
+				}
+			}
 		$(document).ready(function() {
 			App.init();
 		});

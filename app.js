@@ -21,7 +21,7 @@ var Student = require('./Models/StudentModel');
 
 // <Initialzations>
 var app = express();
-var port = 8080;
+var port = 8085;
 app.use(express.static(path.join(__dirname+"/public"))) // Set A Public Folder
 app.use(bodyParser.json())
 app.use(express.urlencoded());
@@ -36,7 +36,7 @@ app.listen(port,()=>{
 //////////////////////////////////////// API CALLS ////////////////////////////////////////////////////////
 
 app.get('/',(req,res)=>{
-    res.sendFile(__dirname+'/public/Student/index.html')
+    res.redirect("/Student")
 })
 
 // Verification Calls (Common to almost all APIS)
