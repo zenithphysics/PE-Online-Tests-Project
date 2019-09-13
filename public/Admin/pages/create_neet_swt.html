@@ -421,6 +421,17 @@
 							</select>
 						</div>
 						<div class="col-3">
+							<label> Chapter : </label>
+							<select class="form-control" onchange="chapterChanged('${no_of_questions}')" id="question-${no_of_questions}-chapter_selectbox">
+							</select>
+						</div>
+						<div class="col-3">
+							<label> Topic : </label>
+							<select class="form-control" id="question-${no_of_questions}-topic_selectbox">
+								<option value="Not Specified"> Not Specified </option>
+							</select>
+						</div>
+						<div class="col-3">
 							<label> Difficulty : </label>
 							<select class="form-control" id="question-${no_of_questions}-DLevel_selectbox">
 							<option value="Level 1"> Level 1 </option>
@@ -436,21 +447,52 @@
                 subject_object = neet_syllabus[0].Subjects.filter((subject)=>{ return subject.name==subject_name});
                 section_selectbox.innerHTML=`<option value="Not Specified"> Not Specified </option>`;
                 subject_object[0].Sections.forEach(section=>{
-                    section_selectbox.innerHTML+=`<option value="${section.name}"> ${section.name} </option>`;
+					section_selectbox.innerHTML+=`<option value="${section.name}"> ${section.name} </option>`;
+				var q_chapter_selectbox = document.getElementById(`question-${no_of_questions}-chapter_selectbox`);
+				q_chapter_selectbox.innerHTML=`<option value="Not Specified"> Not Specified </option>`
+				subject_object[0].Chapters.forEach(chapter=>{
+					q_chapter_selectbox.innerHTML+=`<option value="${chapter.name}"> ${chapter.name} </option>`
+				})
                 })
             }
+			// Changed Chapter
+			function chapterChanged(question_number){
+				subject_name = document.getElementById("subject_selectbox").value;
+				var topic_selectbox = document.getElementById(`question-${question_number}-topic_selectbox`);
+				var chapter = document.getElementById(`question-${question_number}-chapter_selectbox`).value;
+				subject_object = neet_syllabus[0].Subjects.filter((subject)=>{ return subject.name==subject_name});
+				var topics = subject_object[0].Topics.filter((topic => { return topic.chapter == chapter}))
+				topic_selectbox.innerHTML+=`<option value="Not Specified"> Not Specified </option>`
+				topics.forEach(topic=>{
+					topic_selectbox.innerHTML+=`<option value="${topic.name}"> ${topic.name} </option>`;
+				})
 
-			// Change Question image
-			function changeQuestionImage(input,question_number)
+			}
+			// Change Question 
+			function changeQuestionWhiteImage(input,question_number)
 			{
-				var question_image_panel = document.getElementById(`question-${question_number}-image`);
+				var question_image_panel = document.getElementById(`question-white-${question_number}-image`);
 				var question_image = input.files[0];
 				question_image_panel.src = URL.createObjectURL(question_image)
 			}
-			// Change Answer Image
-			function changeAnswerImage(input,question_number)
+			function changeQuestionBlackImage(input,question_number)
 			{
-				var answer_image_panel = document.getElementById(`answer-${question_number}-image`);
+				var question_image_panel = document.getElementById(`question-black-${question_number}-image`);
+				var question_image = input.files[0];
+				question_image_panel.src = URL.createObjectURL(question_image)
+			}
+		
+			// Change Answer Image
+			function changeAnswerWhiteImage(input,question_number)
+			{
+				var answer_image_panel = document.getElementById(`answer-white-${question_number}-image`);
+				var answer_image = input.files[0];
+				answer_image_panel.src = URL.createObjectURL(answer_image)
+			}
+
+			function changeAnswerBlackImage(input,question_number)
+			{
+				var answer_image_panel = document.getElementById(`answer-black-${question_number}-image`);
 				var answer_image = input.files[0];
 				answer_image_panel.src = URL.createObjectURL(answer_image)
 			}
