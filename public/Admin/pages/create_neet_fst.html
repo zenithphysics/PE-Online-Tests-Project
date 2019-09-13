@@ -403,10 +403,16 @@
                     </div>
                     <div class="card-footer text-muted">
 					<div class="row">
-						<div class="col-3">
+						<div class="col-2">
 							<label> Subject : </label>
 							<select class="form-control" onchange="subjectChanged('${no_of_questions}')" id="question-${no_of_questions}-subject_selectbox">
 							
+							</select>
+						</div>
+						<div class="col-1">
+							<label> Section : </label>
+							<select class="form-control" id="question-${no_of_questions}-section_selectbox">
+								<option value="Not Specified"> Not Specified </option>
 							</select>
 						</div>
 						<div class="col-3">
@@ -442,14 +448,19 @@
 				var subject_selectbox = document.getElementById(`question-${no_of_questions}-subject_selectbox`);
 				var chapter_selectbox = document.getElementById(`question-${no_of_questions}-chapter_selectbox`);
 				var topic_selectbox = document.getElementById(`question-${no_of_questions}-topic_selectbox`);
-				
+				var section_selectbox = document.getElementById(`question-${no_of_questions}-section_selectbox`);
 				// Load Subjects into Subject Selectbox
 				neet_syllabus[0].Subjects.forEach((subject)=>{
 					subject_selectbox.innerHTML+=`
 					<option value="${subject.name}"> ${subject.name} </option>
 					`
 				})
-
+				// Load Sections into Section Selectbox
+				neet_syllabus[0].Subjects[0].Sections.forEach(section=>{
+					section_selectbox.innerHTML+=`
+					<option value="${section.name}"> ${section.name} </option>
+				})`
+			})
 				// Load Chapters Select box of First Subject
 				chapter_selectbox.innerHTML=`<option value="Not Specified"> Not Specified </option>`;
 				neet_syllabus[0].Subjects[0].Chapters.forEach(chapter=>{
@@ -510,6 +521,12 @@
 				})	
 				var topic_selectbox = document.getElementById(`question-${question_number}-topic_selectbox`);
 				topic_selectbox.innerHTML='<option value="NA"> Select Chapter To View Topics </option>';
+				var section_selectbox = document.getElementById(`question-${question_number}-section_selectbox`);
+				section_selectbox.innerHTML=`<option value="Not Specified"> Not Specified </option>`;
+				
+				subject_object[0].Sections.forEach(section=>{
+					section_selectbox.innerHTML+=`<option value="${section.name}"> ${section.name}</option>`;
+				})
 			}
 			// on Chapter Change
 			function chapterChanged(question_number)
@@ -560,10 +577,12 @@
 					var question_subject = document.getElementById(`question-${i}-subject_selectbox`).value;
 					var question_chapter = document.getElementById(`question-${i}-chapter_selectbox`).value;
 					var question_topic = document.getElementById(`question-${i}-topic_selectbox`).value;
+					var question_section = document.getElementById(`question-${i}-section_selectbox`).value;
 					// Get Question Difficulty Level 
 					var question_DLevel = document.getElementById(`question-${i}-DLevel_selectbox`).value;
 					// Get Question Image
-					var question_image = document.getElementById(`question-${i}-input`).files[0];
+					var question_white_image = document.getElementById(`question-white-${i}-input`).files[0];
+					var question_black_image = document.getElementById(`question-black-${i}-input`).files[0];
 					
 					// Create The Question Object
 					var Question = {"subject":question_subject,
@@ -571,7 +590,8 @@
 									"chapter":question_chapter,
 									"topic":question_topic,		
 									"DLevel":question_DLevel,
-									"whiteImage":question_image}
+									"questionWhiteImage":question_white_image,
+									"questionBlackImage":question_black_image}
 					questions.push(Question);
 				}
 
