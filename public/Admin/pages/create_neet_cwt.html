@@ -278,6 +278,7 @@
 	var user_access_token = localStorage.getItem("admin_token");
 	var no_of_questions = 0 ;
 	var syllabus;
+	var domain_url = "https://photonecademy.com/tests"
 	var neet_syllabus;
     // TEST Related
     var questions_panel = document.getElementById("questions_panel")
@@ -301,7 +302,7 @@
 
 		}
 
-		fetch("/verifyAdmin",{
+		fetch(`${domain_url}/verifyAdmin`,{
 			headers:{
 				method:"GET",
 				authorization:user_access_token
@@ -318,7 +319,7 @@
 				console.log("The Logged in user is :"+pe_username);
 				sidebarNameHolder.innerHTML=pe_username;
 				navNameHolder.innerHTML=pe_username;
-				fetch("/getFullSyllabus",{
+				fetch(`${domain_url}/getFullSyllabus`,{
 					method:"GET",
 					headers:{
 						authorization:user_access_token
