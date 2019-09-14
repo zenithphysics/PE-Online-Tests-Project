@@ -214,6 +214,7 @@
 	<!-- ================== END BASE JS ================== -->
 	
 	<script>
+		var domain_url = "https://photonecademy.com/tests";
 			var pe_username;
 		var pe_email;
     var user_access_token = localStorage.getItem("admin_token");
@@ -228,7 +229,7 @@
 		var logout = document.getElementById("logoutButton");
 		logout.addEventListener("click",()=>{
 			localStorage.clear();
-			document.location.href="/Admin";
+			document.location.href=`${domain_url}/admin`;
 
 		})
 		//Navbar name holder
@@ -236,11 +237,11 @@
 	console.log("access token:-"+user_access_token)
 		if(user_access_token==null)
 		{
-			document.location.href="/Admin";
+			document.location.href=`${domain_url}/admin`;
 
 		}
 
-		fetch("/verifyAdmin",{
+		fetch(`${domain_url}/verifyAdmin`,{
 			headers:{
 				method:"GET",
 				authorization:user_access_token
@@ -249,7 +250,7 @@
 			console.log("is token verified? "+data.is_verified);
 			if(data.is_verified==false)
 			{
-				document.location.href="/";
+				document.location.href=`${domain_url}/admin`;
 			}
 			if(data.is_verified==true)
 			{
@@ -257,7 +258,7 @@
 				pe_username = admin.adminID;
 				sidebarNameHolder.innerHTML=pe_username;
 				navNameHolder.innerHTML=pe_username;
-				fetch('/getAdmins',{
+				fetch(`${domain_url}/getAdmins`,{
 					headers:{
 						method:"GET",
 						authorization:user_access_token
@@ -287,7 +288,7 @@
 		// Functions Related To Manage Admin
 		function deleteAdmin(adminID){
 			console.log(`adminID - ${adminID}`)
-			fetch('/deleteAdmin',{
+			fetch(`${domain_url}/deleteAdmin`,{
 				method:"POST",
 				headers:{
 				'Content-Type': 'application/json',
@@ -314,7 +315,7 @@
 			{
 				console.log("%c Changing Password","color:blue;font-weight:bold")
 				console.log(new_password);
-			fetch("/changeAdminPassword",{
+			fetch(`${domain_url}/changeAdminPassword`,{
 				method:"POST",
 				headers:{
 				authorization:user_access_token,

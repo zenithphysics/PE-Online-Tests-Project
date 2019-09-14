@@ -272,6 +272,7 @@
 	<script>
 	var pe_username;
 	var pe_email;
+	var domain_url = "https://photonecademy.com/tests"
 	var user_access_token = localStorage.getItem("admin_token");
 	var no_of_questions = 0 ;
 	var syllabus;
@@ -286,7 +287,7 @@
 		var logout = document.getElementById("logoutButton");
 		logout.addEventListener("click",()=>{
 			localStorage.clear();
-			document.location.href="/Admin";
+			document.location.href=`${domain_url}/admin`;
 
 		})
 		//Navbar name holder
@@ -294,11 +295,11 @@
 	console.log("access token:-"+user_access_token)
 		if(user_access_token==null)
 		{
-			document.location.href="/Admin";
+			document.location.href=`${domain_url}/admin`;
 
 		}
 
-		fetch("/verifyAdmin",{
+		fetch(`${domain_url}/verifyAdmin`,{
 			headers:{
 				method:"GET",
 				authorization:user_access_token
@@ -307,7 +308,7 @@
 			console.log("is token verified? "+data.is_verified);
 			if(data.is_verified==false)
 			{
-				document.location.href="/Admin";
+				document.location.href=`${domain_url}/admin`;
 			}
 			if(data.is_verified==true)
 			{
@@ -315,7 +316,7 @@
 				console.log("The Logged in user is :"+pe_username);
 				sidebarNameHolder.innerHTML=pe_username;
 				navNameHolder.innerHTML=pe_username;
-				fetch("/getFullSyllabus",{
+				fetch(`${domain_url}/getFullSyllabus`,{
 					method:"GET",
 					headers:{
 						authorization:user_access_token

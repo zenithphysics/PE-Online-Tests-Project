@@ -205,7 +205,7 @@
 	var pe_username;
 	var pe_email;
 	var user_access_token = localStorage.getItem("admin_token");
-	
+	var domain_url = "https://photonecademy.com/tests"
 	
 	// All Nameplace holders
 
@@ -215,7 +215,7 @@
 		var logout = document.getElementById("logoutButton");
 		logout.addEventListener("click",()=>{
 			localStorage.clear();
-			document.location.href="/Admin";
+			document.location.href=`${domain_url}/admin`;
 
 		})
 		//Navbar name holder
@@ -223,11 +223,11 @@
 	console.log("access token:-"+user_access_token)
 		if(user_access_token==null)
 		{
-			document.location.href="/Admin";
+			document.location.href=`${domain_url}/admin`;
 
 		}
 
-		fetch("/verifyAdmin",{
+		fetch(`${domain_url}/verifyAdmin`,{
 			headers:{
 				method:"GET",
 				authorization:user_access_token
@@ -236,7 +236,7 @@
 			console.log("is token verified? "+data.is_verified);
 			if(data.is_verified==false)
 			{
-				document.location.href="/Admin";
+				document.location.href=`${domain_url}/admin`;
 			}
 			if(data.is_verified==true)
 			{

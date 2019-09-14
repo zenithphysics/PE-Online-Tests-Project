@@ -222,7 +222,7 @@
 		var logout = document.getElementById("logoutButton");
 		logout.addEventListener("click",()=>{
 			localStorage.clear();
-			document.location.href="/Admin";
+			document.location.href=`${domain_url}/admin`;
 
 		})
 		//Navbar name holder
@@ -230,7 +230,7 @@
 	console.log("access token:-"+user_access_token)
 		if(user_access_token==null)
 		{
-			document.location.href="/";
+			document.location.href=`${domain_url}/admin`;
 
 		}
 
@@ -243,7 +243,7 @@
 			console.log("is token verified? "+data.is_verified);
 			if(data.is_verified==false)
 			{
-				document.location.href="/";
+				document.location.href=`${domain_url}/admin`;
 			}
 			if(data.is_verified==true)
 			{

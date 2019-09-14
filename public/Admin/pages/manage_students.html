@@ -305,8 +305,9 @@
 	<!-- ================== END BASE JS ================== -->
 	
 	<script>
-			var pe_username;
-		var pe_email;
+	var pe_username;
+	var pe_email;
+	var domain_url = "https://photonecademy.com/tests";
     var user_access_token = localStorage.getItem("admin_token");
 		// Only Related To Manage Admins Page
 		var student_list_view = document.getElementById("student-list-view");
@@ -319,7 +320,7 @@
 		var logout = document.getElementById("logoutButton");
 		logout.addEventListener("click",()=>{
 			localStorage.clear();
-			document.location.href="/Admin";
+			document.location.href=`${domain_url}/admin`;
 
 		})
 		//Navbar name holder
@@ -327,11 +328,11 @@
 	console.log("access token:-"+user_access_token)
 		if(user_access_token==null)
 		{
-			document.location.href="/Admin";
+			document.location.href=`${domain_url}/admin`;
 
 		}
 
-		fetch("/verifyAdmin",{
+		fetch(`${domain_url}/verifyAdmin`,{
 			headers:{
 				method:"GET",
 				authorization:user_access_token
@@ -340,7 +341,7 @@
 			console.log("is token verified? "+data.is_verified);
 			if(data.is_verified==false)
 			{
-				document.location.href="/Admin";
+				document.location.href=`${domain_url}/admin`;
 			}
 			if(data.is_verified==true)
 			{
@@ -348,7 +349,7 @@
 				pe_username = admin.adminID;
 				sidebarNameHolder.innerHTML=pe_username;
 				navNameHolder.innerHTML=pe_username;
-				fetch('/getStudents',{
+				fetch(`${domain_url}/getStudents`,{
 					headers:{
 						method:"GET",
 						authorization:user_access_token
@@ -410,7 +411,7 @@
 			var viewPackModal = document.getElementById("viewPackModal");
 			$("#viewPackModal").modal();
 			document.getElementById("viewPacks-title").innerHTML=`${studentID}'s Packs`
-			fetch("/getStudentPacks",{
+			fetch(`${domain_url}/getStudentPacks`,{
 				method:"POST",
 				headers:{
 					authorization:user_access_token,
@@ -437,7 +438,7 @@
 		}
 		function deleteStudent(studentID){
 			console.log(`studentID - ${studentID}`)
-			fetch('/deleteStudent',{
+			fetch(`${domain_url}/deleteStudent`,{
 				method:"POST",
 				headers:{
 				'Content-Type': 'application/json',
@@ -465,7 +466,7 @@
 			{
 				console.log("%c Changing Password","color:blue;font-weight:bold")
 				console.log(new_password);
-			fetch("/changeStudentPassword",{
+			fetch(`${domain_url}/changeStudentPassword`,{
 				method:"POST",
 				headers:{
 				authorization:user_access_token,
@@ -494,7 +495,7 @@
 			{
 				console.log("%c Changing Email","color:blue;font-weight:bold")
 				console.log(new_email);
-			fetch("/changeStudentEmail",{
+			fetch(`${domain_url}/changeStudentEmail`,{
 				method:"POST",
 				headers:{
 				authorization:user_access_token,
@@ -523,7 +524,7 @@
 			{
 				console.log("%c Changing Contact No..","color:blue;font-weight:bold")
 				console.log(new_contact);
-			fetch("/changeStudentContact",{
+			fetch(`${domain_url}/changeStudentContact`,{
 				method:"POST",
 				headers:{
 				authorization:user_access_token,
