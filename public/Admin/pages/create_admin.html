@@ -206,8 +206,9 @@
 	<!-- ================== END BASE JS ================== -->
 	
 	<script>
-			var pe_username;
-		var pe_email;
+	var pe_username;
+	var pe_email;
+	var domain_url = "https://photonecademy.com/tests";
     var user_access_token = localStorage.getItem("admin_token");
     var adminID = document.getElementById("aID").value;
         console.log(`${adminID}`);
@@ -233,7 +234,7 @@
 
 		}
 
-		fetch("/verifyAdmin",{
+		fetch(`${domain_url}/verifyAdmin`,{
 			headers:{
 				method:"GET",
 				authorization:user_access_token
@@ -263,7 +264,7 @@
         password = document.getElementById("pd").value;
         console.log(`${password}`)
             console.log("%c Creating Admin...",'color:blue;font-weight:bold');
-            fetch("/createAdmin",{
+            fetch(`${domain_url}/createAdmin`,{
                 method:"POST",
                 headers:{
                 authorization:user_access_token,
