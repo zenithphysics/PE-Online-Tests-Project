@@ -121,9 +121,9 @@ n<!DOCTYPE html>
 	<!-- ================== END BASE JS ================== -->
 
 	<script>
-
+		var domain_url = "https://www.photonecademy.com/tests"
 		// Verify Page
-		
+			
 			const loginform = document.getElementById("PE_AdminLoginform");
 			loginform.addEventListener("submit",(e)=>{
 				e.preventDefault();
@@ -133,7 +133,7 @@ n<!DOCTYPE html>
 			   console.log('%c Logging in... ', 'font-weight:bold;color: blue');
   
 		// Call the /loginAdmin API
-		fetch("/loginAdmin",{
+		fetch(`${domain_url}/loginAdmin`,{
 			method:'POST',
 			headers: {
             'Content-Type': 'application/json',
@@ -152,7 +152,7 @@ n<!DOCTYPE html>
 				console.log('%c Login Successful', 'font-weight:bold;color: green');
 
 				localStorage.setItem("admin_token",data.admin_token)
-				fetch("/verifyAdmin",{
+				fetch(`${domain_url}/verifyAdmin`,{
 					method:"GET",
 					headers:{
 						authorization:data.admin_token

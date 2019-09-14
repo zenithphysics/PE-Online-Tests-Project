@@ -123,6 +123,7 @@ n<!DOCTYPE html>
 	<script>
   var studentID = document.getElementById("studentID").value;
 	   var password = document.getElementById("password").value;
+	   var domain_url = "https://photonecademy.com/tests";
 		// Verify Page
 		
 		// On Login API Call
@@ -133,7 +134,7 @@ n<!DOCTYPE html>
 	    password = document.getElementById("password").value;
 
 	   // Login Student Api Call
-	   fetch("/loginStudent",{
+	   fetch(`${domain_url}/loginStudent`,{
 			method:'POST',
 			headers: {
 			'Content-Type': 'application/json'
@@ -151,7 +152,7 @@ n<!DOCTYPE html>
 				console.log('%c Login Successful', 'font-weight:bold;color: green');
 
 				localStorage.setItem("student_token",data.student_token)
-				fetch("/verifyStudent",{
+				fetch(`${domain_url}/verifyStudent`,{
 					method:"GET",
 					headers:{
 						"authorization":data.student_token
