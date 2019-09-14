@@ -36,7 +36,7 @@ app.listen(port,()=>{
 //////////////////////////////////////// API CALLS ////////////////////////////////////////////////////////
 
 app.get('/',(req,res)=>{
-    res.redirect(__dirname+"/public/index.html");
+    res.redirect("./Student/index.html");
 })
 
 // Verification Calls (Common to almost all APIS)
