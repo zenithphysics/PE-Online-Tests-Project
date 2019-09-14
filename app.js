@@ -36,7 +36,7 @@ app.listen(port,()=>{
 //////////////////////////////////////// API CALLS ////////////////////////////////////////////////////////
 
 app.get('/',(req,res)=>{
-    res.redirect("/index.html");
+    res.redirect("https://photonecademy.com/tests/index.html");
 })
 
 // Verification Calls (Common to almost all APIS)
