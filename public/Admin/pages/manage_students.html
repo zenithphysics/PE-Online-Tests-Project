@@ -232,7 +232,7 @@
 							</div>
 							<div class="modal-body">
 							  <h3> Select Pack </h3>
-							  <select class="form-line" id="addPacksList" multiple style="height:30px;width:265px;border-radius:5px;padding:5px;font-weight:bold;margin-top:5px">
+							  <select class="form-line" id="packToAdd" size="18" multiple style="height:30px;width:265px;border-radius:5px;padding:5px;font-weight:bold;margin-top:5px">
 								<option value="JEE_MAINS_P" >JEE MAINS PHYSICS (JEE_MAINS_P)</option>
 								<option  value="JEE_MAINS_C" >JEE MAINS CHEMISTRY (JEE_MAINS_C)</option>
 								<option value="JEE_MAINS_M" >JEE MAINS MATHS (JEE_MAINS_M)</option>         
@@ -575,8 +575,8 @@
 			console.log(studentID);
 			var addPackModal = document.getElementById("addPackModal");
 			$("#addPackModal").modal();
-			var addPacksList = document.getElementById("addPacksList").value;
-			
+			var pack = document.getElementById("packToAdd").value;
+
 		}
 		$(document).ready(function() {
 			App.init();
