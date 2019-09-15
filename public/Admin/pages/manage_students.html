@@ -562,7 +562,7 @@
 					'Content-type':'application/json'
 				},
 				body:JSON.stringify({"studentID":studentID,"pack":pack})
-			}).then(response=>resposne.json()).then(data=>{
+			}).then(response=>response.json()).then(data=>{
 				if(data.is_successful)
 				{
 					alert("Removed Pack Successfully");
