@@ -232,7 +232,7 @@
 							</div>
 							<div class="modal-body">
 							  <h3> Select Pack </h3>
-							  <select class="form-line" style="height:30px;width:265px;border-radius:5px;padding:5px;font-weight:bold;margin-top:5px">
+							  <select class="form-line" id="addPacksList" multiple style="height:30px;width:265px;border-radius:5px;padding:5px;font-weight:bold;margin-top:5px">
 								<option value="JEE_MAINS_P" >JEE MAINS PHYSICS (JEE_MAINS_P)</option>
 								<option  value="JEE_MAINS_C" >JEE MAINS CHEMISTRY (JEE_MAINS_C)</option>
 								<option value="JEE_MAINS_M" >JEE MAINS MATHS (JEE_MAINS_M)</option>         
@@ -375,25 +375,21 @@
 									</div>
 									<div class="card-body">
 										<div class="row">
-											<div class="col-md-1">
+											<div class="col-md-3">
 												<button class="btn btn-light" onclick="showPacks('${student.studentID}')"> View & Remove Packs </button>
 											</div>
-											
-											<div class="col-md-1">
-												<button class="btn btn-light"> Remove Pack </button>
-											</div>
-											<div class="col-md-1">
+											<div class="col-md-2">
 												<button class="btn btn-light" onclick="changePassword('${student.studentID}')"> Change Password </button>
 											</div>
-											<div class="col-md-1">
+											<div class="col-md-2">
 												<button class="btn btn-light" onclick="changeEmail('${student.studentID}')"> Change E-Mail </button>
 											</div>
-											<div class="col-md-1">
+											<div class="col-md-2">
 												<button class="btn btn-light" onclick="changeContact('${student.studentID}')"> Change Contact </button>
 											</div>
-											<div class="col-md-1">
-												<button class="btn btn-light" onclick="showAddPackModal('${student.studentID}')"> Add Pack  </button>
-												</div>
+											<div class="col-md-2">
+												<button class="btn btn-light" onclick="showAddPackModal('${student.studentID}')"> Add Packs  </button>
+											</div>
 											
 										
 								</div>
@@ -579,8 +575,8 @@
 			console.log(studentID);
 			var addPackModal = document.getElementById("addPackModal");
 			$("#addPackModal").modal();
-			var addPackStudentIDField = document.getElementById("addPackStudentID");
-			console.log(addPackStudentIDField.value);
+			var addPacksList = document.getElementById("addPacksList").value;
+			
 		}
 		$(document).ready(function() {
 			App.init();
