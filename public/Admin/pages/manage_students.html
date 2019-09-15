@@ -584,6 +584,26 @@
 			var pack = document.getElementById("packToAdd").value;
 			var addPackButton = document.getElementById("addPackButton");
 			console.log(`Student - ${addPackButton.value} , pack - ${pack}`)
+			if(pack!=null)
+			{
+				fetch(`${domain_url}/addPackToStudent`,{
+					method:"POST",
+					headers:{
+						authorization:user_access_token,
+						'Content-Type':'application/json'
+					},
+					body:JSON.stringify({"studentID":addPackButton.value,"pack":pack})
+				}).then(response=>response.json()).then(data=>{
+					if(data.is_successful)
+					{
+						alert("Pack Added To Student");
+					}
+					else
+					{
+						alert("Something went wrong, maybe student already has this pack, please check.");
+					}
+				})
+			}
 		}
 		$(document).ready(function() {
 			App.init();

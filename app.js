@@ -583,6 +583,36 @@ app.get('/admin',(req,res)=>{
     })
     })
 
+    // Add Pack To Student
+    app.post("/addPackToStudent",verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/addPackToStudent] - Admin Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/addPackToStudent] - Admin Verification Successful');  
+                console.log('\x1b[33m%s\x1b[1m',"[/addPackToStudent - Adding Pack To Student...."); // yellow log
+                Student.findOneAndUpdate({"studentID":req.body.studentID},{"$addToSet":{"packs":req.body.pack}},(err,callback)=>{
+                    if(err){
+                        console.log('\x1b[31m%s\x1b[1m', "[//addPackToStudent] - Failed to add pack :'( ");
+                        console.log(err)
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[//addPackToStudent] - Pack added Successfully ^_^');  
+                        res.json({is_verified:true,is_successful:true})
+                    }
+                })
+            
+            }
+            
+    })
+    })
+
 // Syllabus Related API Calls
 
     // Get Full Syllabus
