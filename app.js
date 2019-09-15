@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 var bodyParser = require('body-parser')
 const hash = require('hash.js')
 const path = require('path')
+const cors = require('cors')
 // </Modules>
 
 // <Database>
@@ -22,6 +23,7 @@ var Student = require('./Models/StudentModel');
 // <Initialzations>
 var app = express();
 var port = 8085;
+app.use(cors())
 app.use(express.static(path.join(__dirname+"/public"))) // Set A Public Folder
 app.use(bodyParser.json())
 app.use(express.urlencoded());
