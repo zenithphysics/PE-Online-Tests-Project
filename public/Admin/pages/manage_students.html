@@ -584,7 +584,7 @@
 			var pack = document.getElementById("packToAdd").value;
 			var addPackButton = document.getElementById("addPackButton");
 			console.log(`Student - ${addPackButton.value} , pack - ${pack}`)
-			if(pack!=null)
+			if(pack!=null || pack!="")
 			{
 				fetch(`${domain_url}/addPackToStudent`,{
 					method:"POST",
@@ -603,6 +603,10 @@
 						alert("Something went wrong, maybe student already has this pack, please check.");
 					}
 				})
+			}
+			else
+			{
+				alert("Please Select A Pack To Add");
 			}
 		}
 		$(document).ready(function() {
