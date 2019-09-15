@@ -432,7 +432,7 @@
 					var viewPacksArea = document.getElementById("viewPacks-packs");
 					viewPacksArea.innerHTML="";
 					data.packs.forEach(pack=>{
-						viewPacksArea.innerHTML+=`<h3><span class="badge badge-primary badge-dark" style="border-radius:0"> ${pack} <i class="fa fa-minus-circle delete-icon-button" onclick="removePack('${pack}')" aria-hidden="true"></i>
+						viewPacksArea.innerHTML+=`<h3><span class="badge badge-primary badge-dark" style="border-radius:0"> ${pack} <i class="fa fa-minus-circle delete-icon-button" onclick="removePack('${studentID}','${pack}')" aria-hidden="true"></i>
 </span></h3> `
 					})
 					
@@ -553,9 +553,27 @@
 			})
 		}
 		}
-		function removePack(pack)
+		function removePack(studentID,pack)
 		{
-			console.log(pack);
+			fetch(`${domain_url}/removePackFromStudent`,{
+				method:"POST",
+				headers:{
+					authorization:user_access_token,
+					'Content-type':'application/json'
+				},
+				body:JSON.stringify({"studentID":studentID,"pack":pack})
+			}).then(response=>resposne.json()).then(data=>{
+				if(data.is_successful)
+				{
+					alert("Removed Pack Successfully");
+					window.location.reload();
+				}
+				else
+				{
+					alert("Failed to remove Pack")
+				}
+
+			})
 		}
 		function showAddPackModal(studentID){
 			console.log(studentID);

@@ -256,6 +256,7 @@ app.get('/admin',(req,res)=>{
                     if(err){
                         console.log('\x1b[31m%s\x1b[1m', "[/changeAdminPassword] - Failed to change password :'( ");
                         res.json({is_verified:true,is_successful:false})
+                        console.log(err)
                     }
                     else
                     {
@@ -412,6 +413,7 @@ app.get('/admin',(req,res)=>{
                     if(err){
                         console.log('\x1b[31m%s\x1b[1m', "[/changeStudentPassword] - Failed to change password :'( ");
                         res.json({is_verified:true,is_successful:false})
+                        console.log(err)
                     }
                     else
                     {
@@ -457,7 +459,7 @@ app.get('/admin',(req,res)=>{
     })
     })
 
-    // Add Student Pack
+
     app.post("/deleteStudent",verifyToken,(req,res)=>{
         console.log(`REQUEST BODY`);
         jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
@@ -507,6 +509,7 @@ app.get('/admin',(req,res)=>{
                     if(err){
                         console.log('\x1b[31m%s\x1b[1m', "[/changeStudentEmail] - Failed to change email :'( ");
                         res.json({is_verified:true,is_successful:false})
+                        console.log(err);
                     }
                     else
                     {
@@ -536,6 +539,7 @@ app.get('/admin',(req,res)=>{
                     if(err){
                         console.log('\x1b[31m%s\x1b[1m', "[/changeStudentContact] - Failed to change contact no :'( ");
                         res.json({is_verified:true,is_successful:false})
+                        console.log(err)
                     }
                     else
                     {
@@ -549,6 +553,35 @@ app.get('/admin',(req,res)=>{
     })
     })
 
+    // Remove Pack From Student
+    app.post("/removePackFromStudent",verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/removePackFromStudent] - Admin Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/removePackFromStudent] - Admin Verification Successful');  
+                console.log('\x1b[33m%s\x1b[1m',"[/removePackFromStudent - Removing Pack From Student...."); // yellow log
+                Student.findOneAndUpdate({"studentID":req.body.studentID},{"$pull":{"packs":req.body.pack}},(err,callback)=>{
+                    if(err){
+                        console.log('\x1b[31m%s\x1b[1m', "[/removePackFromStudent] - Failed to remove pack :'( ");
+                        console.log(err)
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/removePackFromStudent] - Pack Removed Successfully ^_^');  
+                        res.json({is_verified:true,is_successful:true})
+                    }
+                })
+            
+            }
+            
+    })
+    })
 
 // Syllabus Related API Calls
 
