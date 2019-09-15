@@ -584,7 +584,7 @@
 			var pack = document.getElementById("packToAdd").value;
 			var addPackButton = document.getElementById("addPackButton");
 			console.log(`Student - ${addPackButton.value} , pack - ${pack}`)
-			if(pack!=null || document.getElementById("packToAdd").selectedIndex !=null )
+			if(pack!=null && pack!="")
 			{
 				fetch(`${domain_url}/addPackToStudent`,{
 					method:"POST",
