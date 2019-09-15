@@ -254,7 +254,7 @@
 							</select>
 							</div>
 							<div class="modal-footer">
-							  <button class="btn btn-green" >Add Pack To Student</button>
+							  <button class="btn btn-green" id="addPackButton" onclick="addPackToStudent()" >Add Pack To Student</button>
 							  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 							</div>
 						  </div>
@@ -375,19 +375,19 @@
 									</div>
 									<div class="card-body">
 										<div class="row">
-											<div class="col-3">
+											<div class="col-2">
 												<button class="btn btn-light" onclick="showPacks('${student.studentID}')"> View & Remove Packs </button>
 											</div>
-											<div class="col-3">
+											<div class="col-2">
 												<button class="btn btn-light" onclick="changePassword('${student.studentID}')"> Change Password </button>
 											</div>
-											<div class="col-3">
+											<div class="col-2">
 												<button class="btn btn-light" onclick="changeEmail('${student.studentID}')"> Change E-Mail </button>
 											</div>
-											<div class="col-md-2">
+											<div class="col-2">
 												<button class="btn btn-light" onclick="changeContact('${student.studentID}')"> Change Contact </button>
 											</div>
-											<div class="col-md-1">
+											<div class="col-2">
 												<button class="btn btn-light" onclick="showAddPackModal('${student.studentID}')"> Add Packs  </button>
 											</div>
 											
@@ -574,9 +574,16 @@
 		function showAddPackModal(studentID){
 			console.log(studentID);
 			var addPackModal = document.getElementById("addPackModal");
+			document.getElementById("")
 			$("#addPackModal").modal();
-			var pack = document.getElementById("packToAdd").value;
+			var addPackButton = document.getElementById("addPackButton");
+			addPackButton.value=studentID;
+		}
 
+		function addPackToStudent(){
+			var pack = document.getElementById("packToAdd").value;
+			var addPackButton = document.getElementById("addPackButton");
+			console.log(`Student - ${addPackButton.value} , pack - ${pack}`)
 		}
 		$(document).ready(function() {
 			App.init();
