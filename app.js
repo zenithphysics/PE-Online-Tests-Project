@@ -991,9 +991,9 @@ app.get('/admin',(req,res)=>{
             {
                 console.log('\x1b[32m%s\x1b[1m', '[/createFST] - Admin Verification Successful');  
                 console.log('\x1b[33m%s\x1b[1m', '[/createFST] - Creating FST Test...');
-                for(let i=0;i<req.uploadedFiles;i++)
+                for(let i=0;i<req.files;i++)
                 {
-                    console.log(req.uploadedFiles[i]);
+                    console.log(req.files[i]);
                 }
                 console.log(req.body);
                 res.json({is_verified:true,is_successful:true});
