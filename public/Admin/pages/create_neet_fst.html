@@ -794,20 +794,20 @@
 									// Load Answers in form Data
 									for(let i=0;i<answer_images_white.length;i++)
 									{
-										formData.append(`uploadedFiles`,answer_images_white[i],answer_images_white[i].name);
+										formData.append(`uploadedFiles`,answer_images_white[i],`answerWhite`);
 									}
 									for(let i=0;i<answer_images_black.length;i++)
 									{
-										formData.append(`uploadedFiles`,answer_images_black[i],answer_images_black[i].name);
+										formData.append(`uploadedFiles`,answer_images_black[i],`answerBlack`);
 									}
 									// Load Questions in form Data
 									for(let i=0;i<questions_images_white.length;i++)
 									{
-										formData.append(`uploadedFiles`,questions_images_white[i],questions_images_white[i].name)
+										formData.append(`uploadedFiles`,questions_images_white[i],`questionWhite`);
 									}	
 									for(let i=0;i<questions_images_black.length;i++)
 									{
-										formData.append(`uploadedFiles`,questions_images_black[i],questions_images_black[i].name)
+										formData.append(`uploadedFiles`,questions_images_black[i],`questionBlack`);
 									}
 									
 									let h = new Headers();
