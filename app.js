@@ -999,22 +999,22 @@ app.get('/admin',(req,res)=>{
                 req.files.forEach((file)=>{
                     if(file.originalname == "questionBlack")
                     {
-                        question_images_black.push(file);
+                        question_images_black.push(file.buffer);
                     }
 
                     if(file.originalname == "questionWhite")
                     {
-                        question_images_white.push(file)
+                        question_images_white.push(file.buffer)
                     }
 
                     if(file.originalname == "answerWhite")
                     {
-                        answer_images_white.push(file)
+                        answer_images_white.push(file.buffer)
                     }
 
                     if(file.originalname == "answerBlack")
                     {
-                        answer_images_black.push(file)
+                        answer_images_black.push(file.buffer)
                     }
                 })
 
