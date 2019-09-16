@@ -809,6 +809,7 @@
 									let h = new Headers();
 									h.append('authorization',user_access_token);
 									h.append('Accept','application/json');
+									h.append('Content-Type','multipart/form-data')
 									let req = new Request(`${domain_url}/createFST`,{
 										method:"POST",
 										headers:h,
