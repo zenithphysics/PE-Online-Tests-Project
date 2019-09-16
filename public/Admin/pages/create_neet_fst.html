@@ -355,7 +355,7 @@
                 // Increment The Number Of Question
                 no_of_questions+=1;
                 // Add The Question in the UI
-                questions_panel.innerHTML+=`
+                question=`
                 <div class="card" id="question-${no_of_questions}">
                     <div class="card-header">
                          Question ${no_of_questions}
@@ -443,6 +443,7 @@
                     </div>
                 </div>
 				`
+				questions_panel.appendChild(question)
 				var subject_selectbox = document.getElementById(`question-${no_of_questions}-subject_selectbox`);
 				var chapter_selectbox = document.getElementById(`question-${no_of_questions}-chapter_selectbox`);
 				var topic_selectbox = document.getElementById(`question-${no_of_questions}-topic_selectbox`);
@@ -601,7 +602,7 @@
 					console.log(sections_set);
 					console.log(chapters_set);
 					console.log(topics_set);
-					
+
 							var questions=[]
 							var all_parsed=false;
 							for(i=1;i<=no_of_questions;i++)
