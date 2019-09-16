@@ -1019,15 +1019,22 @@ app.get('/admin',(req,res)=>{
                     }
                 })
 
-                console.log("~~~~ Question Blacks ~~~~~")
-                console.log(question_images_black);
-                console.log("~~~~ Answer Blacks ~~~~~")
-                console.log(answer_images_black);
-                console.log("~~~~ Question Whites ~~~~~")
-                console.log(question_images_white);
-                console.log("~~~~ Answer Whites ~~~~~")
-                console.log(answer_images_white);
+                var test = new Test();
+                test.test_name = req.body.test_name;
+                test.test_type = req.body.test_type;
+                test.domain = req.body.domain;
+                test.questions = JSON.parse(req.body.questions);
+                test.correct_marks = req.body.correct_marks;
+                test.wrong_marks = req.body.wrong_marks;
+                test.answer_key = req.body.answer_key;
+                test.DLevel_details = JSON.parse(req.body.DLevel_details);
+                test.subject_details = JSON.parse(req.body.subject_details);
+                test.section_details = JSON.parse(req.body.section_details);
+                test.chapter_details = JSON.parse(req.body.chapter_details);
+                test.topic_details = JSON.parse(req.body.topic_details);
 
+                console.log(` ------- TEST OBJECT ------  `)
+                console.log(test);
 
                 res.json({is_verified:true,is_successful:true});
             }

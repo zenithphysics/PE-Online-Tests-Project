@@ -791,6 +791,10 @@
 									formData.append(`no_of_answerBlackImages`,answer_images_black.length);
 									formData.append(`no_of_questionWhiteImages`,questions_images_white.length);
 									formData.append(`no_of_questionBlackImages`,questions_images_black.length);
+									formData.append(`subject_details`,JSON.stringify(subject_details));
+									formData.append(`section_details`,JSON.stringify(section_details));
+									formData.append(`chapter_details`,JSON.stringify(chapter_details));
+									formData.append(`topic_details`,JSON.stringify(topic_details));
 									// Load Answers in form Data
 									for(let i=0;i<answer_images_white.length;i++)
 									{
