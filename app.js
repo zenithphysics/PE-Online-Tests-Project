@@ -29,6 +29,7 @@ app.use(cors())
 app.use(express.static(path.join(__dirname+"/public"))) // Set A Public Folder
 app.use(bodyParser.json())
 app.use(express.urlencoded());
+app.use(multer())
 // </Initialization>
 
 // <ServerConfig>
