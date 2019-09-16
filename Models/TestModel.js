@@ -108,15 +108,18 @@ answer_images_black:[
       {
           total_correct:{
               type:Number,
-              required:false
+              required:false,
+              default:0
           },
           total_unattempted:{
               type:Number,
-              required:false
+              required:false,
+              default:0
           },
           total_wromg:{
               type:Number,
-              required:false
+              required:false,
+              default:0
           }
         }
   ],
@@ -134,15 +137,18 @@ answer_images_black:[
             {
                 total_correct:{
                     type:Number,
-                    required:false
+                    required:false,
+                    default:0
                 },
                 total_unattempted:{
                     type:Number,
-                    required:false
+                    required:false,
+                    default:0
                 },
                 total_wrong:{
                     type:Number,
-                    required:false
+                    required:false,
+                    default:0
                 }
             }
             ]       
@@ -162,15 +168,18 @@ answer_images_black:[
           {
               total_correct:{
                   type:Number,
-                  required:false
+                  required:false,
+                  default:0
               },
               total_unattempted:{
                   type:Number,
-                  required:false
+                  required:false,
+                  default:0
               },
               total_wrong:{
                   type:Number,
-                  required:false
+                  required:false,
+                  default:0
               }
           }
           ]       
@@ -190,15 +199,18 @@ chapter_details:[ // Chapter Wise Stats
           {
               total_correct:{
                   type:Number,
-                  required:false
+                  required:false,
+                  default:0
               },
               total_unattempted:{
                   type:Number,
-                  required:false
+                  required:false,
+                  default:0
               },
               total_wrong:{
                   type:Number,
-                  required:false
+                  required:false,
+                  default:0
               }
           }
           ]       
@@ -218,15 +230,18 @@ topic_details:[ // Topic Wise Stats
           {
               total_correct:{
                   type:Number,
-                  required:false
+                  required:false,
+                  default:0
               },
               total_unattempted:{
                   type:Number,
-                  required:false
+                  required:false,
+                  default:0
               },
               total_wrong:{
                   type:Number,
-                  required:false
+                  required:false,
+                  default:0
               }
           }
           ]       
@@ -248,43 +263,52 @@ DLevel_details:{
     DLevel1_stats:{
         total_correct:{
             type:Number,
-            required:false
+            required:false,
+            default:0
         },
         total_unattempted:{
             type:Number,
-            required:false
+            required:false,
+            default:0
         },
         total_wrong:{
             type:Number,
-            required:false
+            required:false,
+            default:0
         }
     },
     DLevel2_stats:{
         total_correct:{
             type:Number,
-            required:false
+            required:false,
+            default:0
         },
         total_unattempted:{
             type:Number,
-            required:false
+            required:false,
+            default:0
         },
         total_wrong:{
             type:Number,
-            required:false
+            required:false,
+            default:0
         }
     },
     DLevel3_stats:{
         total_correct:{
             type:Number,
-            required:false
+            required:false,
+            default:0
         },
         total_unattempted:{
             type:Number,
-            required:false
+            required:false,
+            default:0
         },
         total_wrong:{
             type:Number,
-            required:false
+            required:false,
+            default:0
         }
     }
 }
