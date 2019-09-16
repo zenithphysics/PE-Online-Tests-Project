@@ -1040,6 +1040,7 @@ app.get('/admin',(req,res)=>{
                     if(err)
                     {
                         res.json({is_verified:true,is_successful:false})
+                        console.log(err);
                     }
                     else
                     {
