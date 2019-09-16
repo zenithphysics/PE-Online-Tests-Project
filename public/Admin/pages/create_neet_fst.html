@@ -791,8 +791,23 @@
 											"DLevel3_count":Dlevel3_count
 										}
 									}
-
-									console.log(test_object);
+									fetch(`${domain_url}/createFST`,{
+										method:"POST",
+										headers:{
+											authorization:user_access_token,
+											'Content-type':'application/json'
+										},
+										body:JSON.stringify(test_object)
+									}).then(response => response.json()).then(data=>{
+										if(data.is_successful)
+										{
+											alert("Test Has Been Created");
+										}
+										else
+										{
+											alert("failed to create FST test");
+										}
+									})
 								}
 							}
 				}

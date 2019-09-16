@@ -972,3 +972,25 @@ app.get('/admin',(req,res)=>{
             }
     })
     })
+
+
+// Test Creation API Calls
+
+    // Create FST Test
+    app.post("/createFST",verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/createFST] - Admin Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/createFST] - Admin Verification Successful');  
+                console.log('\x1b[33m%s\x1b[1m', '[/createFST] - Creating FST Test...');
+                var test_object = req.body.test;
+                console.log(test_object);
+                res.json({is_verified:true,is_successful:true});
+            }
+    })
+    })
