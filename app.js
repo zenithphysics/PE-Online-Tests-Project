@@ -30,6 +30,7 @@ const upload = multer();
 app.use(express.static(path.join(__dirname+"/public"))) // Set A Public Folder
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
+app.use(upload.array('uploadedFiles'))
 
 // </Initialization>
 
@@ -979,7 +980,7 @@ app.get('/admin',(req,res)=>{
 // Test Creation API Calls
 
     // Create FST Test
-    app.post("/createFST",upload.any(),verifyToken,(req,res)=>{
+    app.post("/createFST",verifyToken,(req,res)=>{
         jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
             if(err){
                 console.log('\x1b[31m%s\x1b[1m', '[/createFST] - Admin Verification Failed');  
@@ -990,7 +991,7 @@ app.get('/admin',(req,res)=>{
             {
                 console.log('\x1b[32m%s\x1b[1m', '[/createFST] - Admin Verification Successful');  
                 console.log('\x1b[33m%s\x1b[1m', '[/createFST] - Creating FST Test...');
-                console.log(req.files);
+                console.log(req.uploadedFiles);
                 console.log(req.body);
                 res.json({is_verified:true,is_successful:true});
             }

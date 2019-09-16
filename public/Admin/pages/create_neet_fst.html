@@ -786,24 +786,28 @@
 									formData.append('wrong_marks',wrong_marks);
 									formData.append(`answer_videos`,JSON.stringify(answer_videos));
 									formData.append(`answer_key`,JSON.stringify(answer_key));
-									formData.append(`DLevel_details`,JSON.stringify(DLevel_Details))
+									formData.append(`DLevel_details`,JSON.stringify(DLevel_Details));
+									formData.append(`no_of_answerWhiteImages`,answer_images_white.length);
+									formData.append(`no_of_answerBlackImages`,answer_images_black.length);
+									formData.append(`no_of_questionWhiteImages`,questions_images_white.length);
+									formData.append(`no_of_questionBlackImages`,questions_images_black.length);
 									// Load Answers in form Data
 									for(let i=0;i<answer_images_white.length;i++)
 									{
-										formData.append(`answer_images_white`,answer_images_white[i],answer_images_white[i].name);
+										formData.append(`uploadedFiles`,answer_images_white[i],answer_images_white[i].name);
 									}
 									for(let i=0;i<answer_images_black.length;i++)
 									{
-										formData.append(`answer_images_black`,answer_images_black[i],answer_images_black[i].name);
+										formData.append(`uploadedFiles`,answer_images_black[i],answer_images_black[i].name);
 									}
 									// Load Questions in form Data
 									for(let i=0;i<questions_images_white.length;i++)
 									{
-										formData.append(`question_images_white`,questions_images_white[i],questions_images_white[i].name)
+										formData.append(`uploadedFiles`,questions_images_white[i],questions_images_white[i].name)
 									}	
 									for(let i=0;i<questions_images_black.length;i++)
 									{
-										formData.append(`question_images_black`,questions_images_black[i],questions_images_black[i].name)
+										formData.append(`uploadedFiles`,questions_images_black[i],questions_images_black[i].name)
 									}
 									
 									let h = new Headers();
