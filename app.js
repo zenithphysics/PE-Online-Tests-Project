@@ -996,7 +996,7 @@ app.get('/admin',(req,res)=>{
                 var question_images_black = [];
                 var answer_images_white = [];
                 var answer_images_black = [];
-                for(let i=0;i<req.files.length;i++)
+               /* for(let i=0;i<req.files.length;i++)
                 {
                     if(i<= body.no_of_answerWhiteImages-1)
                     {
@@ -1014,7 +1014,8 @@ app.get('/admin',(req,res)=>{
                     {
                         question_images_black.push(req.files[i])
                     }
-                }
+                } */
+                /*
                 console.log(" ANSWER IMAGES WHITE")
                 console.log(answer_images_white);
                 console.log(" ANSWER IMAGES BLACK")
@@ -1022,7 +1023,10 @@ app.get('/admin',(req,res)=>{
                 console.log(" QUESTION IMAGES WHITE");
                 console.log(question_images_white);
                 console.log(" QUESTION IMAGES BLACK")
-                console.log(question_images_black);
+                console.log(question_images_black); */
+                req.files.forEach((file)=>{
+                    console.log(file)
+                })
                 res.json({is_verified:true,is_successful:true});
             }
     })
