@@ -3,21 +3,25 @@ let mongoose = require('mongoose');
 // User Schema
 
 const testSchema = mongoose.Schema({
+   test_name:{
+        type: String,
+        required:true
+   },
   test_type:{
-      type:String,
-      required:true
-  },
-  test_name:{
-      type: String,
-      required:true
+        type:String,
+        required:true
   },
   domain:{
-      type:String,
-      required:true
+        type:String,
+        required:true
+  },
+  subject:{
+        type:String,
+        required:false
   },
   chapter:{
       type:String,
-      required:true
+      required:false
   },
   topic:{
     type:String,
@@ -25,96 +29,260 @@ const testSchema = mongoose.Schema({
   },
   test_taken_count:{
       type:Number,
-      required:false
+      required:false,
+      default:0
   },
- /*subject_details:[
-    // no of questions in subject 1
-    // difficulty level 1 questions in subject 1
-    // 
-  ],
-  section_details:[
-
-],
-chapter_details:[
-
-],
-topic_details:[
-
-  ], */
-  DLevel1_details:[
-    no_of_DL1_Questions:{
-        type:Number
-    },
-    no_of_DL1_corrects={      
-        type:Array
-    },
-    no_of_DL1_unattempted={
-        type:Array
-    },
-    no_of_DL1_wrong={
-        type:Array
-    },
-    allTime_percentage_DL1_corrects:{
-        type:Number  //  (sum of no_of_DL1_corrects) * 100 / ( ( no_of_DL1_questions) *  ( test_taken_no ) ) 
-    }
-],
-DLevel2_details:[
-],
-DLevel3_details:[
-
-],
-/*
-correct_questions_details:[
-
-],
-unattempted_questions_details:[
-
-],
-wrong_questions_details:[
-
-] ,*/
+  correct_marks:{
+      type:Number,
+      required:false,
+      default:4
+  },
+  wrong_marks:{
+      type:Number,
+      required:false,
+      default:-1
+  },
   questions:[
-      {
-        subject:{
-            type:String,
-            required:false
-        },
-        chapter:{
-            type:String,
-            required:false
-        },
-        topic:{
-            type:String,
-            required:false
-        },
-        section:{
-            type:String,
-            required:false
-        },
-        difficulty_level:{
-            type:String,
-            required:false
-        }
+    {
+      subject:{
+          type:String,
+          required:false
+      },
+      section:{
+        type:String,
+        required:false
+      },
+      chapter:{
+          type:String,
+          required:false
+      },
+      topic:{
+          type:String,
+          required:false
+      },
+      DLevel:{
+          type:String,
+          required:false
+      },
+      whiteImage:{
+          type:Buffer,
+          required:false
+      },
+      blackImage:{
+          type:Buffer,
+          required:false
       }
-  ],
-  answer_key:[
+    }
+], 
+answer_key:[
       {
           type:String,
           required:false
       }
-  ],
-  answer_images:[
+],
+answer_images_white:[
       {
           type:Buffer,
           required:false
       }
-  ],
+],
+answer_images_black:[
+    {
+        type:Buffer,
+        required:false
+    }
+],
   answer_videos:[
       {
           type:String,
           required:false
       }
-  ]
+  ],
+  // ********************************* STATISTICS RELATED ATTRIBUTES *****************************************/
+  question_details:[   // For Question wise  stats
+      {
+          total_correct:{
+              type:Number,
+              required:false
+          },
+          total_unattempted:{
+              type:Number,
+              required:false
+          },
+          total_wromg:{
+              type:Number,
+              required:false
+          }
+        }
+  ],
+  subject_details:[  // For Subject Wise Stats
+      {
+          subjects:{        //Array of Distinct Subjects
+              type:Array,
+              required:false
+          },
+          subjects_question_count:{  // No. of questions in test belonging to distinct subjects
+              type:Array,
+              required:false
+          },
+          subjects_stats:[ // Stats of each Subject
+            {
+                total_correct:{
+                    type:Number,
+                    required:false
+                },
+                total_unattempted:{
+                    type:Number,
+                    required:false
+                },
+                total_wrong:{
+                    type:Number,
+                    required:false
+                }
+            }
+            ]       
+      }
+  ],
+  section_details:[ // Section Wise Stats
+    {
+        sections:{        //Array of Distinct Sections
+            type:Array,
+            required:false
+        },
+        sections_question_count:{  // No. of questions in test belonging to distinct sections
+            type:Array,
+            required:false
+        },
+        sections_stats:[ // Stats of each sections
+          {
+              total_correct:{
+                  type:Number,
+                  required:false
+              },
+              total_unattempted:{
+                  type:Number,
+                  required:false
+              },
+              total_wrong:{
+                  type:Number,
+                  required:false
+              }
+          }
+          ]       
+    }
+],
+chapter_details:[ // Chapter Wise Stats
+    {
+        chapters:{        //Array of Distinct Chapters
+            type:Array,
+            required:false
+        },
+        chapters_question_count:{  // No. of questions in test belonging to distinct chapters
+            type:Array,
+            required:false
+        },
+        chapters_stats:[ // Stats of each chapters
+          {
+              total_correct:{
+                  type:Number,
+                  required:false
+              },
+              total_unattempted:{
+                  type:Number,
+                  required:false
+              },
+              total_wrong:{
+                  type:Number,
+                  required:false
+              }
+          }
+          ]       
+    }
+],
+topic_details:[ // Topic Wise Stats
+    {
+        topics:{        //Array of Distinct topics
+            type:Array,
+            required:false
+        },
+        topics_question_count:{  // No. of questions in test belonging to distinct topics
+            type:Array,
+            required:false
+        },
+        topics_stats:[ // Stats of each topics
+          {
+              total_correct:{
+                  type:Number,
+                  required:false
+              },
+              total_unattempted:{
+                  type:Number,
+                  required:false
+              },
+              total_wrong:{
+                  type:Number,
+                  required:false
+              }
+          }
+          ]       
+    }
+],
+DLevel_details:{
+    DLevel1_count:{ // No. of questions in DLevel 1
+        type:Number,
+        required:false
+    },
+    DLevel2_count:{  // No. of Questions in DLevel 2
+        type:Number,
+        required:false
+    },
+    DLevel3_count:{  // No. of Questions in DLevel 3
+        type:Number,
+        required:false
+    },
+    DLevel1_stats:{
+        total_correct:{
+            type:Number,
+            required:false
+        },
+        total_unattempted:{
+            type:Number,
+            required:false
+        },
+        total_wrong:{
+            type:Number,
+            required:false
+        }
+    },
+    DLevel2_stats:{
+        total_correct:{
+            type:Number,
+            required:false
+        },
+        total_unattempted:{
+            type:Number,
+            required:false
+        },
+        total_wrong:{
+            type:Number,
+            required:false
+        }
+    },
+    DLevel3_stats:{
+        total_correct:{
+            type:Number,
+            required:false
+        },
+        total_unattempted:{
+            type:Number,
+            required:false
+        },
+        total_wrong:{
+            type:Number,
+            required:false
+        }
+    }
+}
 });
 
-let Student = module.exports = mongoose.model('Student',studentSchema);
+let Test = module.exports = mongoose.model('Test',testSchema);

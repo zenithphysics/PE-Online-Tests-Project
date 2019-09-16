@@ -18,6 +18,7 @@ mongoose.connect(config.database)
 var Syllabus = require('./Models/syllabusModel');
 var Admin = require('./Models/AdminModel');
 var Student = require('./Models/StudentModel');
+var Test = require('./Models/TestModel')
 // </Mongoose Models>
 
 // <Initialzations>
