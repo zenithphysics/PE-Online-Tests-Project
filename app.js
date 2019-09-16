@@ -26,6 +26,8 @@ var Test = require('./Models/TestModel')
 var app = express();
 var port = 8085;
 app.use(cors())
+const upload = multer();
+
 app.use(express.static(path.join(__dirname+"/public"))) // Set A Public Folder
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
@@ -35,7 +37,6 @@ app.use(upload.array('question_images_black'));
 app.use(upload.array('answer_images_white'));
 app.use(upload.array('answer_images_white'));
 
-const upload = multer();
 // </Initialization>
 
 // <ServerConfig>
