@@ -1010,7 +1010,7 @@ app.get('/admin',(req,res)=>{
                     {
                         question_images_white.push(req.files[i])
                     }
-                    if(i> body.no_of_questionWhiteImages)
+                    if(i> body.no_of_questionWhiteImages-1)
                     {
                         question_images_black.push(req.files[i])
                     }
