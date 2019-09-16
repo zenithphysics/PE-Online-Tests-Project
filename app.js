@@ -28,7 +28,13 @@ var port = 8085;
 app.use(cors())
 app.use(express.static(path.join(__dirname+"/public"))) // Set A Public Folder
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.urlencoded());
+app.use(upload.array('question_images_white'));
+app.use(upload.array('question_images_black'));
+app.use(upload.array('answer_images_white'));
+app.use(upload.array('answer_images_white'));
+
 const upload = multer();
 // </Initialization>
 
