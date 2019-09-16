@@ -5,7 +5,8 @@ let mongoose = require('mongoose');
 const testSchema = mongoose.Schema({
    test_name:{
         type: String,
-        required:true
+        required:true,
+        unique:true
    },
    duration:{
        type:Number,
