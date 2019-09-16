@@ -217,8 +217,8 @@
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-md-4">
-							<h5><label> Test Version </label></h5>
-							<h6><input type="text" id="test-name" placeholder="Enter Name Of Test" class="form-control"></h6>
+							<h5><label> Test Name </label></h5>
+							<h6><input type="text" id="test_name" placeholder="Enter Name Of Test (Unique)" class="form-control"></h6>
 						</div>
 						<div class="col-md-4">
 							<h5><label> Marks for Correct Answer:</label></h5>
@@ -556,7 +556,7 @@
 			// Create FST
 			function createTest(){
 				//  Get Test Version 
-				var test_version = document.getElementById("test-name").value;
+				var test_name = document.getElementById("test_name").value;
 				//  Get Marks For Correct & Wrong Answers
 				var correct_marks = document.getElementById("correct_marks").value;
 				var wrong_marks = document.getElementById("wrong_marks").value;
