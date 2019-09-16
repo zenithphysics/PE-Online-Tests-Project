@@ -998,22 +998,22 @@ app.get('/admin',(req,res)=>{
                 var answer_images_black = [];
               
                 req.files.forEach((file)=>{
-                    if(file.orignalname == "questionBlack")
+                    if(file.originalname == "questionBlack")
                     {
                         question_images_black.push(file);
                     }
 
-                    if(file.orignalname == "questionWhite")
+                    if(file.originalname == "questionWhite")
                     {
                         question_images_white.push(file)
                     }
 
-                    if(file.orignalname == "answerWhite")
+                    if(file.originalname == "answerWhite")
                     {
                         answer_images_white.push(file)
                     }
 
-                    if(file.orignalname == "answerBlack")
+                    if(file.originalname == "answerBlack")
                     {
                         answer_images_black.push(file)
                     }
