@@ -379,9 +379,11 @@
                 document.getElementById("chapter_selectbox").disabled="disabled";
                 // Increment The Number Of Question
                 no_of_questions+=1;
-                // Add The Question in the UI
-                questions_panel.innerHTML+=`<br>
-                <div class="card" id="question-${no_of_questions}">
+				// Add The Question in the UI
+				var question_element = document.createElement('div');
+				question_element.setAttribute("id",`question-${no_of_questions}`);
+				question_element.setAttribute("class","card");
+                question_element.innerHTML+=`<br>
                     <div class="card-header">
                          Question ${no_of_questions}
                     </div>
@@ -449,8 +451,9 @@
 							</select>
 						</div>
                     </div>
-                </div>
 				`
+
+				questions_panel.appendChild(question_element)
 			    var topic_selectbox = document.getElementById(`question-${no_of_questions}-topic_selectbox`)
                 // Load Topics into topic select_box
                 topic_selectbox.innerHTML=`<option value="Not Specified"> Not Specified </option>`;
