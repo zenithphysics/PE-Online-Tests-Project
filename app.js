@@ -27,7 +27,6 @@ var app = express();
 var port = 8085;
 app.use(cors())
 const upload = multer();
-app.use(bodyParser)
 app.use(express.static(path.join(__dirname+"/public"))) // Set A Public Folder
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
