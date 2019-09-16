@@ -770,6 +770,12 @@
 									chapter_details.chapters_count = chapters_count;
 									topic_details.topics_count = topics_count;
 									// Create The Test Object (Important)
+									var formData = new FormData();
+									formData.append('test_name',test_name);
+									formData.append('test_type',"FST");
+									formData.append('domain',"NEET");
+									formData.append('questions',JSON.stringify(questions));
+									formData.append('')
 									var test_object = {
 										"test_name":test_name,
 										"test_type":"FST",

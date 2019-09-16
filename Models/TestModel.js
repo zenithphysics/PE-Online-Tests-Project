@@ -68,15 +68,8 @@ const testSchema = mongoose.Schema({
       DLevel:{
           type:String,
           required:false
-      },
-      whiteImage:{
-          type:Buffer,
-          required:false
-      },
-      blackImage:{
-          type:Buffer,
-          required:false
       }
+   
     }
 ], 
 answer_key:[
@@ -84,6 +77,18 @@ answer_key:[
           type:String,
           required:false
       }
+],
+question_images_white:[
+  {
+      type:Buffer,
+      required:false
+  }
+],
+question_images_black:[
+    {
+        type:Buffer,
+        required:false
+    }
 ],
 answer_images_white:[
       {
