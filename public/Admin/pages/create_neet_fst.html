@@ -578,9 +578,6 @@
 				
 
 				//*************************************** REQUIRED FOR STATISTICS ***********************************/
-				var Dlevel1_count=0;
-				var Dlevel2_count=0;
-				var Dlevel3_count=0;
 				var subjects_array = [];
 				var sections_array = [];
 				var chapters_array = [];
@@ -617,18 +614,42 @@
 					var chapters_set = [...new Set(chapters_array)]
 					var topics_set = [...new Set(topics_array)]
 					var subjects_count = [];
+					subjects_set.forEach(subject=>{ // Add Counters
+						subjects_count.push(0);
+					})
 					var sections_count = [];
+					sections_set.forEach(section=>{
+						sections_count.push(0);
+					})
 					var chapters_count = [];
+					chapters_set.forEach(chapter=>{
+						chapters_count.push(0);
+					})
 					var topics_count = [];
+					topics_set.forEach(topic=>{
+						topics_count.push(0);
+					})
 					
 
 					// Structuring of Schema
 					var questions=[]
 					var answer_images_white=[];
 					var answer_images_black=[];
-					var answer_videos=[]; 
+					var answer_videos=[];
+					var Dlevel1_count=0;
+					var Dlevel2_count=0;
+					var Dlevel3_count=0;
+					var subject_details={
+						subjects:subjects_set
+					}
+					var section_details={
+						sections:sections_set
+					} 
+					var chapter_details={
+						chapters:chapters_set
+					}
 					var topic_details={
-						
+						topics:topics_set
 					}
 							var all_parsed=false;
 							if(error==0)
@@ -640,20 +661,75 @@
 									all_parsed=true;
 								}
 								// Get Question Subject,Chapter and Topic
+								
 								var question_subject = document.getElementById(`question-${i}-subject_selectbox`).value;
-								var question_chapter = document.getElementById(`question-${i}-chapter_selectbox`).value;
-								var question_topic = document.getElementById(`question-${i}-topic_selectbox`).value;
+								// Increment the counter of that subject;
+								for(let i=0;i<subjects_set.length;i++)
+								{
+									if(question_subject==subjects_set[i])
+									{
+										subjects_count[i]+=1;
+									}
+								}
+
 								var question_section = document.getElementById(`question-${i}-section_selectbox`).value;
-								// Increment The Counters 
+								// Increment the counter of that section
+								for(let i=0;i<sections_set.length;i++)
+								{
+									if(question_section==sections_set[i])
+									{
+										sections_count[i]+=1;
+									}
+								}
+
+								var question_chapter = document.getElementById(`question-${i}-chapter_selectbox`).value;
+								// Increment the counter of that chapter
+								for(let i=0;i<chapters_set.length;i++)
+								{
+									if(question_chapter==chapters_set[i])
+									{
+										chapters_count[i]+=1;
+									}
+								}
+
+								var question_topic = document.getElementById(`question-${i}-topic_selectbox`).value;
+								// Increment the counter of that topic
+								for(let i=0;i<topics_set.length;i++)
+								{
+									if(question_topic==topics_set[i])
+									{
+										topics_count[i]+=1;
+									}
+								}
+
+							
+								
 
 								// Get Question Difficulty Level 
 								var question_DLevel = document.getElementById(`question-${i}-DLevel_selectbox`).value;
+
+								// Update Counter
+									if(question_DLevel=="Level 1")
+									{
+										Dlevel1_count++;
+									}
+									if(question_DLevel=="Level 2")
+									{
+										Dlevel2_count++;
+									}
+									if(question_DLevel=="Level 3")
+									{
+										Dlevel3_count++;
+									}
+
 								// Get Question Image
 								var question_white_image = document.getElementById(`question-white-${i}-input`).files[0];
 								var question_black_image = document.getElementById(`question-black-${i}-input`).files[0];
 								// Get Answer Image
 								var answer_white_image = document.getElementById(`answer-white-${i}-input`).files[0];
+								answer_images_white.push(answer_white_image); // Push it in white images array
 								var answer_black_image = document.getElementById(`answer-black-${i}-input`).files[0];
+								answer_images_black.push(answer_black_image); // Push it in black images array
 								// Get Answer Video Solution
 								var answer_video = document.getElementById(`answer-${i}-video`).value;
 								if(question_white_image==null || question_white_image=="" || answer_black_image==null || answer_black_image=="")
