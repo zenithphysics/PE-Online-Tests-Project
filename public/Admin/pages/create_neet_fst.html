@@ -635,6 +635,8 @@
 					var questions=[]
 					var answer_images_white=[];
 					var answer_images_black=[];
+					var questions_images_white=[];
+					var questions_images_black=[];
 					var answer_videos=[];
 					var answer_key=[];
 					var Dlevel1_count=0;
@@ -728,7 +730,9 @@
 								answer_key.push(correct_answer);
 								// Get Question Image
 								var question_white_image = document.getElementById(`question-white-${i}-input`).files[0];
+								questions_images_white.push(question_white_image);	
 								var question_black_image = document.getElementById(`question-black-${i}-input`).files[0];
+								questions_images_black.push(question_black_image);
 								// Get Answer Image
 								var answer_white_image = document.getElementById(`answer-white-${i}-input`).files[0];
 								answer_images_white.push(answer_white_image); // Push it in white images array
@@ -753,9 +757,7 @@
 												"section":question_section,
 												"chapter":question_chapter,
 												"topic":question_topic,		
-												"DLevel":question_DLevel,
-												"questionWhiteImage":question_white_image,
-												"questionBlackImage":question_black_image}
+												"DLevel":question_DLevel}
 								questions.push(Question);
 								}
 							}
@@ -769,49 +771,58 @@
 									section_details.sections_count = sections_count;
 									chapter_details.chapters_count = chapters_count;
 									topic_details.topics_count = topics_count;
+									var DLevel_Details = { 
+											"DLevel1_count":Dlevel1_count,
+											"DLevel2_count":Dlevel2_count,
+											"DLevel3_count":Dlevel3_count
+										}
 									// Create The Test Object (Important)
 									var formData = new FormData();
 									formData.append('test_name',test_name);
 									formData.append('test_type',"FST");
 									formData.append('domain',"NEET");
 									formData.append('questions',JSON.stringify(questions));
-									formData.append('')
-									var test_object = {
-										"test_name":test_name,
-										"test_type":"FST",
-										"domain":"NEET",
-										"questions":questions,
-										"correct_marks":correct_marks,
-										"wrong_marks":wrong_marks,
-										"answer_images_white":answer_images_white,
-										"answer_images_black":answer_images_black,
-										"answer_videos":answer_videos,
-										"answer_key":answer_key,
-										"subject_details":subject_details,
-										"section_details":section_details,
-										"chapter_details":chapter_details,
-										"topic_details":topic_details,
-										"DLevel_details":{
-											"DLevel1_count":Dlevel1_count,
-											"DLevel2_count":Dlevel2_count,
-											"DLevel3_count":Dlevel3_count
-										}
+									formData.append('correct_marks',correct_marks);
+									formData.append('wrong_marks',wrong_marks);
+									formData.append(`answer_videos`,JSON.stringify(answer_videos));
+									formData.append(`answer_key`,JSON.stringify(answer_key));
+									formData.append(`DLevel_details`,JSON.stringify(DLevel_Details))
+									// Load Answers in form Data
+									for(let i=0;i<answer_images_white.length;i++)
+									{
+										formData.append(`answer_images_white`,answer_images_white[i],answer_images_white[i].name);
 									}
-									fetch(`${domain_url}/createFST`,{
+									for(let i=0;i<answer_images_black.length;i++)
+									{
+										formData.append(`answer_images_black`,answer_images_black[i],answer_images_black[i].name);
+									}
+									// Load Questions in form Data
+									for(let i=0;i<questions_images_white.length;i++)
+									{
+										formData.append(`question_images_white`,questions_images_white[i],questions_images_white[i].name)
+									}	
+									for(let i=0;i<questions_images_black.length;i++)
+									{
+										formData.append(`question_images_black`,questions_images_black[i],questions_images_black[i].name)
+									}
+									
+									let h = new Headers();
+									h.append('authorization',user_access_token);
+									h.append('Accept','application/json');
+									let req = new Request(`${domain_url}/createFST`,{
 										method:"POST",
-										headers:{
-											authorization:user_access_token,
-											'Content-type':'application/json'
-										},
-										body:JSON.stringify({"test":test_object})
-									}).then(response => response.json()).then(data=>{
+										headers:h,
+										body:formData
+									})
+									
+									fetch(req).then(response=> response.json()).then(data=>{
 										if(data.is_successful)
 										{
-											alert("Test Has Been Created");
+											alert("Test Submitted");
 										}
 										else
 										{
-											alert("failed to create FST test");
+											alert("failed to submit test");
 										}
 									})
 								}
