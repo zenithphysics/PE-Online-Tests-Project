@@ -646,7 +646,7 @@
 								var reader = new FileReader();
 								reader.readAsArrayBuffer(question_white_image);
 								reader.onload = ()=>{
-									question_white_image = reader.result;
+									question_white_image_buffer = reader.result;
 									console.log(question_white_image_buffer)
 
 								}
