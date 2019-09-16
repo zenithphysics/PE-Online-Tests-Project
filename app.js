@@ -991,6 +991,7 @@ app.get('/admin',(req,res)=>{
                 console.log('\x1b[33m%s\x1b[1m', '[/createFST] - Creating FST Test...');
                 var test_object = req.body.test;
                 console.log(test_object);
+                console.log(req.question_images_white[0]);
                 res.json({is_verified:true,is_successful:true});
             }
     })
