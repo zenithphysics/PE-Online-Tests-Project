@@ -797,7 +797,7 @@
 											authorization:user_access_token,
 											'Content-type':'application/json'
 										},
-										body:JSON.stringify(test_object)
+										body:JSON.stringify({"test":test_object})
 									}).then(response => response.json()).then(data=>{
 										if(data.is_successful)
 										{
