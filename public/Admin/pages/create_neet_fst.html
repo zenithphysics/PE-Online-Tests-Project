@@ -644,8 +644,12 @@
 								var question_black_image = document.getElementById(`question-black-${i}-input`).files[0];
 								console.log(question_white_image);
 								var reader = new FileReader();
-								var question_white_image_buffer = reader.readAsArrayBuffer(question_white_image);
-								console.log(question_white_image_buffer)
+								reader.readAsArrayBuffer(question_white_image);
+								reader.onload = ()=>{
+									question_white_image = reader.result;
+									console.log(question_white_image_buffer)
+
+								}
 								// Get Answer Image
 								var answer_white_image = document.getElementById(`answer-white-${i}-input`).files[0];
 								var answer_black_image = document.getElementById(`answer-black-${i}-input`).files[0];
