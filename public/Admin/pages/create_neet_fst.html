@@ -554,14 +554,26 @@
 			}
 			// Create FST
 			function createTest(){
+				var error=0;
+
 				//  Get Test Version 
 				var test_name = document.getElementById("test_name").value;
+				if(test_name=="")
+				{
+					error=1;
+					alert("Please Enter A Valid Test Name")
+				}
 				//  Get Marks For Correct & Wrong Answers
 				var correct_marks = document.getElementById("correct_marks").value;
 				var wrong_marks = document.getElementById("wrong_marks").value;
 				// Get Total Number of questions
 				var questions_count = no_of_questions;
 				// Parse Each Question & Make Question Object
+				if(questions_count=0)
+				{
+					error=1;
+					alert("Please Enter Atleast 1 question");
+				}
 				
 
 				//*************************************** REQUIRED FOR STATISTICS ***********************************/
@@ -582,10 +594,16 @@
 					var question_section = document.getElementById(`question-${i}-section_selectbox`).value;
 					var question_chapter = document.getElementById(`question-${i}-chapter_selectbox`).value;
 					var question_topic = document.getElementById(`question-${i}-topic_selectbox`).value;
+					if(question_subject!=null && question_subject!="" && question_chapter!=null && question_chapter!="" && question_section!=null && question_section!="" && question_topic!=null && question_topic!="")					{
 					subjects_array.push(question_subject);
 					sections_array.push(question_section);
 					chapters_array.push(question_chapter);
 					topics_array.push(question_topic);
+					}
+					else
+					{
+						error=1;
+					}
 					if(i==no_of_questions)
 					{
 						all_preprocessed=true
@@ -597,14 +615,19 @@
 					var sections_set = [...new Set(sections_array)]
 					var chapters_set = [...new Set(chapters_array)]
 					var topics_set = [...new Set(topics_array)]
+					var subjects_count = [];
+					var sections_count = [];
+					var chapters_count = [];
+					var topics_count = [];
 					console.log(`Distinct Subjects, Sections, Chapters and Topics`);
 					console.log(subjects_set);
 					console.log(sections_set);
 					console.log(chapters_set);
 					console.log(topics_set);
-
 							var questions=[]
 							var all_parsed=false;
+							if(err==0)
+							{
 							for(i=1;i<=no_of_questions;i++)
 							{
 								if(i==no_of_questions)
@@ -616,12 +639,20 @@
 								var question_chapter = document.getElementById(`question-${i}-chapter_selectbox`).value;
 								var question_topic = document.getElementById(`question-${i}-topic_selectbox`).value;
 								var question_section = document.getElementById(`question-${i}-section_selectbox`).value;
+								// Increment The Counters 
+
 								// Get Question Difficulty Level 
 								var question_DLevel = document.getElementById(`question-${i}-DLevel_selectbox`).value;
 								// Get Question Image
 								var question_white_image = document.getElementById(`question-white-${i}-input`).files[0];
 								var question_black_image = document.getElementById(`question-black-${i}-input`).files[0];
-								
+								if(question_white_image==null || question_white_image=="" || question_black_image==null || question_black_image=="")
+								{
+									alert("Make sure you have attached images for all questions");
+									error=1;
+								}
+								if(error==0)
+								{
 								// Create The Question Object
 								var Question = {"subject":question_subject,
 												"section":question_section,
@@ -631,12 +662,16 @@
 												"questionWhiteImage":question_white_image,
 												"questionBlackImage":question_black_image}
 								questions.push(Question);
+								}
 							}
-
+						}
 							// IF all questions are parsed
 							if(all_parsed)
 							{
-								console.log(questions);
+								if(error=0)
+								{
+									console.log(questions)
+								}
 							}
 				}
 				
