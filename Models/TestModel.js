@@ -7,6 +7,10 @@ const testSchema = mongoose.Schema({
         type: String,
         required:true
    },
+   duration:{
+       type:Number,
+       required:false
+   },
   test_type:{
         type:String,
         required:true
