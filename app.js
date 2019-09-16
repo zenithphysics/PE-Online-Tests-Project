@@ -30,7 +30,7 @@ var upload = multer();
 
 app.use(express.static(path.join(__dirname+"/public"))) // Set A Public Folder
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded())
 app.use(express.urlencoded());
 app.use(upload.array('question_images_white'));
 app.use(upload.array('question_images_black'));
