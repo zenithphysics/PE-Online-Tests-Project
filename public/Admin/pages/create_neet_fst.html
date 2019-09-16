@@ -636,6 +636,7 @@
 					var answer_images_white=[];
 					var answer_images_black=[];
 					var answer_videos=[];
+					var answer_key=[];
 					var Dlevel1_count=0;
 					var Dlevel2_count=0;
 					var Dlevel3_count=0;
@@ -722,6 +723,9 @@
 										Dlevel3_count++;
 									}
 
+								// Get Correct Answer
+								var correct_answer = document.getElementById(`question-${i}-correct_answer`).value;
+								answer_key.push(correct_answer);
 								// Get Question Image
 								var question_white_image = document.getElementById(`question-white-${i}-input`).files[0];
 								var question_black_image = document.getElementById(`question-black-${i}-input`).files[0];
@@ -761,7 +765,34 @@
 							{
 								if(error==0)
 								{
-									console.log(questions)
+									subject_details.subjects_count = subjects_count;
+									section_details.sections_count = sections_count;
+									chapter_details.chapters_count = chapters_count;
+									topic_details.topics_count = topics_count;
+									// Create The Test Object (Important)
+									var test_object = {
+										"test_name":test_name,
+										"test_type":"FST",
+										"domain":"NEET",
+										"questions":questions,
+										"correct_marks":correct_marks,
+										"wrong_marks":wrong_marks,
+										"answer_images_white":answer_images_white,
+										"answer_images_black":answer_images_black,
+										"answer_videos":answer_videos,
+										"answer_key":answer_key,
+										"subject_details":subject_details,
+										"section_details":section_details,
+										"chapter_details":chapter_details,
+										"topic_details":topic_details,
+										"DLevel_details":{
+											"DLevel1_count":Dlevel1_count,
+											"DLevel2_count":Dlevel2_count,
+											"DLevel3_count":DLevel3_count
+										}
+									}
+
+									console.log(test_object);
 								}
 							}
 				}
