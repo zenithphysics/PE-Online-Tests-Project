@@ -991,8 +991,38 @@ app.get('/admin',(req,res)=>{
             {
                 console.log('\x1b[32m%s\x1b[1m', '[/createFST] - Admin Verification Successful');  
                 console.log('\x1b[33m%s\x1b[1m', '[/createFST] - Creating FST Test...');
-                console.log(req.files);
                 console.log(req.body);
+                var question_images_white = [];
+                var question_images_black = [];
+                var answer_images_white = [];
+                var answer_images_black = [];
+                for(let i=0;i<req.files.length;i++)
+                {
+                    if(i<= body.no_of_answerWhiteImages-1)
+                    {
+                        answer_images_white.push(req.files[i]);
+                    }
+                    if(i> body.no_of_answerWhiteImages-1 && i<= body.no_of_answerBlackImages-1)
+                    {
+                        answer_images_black.push(req.files[i])
+                    }
+                    if(i> body.no_of_answerBlackImages-1 && i<= body.no_of_questionWhiteImages-1)
+                    {
+                        question_images_white.push(req.files[i])
+                    }
+                    if(i> body.no_of_questionWhiteImages)
+                    {
+                        question_images_black.push(req.files[i])
+                    }
+                }
+                console.log(" ANSWER IMAGES WHITE")
+                console.log(answer_images_white);
+                console.log(" ANSWER IMAGES BLACK")
+                console.log(answer_images_black);
+                console.log(" QUESTION IMAGES WHITE");
+                console.log(question_images_white);
+                console.log(" QUESTION IMAGES BLACK")
+                console.log(question_images_black);
                 res.json({is_verified:true,is_successful:true});
             }
     })
