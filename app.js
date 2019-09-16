@@ -1031,7 +1031,10 @@ app.get('/admin',(req,res)=>{
                 test.section_details = JSON.parse(req.body.section_details);
                 test.chapter_details = JSON.parse(req.body.chapter_details);
                 test.topic_details = JSON.parse(req.body.topic_details);
-
+                test.question_images_white = question_images_white;
+                test.question_images_black = question_images_black;
+                test.answer_images_white = answer_images_white;
+                test.answer_images_black = answer_images_black;
                 console.log(` ------- TEST OBJECT ------  `)
                 test.save((err,output)=>{
                     if(err)
