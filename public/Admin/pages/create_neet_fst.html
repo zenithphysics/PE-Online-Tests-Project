@@ -642,18 +642,7 @@
 					var Dlevel1_count=0;
 					var Dlevel2_count=0;
 					var Dlevel3_count=0;
-					var subject_details={
-						subjects:subjects_set
-					}
-					var section_details={
-						sections:sections_set
-					} 
-					var chapter_details={
-						chapters:chapters_set
-					}
-					var topic_details={
-						topics:topics_set
-					}
+		
 							var all_parsed=false;
 							if(error==0)
 							{
@@ -767,10 +756,10 @@
 							{
 								if(error==0)
 								{
-									subject_details.subjects_count = subjects_count;
-									section_details.sections_count = sections_count;
-									chapter_details.chapters_count = chapters_count;
-									topic_details.topics_count = topics_count;
+									subject_details = {"subjects":subjects_set,"subjects_count":subjects_count};
+									section_details = {"sections":sections_set,"sections_count":sections_count};
+									chapter_details = {"chapters":chapters_set,"chapters_count":chapters_count};
+									topic_details = {"topics":topics_set,"topics_count":topics_count};
 									var DLevel_Details = { 
 											"DLevel1_count":Dlevel1_count,
 											"DLevel2_count":Dlevel2_count,
