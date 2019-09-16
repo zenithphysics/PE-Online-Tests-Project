@@ -31,7 +31,6 @@ const upload = multer();
 app.use(express.static(path.join(__dirname+"/public"))) // Set A Public Folder
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
-app.use(upload.array('uploaded_files'));
 
 // </Initialization>
 
