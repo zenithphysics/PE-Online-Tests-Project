@@ -7,6 +7,7 @@ var bodyParser = require('body-parser')
 const hash = require('hash.js')
 const path = require('path')
 const cors = require('cors')
+const multer = require('multer');
 // </Modules>
 
 // <Database>

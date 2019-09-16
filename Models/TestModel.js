@@ -123,7 +123,7 @@ answer_images_black:[
           }
         }
   ],
-  subject_details:[  // For Subject Wise Stats
+  subject_details:  // For Subject Wise Stats
       {
           subjects:{        //Array of Distinct Subjects
               type:Array,
@@ -153,8 +153,8 @@ answer_images_black:[
             }
             ]       
       }
-  ],
-  section_details:[ // Section Wise Stats
+ ,
+  section_details: // Section Wise Stats
     {
         sections:{        //Array of Distinct Sections
             type:Array,
@@ -184,8 +184,8 @@ answer_images_black:[
           }
           ]       
     }
-],
-chapter_details:[ // Chapter Wise Stats
+,
+chapter_details: // Chapter Wise Stats
     {
         chapters:{        //Array of Distinct Chapters
             type:Array,
@@ -215,8 +215,8 @@ chapter_details:[ // Chapter Wise Stats
           }
           ]       
     }
-],
-topic_details:[ // Topic Wise Stats
+,
+topic_details: // Topic Wise Stats
     {
         topics:{        //Array of Distinct topics
             type:Array,
@@ -246,7 +246,7 @@ topic_details:[ // Topic Wise Stats
           }
           ]       
     }
-],
+,
 DLevel_details:{
     DLevel1_count:{ // No. of questions in DLevel 1
         type:Number,

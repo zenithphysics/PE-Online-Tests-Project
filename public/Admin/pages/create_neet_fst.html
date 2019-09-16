@@ -620,7 +620,16 @@
 					var sections_count = [];
 					var chapters_count = [];
 					var topics_count = [];
-							var questions=[]
+					
+
+					// Structuring of Schema
+					var questions=[]
+					var answer_images_white=[];
+					var answer_images_black=[];
+					var answer_videos=[]; 
+					var topic_details={
+						
+					}
 							var all_parsed=false;
 							if(error==0)
 							{
@@ -642,14 +651,6 @@
 								// Get Question Image
 								var question_white_image = document.getElementById(`question-white-${i}-input`).files[0];
 								var question_black_image = document.getElementById(`question-black-${i}-input`).files[0];
-								console.log(question_white_image);
-								var reader = new FileReader();
-								reader.readAsArrayBuffer(question_white_image);
-								reader.onload = ()=>{
-									question_white_image_buffer = reader.result;
-									console.log(question_white_image_buffer)
-
-								}
 								// Get Answer Image
 								var answer_white_image = document.getElementById(`answer-white-${i}-input`).files[0];
 								var answer_black_image = document.getElementById(`answer-black-${i}-input`).files[0];
