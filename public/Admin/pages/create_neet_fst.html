@@ -564,43 +564,81 @@
 				
 
 				//*************************************** REQUIRED FOR STATISTICS ***********************************/
-				
+				var Dlevel1_count=0;
+				var Dlevel2_count=0;
+				var Dlevel3_count=0;
+				var subjects_array = [];
+				var sections_array = [];
+				var chapters_array = [];
+				var topics_array = [];
 				// Initialize Questions Array 
-					var questions=[]
-				var all_parsed=false;
+				
+				// Preprocessing to find all the types of subjects, sections, chapters, topics
+				var all_preprocessed = false;
 				for(i=1;i<=no_of_questions;i++)
 				{
-					if(i==no_of_questions)
-					{
-						all_parsed=true;
-					}
-					// Get Question Subject,Chapter and Topic
 					var question_subject = document.getElementById(`question-${i}-subject_selectbox`).value;
+					var question_section = document.getElementById(`question-${i}-section_selectbox`).value;
 					var question_chapter = document.getElementById(`question-${i}-chapter_selectbox`).value;
 					var question_topic = document.getElementById(`question-${i}-topic_selectbox`).value;
-					var question_section = document.getElementById(`question-${i}-section_selectbox`).value;
-					// Get Question Difficulty Level 
-					var question_DLevel = document.getElementById(`question-${i}-DLevel_selectbox`).value;
-					// Get Question Image
-					var question_white_image = document.getElementById(`question-white-${i}-input`).files[0];
-					var question_black_image = document.getElementById(`question-black-${i}-input`).files[0];
-					
-					// Create The Question Object
-					var Question = {"subject":question_subject,
-									"section":question_section,
-									"chapter":question_chapter,
-									"topic":question_topic,		
-									"DLevel":question_DLevel,
-									"questionWhiteImage":question_white_image,
-									"questionBlackImage":question_black_image}
-					questions.push(Question);
+					subjects_array.push(question_subject);
+					sections_array.push(question_section);
+					chapters_array.push(question_chapter);
+					topics_array.push(question_topic);
+					if(i==no_of_questions)
+					{
+						all_preprocessed=true
+					}
 				}
-
-				// IF all questions are parsed
-				if(all_parsed)
+				if(all_preprocessed)  // All Questions have been preprocessed
 				{
-					console.log(questions);
+					var subjects_set = [...new Set(subjects_array)]
+					var sections_set = [...new Set(sections_array)]
+					var chapters_set = [...new Set(chapters_array)]
+					var topics_set = [...new Set(topics_array)]
+					console.log(`Distinct Subjects, Sections, Chapters and Topics`);
+					console.log(subjects_set);
+					console.log(sections_set);
+					console.log(chapters_set);
+					console.log(topics_set);
+					
+							var questions=[]
+							var all_parsed=false;
+							for(i=1;i<=no_of_questions;i++)
+							{
+								if(i==no_of_questions)
+								{
+									all_parsed=true;
+								}
+								// Get Question Subject,Chapter and Topic
+								var question_subject = document.getElementById(`question-${i}-subject_selectbox`).value;
+								var question_chapter = document.getElementById(`question-${i}-chapter_selectbox`).value;
+								var question_topic = document.getElementById(`question-${i}-topic_selectbox`).value;
+								var question_section = document.getElementById(`question-${i}-section_selectbox`).value;
+								// Get Question Difficulty Level 
+								var question_DLevel = document.getElementById(`question-${i}-DLevel_selectbox`).value;
+								// Get Question Image
+								var question_white_image = document.getElementById(`question-white-${i}-input`).files[0];
+								var question_black_image = document.getElementById(`question-black-${i}-input`).files[0];
+								
+								// Create The Question Object
+								var Question = {"subject":question_subject,
+												"section":question_section,
+												"chapter":question_chapter,
+												"topic":question_topic,		
+												"DLevel":question_DLevel,
+												"questionWhiteImage":question_white_image,
+												"questionBlackImage":question_black_image}
+								questions.push(Question);
+							}
+
+							// IF all questions are parsed
+							if(all_parsed)
+							{
+								console.log(questions);
+							}
 				}
+				
 			}
 		$(document).ready(function() {
 			App.init();
