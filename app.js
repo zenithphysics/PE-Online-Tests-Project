@@ -996,37 +996,39 @@ app.get('/admin',(req,res)=>{
                 var question_images_black = [];
                 var answer_images_white = [];
                 var answer_images_black = [];
-               /* for(let i=0;i<req.files.length;i++)
-                {
-                    if(i<= body.no_of_answerWhiteImages-1)
-                    {
-                        answer_images_white.push(req.files[i]);
-                    }
-                    if(i> body.no_of_answerWhiteImages-1 && i<= body.no_of_answerBlackImages-1)
-                    {
-                        answer_images_black.push(req.files[i])
-                    }
-                    if(i> body.no_of_answerBlackImages-1 && i<= body.no_of_questionWhiteImages-1)
-                    {
-                        question_images_white.push(req.files[i])
-                    }
-                    if(i> body.no_of_questionWhiteImages-1)
-                    {
-                        question_images_black.push(req.files[i])
-                    }
-                } */
-                /*
-                console.log(" ANSWER IMAGES WHITE")
-                console.log(answer_images_white);
-                console.log(" ANSWER IMAGES BLACK")
-                console.log(answer_images_black);
-                console.log(" QUESTION IMAGES WHITE");
-                console.log(question_images_white);
-                console.log(" QUESTION IMAGES BLACK")
-                console.log(question_images_black); */
+              
                 req.files.forEach((file)=>{
-                    console.log(file)
+                    if(file.orignalname == "questionBlack")
+                    {
+                        question_images_black.push(file);
+                    }
+
+                    if(file.orignalname == "questionWhite")
+                    {
+                        question_images_white.push(file)
+                    }
+
+                    if(file.orignalname == "answerWhite")
+                    {
+                        answer_images_white.push(file)
+                    }
+
+                    if(file.orignalname == "answerBlack")
+                    {
+                        answer_images_black.push(file)
+                    }
                 })
+
+                console.log("~~~~ Question Blacks ~~~~~")
+                console.log(question_images_black);
+                console.log("~~~~ Answer Blacks ~~~~~")
+                console.log(answer_images_black);
+                console.log("~~~~ Question Whites ~~~~~")
+                console.log(question_images_white);
+                console.log("~~~~ Answer Whites ~~~~~")
+                console.log(answer_images_white);
+
+
                 res.json({is_verified:true,is_successful:true});
             }
     })
