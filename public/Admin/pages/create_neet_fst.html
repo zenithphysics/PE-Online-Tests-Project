@@ -650,7 +650,7 @@
 								var answer_white_image = document.getElementById(`answer-white-${i}-input`).files[0];
 								var answer_black_image = document.getElementById(`answer-black-${i}-input`).files[0];
 								// Get Answer Video Solution
-								var answer_video = document.getElementById(`answer-${i}-video`)
+								var answer_video = document.getElementById(`answer-${i}-video`).value;
 								if(question_white_image==null || question_white_image=="" || answer_black_image==null || answer_black_image=="")
 								{
 									alert("Make sure you have attached images for all questions and their answers");
