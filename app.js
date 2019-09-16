@@ -26,7 +26,7 @@ var Test = require('./Models/TestModel')
 var app = express();
 var port = 8085;
 app.use(cors())
-var upload = multer();
+const upload = multer();
 
 app.use(express.static(path.join(__dirname+"/public"))) // Set A Public Folder
 app.use(bodyParser.urlencoded({extended: true}))
