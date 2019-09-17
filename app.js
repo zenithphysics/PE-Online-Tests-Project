@@ -1000,22 +1000,22 @@ app.get('/admin',(req,res)=>{
                 req.files.forEach((file)=>{
                     if(file.originalname == "questionBlack")
                     {
-                        question_images_black.push(file.buffer);
+                        question_images_black.push(atob(file.buffer));
                     }
 
                     if(file.originalname == "questionWhite")
                     {
-                        question_images_white.push(file.buffer)
+                        question_images_white.push(atob(file.buffer));
                     }
 
                     if(file.originalname == "answerWhite")
                     {
-                        answer_images_white.push(file.buffer)
+                        answer_images_white.push(atob(file.buffer))
                     }
 
                     if(file.originalname == "answerBlack")
                     {
-                        answer_images_black.push(file.buffer)
+                        answer_images_black.push(atob(file.buffer))
                     }
                 })
                 console.log(req.body);
@@ -1174,22 +1174,22 @@ app.get('/admin',(req,res)=>{
                         // ReConvert buffer to base64 string for question black images
                         for(var i=0;i<test[0].question_images_black.length;i++)
                         {
-                            new_test[0].question_images_black[i] = new Buffer(test[0].question_images_black[i]).toString('base64');
+                            new_test[0].question_images_black[i] = btoa(test[0].question_images_black[i]);
                         }
                         // Reconvert buffer to base64 string for question white images
                         for(var i=0;i<test[0].question_images_white.length;i++)
                         {
-                            new_test[0].question_images_white[i] = new Buffer(test[0].question_images_white[i]).toString('base64');
+                            new_test[0].question_images_white[i] = btoa(test[0].question_images_white[i]);
                         }
                          // Reconvert buffer to base64 string for answer white images
                          for(var i=0;i<test[0].answer_images_white.length;i++)
                          {
-                             new_test[0].answer_images_white[i] = new Buffer(test[0].answer_images_white[i]).toString('base64');
+                             new_test[0].answer_images_white[i] = btoa(test[0].answer_images_white[i]);
                          }
                            // ReConvert buffer to base64 string for answer black images
                         for(var i=0;i<test[0].answer_images_black.length;i++)
                         {
-                            new_test[0].answer_images_black[i] = new Buffer(test[0].answer_images_black[i]).toString('base64');
+                            new_test[0].answer_images_black[i] = btoa(test[0].answer_images_black[i])
                         }
                         res.json({is_verified:true,is_successful:true,test:new_test[0]})
                     }
