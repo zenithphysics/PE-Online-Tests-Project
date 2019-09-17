@@ -1157,7 +1157,7 @@ app.get('/admin',(req,res)=>{
             {
                 console.log('\x1b[32m%s\x1b[1m', '[/getTest] - Admin Verification Successful');  
                 console.log('\x1b[33m%s\x1b[1m', '[/getTest] - Feteching All SWT Tests...');  
-                Test.find({"test_name":req.body.test_name},{"test_name":1},(err,fst_tests)=>{
+                Test.find({"test_name":req.body.test_name},{"test_name":1},(err,test)=>{
                     if(err)
                     {
                         console.log('\x1b[31m%s\x1b[1m', '[/getTest] - Failed to fetch Test');
@@ -1167,7 +1167,7 @@ app.get('/admin',(req,res)=>{
                     else
                     {
                         console.log('\x1b[32m%s\x1b[1m', '[/getTest] - Fetched Test');  
-                        res.json({is_verified:true,is_successful:true,fst_tests:fst_tests})
+                        res.json({is_verified:true,is_successful:true,test:test})
                     }
                 })
             }
