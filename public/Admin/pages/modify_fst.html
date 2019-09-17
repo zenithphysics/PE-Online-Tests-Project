@@ -395,7 +395,7 @@
                 }
             })
         }
-
+		// Change Question White;
         function changeQuestionWhiteImage(input,question_number)
         {
             var question_image_panel = document.getElementById(`question-white-${question_number}-image`);
@@ -408,8 +408,50 @@
                 reader.onerror = ()=> {
                     alert("failed to change image")
                 }
-        }
-   
+		}
+		// Change Question Black;
+		function changeQuestionBlackImage(input,question_number)
+			{
+				var question_image_panel = document.getElementById(`question-black-${question_number}-image`);
+				var question_image = input.files[0];
+                var reader = new FileReader();
+                reader.readAsDataURL(question_image);
+                reader.onload =  function () {
+                    question_image_panel.src=reader.result;
+                };
+                reader.onerror = ()=> {
+                    alert("failed to change image")
+                }
+			}
+		// Change Answer White
+		function changeAnswerWhiteImage(input,question_number)
+			{
+				var answer_image_panel = document.getElementById(`answer-white-${question_number}-image`);
+				var answer_image = input.files[0];
+				var reader = new FileReader();
+                reader.readAsDataURL(answer_image);
+                reader.onload =  function () {
+                    answer_image_panel.src=reader.result;
+                };
+                reader.onerror = ()=> {
+                    alert("failed to change image")
+                }
+			}
+		// Change Answer White
+		function changeAnswerBlackImage(input,question_number)
+		{
+			var answer_image_panel = document.getElementById(`answer-black-${question_number}-image`);
+			var answer_image = input.files[0];
+			var reader = new FileReader();
+                reader.readAsDataURL(answer_image);
+                reader.onload =  function () {
+                    answer_image_panel.src=reader.result;
+                };
+                reader.onerror = ()=> {
+                    alert("failed to change image")
+                }
+		}
+
 		$(document).ready(function() {
 			App.init();
 		});
