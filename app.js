@@ -1017,7 +1017,7 @@ app.get('/admin',(req,res)=>{
                         answer_images_black.push(file.buffer)
                     }
                 })
-
+                console.log(req.body);
                 var test = new Test();
                 test.test_name = req.body.test_name;
                 test.test_type = req.body.test_type;
