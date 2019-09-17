@@ -9,6 +9,7 @@ const path = require('path')
 const cors = require('cors')
 const multer = require('multer');
 const atob = require('atob')
+const btoa = require('btoa');
 // </Modules>
 
 // <Database>
