@@ -391,7 +391,11 @@
 						
 						// Load Solution  Video url
 						var solution_video = document.getElementById(`answer-${i+1}-video`);
-						solution_video.value = data.test.
+						solution_video.value = data.test.answer_videos[i];
+
+						// Load correct answer
+						var correct_answerselectbox = document.getElementById(`question-${i+1}-correctselect_box`);
+						correct_answerselectbox.value = data.test.answer_key[i]
                         if(i==data.test.questions.length-1)
                         {
                             test_panel.innerHTML+= `<br>
