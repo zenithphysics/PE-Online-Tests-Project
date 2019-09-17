@@ -461,8 +461,8 @@
                         if(i==data.test.questions.length-1)
                         {
                             test_panel.innerHTML+= `<br>
-                            <h4><button class="btn btn-green" onclick="saveModifications('${data.test.questions.length}')"> <i class="fa fa-floppy-o" aria-hidden="true"></i>
- Save Modifications </button></h4>`
+                            <h2><button class="btn btn-green" onclick="saveModifications('${data.test.questions.length}')"> <i class="fa fa-floppy-o" aria-hidden="true"></i>
+ Save Modifications </button></h2>`
                         }
                     }
 
@@ -536,6 +536,8 @@
 
 		function saveModifications(questions_length)
 		{
+			// Get New Duration
+			var duration = document.getElementById("duration").value;
 			// Initialize Arrays
 			var question_images_white = [];
 			var question_images_black = [];
