@@ -376,19 +376,19 @@
                         
                         // Load Image of Question White Image
                         var question_image_white = document.getElementById(`question-white-${i+1}-image`);
-                        question_image_white.src = 'data:image/jpeg;base64,'+data.test.question_images_white[i];
+                        question_image_white.src = atob(data.test.question_images_white[i]);
                         
                         // Load Image of Question Black Image
                         var question_image_black = document.getElementById(`question-black-${i+1}-image`);
-                        question_image_black.src = 'data:image/jpeg;base64,'+data.test.question_images_black[i];
+                        question_image_black.src = atob(data.test.question_images_black[i]);
 
                         // Load Image of Answer White Image
                         var answer_image_white = document.getElementById(`answer-white-${i+1}-image`);
-                        answer_image_white.src = 'data:image/jpeg;base64,'+data.test.answer_images_white[i]
+                        answer_image_white.src = atob(data.test.answer_images_white[i])
 
                         // Load Image of Answer White Image
                         var answer_image_black = document.getElementById(`answer-black-${i+1}-image`);
-                        answer_image_black.src = 'data:image/jpeg;base64,'+data.test.answer_images_black[i]
+                        answer_image_black.src = atob(data.test.answer_images_black[i])
 					   
 						var correct_selectbox = document.getElementById(`question-${i+1}-correctselect_box`);
 						var optionA = document.createElement('option');
