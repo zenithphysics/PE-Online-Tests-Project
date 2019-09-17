@@ -394,28 +394,47 @@
 						optionA.textContent=" A";
 						optionA.value="a";
 						if("a"==data.test.answer_key[i])
-						{
+						{	
+							console.log("answer is a");
 							optionA.selected=true;
+						}
+						else
+						{
+							optionA.selected=false
 						}
 						optionB.textContent=" B";
 						optionB.value="b";
 						if("b"==data.test.answer_key[i])
 						{
+							console.log("answer is b")
 							optionB.selected=true;
+						}
+						else
+						{
+							optionB.selected=false
 						}
 						optionC.textContent=" C";
 						optionC.value="c";
 						if("c"==data.test.answer_key[i])
 						{
+							console.log("answer is c")
 							optionC.selected=true;
+						}
+						else
+						{
+							optionC.selected=false;
 						}
 						optionD.textContent=" D";
 						optionD.value="d";
 						if("d"==data.test.answer_key[i])
 						{
+							console.log("answer is d")
 							optionD.selected=true;
 						}
-
+						else
+						{
+							optionD.selected=false;
+						}
 						correct_selectbox.appendChild(optionA);
 						correct_selectbox.appendChild(optionB);
 						correct_selectbox.appendChild(optionC);
