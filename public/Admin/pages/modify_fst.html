@@ -530,7 +530,35 @@
 
 		function saveModifications(questions_length)
 		{
-			
+			// Initialize Arrays
+			var question_images_white = [];
+			var question_images_black = [];
+			var answer_images_white = [];
+			var answer_images_black = [];
+			var answer_videos = [];
+			var answer_key = [];
+			for(i=0;i<questions_length;i++)
+			{
+				question_images_white.push(document.getElementById(`question-white-${i+1}-image`).src);
+				question_images_black.push(document.getElementById(`question-black-${i+1}-image`).src);
+				answer_images_white.push(document.getElementById(`answer-white-${i+1}-image`).src);
+				answer_images_black.push(document.getElementById(`answer-black-${i+1}-image`).src);
+				answer_videos.push(document.getElementById(`answer-${i+1}-video`).value);
+				answer_key.push(document.getElementById(`question-${i+1}-correctselect_box`).value);
+			}
+
+			console.log(`answer white`);
+			console.log(answer_images_white);
+			console.log(`answer_black`);
+			console.log(answer_images_black);
+			console.log(`question white`);
+			console.log(question_images_white);
+			console.log(`question black`);
+			console.log(question_images_black);
+			console.log(`videos`);
+			console.log(answer_videos);
+			console.log(`answer key`);
+			console.log(answer_key);
 		}
 	</script>
 </body>
