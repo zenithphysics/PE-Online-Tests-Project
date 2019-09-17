@@ -384,7 +384,7 @@
                         if(i==data.test.questions.length-1)
                         {
                             test_panel.innerHTML+= `<br>
-                            <button class="btn btn-green" onclick='saveModifications()'> Save Modifications </button>`
+                            <button class="btn btn-green" onclick="saveModifications('${data.test.questions.length}')"> Save Modifications </button>`
                         }
                     }
 
@@ -455,6 +455,11 @@
 		$(document).ready(function() {
 			App.init();
 		});
+
+		function saveModifications(questions_length)
+		{
+			console.log(" Length of Questions "+questions_length)
+		}
 	</script>
 </body>
 </html>
