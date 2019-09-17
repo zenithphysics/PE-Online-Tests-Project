@@ -266,7 +266,13 @@
                     if(data.is_successful)
                     {
                        data.fst_tests.forEach(test=>{
-                           test_lists.innerHTML+=` ${test.test_name} `;
+                           test_lists.innerHTML+=`
+                           <div class="card" style="width: 18rem;">
+                            <div class="card-header">
+                                ${test.test_name}
+                            </div>
+                            </div>
+                            <br>`;
                        })
                     }
                 })
