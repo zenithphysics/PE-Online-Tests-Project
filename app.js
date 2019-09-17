@@ -1210,7 +1210,46 @@ app.get('/admin',(req,res)=>{
             {
                 console.log('\x1b[32m%s\x1b[1m', '[/modifyTest] - Admin Verification Successful');  
                 console.log('\x1b[33m%s\x1b[1m', '[/modifyTest] - Modifying Test...');  
-                console.log(req.body);
+                var question_images_white = [];
+                var question_images_black = [];
+                var answer_images_white = [];
+                var answer_images_black = [];
+                var duration = req.body.duration; 
+                var test_name = req.body.test_name;
+                var answer_videos = req.body.answer_videos;
+                var answer_key = req.body.answer_key;
+                // Create buffers from base64 strings
+                req.body.question_images_white.forEach(image=>{
+                    question_images_white.push(Buffer.from(atob(image),"base64");
+                })
+
+                req.body.question_images_black.forEach(image=>{
+                    question_images_black.push(Buffer.from(atob(image),"base64");
+                })
+
+                req.body.answer_images_white.forEach(image=>{
+                    answer_images_white.push(Buffer.from(atob(image),"base64");
+                })
+
+                req.body.answer_images_black.forEach(image=>{
+                    answer_images_black.push(Buffer.from(atob(image),"base64");
+                })
+
+                // Modify the test
+                Test.findOneAndUpdate({"test_name":test_name},{$set:{"duration":duration,"answer_key":answer_key,"answer_videos":answer_videos,"question_images_white":question_images_white,"question_images_black":question_images_black,"answer_images_white":answer_images_white,"answer_images_black":answer_images_black}},(err,output)=>{
+                    if(err)
+                    {
+                        console.log('\x1b[31m%s\x1b[1m', '[/modifyTest] - Failed to Modify Test');
+                        console.log(err);
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/modifyTest] - Modified Test Successfuly');  
+                        res.json({is_verified:true,is_successful:false})
+
+                    }
+                })
             }
     })
     })
