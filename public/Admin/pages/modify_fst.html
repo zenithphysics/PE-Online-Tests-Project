@@ -396,7 +396,7 @@
             })
         }
 
-        function getBase64(file) {
+        async function getBase64(file) {
             var reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = function () {
