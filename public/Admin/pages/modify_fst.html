@@ -203,7 +203,7 @@
 				</div>
 				<div class="panel-body" id="test_panel">
                  
-                    </div>
+                </div>
 				</div>
 			<!-- end panel -->
 		</div>
@@ -310,6 +310,98 @@
                 if(data.is_successful)
                 {
                     console.log(data.test);
+                    for(i=0;i<data.test.questions.length;i++)
+                    {
+                        var question_element = document.createElement('div');
+                        question_element.setAttribute("id",`question-${i+1}`);
+                        question_element.setAttribute("class","card");
+                        question_element.innerHTML+=`
+                        <div class="card-header">
+                         Question ${i+1}
+                    </div>
+					<div class="card-body" style="height:wrap">
+						<div class="row">
+						<div class="col-md-6">
+                        <h4 style='display:inline-block')">Add / Change Question White Image</h4> : <input type="file" id="question-white-${i+1}-input" name="question-${i+1}-input" onchange="changeQuestionWhiteImage(this,'${i+1}')">
+                        <br>
+                        <img class="image_panel" style="width:100%;height:200px" id="question-white-${i+1}-image">
+						</img>
+						</div>
+						<div class="col-md-6">
+						<h4 style='display:inline-block')">Add / Change Question Black Image</h4> : <input type="file" id="question-black-${i+1}-input" name="question-black-${i+1}-input" onchange="changeQuestionBlackImage(this,'${i+1}')">
+						<br>
+						<img class="image_panel" style="width:100%;height:200px"id="question-black-${i+1}-image">
+                           
+						</img>
+						</div>
+						</div>
+						<br>
+						<br>
+						<div class="row">
+						<div class="col-md-6">
+                        <h4 style='display:inline-block')">Add / Change Answer White Image</h4> : <input type="file" id="answer-white-${i+1}-input" name="question-${i+1}-input" onchange="changeAnswerWhiteImage(this,'${i+1}')">
+                        <br>
+                        <img class="image_panel" style="width:100%;height:300px" id="answer-white-${i+1}-image">
+						</img>
+						</div>
+						<div class="col-md-6">
+						<h4 style='display:inline-block')">Add / Change Answer Black Image</h4> : <input type="file" id="answer-black-${i+1}-input" name="answer-black-${i+1}-input" onchange="changeAnswerBlackImage(this,'${i+1}')">
+						<br>
+						<img class="image_panel" style="width:100%;height:300px"id="answer-black-${i+1}-image">
+                           
+						</img>
+						</div>
+						</div>
+
+						<br>
+						<br>
+						<h4><label> Solution Video </label></h4>
+						<input class="form-control" id="answer-${i+1}-video" type="text" placeholder=" Enter Solution Video URL">
+                    </div>
+                    <div class="card-footer text-muted">
+					<div class="row">
+						<div class="col-2">
+							<label> Subject : </label>
+							<select class="form-control" onchange="subjectChanged('${i+1}')" id="question-${i+1}-subject_selectbox">
+							
+							</select>
+						</div>
+						<div class="col-1">
+							<label> Section : </label>
+							<select class="form-control" id="question-${i+1}-section_selectbox">
+								<option value="Not Specified"> Not Specified </option>
+							</select>
+						</div>
+						<div class="col-3">
+							<label> Chapter : </label>
+							<select class="form-control" onchange="chapterChanged('${i+1}')" id="question-${i+1}-chapter_selectbox">
+							</select>
+						</div>
+						<div class="col-3">
+							<label> Topic : </label>
+							<select class="form-control" id="question-${i+1}-topic_selectbox">
+							</select>
+						</div>
+						<div class="col-2">
+							<label> Correct Answer : </label>
+							<select class="form-control" id="question-${i+1}-correct_answer">
+							<option value='a'> A </option>
+							<option value='b'> B </option>
+							<option value='c'> C </option>
+							<option value='d'> D </option>
+							</select>
+						</div>
+						<div class="col-1">
+							<label> Difficulty : </label>
+							<select class="form-control" id="question-${i+1}-DLevel_selectbox">
+							<option value="Level 1"> Level 1 </option>
+							<option value="Level 2"> Level 2 </option>
+							<option value="Level 3"> Level 3 </option>
+							</select>
+						</div>
+                    </div>
+                        `
+                    }
                 }
                 else
                 {
