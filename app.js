@@ -1175,22 +1175,22 @@ app.get('/admin',(req,res)=>{
                         // ReConvert buffer to base64 string for question black images
                         for(var i=0;i<test[0].question_images_black.length;i++)
                         {
-                            new_test[0].question_images_black[i] = test[0].question_images_black[i];
+                            new_test[0].question_images_black[i] = btoa(test[0].question_images_black[i].data);
                         }
                         // Reconvert buffer to base64 string for question white images
                         for(var i=0;i<test[0].question_images_white.length;i++)
                         {
-                            new_test[0].question_images_white[i] = test[0].question_images_white[i];
+                            new_test[0].question_images_white[i] = btoa(test[0].question_images_white[i].data);
                         }
                          // Reconvert buffer to base64 string for answer white images
                          for(var i=0;i<test[0].answer_images_white.length;i++)
                          {
-                             new_test[0].answer_images_white[i] = test[0].answer_images_white[i];
+                             new_test[0].answer_images_white[i] = btoa(test[0].answer_images_white[i].data);
                          }
                            // ReConvert buffer to base64 string for answer black images
                         for(var i=0;i<test[0].answer_images_black.length;i++)
                         {
-                            new_test[0].answer_images_black[i] = test[0].answer_images_black[i]
+                            new_test[0].answer_images_black[i] = btoa(test[0].answer_images_black[i].data)
                         }
                         res.json({is_verified:true,is_successful:true,test:new_test[0]})
                     }
