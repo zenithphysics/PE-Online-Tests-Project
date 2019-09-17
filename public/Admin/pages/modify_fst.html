@@ -300,7 +300,7 @@
         
         function modifyTest()
         {
-            var test_name = document.getElementById(`test_lists`).value;
+            test_name = document.getElementById(`test_lists`).value;
             fetch(`${domain_url}/getTest`,{
                 method:"POST",
                 headers:{
@@ -312,7 +312,6 @@
                 if(data.is_successful)
                 {
 					console.log(data.test);
-					test_name = data.test.test_name;
 					test_panel.innerHTML=`<h3> ${data.test.test_name} </h3>`;
 					test_panel.innerHTML+=`<br>
 					<br>
