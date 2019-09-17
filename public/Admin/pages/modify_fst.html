@@ -354,7 +354,14 @@
 						</img>
 						</div>
 						</div>
-
+						<br>
+						<h4><label> Correct Answer </label></h4>
+						<select class="form-control" id="question-${i+1}-correctselect_box">
+						<option value='a'> A </option>
+						<option value='b'> B </option>
+						<option value='c'> C </option>
+						<option value='d'> D </option>
+						</select>
 						<br>
 						<br>
 						<h4><label> Solution Video </label></h4>
@@ -380,7 +387,11 @@
                         // Load Image of Answer White Image
                         var answer_image_black = document.getElementById(`answer-black-${i+1}-image`);
                         answer_image_black.src = 'data:image/jpeg;base64,'+data.test.answer_images_black[i]
-                       
+					   
+						
+						// Load Solution  Video url
+						var solution_video = document.getElementById(`answer-${i+1}-video`);
+						solution_video.value = data.test.
                         if(i==data.test.questions.length-1)
                         {
                             test_panel.innerHTML+= `<br>
@@ -458,7 +469,7 @@
 
 		function saveModifications(questions_length)
 		{
-			console.log(" Length of Questions "+questions_length)
+			
 		}
 	</script>
 </body>

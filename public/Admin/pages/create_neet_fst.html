@@ -729,6 +729,7 @@
 								answer_images_black.push(answer_black_image); // Push it in black images array
 								// Get Answer Video Solution
 								var answer_video = document.getElementById(`answer-${i}-video`).value;
+								answer_videos.push(answer_video);
 								if(question_white_image==null || question_white_image=="" || answer_black_image==null || answer_black_image=="")
 								{
 									alert("Make sure you have attached images for all questions and their answers");
