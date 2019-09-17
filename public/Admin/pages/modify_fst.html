@@ -379,8 +379,10 @@
                         question_image_white.src = 'data:image/jpeg;base64,'+data.test.question_images_white[i];
                         
                         // Load Image of Question Black Image
-                        var question_image_black = document.getElementById(`question-black-${i+1}-image`);
-                        question_image_black.src = 'data:image/jpeg;base64,'+data.test.question_images_black[i];
+						var question_image_black = document.getElementById(`question-black-${i+1}-image`);
+						var question_image_black_b64 = btoa(String.fromCharCode.apply(null, question_images_black[i]));
+
+                        question_image_black.src = 'data:image/jpeg;base64,'+question_image_black_b64;
 
                         // Load Image of Answer White Image
                         var answer_image_white = document.getElementById(`answer-white-${i+1}-image`);
