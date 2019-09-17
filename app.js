@@ -1171,22 +1171,22 @@ app.get('/admin',(req,res)=>{
                         // ReConvert buffer to base64 string for question black images
                         for(var i=0;i<test.question_images_black.length;i++)
                         {
-                            new_test.question_images_black[i] = new Buffer(test.question_images_black[i]).toString('base64');
+                            new_test.question_images_black[i] = new Buffer(test.question_images_black[i].data).toString('base64');
                         }
                         // Reconvert buffer to base64 string for question white images
                         for(var i=0;i<test.question_images_white.length;i++)
                         {
-                            new_test.question_images_white[i] = new Buffer(test.question_images_white[i]).toString('base64');
+                            new_test.question_images_white[i] = new Buffer(test.question_images_white[i].data).toString('base64');
                         }
                          // Reconvert buffer to base64 string for answer white images
                          for(var i=0;i<test.answer_images_white.length;i++)
                          {
-                             new_test.answer_images_white[i] = new Buffer(test.answer_images_white[i]).toString('base64');
+                             new_test.answer_images_white[i] = new Buffer(test.answer_images_white[i].data).toString('base64');
                          }
                            // ReConvert buffer to base64 string for answer black images
                         for(var i=0;i<test.answer_images_black.length;i++)
                         {
-                            new_test.answer_images_black[i] = new Buffer(test.answer_images_black[i]).toString('base64');
+                            new_test.answer_images_black[i] = new Buffer(test.answer_images_black[i].data).toString('base64');
                         }
                         res.json({is_verified:true,is_successful:true,test:new_test})
                     }
