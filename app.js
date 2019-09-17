@@ -1146,10 +1146,10 @@ app.get('/admin',(req,res)=>{
 
     //getTest
 
-    app.post(`/getTest`,(req,res)=>{
+    app.post(`/getTest`,verifyToken,(req,res)=>{
         jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
             if(err){
-                console.log('\x1b[31m%s\x1b[1m', '[//getTest] - Admin Verification Failed');  
+                console.log('\x1b[31m%s\x1b[1m', '[/getTest] - Admin Verification Failed');  
                 console.log(err);
                 res.json({is_verified:false})
             }
