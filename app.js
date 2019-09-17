@@ -1228,7 +1228,7 @@ app.get('/admin',(req,res)=>{
 
                 req.body.question_images_black.forEach(image=>{
                     var image_base64 = atob(image)
-                    question_images_black.push(Buffer.from(image_base64,"base64");
+                    question_images_black.push(Buffer.from(image_base64,"base64"));
                 })
 
                 req.body.answer_images_white.forEach(image=>{
