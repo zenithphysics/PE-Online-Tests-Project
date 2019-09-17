@@ -1076,7 +1076,7 @@ app.get('/admin',(req,res)=>{
                     }
                     else
                     {
-                        console.log('\x1b[32m%s\x1b[1m', '[/getAllFST] - Admin Verification Successful');  
+                        console.log('\x1b[32m%s\x1b[1m', '[/getAllFST] - Fetched all FSTs');  
                         res.json({is_verified:true,is_successful:true,fst_tests:fst_tests})
                     }
                 })
@@ -1106,7 +1106,7 @@ app.get('/admin',(req,res)=>{
                     }
                     else
                     {
-                        console.log('\x1b[32m%s\x1b[1m', '[/getAllCWT] - Admin Verification Successful');  
+                        console.log('\x1b[32m%s\x1b[1m', '[/getAllCWT] - Fetched all CWTs');  
                         res.json({is_verified:true,is_successful:true,fst_tests:fst_tests})
                     }
                 })
@@ -1136,10 +1136,41 @@ app.get('/admin',(req,res)=>{
                     }
                     else
                     {
-                        console.log('\x1b[32m%s\x1b[1m', '[/getAllSWT] - Admin Verification Successful');  
+                        console.log('\x1b[32m%s\x1b[1m', '[/getAllSWT] - Fetched All SWTs');  
                         res.json({is_verified:true,is_successful:true,fst_tests:fst_tests})
                     }
                 })
             }
     })
     })
+
+    //getTest
+
+    app.post(`/getTest`,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[//getTest] - Admin Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/getTest] - Admin Verification Successful');  
+                console.log('\x1b[33m%s\x1b[1m', '[/getTest] - Feteching All SWT Tests...');  
+                Test.find({"test_name":req.body.test_name},{"test_name":1},(err,fst_tests)=>{
+                    if(err)
+                    {
+                        console.log('\x1b[31m%s\x1b[1m', '[/getTest] - Failed to fetch Test');
+                        console.log(err)  
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/getTest] - Fetched Test');  
+                        res.json({is_verified:true,is_successful:true,fst_tests:fst_tests})
+                    }
+                })
+            }
+    })
+    })
+   
