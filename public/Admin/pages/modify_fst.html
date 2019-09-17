@@ -236,7 +236,8 @@
 	var user_access_token = localStorage.getItem("admin_token");
 	var domain_url = "https://photonecademy.com/tests"
     var test_lists = document.getElementById(`test_lists`);
-    var test_panel = document.getElementById(`test_panel`);
+	var test_panel = document.getElementById(`test_panel`);
+	var test_name;
 	// All Nameplace holders
 
 		// Sidebar Name Holder
@@ -310,7 +311,8 @@
             }).then(response=>response.json()).then(data=>{
                 if(data.is_successful)
                 {
-                    console.log(data.test);
+					console.log(data.test);
+					test_name = data.test.test_name;
 					test_panel.innerHTML=`<h3> ${data.test.test_name} </h3>`;
 					test_panel.innerHTML+=`<br>
 					<br>
@@ -567,6 +569,36 @@
 			console.log(answer_videos);
 			console.log(`answer key`);
 			console.log(answer_key);
+
+			// Save The Modifications
+			fetch(`${domain_url}/modifyTest`,{
+				method:"POST",
+				headers:{
+					authorization:user_access_token,
+					'Content-type':'application/json'
+				},
+				body:JSON.stringify(
+					{
+						"test_name":test_name,
+						"duration":duration,
+						"answer_images_white":answer_images_white,
+						"answer_images_black":answer_images_black,
+						"question_images_white":question_images_white,
+						"question_images_black":question_images_black,
+						"answer_key":answer_key,
+						"answer_videos":answer_videos
+					}
+				).then(response=>response.json()).then(data=>{
+					if(data.is_successful)
+					{
+						alert("Test has been Modified");
+					}
+					else
+					{
+						alert("Failed to change modified changes");
+					}
+				})
+			})
 		}
 	</script>
 </body>

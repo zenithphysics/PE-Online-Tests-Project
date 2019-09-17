@@ -1197,3 +1197,20 @@ app.get('/admin',(req,res)=>{
     })
     })
    
+    // Modify Test
+
+    app.post('/modifyTest',verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/modifyTest] - Admin Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/modifyTest] - Admin Verification Successful');  
+                console.log('\x1b[33m%s\x1b[1m', '[/modifyTest] - Modifying Test...');  
+                console.log(req.body);
+            }
+    })
+    })
