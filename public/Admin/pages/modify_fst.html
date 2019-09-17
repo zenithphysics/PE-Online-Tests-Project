@@ -363,6 +363,11 @@
                     </div>
                         `
                         test_panel.appendChild(question_element);
+                        if(i==data.test[0].questions.length-1)
+                        {
+                            test_panel.innerHTML+= `<br>
+                            <button class="btn btn-green" onclick='saveModifications()'> Save Modifications </button>`
+                        }
                     }
 
                 }
