@@ -184,11 +184,16 @@
 			<h1 class="page-header">Modify FST</h1>
 			<!-- end page-header -->
             <div class="row">
-                    <div class="col-md-12">
-                        <select id="test_lists">
+                    <div class="col-9">
+                            <label> Select FST To Modify</label>
+                            <select id="test_lists" class="form-control">
                             
-                        </select>
+                            </select>
                     </div>
+                    <div class="col-3">
+                        <button class="btn btn-green" id="modifyButton" onclick="modifyTest()"></button>
+                    </div>
+            </div>
 			<!-- begin panel -->
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
@@ -200,7 +205,6 @@
                  
                     </div>
 				</div>
-			</div>
 			<!-- end panel -->
 		</div>
 		<!-- end #content -->
