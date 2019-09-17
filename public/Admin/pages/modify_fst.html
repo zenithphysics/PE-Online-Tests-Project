@@ -579,6 +579,7 @@
 				},
 				body:JSON.stringify({test_name:test_name,duration:duration,answer_images_white:answer_images_white,answer_images_black:answer_images_black,question_images_white:question_images_white,question_images_black:question_images_black,answer_key:answer_key,answer_videos:answer_videos})
 			}).then(response=>response.json()).then(data=>{
+				consoel.log(data);
 					if(data.is_successful)
 					{
 						alert("Test has been Modified");
