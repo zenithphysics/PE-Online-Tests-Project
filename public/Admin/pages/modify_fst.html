@@ -183,7 +183,12 @@
 			<!-- begin page-header -->
 			<h1 class="page-header">Modify FST</h1>
 			<!-- end page-header -->
-			
+            <div class="row">
+                    <div class="col-md-12">
+                        <select id="test_lists">
+                            
+                        </select>
+                    </div>
 			<!-- begin panel -->
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
@@ -191,7 +196,9 @@
 					</div>
 					<h4 class="panel-title"> FST Tests </h4>
 				</div>
-				<div class="panel-body" id="test_lists">
+				<div class="panel-body" id="test_panel">
+                 
+                    </div>
 				</div>
 			</div>
 			<!-- end panel -->
@@ -273,11 +280,7 @@
                     {
                        data.fst_tests.forEach(test=>{
                            test_lists.innerHTML+=`
-                           <div class="card card-primary tests-list" style="width: 98%;">
-                            <div class="card-header text-white">
-                                    <i class="fa fa-pencil" aria-hidden="true"></i> &nbsp&nbsp${test.test_name}
-                            </div>
-                            </div>`;
+                          <option value="${test.test_name}"> ${test.test_name} </option>`;
                        })
                     }
                 })
