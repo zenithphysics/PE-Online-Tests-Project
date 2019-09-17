@@ -393,27 +393,27 @@
 						// Load Correct Answer in selectbox
 						optionA.textContent=" A";
 						optionA.value="a";
-						if(optionA.value == data.test.answer_key[i])
+						if("a"==data.test.answer_key[i])
 						{
-							optionA.selected="selected";
+							optionA.selected=true;
 						}
 						optionB.textContent=" B";
 						optionB.value="b";
-						if(optionB.value == data.test.answer_key[i])
+						if("b"==data.test.answer_key[i])
 						{
-							optionB.selected="selected";
+							optionB.selected=true;
 						}
 						optionC.textContent=" C";
 						optionC.value="c";
-						if(optionC.value == data.test.answer_key[i])
+						if("c"==data.test.answer_key[i])
 						{
-							optionC.selected="selected";
+							optionC.selected=true;
 						}
 						optionD.textContent=" D";
 						optionD.value="d";
-						if(optionD.value == data.test.answer_key[i])
+						if("d"==data.test.answer_key[i])
 						{
-							optionD.selected="selected";
+							optionD.selected=true;
 						}
 
 						correct_selectbox.appendChild(optionA);
