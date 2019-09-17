@@ -403,7 +403,7 @@
                 var reader = new FileReader();
                 reader.readAsDataURL(question_image);
                 reader.onload =  function () {
-                    question_image_panel.src="data:image/jpeg;base64,"+reader.result;
+                    question_image_panel.src=reader.result;
                 };
                 reader.onerror = ()=> {
                     alert("failed to change image")
