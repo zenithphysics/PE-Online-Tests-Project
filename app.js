@@ -1188,7 +1188,7 @@ app.get('/admin',(req,res)=>{
                         {
                             new_test[0].answer_images_black[i] = new Buffer(test[0].answer_images_black[i]).toString('base64');
                         }
-                        res.json({is_verified:true,is_successful:true,test:new_test})
+                        res.json({is_verified:true,is_successful:true,test:new_test[0]})
                     }
                 })
             }

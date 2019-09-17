@@ -311,8 +311,8 @@
                 if(data.is_successful)
                 {
                     console.log(data.test);
-                    test_panel.innerHTML=`<h3> ${data.test[0].test_name} </h3>`;
-                    for(i=0;i<data.test[0].questions.length;i++)
+                    test_panel.innerHTML=`<h3> ${data.test.test_name} </h3>`;
+                    for(i=0;i<data.test.questions.length;i++)
                     {
                         var question_element = document.createElement('div');
                         question_element.setAttribute("id",`question-${i+1}`);
@@ -366,9 +366,9 @@
                         test_panel.appendChild(question_element);
                         var question_image_white = document.getElementById(`question-white-${i+1}-image`);
                        /* var question_image_white_b64 = btoa(String.fromCharCode(null,data.test[0].question_images_white[i].data)) */
-                        question_image_white.src = 'data:image/jpeg;base64,'+data.test[0].question_images_white[i];
+                        question_image_white.src = 'data:image/jpeg;base64,'+data.test.question_images_white[i];
 
-                        if(i==data.test[0].questions.length-1)
+                        if(i==data.test.questions.length-1)
                         {
                             test_panel.innerHTML+= `<br>
                             <button class="btn btn-green" onclick='saveModifications()'> Save Modifications </button>`
