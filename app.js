@@ -8,6 +8,7 @@ const hash = require('hash.js')
 const path = require('path')
 const cors = require('cors')
 const multer = require('multer');
+const atob = require('atob')
 // </Modules>
 
 // <Database>
@@ -1220,19 +1221,19 @@ app.get('/admin',(req,res)=>{
                 var answer_key = req.body.answer_key;
                 // Create buffers from base64 strings
                 req.body.question_images_white.forEach(image=>{
-                    question_images_white.push(Buffer.from(atob(image),"base64"));
+                    question_images_white.push(Buffer.from(atob(image)));
                 })
 
                 req.body.question_images_black.forEach(image=>{
-                    question_images_black.push(Buffer.from(atob(image),"base64"));
+                    question_images_black.push(Buffer.from(atob(image)));
                 })
 
                 req.body.answer_images_white.forEach(image=>{
-                    answer_images_white.push(Buffer.from(atob(image),"base64"));
+                    answer_images_white.push(Buffer.from(atob(image)));
                 })
 
                 req.body.answer_images_black.forEach(image=>{
-                    answer_images_black.push(Buffer.from(atob(image),"base64"));
+                    answer_images_black.push(Buffer.from(atob(image)));
                 })
 
                 // Modify the test
