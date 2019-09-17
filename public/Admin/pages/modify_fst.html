@@ -395,6 +395,25 @@
                 }
             })
         }
+
+        function getBase64(file) {
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function () {
+                console.log(reader.result);
+            };
+            reader.onerror = function (error) {
+                console.log('Error: ', error);
+            };
+        }
+        function changeQuestionWhiteImage(input,question_number)
+        {
+            var question_image_panel = document.getElementById(`question-white-${question_number}-image`);
+				var question_image = input.files[0];
+                var base64_url = getBase64(question_image);
+                question_image_panel.src="data:image/jpeg;base64,"+base64_url;
+        }
+   
 		$(document).ready(function() {
 			App.init();
 		});
