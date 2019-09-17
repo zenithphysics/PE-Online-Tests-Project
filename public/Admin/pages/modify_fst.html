@@ -396,7 +396,11 @@
 						if("a"==data.test.answer_key[i])
 						{	
 							console.log("answer is a");
-							optionA.selected=true;
+							optionA.setAttribute("selected","selected");
+							correct_selectbox.appendChild(optionA);
+							correct_selectbox.appendChild(optionB);
+							correct_selectbox.appendChild(optionC);
+							correct_selectbox.appendChild(optionD);
 						}
 						else
 						{
@@ -407,7 +411,11 @@
 						if("b"==data.test.answer_key[i])
 						{
 							console.log("answer is b")
-							optionB.selected=true;
+							optionB.setAttribute("selected","selected");
+							correct_selectbox.appendChild(optionB);
+							correct_selectbox.appendChild(optionA);
+							correct_selectbox.appendChild(optionC);
+							correct_selectbox.appendChild(optionD);
 						}
 						else
 						{
@@ -418,7 +426,11 @@
 						if("c"==data.test.answer_key[i])
 						{
 							console.log("answer is c")
-							optionC.selected=true;
+							optionC.setAttribute("selected","selected")
+							correct_selectbox.appendChild(optionC);
+							correct_selectbox.appendChild(optionA);
+							correct_selectbox.appendChild(optionB);
+							correct_selectbox.appendChild(optionD);
 						}
 						else
 						{
@@ -429,16 +441,18 @@
 						if("d"==data.test.answer_key[i])
 						{
 							console.log("answer is d")
-							optionD.selected=true;
+							optionD.setAttribute("selected","selected")
+							correct_selectbox.appendChild(optionD);
+							correct_selectbox.appendChild(optionA);
+							correct_selectbox.appendChild(optionB);
+							correct_selectbox.appendChild(optionC);
+						
 						}
 						else
 						{
 							optionD.selected=false;
 						}
-						correct_selectbox.appendChild(optionA);
-						correct_selectbox.appendChild(optionB);
-						correct_selectbox.appendChild(optionC);
-						correct_selectbox.appendChild(optionD);
+					
                         if(i==data.test.questions.length-1)
                         {
                             test_panel.innerHTML+= `<br>
