@@ -396,24 +396,18 @@
             })
         }
 
-        async function getBase64(file) {
-            var reader = new FileReader();
-            reader.readAsDataURL(file);
-             reader.onload = await function () {
-                return reader.result;
-            };
-            reader.onerror = function (error) {
-                console.log('Error: ', error);
-                return error;
-            };
-        }
         function changeQuestionWhiteImage(input,question_number)
         {
             var question_image_panel = document.getElementById(`question-white-${question_number}-image`);
-				var question_image = input.files[0];
-                getBase64(question_image).then((err,output)=>{
-                    question_image_panel.src="data:image/jpeg;base64,"+output;
-                });
+                var question_image = input.files[0];
+                var reader = new FileReader();
+                reader.readAsDataURL(question_image);
+                reader.onload = await function () {
+                    question_image_panel.src="data:image/jpeg;base64,"+reader.result;
+                };
+                reader.onerror = ()=> {
+                    alert("failed to change image")
+                }
         }
    
 		$(document).ready(function() {
