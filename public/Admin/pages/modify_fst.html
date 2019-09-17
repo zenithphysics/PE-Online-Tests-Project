@@ -310,7 +310,7 @@
                 if(data.is_successful)
                 {
                     console.log(data.test);
-                    for(i=0;i<data.test.questions.length;i++)
+                    for(i=0;i<data[0].test.questions.length;i++)
                     {
                         var question_element = document.createElement('div');
                         question_element.setAttribute("id",`question-${i+1}`);
