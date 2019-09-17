@@ -26,6 +26,11 @@
 	<script src="../../assets/plugins/pace/pace.min.js"></script>
 	<!-- ================== END BASE JS ================== -->
 </head>
+<style>
+.tests-list:hover{
+    background-color:green;
+}
+</style>
 <body>
 	<script>
 	
@@ -267,7 +272,7 @@
                     {
                        data.fst_tests.forEach(test=>{
                            test_lists.innerHTML+=`
-                           <div class="card card-primary" style="width: 98%;">
+                           <div class="card card-primary tests-list" style="width: 98%;">
                             <div class="card-header text-white">
                                     <i class="fa fa-pencil" aria-hidden="true"></i> &nbsp&nbsp${test.test_name}
                             </div>
