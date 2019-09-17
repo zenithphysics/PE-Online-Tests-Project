@@ -1235,7 +1235,7 @@ app.get('/admin',(req,res)=>{
                 req.body.answer_images_black.forEach(image=>{
                     answer_images_black.push(Buffer.from(atob(image)));
                 })
-
+                console.log(`test name is ${test_name}`);
                 // Modify the test
                 Test.findOneAndUpdate({"test_name":test_name},{$set:{"duration":duration,"answer_key":answer_key,"answer_videos":answer_videos,"question_images_white":question_images_white,"question_images_black":question_images_black,"answer_images_white":answer_images_white,"answer_images_black":answer_images_black}},(err,output)=>{
                     if(err || output==null || output=="")
