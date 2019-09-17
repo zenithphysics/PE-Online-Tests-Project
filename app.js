@@ -1034,6 +1034,7 @@ app.get('/admin',(req,res)=>{
                 test.question_images_white = question_images_white;
                 test.question_images_black = question_images_black;
                 test.answer_images_white = answer_images_white;
+                test.answer_videos = JSON.parse(req.body.answer_videos);
                 test.answer_images_black = answer_images_black;
                 console.log(` ------- TEST OBJECT ------  `)
                 test.save((err,output)=>{
