@@ -1174,22 +1174,22 @@ app.get('/admin',(req,res)=>{
                         // ReConvert buffer to base64 string for question black images
                         for(var i=0;i<test[0].question_images_black.length;i++)
                         {
-                            new_test[0].question_images_black[i] = new Buffer(test[0].question_images_black[i])
+                            new_test[0].question_images_black[i] = new Buffer(test[0].question_images_black[i]).toString('base64');
                         }
                         // Reconvert buffer to base64 string for question white images
                         for(var i=0;i<test[0].question_images_white.length;i++)
                         {
-                            new_test[0].question_images_white[i] = new Buffer(test[0].question_images_white[i])
+                            new_test[0].question_images_white[i] = new Buffer(test[0].question_images_white[i]).toString('base64');
                         }
                          // Reconvert buffer to base64 string for answer white images
                          for(var i=0;i<test[0].answer_images_white.length;i++)
                          {
-                             new_test[0].answer_images_white[i] = new Buffer(test[0].answer_images_white[i])
+                             new_test[0].answer_images_white[i] = new Buffer(test[0].answer_images_white[i]).toString('base64');
                          }
                            // ReConvert buffer to base64 string for answer black images
                         for(var i=0;i<test[0].answer_images_black.length;i++)
                         {
-                            new_test[0].answer_images_black[i] = new Buffer(test[0].answer_images_black[i])
+                            new_test[0].answer_images_black[i] = new Buffer(test[0].answer_images_black[i]).toString('base64');
                         }
                         res.json({is_verified:true,is_successful:true,test:new_test[0]})
                     }
@@ -1221,6 +1221,8 @@ app.get('/admin',(req,res)=>{
                 var answer_key = req.body.answer_key;
                 // Create buffers from base64 strings
                 req.body.question_images_white.forEach(image=>{
+                    console.log("IMAGE BASE 64");
+                    console.log(aotb(image));
                     question_images_white.push(Buffer.from(atob(image)));
                 })
 
