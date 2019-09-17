@@ -365,8 +365,9 @@
     
                         test_panel.appendChild(question_element);
                         var question_image_white = document.getElementById(`question-white-${i+1}-image`);
-                       var question_image_white_b64 = btoa(String.fromCharCode(null,data.test[0].question_images_white[i]))
-                        console.log(question_image_white_b64);
+                       /* var question_image_white_b64 = btoa(String.fromCharCode(null,data.test[0].question_images_white[i].data)) */
+                        question_image_white.src = 'data:image/jpeg;base64,'+data.test[0].question_images_white[i];
+
                         if(i==data.test[0].questions.length-1)
                         {
                             test_panel.innerHTML+= `<br>
