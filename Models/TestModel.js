@@ -72,12 +72,10 @@ const testSchema = mongoose.Schema({
    
     }
 ], 
-answer_key:[
-      {
-          type:String,
-          required:false
-      }
-],
+answer_key:{
+ type:Array,
+ required:false  
+},
 question_images_white:[
   {
       type:Buffer,
