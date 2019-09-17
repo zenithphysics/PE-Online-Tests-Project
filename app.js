@@ -1221,7 +1221,7 @@ app.get('/admin',(req,res)=>{
                 var answer_key = req.body.answer_key;
                 // Create buffers from base64 strings
                 req.body.question_images_white.forEach(image=>{
-                    question_images_white.push(Buffer.from(atob(image),"base"));
+                    question_images_white.push(Buffer.from(atob(image),"base64"));
                 })
 
                 req.body.question_images_black.forEach(image=>{
