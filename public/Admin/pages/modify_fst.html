@@ -400,18 +400,20 @@
             var reader = new FileReader();
             reader.readAsDataURL(file);
              reader.onload = await function () {
-                console.log(reader.result);
+                return reader.result;
             };
             reader.onerror = function (error) {
                 console.log('Error: ', error);
+                return error;
             };
         }
         function changeQuestionWhiteImage(input,question_number)
         {
             var question_image_panel = document.getElementById(`question-white-${question_number}-image`);
 				var question_image = input.files[0];
-                var base64_url = getBase64(question_image);
-                question_image_panel.src="data:image/jpeg;base64,"+base64_url;
+                getBase64(question_image).then((err,output)=>{
+                    question_image_panel.src="data:image/jpeg;base64,"+output;
+                });
         }
    
 		$(document).ready(function() {
