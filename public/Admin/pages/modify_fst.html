@@ -362,9 +362,10 @@
                     </div>
                     </div>
                         `
+                        test_panel.appendChild(question_element);
                         var question_image_white = document.getElementById(`question-white-${i+1}-image`);
                         question_image_white.src = 'data:image/jpeg;base64,'+data.test[0].question_images_white[i].toString('base64');
-                        test_panel.appendChild(question_element);
+                        
                         if(i==data.test[0].questions.length-1)
                         {
                             test_panel.innerHTML+= `<br>
