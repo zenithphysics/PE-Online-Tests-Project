@@ -1054,6 +1054,7 @@ app.get('/admin',(req,res)=>{
 
     // Test Getters
 
+    //getAllFST
     app.get("/getAllFST",verifyToken,(req,res)=>{
 
         jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
@@ -1076,6 +1077,66 @@ app.get('/admin',(req,res)=>{
                     else
                     {
                         console.log('\x1b[32m%s\x1b[1m', '[/getAllFST] - Admin Verification Successful');  
+                        res.json({is_verified:true,is_successful:true,fst_tests:fst_tests})
+                    }
+                })
+            }
+    })
+    })
+
+    //getAllCWT
+    app.get("/getAllCWT",verifyToken,(req,res)=>{
+
+        jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/getAllCWT] - Admin Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/getAllCWT] - Admin Verification Successful');  
+                console.log('\x1b[33m%s\x1b[1m', '[/getAllCWT] - Feteching All CWT Tests...');  
+                Test.find({"test_type":"CWT"},{"test_name":1},(err,fst_tests)=>{
+                    if(err)
+                    {
+                        console.log('\x1b[31m%s\x1b[1m', '[/getAllCWT] - Failed to fetch CWTs');
+                        console.log(err)  
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/getAllCWT] - Admin Verification Successful');  
+                        res.json({is_verified:true,is_successful:true,fst_tests:fst_tests})
+                    }
+                })
+            }
+    })
+    })
+
+    //getAllSWT
+    app.get("/getAllSWT",verifyToken,(req,res)=>{
+
+        jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/getAllSWT] - Admin Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/getAllSWT] - Admin Verification Successful');  
+                console.log('\x1b[33m%s\x1b[1m', '[/getAllSWT] - Feteching All SWT Tests...');  
+                Test.find({"test_type":"SWT"},{"test_name":1},(err,fst_tests)=>{
+                    if(err)
+                    {
+                        console.log('\x1b[31m%s\x1b[1m', '[/getAllSWT] - Failed to fetch SWTs');
+                        console.log(err)  
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/getAllSWT] - Admin Verification Successful');  
                         res.json({is_verified:true,is_successful:true,fst_tests:fst_tests})
                     }
                 })
