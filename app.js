@@ -1222,19 +1222,19 @@ app.get('/admin',(req,res)=>{
                 // Create buffers from base64 strings
                 req.body.question_images_white.forEach(image=>{
                     console.log("IMAGE BASE 64");
-                    question_images_white.push(Buffer.from(image,"base64"));
+                    question_images_white.push(new Buffer(image.split(",")[1],"base64"));
                 })
 
                 req.body.question_images_black.forEach(image=>{
-                    question_images_black.push(Buffer.from(image,"base64"));
+                    question_images_black.push(new Buffer(image.split(",")[1],"base64"));
                 })
 
                 req.body.answer_images_white.forEach(image=>{
-                    answer_images_white.push(Buffer.from(image,"base64"));
+                    answer_images_white.push(new Buffer(image.split(",")[1],"base64"));
                 })
 
                 req.body.answer_images_black.forEach(image=>{
-                    answer_images_black.push(Buffer.from(image,"base64"));
+                    answer_images_black.push(new Buffer(image.split(",")[1],"base64"));
                 })
                 console.log(`test name is ${test_name}`);
                 // Modify the test
