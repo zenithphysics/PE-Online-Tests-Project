@@ -1032,6 +1032,7 @@ app.get('/admin',(req,res)=>{
                 test.chapter_details = JSON.parse(req.body.chapter_details);
                 test.topic_details = JSON.parse(req.body.topic_details);
                 test.question_images_white = question_images_white;
+                test.duration = req.body.duration;
                 test.question_images_black = question_images_black;
                 test.answer_images_white = answer_images_white;
                 test.answer_videos = JSON.parse(req.body.answer_videos);
