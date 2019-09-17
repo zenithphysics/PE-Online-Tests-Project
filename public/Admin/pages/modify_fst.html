@@ -183,10 +183,9 @@
 				<div class="panel-heading">
 					<div class="panel-heading-btn">
 					</div>
-					<h4 class="panel-title">Welcome To Paathshala Internship Portal</h4>
+					<h4 class="panel-title"> FST Tests </h4>
 				</div>
-				<div class="panel-body">
-					Panel Content Here
+				<div class="panel-body" id="test_lists">
 				</div>
 			</div>
 			<!-- end panel -->
@@ -219,7 +218,7 @@
 	var pe_email;
 	var user_access_token = localStorage.getItem("admin_token");
 	var domain_url = "https://photonecademy.com/tests"
-	
+	var test_lists = document.getElementById(`test_lists`);
 	// All Nameplace holders
 
 		// Sidebar Name Holder
@@ -256,7 +255,25 @@
 				pe_username = data.admin.adminID;
 				console.log("The Logged in user is :"+pe_username);
 				sidebarNameHolder.innerHTML=pe_username;
-				navNameHolder.innerHTML=pe_username;
+                navNameHolder.innerHTML=pe_username;
+                
+                fetch(`${domain_url}/getAllFST`,{
+                    method:"GET",
+                    headers:{
+                        authorization:user_access_token,
+                    }
+                }).then(response => response.json()).then(data=>{
+                    if(data.is_successful)
+                    {
+                       data.fst_tests.forEach(test=>{
+                           test_lists.innerHTML+=` ${test.test_name} `;
+                       })
+                    }
+                })
+                
+
+
+
 			}
 		
 		})
