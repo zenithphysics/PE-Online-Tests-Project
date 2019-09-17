@@ -313,7 +313,8 @@
                     console.log(data.test);
 					test_panel.innerHTML=`<h3> ${data.test.test_name} </h3>`;
 					test_panel.innerHTML+=`<br>
-					<h3><label> Test Duration (in hours) </label></h3>
+					<br>
+					<label> Test Duration (in hours) </label>
 					<input type="number" value="${data.test.duration}" class="form-control" id="duration">
 					`;
                     for(i=0;i<data.test.questions.length;i++)
