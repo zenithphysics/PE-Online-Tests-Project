@@ -9,7 +9,6 @@ const path = require('path')
 const cors = require('cors')
 const multer = require('multer');
 const atob = require('atob')
-const btoa = require('btoa');
 // </Modules>
 
 // <Database>
@@ -1006,7 +1005,7 @@ app.get('/admin',(req,res)=>{
 
                     if(file.originalname == "questionWhite")
                     {
-                        question_images_white.push(file.buffer);
+                        question_images_white.push(file.buffer)
                     }
 
                     if(file.originalname == "answerWhite")
@@ -1175,22 +1174,22 @@ app.get('/admin',(req,res)=>{
                         // ReConvert buffer to base64 string for question black images
                         for(var i=0;i<test[0].question_images_black.length;i++)
                         {
-                            new_test[0].question_images_black[i] = new Buffer(test[0].question_images_black[i],"base64");
+                            new_test[0].question_images_black[i] = new Buffer(test[0].question_images_black[i]).toString('base64');
                         }
                         // Reconvert buffer to base64 string for question white images
                         for(var i=0;i<test[0].question_images_white.length;i++)
                         {
-                            new_test[0].question_images_white[i] = new Buffer(test[0].question_images_white[i],"base64");
+                            new_test[0].question_images_white[i] = new Buffer(test[0].question_images_white[i]).toString('base64');
                         }
                          // Reconvert buffer to base64 string for answer white images
                          for(var i=0;i<test[0].answer_images_white.length;i++)
                          {
-                             new_test[0].answer_images_white[i] = new Buffer(test[0].answer_images_white[i],"base64");
+                             new_test[0].answer_images_white[i] = new Buffer(test[0].answer_images_white[i]).toString('base64');
                          }
                            // ReConvert buffer to base64 string for answer black images
                         for(var i=0;i<test[0].answer_images_black.length;i++)
                         {
-                            new_test[0].answer_images_black[i] = new Buffer(test[0].answer_images_black[i],"base64")
+                            new_test[0].answer_images_black[i] = new Buffer(test[0].answer_images_black[i]).toString('base64');
                         }
                         res.json({is_verified:true,is_successful:true,test:new_test[0]})
                     }
@@ -1222,19 +1221,19 @@ app.get('/admin',(req,res)=>{
                 var answer_key = req.body.answer_key;
                 // Create buffers from base64 strings
                 req.body.question_images_white.forEach(image=>{
-                    question_images_white.push(Buffer.from(image,"base64"));
+                    question_images_white.push(Buffer.from(atob(image),"base64"));
                 })
 
                 req.body.question_images_black.forEach(image=>{
-                    question_images_black.push(Buffer.from(image,"base64"));
+                    question_images_black.push(Buffer.from(atob(image),"base64"));
                 })
 
                 req.body.answer_images_white.forEach(image=>{
-                    answer_images_white.push(Buffer.from(image,"base64"));
+                    answer_images_white.push(Buffer.from(atob(image),"base64"));
                 })
 
                 req.body.answer_images_black.forEach(image=>{
-                    answer_images_black.push(Buffer.from(image,"base64"));
+                    answer_images_black.push(Buffer.from(atob(image),"base64"));
                 })
                 console.log(`test name is ${test_name}`);
                 // Modify the test
