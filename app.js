@@ -1222,7 +1222,7 @@ app.get('/admin',(req,res)=>{
                 // Create buffers from base64 strings
                 req.body.question_images_white.forEach(image=>{
                     console.log("IMAGE BASE 64");
-                    console.log(aotb(image));
+                    console.log(atob(image));
                     question_images_white.push(Buffer.from(atob(image)));
                 })
 
