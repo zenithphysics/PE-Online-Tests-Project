@@ -1238,7 +1238,7 @@ app.get('/admin',(req,res)=>{
 
                 // Modify the test
                 Test.findOneAndUpdate({"test_name":test_name},{$set:{"duration":duration,"answer_key":answer_key,"answer_videos":answer_videos,"question_images_white":question_images_white,"question_images_black":question_images_black,"answer_images_white":answer_images_white,"answer_images_black":answer_images_black}},(err,output)=>{
-                    if(err)
+                    if(err || output==null || output=="")
                     {
                         console.log('\x1b[31m%s\x1b[1m', '[/modifyTest] - Failed to Modify Test');
                         console.log(err);
