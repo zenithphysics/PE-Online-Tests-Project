@@ -235,7 +235,8 @@
 	var pe_email;
 	var user_access_token = localStorage.getItem("admin_token");
 	var domain_url = "https://photonecademy.com/tests"
-	var test_lists = document.getElementById(`test_lists`);
+    var test_lists = document.getElementById(`test_lists`);
+    var test_panel - document.getElementById(`test_panel`);
 	// All Nameplace holders
 
 		// Sidebar Name Holder
@@ -401,7 +402,9 @@
 						</div>
                     </div>
                         `
+                        test_panel.appendChild(question_element);
                     }
+
                 }
                 else
                 {
