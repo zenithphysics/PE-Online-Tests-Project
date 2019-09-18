@@ -666,7 +666,7 @@
 								}
 								// Get Question Subject,Chapter and Topic
 								
-								var question_subject = document.getElementById(`question-${i}-subject_selectbox`).value;
+								var question_subject = document.getElementById(`subject_selectbox`).value;
 								// Increment the counter of that subject;
 								for(let i=0;i<subjects_set.length;i++)
 								{
@@ -686,7 +686,7 @@
 									}
 								}
 
-								var question_chapter = document.getElementById(`question-${i}-chapter_selectbox`).value;
+								var question_chapter = document.getElementById(`chapter_selectbox`).value;
 								// Increment the counter of that chapter
 								for(let i=0;i<chapters_set.length;i++)
 								{
@@ -755,9 +755,7 @@
 								if(error==0)
 								{
 								// Create The Question Object
-								var Question = {"subject":question_subject,
-												"section":question_section,
-												"chapter":question_chapter,
+								var Question = {"section":question_section,
 												"topic":question_topic,		
 												"DLevel":question_DLevel}
 								questions.push(Question);
