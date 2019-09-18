@@ -230,49 +230,46 @@
 				if(data.student.packs.includes("JEE_MAINS_PCM"))
 				{	
 					user_sidebar.innerHTML+=`
-						<li class="nav-header"> JEE MAINS Tests </li>
 						<li>
 							<a href="./jee_mains_fst.html">
 								<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-								<span> Full Syllabus Test </span> 
+								<span> JEE MAINS FST </span> 
 								</a>
 						</li>
-						<li class="nav-header"> Chapter Wise Tests </li>
 						<li>
 							<a href="./jee_mains_cwt_physics.html">
 								<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-								<span> Physics Chapter Wise Test </span>
+								<span> JEE MAINS Physics CWT </span>
 								</a>
 						</li>
 						<li>
 							<a href="./jee_mains_cwt_chemistry.html"> 
 								<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-								<span> Chemistry Chapter Wise Test </span> 
+								<span> JEE MAINS Chemistry CWT </span> 
 							</a>
 						</li>
 						<li>
 							<a href="./jee_mains_cwt_maths.html">
 								<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-								<span> Maths Chapter Wise Test </span>
+								<span> JEE MAINS Maths CWT </span>
 							</a>
 						</li>
-						<li class="nav-header"> Section Wise Tests </li>
 						<li>
 							<a href="./jee_mains_swt_physics.html"> 
 								<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-								<span> Physics Section Wise Test </span>
+								<span> JEE MAINS Physics SWT </span>
 							</a>
 						</li>
 						<li>
 							<a href="./jee_mains_swt_chemistry.html"> 
 								<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-								<span> Chemistry Section Wise Test </span>
+								<span> JEE MAINS Chemistry SWT </span>
 							</a>
 						</li>
 						<li>
 							<a href="./jee_mains_swt_maths.html"> 
 								<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-								<span> Maths Section Wise Test </span> 
+								<span> JEE MAINS Maths SWT </span> 
 							</a>
 						</li>
 					`
@@ -280,7 +277,45 @@
 			}
 			else
 			{
-				if(data.students.pack.includes(""))
+				if(data.students.pack.includes("JEE_MAINS_P"))
+				{
+					user_sidebar.innerHTML+=`
+					<li>
+							<a href="./jee_mains_cwt_physics.html">
+								<i class="fa fa-graduation-cap" aria-hidden="true"></i>
+								<span> JEE MAINS Physics CWT </span>
+								</a>
+					</li>
+					<li>
+							<a href="./jee_mains_swt_physics.html"> 
+								<i class="fa fa-graduation-cap" aria-hidden="true"></i>
+								<span> JEE MAINS Physics SWT </span>
+							</a>
+					</li>
+					`
+				}
+
+				if(data.student.packs.includes("JEE_MAINS_C"))
+				{
+					user_sidebar.innerHTML+=`
+					<li>
+							<a href="./jee_mains_cwt_physics.html">
+								<i class="fa fa-graduation-cap" aria-hidden="true"></i>
+								<span> JEE MAINS Chemistry CWT </span>
+								</a>
+					</li>
+					<li>
+							<a href="./jee_mains_swt_physics.html"> 
+								<i class="fa fa-graduation-cap" aria-hidden="true"></i>
+								<span> JEE MAINS Chemistry SWT </span>
+							</a>
+					</li>
+					`
+				}
+
+
+
+
 			}
 		
 		})
