@@ -545,7 +545,304 @@
             {
                 document.getElementById(`chapter_selectbox`).disabled="disabled";
                 document.getElementById(`subject_selectbox`).disabled="disabled";
-            }
+			}
+			
+			function createTest(){
+				var error=0;
+
+				//  Get Test Version 
+				var test_name = document.getElementById("test_name").value;
+				if(test_name=="")
+				{
+					error=1;
+					alert("Please Enter A Valid Test Name")
+				}
+				// Get Test subject
+				var test_subject = document.getElementById("subject_selectbox").value;
+				if(test_subject==null || test_subject=="")
+				{
+					alert("Please select test subject");
+				}
+				// Get Test chapter
+				var test_chapter = document.getElementById("chapter_selectbox").value;
+				if(test_chapter==null || test_chapter=="")
+				{
+					alert("Please select test chapter ")
+				}
+				//  Get Marks For Correct & Wrong Answers
+				var correct_marks = document.getElementById("correct_marks").value;
+				var wrong_marks = document.getElementById("wrong_marks").value;
+				// Get Duration
+			    duration = document.getElementById("duration").value
+				if(duration==null || duration=="")
+				{
+					alert("Please Enter Test duration")
+					error=1;
+				}
+				// Get Total Number of questions
+				var questions_count = no_of_questions;
+				// Parse Each Question & Make Question Object
+				if(questions_count==0)
+				{
+					error=1;
+					alert("Please Enter Atleast 1 question");
+				}
+				
+
+				//*************************************** REQUIRED FOR STATISTICS ***********************************/
+				var subjects_array = [];
+				var sections_array = [];
+				var chapters_array = [];
+				var topics_array = [];
+				// Initialize Questions Array 
+				
+				// Preprocessing to find all the types of subjects, sections, chapters, topics
+				var all_preprocessed = false;
+				for(i=1;i<=no_of_questions;i++)
+				{
+					var question_subject = document.getElementById(`subject_selectbox`).value;
+					var question_section = document.getElementById(`question-${i}-section_selectbox`).value;
+					var question_chapter = document.getElementById(`chapter_selectbox`).value;
+					var question_topic = document.getElementById(`question-${i}-topic_selectbox`).value;
+					if(question_subject!=null && question_subject!="" && question_chapter!=null && question_chapter!="" && question_section!=null && question_section!="" && question_topic!=null && question_topic!="")					{
+					subjects_array.push(question_subject);
+					sections_array.push(question_section);
+					chapters_array.push(question_chapter);
+					topics_array.push(question_topic);
+					}
+					else
+					{
+						error=1;
+					}
+					if(i==no_of_questions)
+					{
+						all_preprocessed=true
+					}
+				}
+				if(all_preprocessed)  // All Questions have been preprocessed
+				{
+					var subjects_set = [...new Set(subjects_array)]
+					var sections_set = [...new Set(sections_array)]
+					var chapters_set = [...new Set(chapters_array)]
+					var topics_set = [...new Set(topics_array)]
+					var subjects_count = [];
+					subjects_set.forEach(subject=>{ // Add Counters
+						subjects_count.push(0);
+					})
+					var sections_count = [];
+					sections_set.forEach(section=>{
+						sections_count.push(0);
+					})
+					var chapters_count = [];
+					chapters_set.forEach(chapter=>{
+						chapters_count.push(0);
+					})
+					var topics_count = [];
+					topics_set.forEach(topic=>{
+						topics_count.push(0);
+					})
+					
+
+					// Structuring of Schema
+					var questions=[]
+					var answer_images_white=[];
+					var answer_images_black=[];
+					var questions_images_white=[];
+					var questions_images_black=[];
+					var answer_videos=[];
+					var answer_key=[];
+					var Dlevel1_count=0;
+					var Dlevel2_count=0;
+					var Dlevel3_count=0;
+		
+							var all_parsed=false;
+							if(error==0)
+							{
+							for(i=1;i<=no_of_questions;i++)
+							{
+								if(i==no_of_questions)
+								{
+									all_parsed=true;
+								}
+								// Get Question Subject,Chapter and Topic
+								
+								var question_subject = document.getElementById(`question-${i}-subject_selectbox`).value;
+								// Increment the counter of that subject;
+								for(let i=0;i<subjects_set.length;i++)
+								{
+									if(question_subject==subjects_set[i])
+									{
+										subjects_count[i]+=1;
+									}
+								}
+
+								var question_section = document.getElementById(`question-${i}-section_selectbox`).value;
+								// Increment the counter of that section
+								for(let i=0;i<sections_set.length;i++)
+								{
+									if(question_section==sections_set[i])
+									{
+										sections_count[i]+=1;
+									}
+								}
+
+								var question_chapter = document.getElementById(`question-${i}-chapter_selectbox`).value;
+								// Increment the counter of that chapter
+								for(let i=0;i<chapters_set.length;i++)
+								{
+									if(question_chapter==chapters_set[i])
+									{
+										chapters_count[i]+=1;
+									}
+								}
+
+								var question_topic = document.getElementById(`question-${i}-topic_selectbox`).value;
+								// Increment the counter of that topic
+								for(let i=0;i<topics_set.length;i++)
+								{
+									if(question_topic==topics_set[i])
+									{
+										topics_count[i]+=1;
+									}
+								}
+
+							
+								
+
+								// Get Question Difficulty Level 
+								var question_DLevel = document.getElementById(`question-${i}-DLevel_selectbox`).value;
+
+								// Update Counter
+									if(question_DLevel=="Level 1")
+									{
+										Dlevel1_count++;
+									}
+									if(question_DLevel=="Level 2")
+									{
+										Dlevel2_count++;
+									}
+									if(question_DLevel=="Level 3")
+									{
+										Dlevel3_count++;
+									}
+
+								// Get Correct Answer
+								var correct_answer = document.getElementById(`question-${i}-correct_answer`).value;
+								answer_key.push(correct_answer);
+								// Get Question Image
+								var question_white_image = document.getElementById(`question-white-${i}-input`).files[0];
+								questions_images_white.push(question_white_image);	
+								var question_black_image = document.getElementById(`question-black-${i}-input`).files[0];
+								questions_images_black.push(question_black_image);
+								// Get Answer Image
+								var answer_white_image = document.getElementById(`answer-white-${i}-input`).files[0];
+								answer_images_white.push(answer_white_image); // Push it in white images array
+								var answer_black_image = document.getElementById(`answer-black-${i}-input`).files[0];
+								answer_images_black.push(answer_black_image); // Push it in black images array
+								// Get Answer Video Solution
+								var answer_video = document.getElementById(`answer-${i}-video`).value;
+								answer_videos.push(answer_video);
+								if(question_white_image==null || question_white_image=="" || answer_black_image==null || answer_black_image=="")
+								{
+									alert("Make sure you have attached images for all questions and their answers");
+									error=1;
+								}
+								if(answer_video==null || answer_video=="")
+								{
+									alert("Make sure to enter video solution url");
+									error=1;
+								}
+								if(error==0)
+								{
+								// Create The Question Object
+								var Question = {"subject":question_subject,
+												"section":question_section,
+												"chapter":question_chapter,
+												"topic":question_topic,		
+												"DLevel":question_DLevel}
+								questions.push(Question);
+								}
+							}
+						}
+							// IF all questions are parsed
+							if(all_parsed)
+							{
+								if(error==0)
+								{
+									subject_details = {subjects:subjects_set,subjects_question_count:subjects_count};
+									section_details = {sections:sections_set,sections_question_count:sections_count};
+									chapter_details = {chapters:chapters_set,chapters_question_count:chapters_count};
+									topic_details = {topics:topics_set,topics_question_count:topics_count};
+									var DLevel_Details = { 
+											"DLevel1_count":Dlevel1_count,
+											"DLevel2_count":Dlevel2_count,
+											"DLevel3_count":Dlevel3_count
+										}
+									// Create The Test Object (Important)
+									var formData = new FormData();
+									formData.append('test_name',test_name);
+									formData.append('test_type',"CWT");
+									formData.append('domain',"NEET");
+									formData.append('duration',duration);
+									formData.append('subject',test_subject);
+									formData.append(`chapter`,test_chapter);
+									formData.append('questions',JSON.stringify(questions));
+									formData.append('correct_marks',correct_marks);
+									formData.append('wrong_marks',wrong_marks);
+									formData.append(`answer_videos`,JSON.stringify(answer_videos));
+									formData.append(`answer_key`,JSON.stringify(answer_key));
+									formData.append(`DLevel_details`,JSON.stringify(DLevel_Details));
+									formData.append(`no_of_answerWhiteImages`,answer_images_white.length);
+									formData.append(`no_of_answerBlackImages`,answer_images_black.length);
+									formData.append(`no_of_questionWhiteImages`,questions_images_white.length);
+									formData.append(`no_of_questionBlackImages`,questions_images_black.length);
+									formData.append(`subject_details`,JSON.stringify(subject_details));
+									formData.append(`section_details`,JSON.stringify(section_details));
+									formData.append(`chapter_details`,JSON.stringify(chapter_details));
+									formData.append(`topic_details`,JSON.stringify(topic_details));
+									// Load Answers in form Data
+									for(let i=0;i<answer_images_white.length;i++)
+									{
+										formData.append(`uploadedFiles`,answer_images_white[i],`answerWhite`);
+									}
+									for(let i=0;i<answer_images_black.length;i++)
+									{
+										formData.append(`uploadedFiles`,answer_images_black[i],`answerBlack`);
+									}
+									// Load Questions in form Data
+									for(let i=0;i<questions_images_white.length;i++)
+									{
+										formData.append(`uploadedFiles`,questions_images_white[i],`questionWhite`);
+									}	
+									for(let i=0;i<questions_images_black.length;i++)
+									{
+										formData.append(`uploadedFiles`,questions_images_black[i],`questionBlack`);
+									}
+									
+									let h = new Headers();
+									h.append('authorization',user_access_token);
+									h.append('Accept','application/json');
+									let req = new Request(`${domain_url}/createCWT`,{
+										method:"POST",
+										headers:h,
+										body:formData
+									})
+									
+									fetch(req).then(response=> response.json()).then(data=>{
+										if(data.is_successful)
+										{
+											alert("Test Submitted");
+										}
+										else
+										{
+											alert("failed to submit test");
+										}
+									})
+								}
+							}
+				}
+				
+			}
 		$(document).ready(function() {
 			App.init();
 		});

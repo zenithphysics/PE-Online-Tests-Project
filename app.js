@@ -1055,6 +1055,81 @@ app.get('/admin',(req,res)=>{
     })
     })
 
+    // Create CWT
+    app.post("/createCWT",verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/createCWT] - Admin Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/createCWT] - Admin Verification Successful');  
+                console.log('\x1b[33m%s\x1b[1m', '[/createCWT] - Creating CWT Test...');
+                var question_images_white = [];
+                var question_images_black = [];
+                var answer_images_white = [];
+                var answer_images_black = [];
+              
+                req.files.forEach((file)=>{
+                    if(file.originalname == "questionBlack")
+                    {
+                        question_images_black.push(file.buffer);
+                    }
+
+                    if(file.originalname == "questionWhite")
+                    {
+                        question_images_white.push(file.buffer)
+                    }
+
+                    if(file.originalname == "answerWhite")
+                    {
+                        answer_images_white.push(file.buffer)
+                    }
+
+                    if(file.originalname == "answerBlack")
+                    {
+                        answer_images_black.push(file.buffer)
+                    }
+                })
+                console.log(req.body);
+                var test = new Test();
+                test.test_name = req.body.test_name;
+                test.test_type = req.body.test_type;
+                test.domain = req.body.domain;
+                test.questions = JSON.parse(req.body.questions);
+                test.correct_marks = req.body.correct_marks;
+                test.wrong_marks = req.body.wrong_marks;
+                test.answer_key = JSON.parse(req.body.answer_key);
+                test.DLevel_details = JSON.parse(req.body.DLevel_details);
+                test.subject_details = JSON.parse(req.body.subject_details);
+                test.section_details = JSON.parse(req.body.section_details);
+                test.chapter_details = JSON.parse(req.body.chapter_details);
+                test.topic_details = JSON.parse(req.body.topic_details);
+                test.question_images_white = question_images_white;
+                test.duration = req.body.duration;
+                test.question_images_black = question_images_black;
+                test.answer_images_white = answer_images_white;
+                test.answer_videos = JSON.parse(req.body.answer_videos);
+                test.answer_images_black = answer_images_black;
+                console.log(` ------- TEST OBJECT ------  `)
+                test.save((err,output)=>{
+                    if(err)
+                    {
+                        res.json({is_verified:true,is_successful:false})
+                        console.log(err);
+                    }
+                    else
+                    {
+                        res.json({is_verified:true,is_successful:true})
+                        console.log("CWT Created");
+                    }
+                })
+            }
+    })
+    })
+
     // Test Getters
 
     //getAllFST
