@@ -23,7 +23,6 @@ const studentSchema = mongoose.Schema({
     packs:{
         type:Array,
         required:true,
-        unique:true
     },
     tests:{
         type:Array,
