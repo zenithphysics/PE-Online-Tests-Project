@@ -182,7 +182,7 @@
 	var pe_email;
 	var user_access_token = localStorage.getItem("student_token");
 	var domain_url = "https://photonecademy.com/tests"
-	
+	var user_sidebar = document.getElementById("user_sidebar");
 	// All Nameplace holders
 
 		// Sidebar Name Holder
@@ -224,6 +224,8 @@
 				console.log("The logged in users email id is :"+pe_email);
 				sidebarNameHolder.innerHTML=pe_username;
 				navNameHolder.innerHTML=pe_username;
+				console.log("Student Packs Are - ");
+				console.log(authDetails.packs);
 			}
 		
 		})
