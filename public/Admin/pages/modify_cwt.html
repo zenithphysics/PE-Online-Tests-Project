@@ -5,7 +5,7 @@
 <!--<![endif]-->
 <head>
 	<meta charset="utf-8" />
-	<title>Modify FST</title>
+	<title>Modify CWT</title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
@@ -154,8 +154,8 @@
 						<span> Modify Tests </span>
 						</a>
 						<ul class="sub-menu">
-							<li class="active"><a href="#">Modify FST Tests</a></li>
-							<li><a href="./modify_cwt.html">Modify CWT Tests</a></li>
+							<li><a href="./modify_fst.html">Modify FST Tests</a></li>
+							<li class="active"><a href="#">Modify CWT Tests</a></li>
 							<li><a href="./modify_swt.html">Modify SWT Tests</a></li>
 						</ul>
 					</li>
@@ -176,12 +176,12 @@
 			<!-- begin breadcrumb -->
 			<ol class="breadcrumb pull-right">
                 <li class="breadcrumb-item active"><a href="#">Edit Test</a></li>
-                <li class="breadcrumb-item active"><a href="#">Modify FST</a></li>
+                <li class="breadcrumb-item active"><a href="#">Modify CWT</a></li>
 
 			</ol>
 			<!-- end breadcrumb -->
 			<!-- begin page-header -->
-			<h1 class="page-header">Modify FST</h1>
+			<h1 class="page-header">Modify CWT</h1>
             <!-- end page-header -->
             
 			<!-- begin panel -->
@@ -189,7 +189,7 @@
 				<div class="panel-heading">
 					<div class="panel-heading-btn">
                     </div>
-                    <label class="text-white"> Select FST To Modify</label>
+                    <label class="text-white"> Select CWT To Modify</label>
                     <div class="row">
                             <div class="col-9">     
                                     <select id="test_lists" class="form-control">
@@ -197,7 +197,7 @@
                                     </select>
                             </div>
                             <div class="col-3">
-                                <button class="btn btn-green" id="modifyButton" onclick="modifyTest()"> Modify FST</button>
+                                <button class="btn btn-green" id="modifyButton" onclick="modifyTest()"> Modify CWT</button>
                             </div>
                     </div>
 				</div>
@@ -276,7 +276,7 @@
 				sidebarNameHolder.innerHTML=pe_username;
                 navNameHolder.innerHTML=pe_username;
                 
-                fetch(`${domain_url}/getAllFST`,{
+                fetch(`${domain_url}/getAllCWT`,{
                     method:"GET",
                     headers:{
                         authorization:user_access_token,
