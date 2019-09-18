@@ -293,8 +293,8 @@ app.get('/admin',(req,res)=>{
                 console.log('\x1b[32m%s\x1b[1m', '[/createStudent] - Admin Verification Successful');  
                 console.log('\x1b[33m%s\x1b[1m',"[/createStudent] - Creating Student...."); // yellow log
                 console.log(req.body);
-                Student.syncIndexes();
                 var student = new Student({"studentID":req.body.studentID,"name":req.body.studentName,"password":hash.sha256().update(req.body.password).digest('hex'),"email":req.body.studentEmail,"contact":req.body.studentContact,"packs":req.body.packs});
+                Student.syncIndexes();
                 student.save((err,output)=>{
                     if(err)
                     {
