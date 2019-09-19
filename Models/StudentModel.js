@@ -3,7 +3,7 @@ let mongoose = require('mongoose');
 // User Schema
 var Schema = mongoose.Schema;
 const studentSchema = new Schema({
-    studentID:{
+    userID:{
         type:String,
         unique:true,
         required:true
@@ -26,7 +26,6 @@ const studentSchema = new Schema({
     },
     packs:[{
         type:String,
-        unique:true,
         required:true
     }],
     tests:{
