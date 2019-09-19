@@ -106,8 +106,8 @@ app.get('/admin',(req,res)=>{
             else
             {
                 console.log('\x1b[32m%s\x1b[1m', '[/verifyStudent] - Student Verification Successful');  
-                console.log(`Student is ${authData.student.studentID}`)
-                Student.findById(authData.student._id,(err,student=>{
+                console.log(`Student is ${authData.studentID}`)
+                Student.findById(authData._id,(err,student=>{
                     if(err || student==null)
                     {
                         console.log('\x1b[31m%s\x1b[1m', '[/verifyStudent] - Student Verification Failed');  
