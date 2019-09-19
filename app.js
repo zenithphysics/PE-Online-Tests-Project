@@ -117,7 +117,7 @@ app.get('/admin',(req,res)=>{
                         res.json({is_verified:true,student:student,is_successful:true})
 
                     }
-                })
+                }))
             }
         })
     })
