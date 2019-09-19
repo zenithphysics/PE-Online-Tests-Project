@@ -155,7 +155,7 @@
 					<h4 class="panel-title"></h4>
 				</div>
 				<div class="panel-body">
-                    <div class="row">
+                    <div class="row" id="selection_panel">
                         <div class="col-6">
                             <label> Select Domain: </label>
                             <select id="domain_selectbox" class="form-control">
@@ -167,7 +167,7 @@
                         </div>
                         <div class="col-6">
                                 <label> Select Test Type: </label>
-                                <select id="domain_selectbox" class="form-control">
+                                <select id="test_type_selectbox" class="form-control" onchange="testTypeChanged()">
                                     <option value="FST">Full Syllabus Test </option>
                                     <option value="CWT">Chapter Wise Test</option>
                                     <option value="SWT">Section Wise Test</option> 
@@ -204,7 +204,7 @@
 	
 	<script>
 	var pe_username;
-	var pe_email;
+    var pe_email;
 	var user_access_token = localStorage.getItem("student_token");
 	var domain_url = "https://photonecademy.com/tests"
 	var user_sidebar = document.getElementById("user_sidebar");
@@ -253,7 +253,33 @@
 				console.log("Student Packs Are - ");
 				console.log(authDetails.packs);
 			}
-		})
+        })
+        
+        function testTypeChanged()
+        {
+          var test_type = document.getElementById("test_type_selectbox").value;
+          var packs;
+          fetch(`${domain_url}/getStudentPacks`,{
+              method:"POST",
+              headers:{
+                  authorization:user_access_token,
+                  'Content-Type':'application/json'
+              },
+              body:JSON.stringify({studentID:pe_username})
+          }).then(response=>response.json()).then(data=>{
+            if(data.is_successful)
+            {
+                console.log(data);
+            }
+            else
+            {
+                alert("Failed to Select Test Type")
+            }
+          }).catch(()=>{
+              alert("Failed to Select Test Type")
+          })
+         
+        }
 		$(document).ready(function() {
 			App.init();
 		});
