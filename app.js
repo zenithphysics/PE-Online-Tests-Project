@@ -342,7 +342,7 @@ app.get('/admin',(req,res)=>{
             else{
                 console.log('\x1b[32m%s\x1b[1m',"[/loginStudent - Student Found"); // green log
                 console.log('\x1b[33m%s\x1b[1m',"[/loginStudent - Generating Token...."); // yellow log
-                jwt.sign({"student":student},"pe-tests-student",(err,token)=>{
+                jwt.sign(student.toJSON(),"pe-tests-student",(err,token)=>{
                     if(err){
                         console.log('\x1b[31m%s\x1b[1m',"[/loginStudent] - Error Generating Student Token:"); //red log
                         console.log(err)
