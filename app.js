@@ -332,6 +332,7 @@ app.get('/admin',(req,res)=>{
         console.log(password);
         var hashed_password = hash.sha256().update(req.body.password).digest('hex');
         console.log('\x1b[33m%s\x1b[1m', '[/loginStudent] - Verifying Student...'); //yellow log
+        Student.syncIndexes();
         Student.findOne({$and:[{"studentID":req.body.studentID},{"password": hashed_password}]},(err,student)=>{
             if(err || !student){
                 console.log('\x1b[31m%s\x1b[1m', '[/loginStudent] - Student Does not exist.');  //red log
