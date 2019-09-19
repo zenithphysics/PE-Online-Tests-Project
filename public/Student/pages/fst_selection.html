@@ -239,47 +239,46 @@
 			if(data.is_verified==true)
 			{
 				console.log(data);
-				var authDetails = data.student;
-				console.log(authDetails.student);
-				pe_username = authDetails.studentID;
-				pe_email = authDetails.email;
+				var student = data.student;
+				pe_username = student.studentID;
+				pe_email = student.email;
 				console.log("The Logged in user is :"+pe_username);
 				console.log("The logged in users email id is :"+pe_email);
 				sidebarNameHolder.innerHTML=pe_username;
 				navNameHolder.innerHTML=pe_username;
                 console.log("Student Packs Are - ");
-				console.log(authDetails.packs);
-				if(authDetails.packs.includes("JEE_MAINS_PCM"))
+				console.log(student.packs);
+				if(student.packs.includes("JEE_MAINS_PCM"))
 				{
 					domain_selectbox.innerHTML+=`
 					<option value="JEE_MAINS"> JEE MAINS </option>
 					`
 				}
-				if(authDetails.packs.includes("JEE_ADVANCED_PCM"))
+				if(student.packs.includes("JEE_ADVANCED_PCM"))
 				{
 					domain_selectbox.innerHTML+=`
 					<option value="JEE_ADVANCED"> JEE ADVANCED </option>
 					`
 				}
-				if(authDetails.packs.includes("NEET_PCB"))
+				if(student.packs.includes("NEET_PCB"))
 				{
 					domain_selectbox.innerHTML+=`
 					<option value="NEET"> NEET PCB </option>
 					`
 				}
-				if(authDetails.packs.includes("STATE_BOARD_PCM"))
+				if(student.packs.includes("STATE_BOARD_PCM"))
 				{
 					domain_selectbox.innerHTML+=`
 					<option value="STATE_BOARD_PCM"> STATE BOARD PCM </option>
 					`
 				}
-				if(authDetails.packs.includes("STATE_BOARD_PCB"))
+				if(student.packs.includes("STATE_BOARD_PCB"))
 				{
 					domain_selectbox.innerHTML+=`
 					<option value="STATE_BOARD_PCB"> STATE BOARD PCB </option>
 					`
 				}
-				if(authDetails.packs.includes("STATE_BOARD_PCMB"))
+				if(student.packs.includes("STATE_BOARD_PCMB"))
 				{
 					domain_selectbox.innerHTML+=`
 					<option value="STATE_BOARD_PCMB"> STATE BOARD PCMB </option>
