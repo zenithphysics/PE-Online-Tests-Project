@@ -95,7 +95,9 @@ app.get('/admin',(req,res)=>{
 
     app.get("/verifyStudent",verifyToken ,(req,res)=>{
         console.log("[/verifyStudent - Verifying Student")
-        jwt.verify(req.token,'pe-tests-student',(err,authData)=>{
+        jwt.verify(req.token,'pe-tests-student',(err,authData)=>{\
+            console.log(authData)
+
             if(err){
                 console.log(authData)
                 console.log('\x1b[31m%s\x1b[1m', '[/verifyStudent] - Student Verification Failed');  
