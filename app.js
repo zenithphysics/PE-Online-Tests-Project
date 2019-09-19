@@ -107,7 +107,7 @@ app.get('/admin',(req,res)=>{
             {
                 console.log('\x1b[32m%s\x1b[1m', '[/verifyStudent] - Student Verification Successful');  
                 console.log(`Student is ${authData.studentID}`)
-                var student = JSON.parase(JSON.stringify(authData));
+                var student = JSON.parse(JSON.stringify(authData));
                 Student.findById(student._id,(err,student=>{
                     if(err || student==null)
                     {
