@@ -3,7 +3,7 @@ let mongoose = require('mongoose');
 // User Schema
 var Schema = mongoose.Schema;
 const studentSchema = new Schema({
-    userID:{
+    studentID:{
         type:String,
         unique:true,
         required:true
