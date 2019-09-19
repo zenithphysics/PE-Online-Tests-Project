@@ -27,12 +27,8 @@ const studentSchema = new Schema({
     packs:[{
         type:String,
         required:true
-    }],
-    tests:{
-        type:Schema.Types.Mixed,
-        required:false,
-        unique:false
-    }
+    }]
+
 });
 
 module.exports = mongoose.model('Student',studentSchema);
