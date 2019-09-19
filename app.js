@@ -95,7 +95,7 @@ app.get('/admin',(req,res)=>{
 
     app.get("/verifyStudent",verifyToken ,(req,res)=>{
         console.log("[/verifyStudent - Verifying Student")
-        jwt.verify(req.token,'pe-tests-student',(err,authData)=>{\
+        jwt.verify(req.token,'pe-tests-student',(err,authData)=>{
             console.log(authData)
 
             if(err){
