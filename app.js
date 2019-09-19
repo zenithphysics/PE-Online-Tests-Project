@@ -104,7 +104,20 @@ app.get('/admin',(req,res)=>{
             else
             {
                 console.log('\x1b[32m%s\x1b[1m', '[/verifyStudent] - Student Verification Successful');  
-                res.json({is_verified:true,student:authData.student,is_successful:true})
+                Student.find({"studentID":authData.student.studentID},(err,student=>{
+                    if(err)
+                    {
+                        console.log('\x1b[31m%s\x1b[1m', '[/verifyStudent] - Student Verification Failed');  
+                        console.log(err)
+                        res.json({is_verified:true,student:authData.student,is_successful:false})
+
+                    }
+                    else
+                    {
+                        res.json({is_verified:true,student:student,is_successful:true})
+
+                    }
+                })
             }
         })
     })
