@@ -168,6 +168,7 @@
                         <div class="col-6">
                                 <label> Select Test Type: </label>
                                 <select id="test_type_selectbox" class="form-control" onchange="testTypeChanged()">
+                                    <option value="na"> Not Specified </option>
                                     <option value="FST">Full Syllabus Test </option>
                                     <option value="CWT">Chapter Wise Test</option>
                                     <option value="SWT">Section Wise Test</option> 
@@ -259,6 +260,10 @@
         {
           var test_type = document.getElementById("test_type_selectbox").value;
           var packs;
+          if(test_type=="na")
+          {
+              alert("Please Select Test Type");
+          }
           fetch(`${domain_url}/getStudentPacks`,{
               method:"POST",
               headers:{
