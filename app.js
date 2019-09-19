@@ -98,6 +98,7 @@ app.get('/admin',(req,res)=>{
         jwt.verify(req.token,'pe-tests-student',(err,authData)=>{
             if(err){
                 authData = JSON.parse(authData)
+                console.log(authData)
                 console.log('\x1b[31m%s\x1b[1m', '[/verifyStudent] - Student Verification Failed');  
                 console.log(err);
                 res.json({is_verified:false})
