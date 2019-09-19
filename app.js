@@ -109,7 +109,7 @@ app.get('/admin',(req,res)=>{
                     {
                         console.log('\x1b[31m%s\x1b[1m', '[/verifyStudent] - Student Verification Failed');  
                         console.log(err)
-                        res.json({is_verified:true,student:authData.student,is_successful:false})
+                        res.json({is_verified:true,is_successful:false})
 
                     }
                     else
