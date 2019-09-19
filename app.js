@@ -117,7 +117,6 @@ app.get('/admin',(req,res)=>{
                     else
                     {
                         res.json({is_verified:true,student:student,is_successful:true})
-
                     }
                 }))
             }
