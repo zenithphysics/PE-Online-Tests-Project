@@ -163,7 +163,7 @@
                     <div class="row" id="selection_panel">
                         <div class="col-6">
                             <label> Select Domain: </label>
-                            <select id="domain_selectbox" class="form-control">
+                            <select id="domain_selectbox" onchange="domainChanged()" class="form-control">
                                 <option value="na">Not Selected</option>  
                             </select>
                         </div>
@@ -286,7 +286,26 @@
 				}
 			}
         })
-   
+		
+		function domainChanged(){
+			var domain = document.getElementById("domain_selectbox").value;
+			if(document.getElementById("test_name_selectbox")==null)
+			{
+				selection_panel.innerHTML+=`
+				<div class="col-6">
+							<label> Select  Test: </label>
+                            <select id="test_name_selectbox" class="form-control">  
+                            </select>
+                </div>
+				`
+				var test_name_selectbox = document.getElementById("test_name_selectbox");
+				fetch("/getFST")
+			}
+			else
+			{
+
+			}
+		}
 		$(document).ready(function() {
 			App.init();
 		});
