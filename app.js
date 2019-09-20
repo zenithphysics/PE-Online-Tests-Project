@@ -1267,7 +1267,7 @@ app.get('/admin',(req,res)=>{
                     }
                 })
             }
-    })
+    })})
     //getTest
 
     app.post(`/getTest`,verifyToken,(req,res)=>{
