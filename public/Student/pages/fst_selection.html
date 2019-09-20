@@ -299,11 +299,44 @@
                 </div>
 				`
 				var test_name_selectbox = document.getElementById("test_name_selectbox");
-				fetch("/getFST")
+				fetch(`${domain_url}/getSpecificFST`,{
+					method:"POST",
+					headers:{
+						authorization:user_access_token,
+						'Content-Type':'application/json'
+					},
+					body:JSON.stringify({domain:domain})
+				}).then(response=>response.json()).then(data=>{
+					if(data.is_successful)
+					{
+						console.log(data.fst_tests);
+					}
+					else
+					{
+						alert("Failed to fetch")
+					}
+				})
 			}
 			else
 			{
-
+				var test_name_selectbox = document.getElementById("test_name_selectbox");
+				fetch(`${domain_url}/getSpecificFST`,{
+					method:"POST",
+					headers:{
+						authorization:user_access_token,
+						'Content-Type':'application/json'
+					},
+					body:JSON.stringify({domain:domain})
+				}).then(response=>response.json()).then(data=>{
+					if(data.is_successful)
+					{
+						console.log(data.fst_tests);
+					}
+					else
+					{
+						alert("Failed to fetch")
+					}
+				})
 			}
 		}
 		$(document).ready(function() {
