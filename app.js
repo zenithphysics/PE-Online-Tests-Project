@@ -1247,31 +1247,8 @@ app.get('/admin',(req,res)=>{
             if(err){
                 console.log('\x1b[31m%s\x1b[1m', '[/getSpecificFST] - Admin Verification Failed');  
                 console.log(err);
-                jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
-                    if(err){
-                        console.log('\x1b[31m%s\x1b[1m', '[/getSpecificFST] - Admin Verification Failed');  
-                        console.log(err);
-                        res.json({is_verified:false})
-                    }
-                    else
-                    {
-                        console.log('\x1b[32m%s\x1b[1m', '[/getSpecificFST] - Admin Verification Successful');  
-                        console.log('\x1b[33m%s\x1b[1m', '[/getSpecificFST] - Feteching All SWT Tests...');  
-                        Tests.find({$and:[{"domain":req.body.domain},{"test_type":"FST"},{}]},(err,tests)=>{
-                            if(err)
-                            {
-                                console.log('\x1b[31m%s\x1b[1m', '[/getSpecificFST] - Failed to fetch FSTs');
-                                console.log(err)  
-                                res.json({is_verified:true,is_successful:false})
-                            }
-                            else
-                            {
-                                console.log('\x1b[32m%s\x1b[1m', '[/getSpecificTest] - Fetched All FSTs');
-                                res.json({is_verified:true,is_successful:true,fst_tests:tests})  
-                            }
-                        })
-                    }
-            })
+                res.json({is_verified:false})
+                    
             }
             else
             {
