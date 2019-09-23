@@ -250,7 +250,15 @@
                 console.log("Student Packs Are - ");
 
                 // Load full syllabus
-
+                fetch(`${domain_url}/getFullSyllabus`,{
+                    method:"GET",
+                    headers:{
+                        authorization:user_access_token
+                    }
+                }).then(response=> response.json()).then(syllabus=>{
+                    console.log("Syllabus is");
+                    console.log(syllabus);
+                })
             
 				if(student.packs.includes("JEE_MAINS_PCM") || student.packs.includes("JEE_MAINS_P") || student.packs.includes("JEE_MAINS_C") || student.packs.includes("JEE_MAINS_M"))
 				{
