@@ -344,8 +344,8 @@
 				}).then(response=>response.json()).then(data=>{
 					if(data.is_successful)
 					{
-						test_name_selectbox.innerHTML="";
 						var test_name_selectbox = document.getElementById(`test_name_selectbox`);
+						test_name_selectbox.innerHTML="";
 						data.fst_tests.forEach(test=>{
 							test_name_selectbox.innerHTML+=`<option value="${test.test_name}"> ${test.test_name}</option>`
 						})	
