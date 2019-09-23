@@ -280,26 +280,24 @@
 			console.log("Domain has changed");
 			if(domain!="Not Selected")
 			{
-			if(document.getElementById("test_name_selectbox")==null)
+			if(document.getElementById("subject_selectbox")==null)
 			{
 				var test_name_selectbox = document.createElement('div');
 				test_name_selectbox.setAttribute("class","col-6");
 				test_name_selectbox.innerHTML=`
-				<label> Select  Test: </label>
-                        <select id="test_name_selectbox" class="form-control">  
+				<label> Select  Subject: </label>
+                        <select id="subject_selectbox" class="form-control">  
                 </select>
 				`
-				selection_panel.appendChild(test_name_selectbox)
-				var give_test_button = document.createElement('div');
+	/*			var give_test_button = document.createElement('div');
 				give_test_button.setAttribute('class','col-6');
 				give_test_button.innerHTML=`
 				<br>
 				<br>
 				<button class="btn btn-green" onclick="giveTest()"> Give Test </button> 
 				`
-				selection_panel.appendChild(give_test_button);
-				var test_name_selectbox = document.getElementById("test_name_selectbox");
-				fetch(`${domain_url}/getSpecificFST`,{
+				selection_panel.appendChild(give_test_button); */
+			/*	fetch(`${domain_url}/getSpecificFST`,{
 					method:"POST",
 					headers:{
 						authorization:user_access_token,
@@ -319,33 +317,13 @@
 					{
 						alert("Failed to fetch")
 					}
-				})
+				}) */
 			}
 			else
 			{
 				console.log("IN ELSE PART")
-				var test_name_selectbox = document.getElementById("test_name_selectbox");
-				fetch(`${domain_url}/getSpecificFST`,{
-					method:"POST",
-					headers:{
-						authorization:user_access_token,
-						'Content-Type':'application/json'
-					},
-					body:JSON.stringify({domain:domain})
-				}).then(response=>response.json()).then(data=>{
-					if(data.is_successful)
-					{
-						var test_name_selectbox = document.getElementById(`test_name_selectbox`);
-						test_name_selectbox.innerHTML="";
-						data.fst_tests.forEach(test=>{
-							test_name_selectbox.innerHTML+=`<option value="${test.test_name}"> ${test.test_name}</option>`
-						})	
-					}
-					else
-					{
-						alert("Failed to fetch")
-					}
-				})
+				var subject_selectbox = document.getElementById("subject_selectbox");
+
 			}
 		}
 		}
