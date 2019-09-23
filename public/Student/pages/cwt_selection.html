@@ -248,25 +248,25 @@
 				navNameHolder.innerHTML=pe_username;
                 console.log("Student Packs Are - ");
 				console.log(student.packs);
-				if(student.packs.includes("JEE_MAINS_P") || student.packs.includes("JEE_MAINS_C") || student.packs.includes("JEE_MAINS_M"))
+				if(student.packs.includes("JEE_MAINS_PCM") || student.packs.includes("JEE_MAINS_P") || student.packs.includes("JEE_MAINS_C") || student.packs.includes("JEE_MAINS_M"))
 				{
 					domain_selectbox.innerHTML+=`
 					<option value="JEE_MAINS"> JEE MAINS </option>
 					`
 				}
-				if(student.packs.includes("JEE_ADVANCED_P") || student.packs.includes("JEE_ADVANCED_C") || student.packs.includes("JEE_ADVANCED_M"))
+				if(student.packs.includes("JEE_ADVANCED_PCM") || student.packs.includes("JEE_ADVANCED_P") || student.packs.includes("JEE_ADVANCED_C") || student.packs.includes("JEE_ADVANCED_M"))
 				{
 					domain_selectbox.innerHTML+=`
 					<option value="JEE_ADVANCED"> JEE ADVANCED </option>
 					`
 				}
-				if(student.packs.includes("NEET_P") || student.packs.includes("NEET_C") || student.packs.includes("NEET_B"))
+				if(student.packs.includes("NEET_PCB") || student.packs.includes("NEET_P") || student.packs.includes("NEET_C") || student.packs.includes("NEET_B"))
 				{
 					domain_selectbox.innerHTML+=`
 					<option value="NEET"> NEET </option>
 					`
 				}
-				if(student.packs.includes("STATE_BOARD_P") || student.packs.includes("STATE_BOARD_C") || student.packs.includes("STATE_BOARD_M") || student.packs.includes("STATE_BOARD_B"))
+				if(student.packs.includes("STATE_BOARD_PCM") || student.packs.includes("STATE_BOARD_PCB") || student.packs.includes("STATE_BOARD_PCMB") || student.packs.includes("STATE_BOARD_P") || student.packs.includes("STATE_BOARD_C") || student.packs.includes("STATE_BOARD_M") || student.packs.includes("STATE_BOARD_B"))
 				{
 					domain_selectbox.innerHTML+=`
 					<option value="STATE_BOARD"> STATE BOARD </option>
