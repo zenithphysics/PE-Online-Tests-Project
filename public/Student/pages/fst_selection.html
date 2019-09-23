@@ -309,8 +309,12 @@
 					body:JSON.stringify({domain:domain})
 				}).then(response=>response.json()).then(data=>{
 					if(data.is_successful)
-					{
-						console.log(data.fst_tests);
+					{	
+						console.log(data.fst_tests)
+						var test_name_selectbox = document.getElementById(`test_name_selectbox`);
+						data.fst_tests.forEach(test=>{
+							
+						})						
 					}
 					else
 					{

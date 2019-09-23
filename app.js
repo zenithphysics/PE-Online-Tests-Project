@@ -1254,7 +1254,8 @@ app.get('/admin',(req,res)=>{
             {
                 console.log('\x1b[32m%s\x1b[1m', '[/getSpecificFST] - Admin Verification Successful');  
                 console.log('\x1b[33m%s\x1b[1m', '[/getSpecificFST] - Feteching All SWT Tests...');  
-                Test.find({$and:[{"domain":req.body.domain},{"test_type":"FST"},{}]},(err,tests)=>{
+                Test.find({$and:[{"domain":req.body.domain},{"test_type":"FST"}]},{"test_name":1
+                },(err,tests)=>{
                     if(err)
                     {
                         console.log('\x1b[31m%s\x1b[1m', '[/getSpecificFST] - Failed to fetch FSTs');
