@@ -248,42 +248,31 @@
 				navNameHolder.innerHTML=pe_username;
                 console.log("Student Packs Are - ");
 				console.log(student.packs);
-				if(student.packs.includes("JEE_MAINS_PCM"))
+				if(student.packs.includes("JEE_MAINS_P") || student.packs.includes("JEE_MAINS_C") || student.packs.includes("JEE_MAINS_M"))
 				{
 					domain_selectbox.innerHTML+=`
 					<option value="JEE_MAINS"> JEE MAINS </option>
 					`
 				}
-				if(student.packs.includes("JEE_ADVANCED_PCM"))
+				if(student.packs.includes("JEE_ADVANCED_P") || student.packs.includes("JEE_ADVANCED_C") || student.packs.includes("JEE_ADVANCED_M"))
 				{
 					domain_selectbox.innerHTML+=`
 					<option value="JEE_ADVANCED"> JEE ADVANCED </option>
 					`
 				}
-				if(student.packs.includes("NEET_PCB"))
+				if(student.packs.includes("NEET_P") || student.packs.includes("NEET_C") || student.packs.includes("NEET_B"))
 				{
 					domain_selectbox.innerHTML+=`
-					<option value="NEET"> NEET PCB </option>
+					<option value="NEET"> NEET </option>
 					`
 				}
-				if(student.packs.includes("STATE_BOARD_PCM"))
+				if(student.packs.includes("STATE_BOARD_P") || student.packs.includes("STATE_BOARD_C") || student.packs.includes("STATE_BOARD_M") || student.packs.includes("STATE_BOARD_B"))
 				{
 					domain_selectbox.innerHTML+=`
-					<option value="STATE_BOARD_PCM"> STATE BOARD PCM </option>
+					<option value="STATE_BOARD"> STATE BOARD </option>
 					`
 				}
-				if(student.packs.includes("STATE_BOARD_PCB"))
-				{
-					domain_selectbox.innerHTML+=`
-					<option value="STATE_BOARD_PCB"> STATE BOARD PCB </option>
-					`
-				}
-				if(student.packs.includes("STATE_BOARD_PCMB"))
-				{
-					domain_selectbox.innerHTML+=`
-					<option value="STATE_BOARD_PCMB"> STATE BOARD PCMB </option>
-					`
-				}
+
 			}
         })
 		
