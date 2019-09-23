@@ -299,6 +299,11 @@
                             </select>
                 </div>
 				`
+				selection_panel.innerHTML=`
+				<div class="col-12">
+					<button class="btn btn-green" onclick="giveTest()"> Give Test </button> 
+				</div>
+				`
 				var test_name_selectbox = document.getElementById("test_name_selectbox");
 				fetch(`${domain_url}/getSpecificFST`,{
 					method:"POST",
@@ -310,10 +315,9 @@
 				}).then(response=>response.json()).then(data=>{
 					if(data.is_successful)
 					{	
-						console.log(data.fst_tests)
 						var test_name_selectbox = document.getElementById(`test_name_selectbox`);
 						data.fst_tests.forEach(test=>{
-							
+							test_name_selectbox.innerHTML+=`<option value="${test.test_name}"> ${test.test_name}</option>`
 						})						
 					}
 					else
@@ -335,7 +339,10 @@
 				}).then(response=>response.json()).then(data=>{
 					if(data.is_successful)
 					{
-						console.log(data.fst_tests);
+						var test_name_selectbox = document.getElementById(`test_name_selectbox`);
+						data.fst_tests.forEach(test=>{
+							test_name_selectbox.innerHTML+=`<option value="${test.test_name}"> ${test.test_name}</option>`
+						})	
 					}
 					else
 					{
