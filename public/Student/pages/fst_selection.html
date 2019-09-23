@@ -289,7 +289,8 @@
 		
 		function domainChanged(){
 			var domain = document.getElementById("domain_selectbox").value;
-	
+			if(domain!="Not Selected")
+			{
 			if(document.getElementById("test_name_selectbox")==null)
 			{
 				var test_name_selectbox = document.createElement('div');
@@ -356,6 +357,7 @@
 					}
 				})
 			}
+		}
 		}
 		$(document).ready(function() {
 			App.init();
