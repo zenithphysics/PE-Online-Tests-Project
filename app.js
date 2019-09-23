@@ -645,7 +645,33 @@ app.get('/admin',(req,res)=>{
                 if(err){
                     console.log('\x1b[31m%s\x1b[1m', '[/getFullSyllabus] - Admin Verification Failed');  
                     console.log(err);
-                    res.json({is_verified:false})
+                    jwt.verify(req.token,'pe-tests-student',(err,authData)=>{
+                        if(err){
+                            console.log('\x1b[31m%s\x1b[1m', '[/getFullSyllabus] - Admin Verification Failed');  
+                            console.log(err);
+                            res.json({is_verified:false})
+                        }
+                        else
+                        {
+                            console.log('\x1b[32m%s\x1b[1m', '[/getFullSyllabus] - Admin Verification Successful');  
+                            console.log('\x1b[33m%s\x1b[1m', '[/getFullSyllabus] - Fetching full syllabus...');
+                            Syllabus.syncIndexes();
+                            Syllabus.find({},(err,syllabus)=>{
+                                if(err || !syllabus){
+                                    console.log('\x1b[31m%s\x1b[1m', "[/getFullSyllabus] - Failed to fetch syllabus :'( ");
+                                    res.json({is_verified:true,is_successful:false})
+                                }
+                                else
+                                {
+                                    console.log('\x1b[32m%s\x1b[1m', '[/getFullSyllabus] - Fetched Syllabus Successfully ^_^');  
+                                    console.log(syllabus);
+                                    res.json({is_verified:true,is_successful:true,syllabus:syllabus})
+                                }
+                            })
+                        
+                        }
+                        
+                })
                 }
                 else
                 {

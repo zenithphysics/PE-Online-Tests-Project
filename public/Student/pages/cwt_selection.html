@@ -199,6 +199,7 @@
 	<script>
 	var pe_username;
     var pe_email;
+    var syllabus;
 	var user_access_token = localStorage.getItem("student_token");
 	var domain_url = "https://photonecademy.com/tests"
     var user_sidebar = document.getElementById("user_sidebar");
@@ -247,6 +248,10 @@
 				sidebarNameHolder.innerHTML=pe_username;
 				navNameHolder.innerHTML=pe_username;
                 console.log("Student Packs Are - ");
+
+                // Load full syllabus
+
+            
 				if(student.packs.includes("JEE_MAINS_PCM") || student.packs.includes("JEE_MAINS_P") || student.packs.includes("JEE_MAINS_C") || student.packs.includes("JEE_MAINS_M"))
 				{
 					domain_selectbox.innerHTML+=`
@@ -286,8 +291,54 @@
 				<label> Select Subject: </label>
                         <select id="subject_selectbox" class="form-control">  
                 </select>
-				`
-				selection_panel.appendChild(subject_selectbox)
+                `
+                var subject_selectbox = document.getElementById("subject_selectbox");
+                
+                selection_panel.appendChild(subject_selectbox)
+                
+                    fetch(`${domain_url}/verifyStudent`,{
+                        headers:{
+                            method:"GET",
+                            authorization:user_access_token
+                        }
+                    }).then(response=>response.json()).then(data=>{
+                        console.log("is token verified? "+data.is_verified);
+                        if(data.is_verified==false)
+                        {
+                            document.location.href=`${domain_url}`;
+                        }
+                        if(data.is_verified==true)
+                        {
+                            console.log(data);
+                            var student = data.student;
+                            pe_username = student.studentID;
+                            pe_email = student.email;
+                            console.log("The Logged in user is :"+pe_username);
+                            console.log("The logged in users email id is :"+pe_email);
+                            sidebarNameHolder.innerHTML=pe_username;
+                            navNameHolder.innerHTML=pe_username;
+                            if(domain=="JEE_MAINS")
+                            {
+                                if(student.packs.includes("JEE_MAINS_P"))
+                                {
+                                    subject_selectbox.innerHTML+=`
+                                    <option value="Physics"> Physics </option>
+                                    `
+                                }
+                                if(student.packs.includes("JEE_MAINS_C"))
+                                {
+                                    subject_selectbox.innerHTML+=`
+                                    <option value="Chemistry"> Chemistry </option>
+                                    ` 
+                                }
+                                if(student.packs.includes("JEE_MAINS_M"))
+                                {
+                                    subject_selectbox.innerHTML+=`
+                                    <option value="Chemistry"> Maths </option>
+                                    ` 
+                                }
+                            }
+                        })
 		/*		var give_test_button = document.createElement('div');
 				give_test_button.setAttribute('class','col-6');
 				give_test_button.innerHTML=`
