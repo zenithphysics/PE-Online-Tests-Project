@@ -207,7 +207,7 @@ aria-hidden="true">
     </div>
     <div class="modal-footer justify-content-center">
       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      <button type="button" class="btn btn-green">Start Test</button>
+      <button type="button" class="btn btn-green" onclick="startTest()">Start Test</button>
     </div>
   </div>
 </div>
@@ -799,6 +799,22 @@ aria-hidden="true">
             {
             modal_title.innerHTML=test_name
             $("#giveTestModal").modal('show');
+            }
+        }
+
+        function startTest()
+        {
+            if(quizTheme1.getAttribute("class")=="theme-selected") // theme 1 is selected
+            {
+                alert("Theme 1 is selected");
+            }
+            else if(quizTheme2.getAttribute("class")=="theme-selected") // Theme 2 is selected
+            {
+                alert("Theme 2 is selected");
+            }
+            else
+            {
+                alert("Please Select a theme");
             }
         }
 		$(document).ready(function() {
