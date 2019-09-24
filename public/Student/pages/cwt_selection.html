@@ -687,6 +687,7 @@
 			chapter_selectbox.innerHTML=`<option value="na"> Not Selected </option>`
 			if(subject!="na") // If subject is selected
 			{
+				console.log(domain_object)
 				subject_object = domain_object[0].Subjects.filter((subject)=>{ return subject.name==subject});
 				subject_object[0].Chapters.forEach((chapter)=>{
 					chapter_selectbox.innerHTML+=`
