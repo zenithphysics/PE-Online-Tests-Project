@@ -419,7 +419,19 @@
 							}
 							}
 				
-                        }})
+						}})
+						
+				var chapter_selectdiv = document.createElement('div');
+				chapter_selectdiv.setAttribute("class","col-12");
+				chapter_selectdiv.innerHTML=`
+				<br>
+				<br>
+				<label> Select Chapter </label>
+				<select id="chapter_selectbox" onchange="chapterChanged()">
+					<option value="na"> Not Specified </option> 
+				</select>
+				`
+				selection_panel.appendChild(chapter_selectdiv);
 		/*		var give_test_button = document.createElement('div');
 				give_test_button.setAttribute('class','col-6');
 				give_test_button.innerHTML=`
