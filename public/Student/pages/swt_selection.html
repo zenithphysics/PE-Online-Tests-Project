@@ -27,6 +27,12 @@
     <!-- ================== END BASE JS ================== -->
 
 </head>
+<style>
+.theme-selected{
+    border:4px solid #1e90ff;
+
+}
+</style>
 <body>
 	<script>
 	
@@ -196,7 +202,7 @@ aria-hidden="true">
       <br>
       <img id="quizTheme1" src="../PE_Resources/theme1.png" width="400" height="250">
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      <img id="quizTheme1" src="../PE_Resources/theme2.png" width="400" height="250">
+      <img id="quizTheme2" src="../PE_Resources/theme2.png" width="400" height="250">
 
     </div>
     <div class="modal-footer justify-content-center">
@@ -243,6 +249,17 @@ aria-hidden="true">
 	var student_packs;
 	var domain_selectbox = document.getElementById("domain_selectbox")
     var selection_panel = document.getElementById("selection_panel");
+    // Theme Selection Working
+    var quizTheme1 = document.getElementById("quizTheme1");
+    var quizTheme2 = document.getElementById("quizTheme2");
+    quizTheme1.addEventListener("click",()=>{
+        quizTheme1.setAttribute("class","theme-selected");
+        quizTheme2.removeAttribute("class","theme-selected");
+    })
+    quizTheme2.addEventListener("click",()=>{
+        quizTheme1.removeAttribute("class","theme-selected");
+        quizTheme2.setAttribute("class","theme-selected");
+    })
 	// All Nameplace holders
 
 		// Sidebar Name Holder
