@@ -189,7 +189,10 @@ aria-hidden="true">
       </button>
     </div>
     <div class="modal-body">
-      ...
+      <h4 id="modalDuration"> </h4>
+      <h4 id="modalCorrectAnswer"> </h4>
+      <h4 id="modalWrongAnswer"> </h4>
+      <hr/>
     </div>
     <div class="modal-footer justify-content-center">
       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -748,7 +751,17 @@ aria-hidden="true">
         function giveTest()
         {
             test_name = document.getElementById("test_name_selectbox").value;
-            modal_title = document.getElementById("modalTestTitle")
+            modal_title = document.getElementById("modalTestTitle");
+            fetch(`${domain_url}/getTestBasicDetails`,{
+                method:"POST",
+                headers:{
+                    authorization:user_access_token,
+                    'Content-type':'application/json'
+                },
+                body:JSON.stringify({test_name:test_name});
+            }).then(res=>res.json()).then(output=>{
+                
+            })
             if(test_name!="na")
             {
             modal_title.innerHTML=test_name
