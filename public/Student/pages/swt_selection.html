@@ -763,6 +763,7 @@ aria-hidden="true">
                 },
                 body:JSON.stringify({test_name:test_name})
             }).then(res=>res.json()).then(output=>{
+                console.log(output);
                 modal_duration.innerHTML=output.duration;
                 modal_correct_marks.innerHTML = output.correct_marks;
                 modal_wrong_marks.innerHTML = output.wrong_marks;
