@@ -259,7 +259,7 @@
                 }).then(response=> response.json()).then(s=>{
 					console.log("Syllabus is ");
 					console.log(s);
-					syllabus = s;
+					syllabus = s.syllabus;
                 })
             
 				if(student.packs.includes("JEE_MAINS_PCM") || student.packs.includes("JEE_MAINS_P") || student.packs.includes("JEE_MAINS_C") || student.packs.includes("JEE_MAINS_M"))
