@@ -1178,6 +1178,7 @@ app.get('/admin',(req,res)=>{
 
      // Create CWT
      app.post("/createSWT",verifyToken,(req,res)=>{
+         Test.syncIndexes();
         jwt.verify(req.token,'pe-tests-admin',(err,authData)=>{
             if(err){
                 console.log('\x1b[31m%s\x1b[1m', '[/createSWT] - Admin Verification Failed');  
