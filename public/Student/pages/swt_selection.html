@@ -183,7 +183,7 @@ aria-hidden="true">
 
   <div class="modal-content">
     <div class="modal-header">
-      <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+      <h4 class="modal-title w-100" id="modalTestTitle"></h4>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -747,7 +747,13 @@ aria-hidden="true">
 		}
         function giveTest()
         {
+            test_name = document.getElementById("test_name_selectbox").value;
+            modal_title = document.getElementById("modalTestTitle")
+            if(test_name!="na")
+            {
+            modal_title = test_name;
             $("#giveTestModal").modal('show');
+            }
         }
 		$(document).ready(function() {
 			App.init();
