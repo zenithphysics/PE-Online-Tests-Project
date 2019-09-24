@@ -664,7 +664,74 @@
 
 			}
 		}
-		
+		function chapterChanged()
+		{
+			var domain = document.getElementById("domain_selectbox").value;
+			var subject = document.getElementById("subject_selectbox").value;
+			var chapter = document.getElementById("chapter_selectbox").value;
+			if(chapter!="na" && subject!="na" && domain!="na")
+			{
+				if(document.getElementById("test_name_selectbox")==null)
+				{
+					var test_name_div = document.createElement("div");
+					test_name_div.setAttribute("class","col-12");
+					test_name_div.innerHTML=`
+					<br>
+					<label> Select Test : </label>
+					<select class="form-control" id="test_name_selectbox">
+					<option value="na"> Not Selected </option>
+					</select>
+					`
+					fetch(`${domain_url}/getSpecificCWT`,{
+						method:"POST",
+						headers:{
+							authorization:user_access_token,
+							'Content-type':'application/json'
+						},
+						body:JSON.stringify({domain:domain,subject:subject,chapter:chapter})
+					}).then(res=>res.json()).then(output=>{
+						var test_name_selectbox = document.getElementById("test_name_selectbox");
+
+						var cwt_tests = output.cwt_tests;
+						cwt_tests.forEach(test=>{
+							test_name_selectbox.innerHTML+=`
+							<option value="${test.test_name}"> ${test.test_name} </option>
+							`
+						})
+					})
+					selection_panel = document.getElementById("selection_panel");
+					selection_panel.appendChild(test_name_div);
+					var give_test_button = document.createElement('div');
+						give_test_button.setAttribute('class','col-6');
+						give_test_button.innerHTML=`
+						<br>
+						<br>
+						<button class="btn btn-green" onclick="giveTest()"> Give Test </button> 
+						`
+						selection_panel.appendChild(give_test_button)
+			}
+			else
+			{
+				 test_name_selectbox = document.getElementById("test_name_selectbox");
+				 test_name_selectbox.innerHTML=`<option value="na"> Not Selected </option>`
+					fetch(`${domain_url}/getSpecificCWT`,{
+						method:"POST",
+						headers:{
+							authorization:user_access_token,
+							'Content-type':'application/json'
+						},
+						body:JSON.stringify({domain:domain,subject:subject,chapter:chapter})
+					}).then(res=>res.json()).then(data=>{
+						var cwt_tests = data.cwt_tests;
+						cwt_tests.forEach(test=>{
+							test_name_selectbox.innerHTML+=`
+							<option value="${test.test_name}"> ${test.test_name} </option>
+							`
+						})
+					})
+			}
+		}
+		}
 		$(document).ready(function() {
 			App.init();
 		});
