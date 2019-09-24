@@ -149,7 +149,7 @@
 			</ol>
 			<!-- end breadcrumb -->
 			<!-- begin page-header -->
-			<h1 class="page-header">Section Wise Test</h1>
+			<h1 class="page-header">Chapter Wise Test</h1>
 			<!-- end page-header -->
 			
 			<!-- begin panel -->
@@ -475,13 +475,25 @@
 				
 						}})
 						
-
+				var chapter_selectdiv = document.createElement('div');
+				chapter_selectdiv.setAttribute("class","col-12");
+				chapter_selectdiv.innerHTML=`
+				<br>
+				<br>
+				<label> Select Chapter </label>
+				<select id="chapter_selectbox" class="form-control" onchange="chapterChanged()">
+					<option value="na"> Not Specified </option> 
+				</select>
+				`
+			
+				selection_panel.appendChild(chapter_selectdiv);
 			
 				/* End of exists if */
 			}
 			else
 			{
-			
+				var chapter_selectbox = document.getElementById("chapter_selectbox");
+				chapter_selectbox.innerHTML=`<option value="na"> Not Selected </option>`;
 				var subject_selectbox = document.getElementById("subject_selectbox");
                     fetch(`${domain_url}/verifyStudent`,{
                         headers:{
@@ -660,7 +672,12 @@
 			chapter_selectbox.innerHTML=`<option value="na"> Not Selected </option>`
 			if(subject!="na") // If subject is selected
 			{
-			
+				subject_object = domain_object[0].Subjects.filter((s)=>{ return s.name==subject});
+				subject_object[0].Chapters.forEach((chapter)=>{
+					chapter_selectbox.innerHTML+=`
+					<option value="${chapter.name}"> ${chapter.name} </option>
+					`
+				})
 
 			}
 		}
