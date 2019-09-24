@@ -659,8 +659,11 @@
 		{
 			subject = document.getElementById("subject_selectbox").value;
 			chapter_selectbox = document.getElementById("chapter_selectbox");
+			if(document.getElementById("test_name_selectbox")!=null)
+			{
 			var test_name_selectbox = document.getElementById("test_name_selectbox");
 			test_name_selectbox.innerHTML=`<option value="na"> Not Selected </option>`
+			}
 			chapter_selectbox.innerHTML=`<option value="na"> Not Selected </option>`
 			if(subject!="na") // If subject is selected
 			{
