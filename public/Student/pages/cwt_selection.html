@@ -294,7 +294,7 @@
 			var domain = document.getElementById("domain_selectbox").value;
 			if(domain!="na")
 			{
-			domain_object = syllabus.filter((domain)=>{return domain.name== domain});
+			domain_object = syllabus.filter((d)=>{return d.name == domain});
 			if(document.getElementById("subject_selectbox")==null)
 			{
 				var subject_div = document.createElement('div');
