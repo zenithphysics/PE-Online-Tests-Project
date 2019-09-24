@@ -679,6 +679,7 @@
 			if(chapter!="na" && subject!="na" && domain!="na")
 			{
 				if(document.getElementById("test_name_selectbox")==null)
+				{
 					var test_name_div = document.createElement("div");
 					test_name_div.setAttribute("class","col-12");
 					test_name_div.innerHTML=`
@@ -709,6 +710,7 @@
 						`
 						selection_panel.appendChild(give_test_button)
 			}
+		}
 		}
 		$(document).ready(function() {
 			App.init();
