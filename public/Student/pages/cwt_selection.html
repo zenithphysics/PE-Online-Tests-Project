@@ -292,6 +292,11 @@
 		
 		function domainChanged(){
 			var domain = document.getElementById("domain_selectbox").value;
+			if(document.getElementById("test_name_selectbox")!=null)
+			{
+			var test_name_selectbox = document.getElementById("test_name_selectbox");
+			test_name_selectbox.innerHTML=`<option value="na"> Not Selected </option>`
+			}
 			if(domain!="na")
 			{
 			domain_object = syllabus.filter((d)=>{return d.name == domain});
