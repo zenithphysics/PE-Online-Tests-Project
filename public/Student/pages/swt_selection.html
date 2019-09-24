@@ -651,8 +651,9 @@
 
 		function subjectChanged()
 		{
-			subject = document.getElementById("subject_selectbox").value;
-            domain = document.getElementById("domain_selectbox").value;
+            var subject = document.getElementById("subject_selectbox").value;
+            var domain = document.getElementById("domain_selectbox").value;
+
 			if(subject!="na") // If subject is selected
 			{
 				if(document.getElementById("test_name_selectbox")==null)
@@ -667,7 +668,23 @@
 					</select>
 					`
 					
-					selection_panel = document.getElementById("selection_panel");
+                    selection_panel = document.getElementById("selection_panel");
+                    fetch(`${domain_url}/getSpecificSWT`,{
+                        method:"POST",
+                        headers:{
+                            authorization:user_access_token,
+                            'Content-type':'application/json'
+                        },
+                        body:JSON.stringify({domain:domain,subject:subject})
+                    }).then(res=>res.json()).then(output=>{
+                        swt_tests = output.swt_tests;
+                        swt_tests.forEach(test=>{
+                            var test_name_selectbox = document.getElementById("test_name_selectbox")
+                            test_name_selectbox.innerHTML+=`
+                            <option value="${test.test_name}"> ${test.test_name} </option>
+                            `
+                        })
+                    })
 					selection_panel.appendChild(test_name_div);
 					var give_test_button = document.createElement('div');
 						give_test_button.setAttribute('class','col-6');
@@ -682,7 +699,22 @@
 			{
 				 test_name_selectbox = document.getElementById("test_name_selectbox");
 				 test_name_selectbox.innerHTML=`<option value="na"> Not Selected </option>`
-					
+				 fetch(`${domain_url}/getSpecificSWT`,{
+                        method:"POST",
+                        headers:{
+                            authorization:user_access_token,
+                            'Content-type':'application/json'
+                        },
+                        body:JSON.stringify({domain:domain,subject:subject})
+                    }).then(res=>res.json()).then(output=>{
+                        swt_tests = output.swt_tests;
+                        swt_tests.forEach(test=>{
+                            var test_name_selectbox = document.getElementById("test_name_selectbox")
+                            test_name_selectbox.innerHTML+=`
+                            <option value="${test.test_name}"> ${test.test_name} </option>
+                            `
+                        })
+                    })	
 			}
 
 			}
