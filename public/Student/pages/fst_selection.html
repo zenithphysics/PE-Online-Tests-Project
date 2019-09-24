@@ -9,7 +9,8 @@
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
-	
+	<!-- MDBOOTSTRAP-->
+	 <link rel="stylesheet" href="../../assets/css/mdbootstrap/mdb.css">
 	<!-- ================== BEGIN BASE CSS STYLE ================== -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
 	<link href="../../assets/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
@@ -25,6 +26,16 @@
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="../../assets/plugins/pace/pace.min.js"></script>
 	<!-- ================== END BASE JS ================== -->
+	<style>
+		.theme-selected{
+				border:4px solid #1e90ff;
+				box-shadow: 0px 0px 5px 0px black;
+			}
+		.question-theme-selected{
+				border:4px solid #1e90ff;
+				box-shadow: 0px 0px 5px 0px black;
+		}
+	</style>
 </head>
 <body>
 	<script>
@@ -171,6 +182,45 @@
 
 				</div>
 			</div>
+			<div class="modal  modal-full-height fade right" id="giveTestModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+			aria-hidden="true">
+			
+			<!-- Add class .modal-full-height and then add class .modal-right (or other classes from list above) to set a position to the modal -->
+			<div class="modal-dialog modal-full-height modal-right modal-lg" role="document">
+			
+			
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <h4 class="modal-title w-100" id="modalTestTitle"></h4>
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+				<div class="modal-body">
+				  <h4 id="modalDuration"> </h4>
+				  <h4 id="modalCorrectMarks"> </h4>
+				  <h4 id="modalWrongMarks"> </h4>
+				  <hr/>
+				  <h5> Select Theme</h5>
+				  <br>
+				  <img id="quizTheme1" src="../PE_Resources/theme1.png" width="400" height="250">
+				  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				  <img id="quizTheme2" src="../PE_Resources/theme2.png" width="400" height="250">
+				  <br>
+				  <br>
+				  <h5> Question Theme</h5>
+				  <br>
+				  <img id="questionTheme1" src="../PE_Resources/question_white_preview.png" width="400" height="150">
+				  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				  <img id="questionTheme2" src="../PE_Resources/question_black_preview.png" width="400" height="150">
+				</div>
+				<div class="modal-footer justify-content-center">
+				  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				  <button type="button" class="btn btn-green" onclick="startTest()">Start Test</button>
+				</div>
+			  </div>
+			</div>
+			</div>
 			<!-- end panel -->
 		</div>
 		<!-- end #content -->
@@ -206,7 +256,28 @@
 	var domain_selectbox = document.getElementById("domain_selectbox")
     var selection_panel = document.getElementById("selection_panel");
 	// All Nameplace holders
+// Theme Selection Working
+var quizTheme1 = document.getElementById("quizTheme1");
+    var quizTheme2 = document.getElementById("quizTheme2");
+    var questionTheme1 = document.getElementById("questionTheme1");
+    var questionTheme2 = document.getElementById("questionTheme2");
 
+    quizTheme1.addEventListener("click",()=>{
+        quizTheme1.setAttribute("class","theme-selected");
+        quizTheme2.removeAttribute("class","theme-selected");
+    })
+    quizTheme2.addEventListener("click",()=>{
+        quizTheme1.removeAttribute("class","theme-selected");
+        quizTheme2.setAttribute("class","theme-selected");
+    })
+     questionTheme1.addEventListener("click",()=>{
+        questionTheme1.setAttribute("class","theme-selected");
+        questionTheme2.removeAttribute("class","theme-selected");
+    })
+    questionTheme2.addEventListener("click",()=>{
+        questionTheme2.setAttribute("class","theme-selected");
+        questionTheme1.removeAttribute("class","theme-selected");
+    })
 		// Sidebar Name Holder
 		var sidebarNameHolder = document.getElementById("sidebarNameHolder");
 		// Logout functionality
@@ -360,6 +431,53 @@
 			}
 		}
 		}
+		function giveTest()
+        {
+            test_name = document.getElementById("test_name_selectbox").value;
+            modal_duration = document.getElementById("modalDuration");
+            modal_correct_marks = document.getElementById("modalCorrectMarks");
+            modal_wrong_marks = document.getElementById("modalWrongMarks");
+            modal_title = document.getElementById("modalTestTitle");
+            fetch(`${domain_url}/getTestBasicDetails`,{
+                method:"POST",
+                headers:{
+                    authorization:user_access_token,
+                    'Content-type':'application/json'
+                },
+                body:JSON.stringify({test_name:test_name})
+            }).then(res=>res.json()).then(output=>{
+                console.log(output);
+                var test_duration =output.basic_details.duration;
+                var correct_marks  = output.basic_details.correct_marks;
+                var wrong_marks = output.basic_details.wrong_marks;
+                modal_duration.innerHTML=`<i class="fa fa-hourglass" aria-hidden="true"> Duration : ${test_duration} Hrs</i>`    
+                modal_correct_marks.innerHTML=`<i class="fa fa-check" aria-hidden="true"> Marks for Correct Answer : ${correct_marks}</i>`
+                modal_wrong_marks.innerHTML=`<i class="fa fa-times" aria-hidden="true"> Marks for Correct Answer : ${wrong_marks}</i>`
+
+;
+            })
+            if(test_name!="na")
+            {
+            modal_title.innerHTML=test_name
+            $("#giveTestModal").modal('show');
+            }
+        }
+
+		function startTest()
+        {
+            if(quizTheme1.getAttribute("class")=="theme-selected") // theme 1 is selected
+            {
+                alert("Theme 1 is selected");
+            }
+            else if(quizTheme2.getAttribute("class")=="theme-selected") // Theme 2 is selected
+            {
+                alert("Theme 2 is selected");
+            }
+            else
+            {
+                alert("Please Select a theme");
+            }
+        }
 		$(document).ready(function() {
 			App.init();
 		});
