@@ -252,7 +252,6 @@ topic_details: // Topic Wise Stats
 ,
 taken_by:{
     type:Array,
-    unique:true
 },
 DLevel_details:{
     DLevel1_count:{ // No. of questions in DLevel 1
