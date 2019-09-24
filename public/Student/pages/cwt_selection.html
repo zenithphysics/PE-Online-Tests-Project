@@ -330,8 +330,7 @@
                                     subject_selectbox.innerHTML=`
                                     <option value="Physics"> Physics </option>
                                     <option value="Chemistry"> Chemistry </option>
-                                    <option value="Maths"> Maths </option>
-                                    `
+                                    <option value="Maths"> Maths </option>`
                                 }
                             	else
 								{
@@ -388,6 +387,16 @@
                             }
                             if(domain="NEET")
                             {
+								if(student.packs.includes("NEET_PCB"))
+								{
+									subject_selectbox.innerHTML+=`
+									<option value="Physics"> Physics </option>
+									<option value="Chemistry"> Chemistry </option>
+									<option value="Biology"> Biology </option>
+                                    `
+								}
+								else
+								{
                                 if(student.packs.includes("NEET_P"))
                                 {
                                     subject_selectbox.innerHTML+=`
@@ -400,12 +409,13 @@
                                     <option value="Chemistry"> Chemistry </option>
                                     ` 
                                 }
-                                if(student.packs.includes("NEET_M"))
+                                if(student.packs.includes("NEET_B"))
                                 {
                                     subject_selectbox.innerHTML+=`
-                                    <option value="Chemistry"> Maths </option>
+                                    <option value="Biology"> Biology </option>
                                     ` 
-                                }
+								}
+							}
                             }
                         }})
 		/*		var give_test_button = document.createElement('div');
