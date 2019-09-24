@@ -294,7 +294,6 @@
 			var domain = document.getElementById("domain_selectbox").value;
 			if(domain!="na")
 			{
-			console.log(syllabus)
 			domain_object = syllabus.filter((domain)=>{return domain.name== domain});
 			if(document.getElementById("subject_selectbox")==null)
 			{
@@ -302,11 +301,11 @@
 				subject_div.setAttribute("class","col-6");
 				subject_div.innerHTML=`
 				<label> Select Subject: </label>
-						<select id="subject_selectbox" class="form-control" onchange="subject_change">
+						<select id="subject_selectbox" class="form-control" onchange="subjectChanged()">
 						<option value="na"> Not Specified </option>  
                 </select>
                 `
-                
+				
                 selection_panel.appendChild(subject_div)
                 subject_selectbox = document.getElementById("subject_selectbox");
                     fetch(`${domain_url}/verifyStudent`,{
@@ -677,6 +676,23 @@
 							}
 				
 						}})
+			}
+		}
+		// Subject changed
+		function subjectChanged()
+		{
+			subject = document.getElementById("subject_selectbox").value;
+			chapter_selectbox = document.getElementById("chapter_slectbox");
+			chapter_selectbox.innerHTML=`<option value="na"> Not Selected </option>`
+			if(subject!="na") // If subject is selected
+			{
+				subject_object = domain_object[0].Subjects.filter((subject)=>{ return subject.name==subject});
+				subject_object[0].Chapters.forEach((chapter)=>{
+					chapter_selectbox.innerHTML+=`
+					<option value="${chapter.name}"> ${chapter.name} </option>
+					`
+				})
+
 			}
 		}
 		}
