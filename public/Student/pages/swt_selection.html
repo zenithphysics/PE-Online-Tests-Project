@@ -652,7 +652,7 @@
 		function subjectChanged()
 		{
 			subject = document.getElementById("subject_selectbox").value;
-		
+            domain = document.getElementById("domain_selectbox").value;
 			if(subject!="na") // If subject is selected
 			{
 				if(document.getElementById("test_name_selectbox")==null)
@@ -666,23 +666,7 @@
 					<option value="na"> Not Selected </option>
 					</select>
 					`
-					fetch(`${domain_url}/getSpecificCWT`,{
-						method:"POST",
-						headers:{
-							authorization:user_access_token,
-							'Content-type':'application/json'
-						},
-						body:JSON.stringify({domain:domain,subject:subject,chapter:chapter})
-					}).then(res=>res.json()).then(output=>{
-						var test_name_selectbox = document.getElementById("test_name_selectbox");
-
-						var cwt_tests = output.cwt_tests;
-						cwt_tests.forEach(test=>{
-							test_name_selectbox.innerHTML+=`
-							<option value="${test.test_name}"> ${test.test_name} </option>
-							`
-						})
-					})
+					
 					selection_panel = document.getElementById("selection_panel");
 					selection_panel.appendChild(test_name_div);
 					var give_test_button = document.createElement('div');
@@ -698,21 +682,7 @@
 			{
 				 test_name_selectbox = document.getElementById("test_name_selectbox");
 				 test_name_selectbox.innerHTML=`<option value="na"> Not Selected </option>`
-					fetch(`${domain_url}/getSpecificCWT`,{
-						method:"POST",
-						headers:{
-							authorization:user_access_token,
-							'Content-type':'application/json'
-						},
-						body:JSON.stringify({domain:domain,subject:subject,chapter:chapter})
-					}).then(res=>res.json()).then(data=>{
-						var cwt_tests = data.cwt_tests;
-						cwt_tests.forEach(test=>{
-							test_name_selectbox.innerHTML+=`
-							<option value="${test.test_name}"> ${test.test_name} </option>
-							`
-						})
-					})
+					
 			}
 
 			}
