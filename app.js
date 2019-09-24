@@ -1358,7 +1358,7 @@ app.get('/admin',(req,res)=>{
             {
                 console.log('\x1b[32m%s\x1b[1m', '[/getSpecificFST] - Admin Verification Successful');  
                 console.log('\x1b[33m%s\x1b[1m', '[/getSpecificFST] - Feteching All SWT Tests...');  
-                Test.find({$and:[{"domain":req.body.domain},{"test_type":"FST"}]},{"test_name":1
+                Test.find({$and:[{"domain":req.body.domain},{"test_type":"FST"}]},{"test_name":1,"duration":1
                 },(err,tests)=>{
                     if(err)
                     {
@@ -1387,7 +1387,7 @@ app.get('/admin',(req,res)=>{
             {
                 console.log('\x1b[32m%s\x1b[1m', '[/getSpecificCWT] - Student Verification Successful');  
                 console.log('\x1b[33m%s\x1b[1m', '[/getSpecificCWT] - Feteching CWT Tests...');  
-                Test.find({$and:[{"domain":req.body.domain},{"test_type":"CWT"},{"subject":req.body.subject},{"chapter":req.body.chapter}]},{"test_name":1
+                Test.find({$and:[{"domain":req.body.domain},{"test_type":"CWT"},{"subject":req.body.subject},{"chapter":req.body.chapter}]},{"test_name":1,"duration":1
                 },(err,tests)=>{
                     if(err)
                     {
@@ -1399,6 +1399,35 @@ app.get('/admin',(req,res)=>{
                     {
                         console.log('\x1b[32m%s\x1b[1m', '[/getSpecificCWT] - Fetched CWT');
                         res.json({is_verified:true,is_successful:true,cwt_tests:tests})  
+                    }
+                })
+            }
+    })})
+    // getSpecificSWT
+    app.post("/getSpecificSWT",verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-student',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/getSpecificSWT] - Student Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+                    
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/getSpecificSWT] - Student Verification Successful');  
+                console.log('\x1b[33m%s\x1b[1m', '[/getSpecificSWT] - Feteching SWT Tests...');  
+                Test.find({$and:[{"domain":req.body.domain},{"test_type":"SWT"},{"subject":req.body.subject}]},{"test_name":1,"duration":1
+                },(err,tests)=>{
+                    if(err)
+                    {
+                        console.log('\x1b[31m%s\x1b[1m', '[/getSpecificSWT] - Failed to fetch SWts');
+                        console.log(err)  
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/getSpecificSWT] - Fetched SWTs');
+                        res.json({is_verified:true,is_successful:true,swt_tests:tests})  
                     }
                 })
             }
