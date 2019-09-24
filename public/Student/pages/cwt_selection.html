@@ -689,7 +689,6 @@
 					<option value="na"> Not Selected </option>
 					</select>
 					`
-					var test_name_selectbox = document.getElementById("test_name_selectbox");
 					fetch(`${domain_url}/getSpecificCWT`,{
 						method:"POST",
 						headers:{
@@ -698,6 +697,8 @@
 						},
 						body:JSON.stringify({domain:domain,subject:subject,chapter:chapter})
 					}).then(res=>res.json()).then(output=>{
+						var test_name_selectbox = document.getElementById("test_name_selectbox");
+
 						var cwt_tests = output.cwt_tests;
 						cwt_tests.forEach(test=>{
 							test_name_selectbox.innerHTML+=`
