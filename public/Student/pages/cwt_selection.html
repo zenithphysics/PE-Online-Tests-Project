@@ -727,8 +727,8 @@
 							'Content-type':'application/json'
 						},
 						body:JSON.stringify({domain:domain,subject:subject,chapter:chapter})
-					}).then(res=>res.json()).then(output=>{
-						var cwt_tests = output.cwt_tests;
+					}).then(res=>res.json()).then(data=>{
+						var cwt_tests = data.cwt_tests;
 						cwt_tests.forEach(test=>{
 							test_name_selectbox.innerHTML+=`
 							<option value="${test.test_name}"> ${test.test_name} </option>
