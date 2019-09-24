@@ -296,7 +296,8 @@
 				subject_div.setAttribute("class","col-6");
 				subject_div.innerHTML=`
 				<label> Select Subject: </label>
-                        <select id="subject_selectbox" class="form-control">  
+						<select id="subject_selectbox" class="form-control" onchange="subject_change">
+						<option value="na"> Not Specified </option>  
                 </select>
                 `
                 
