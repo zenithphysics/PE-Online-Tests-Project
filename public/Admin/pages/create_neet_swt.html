@@ -821,7 +821,7 @@
 									let h = new Headers();
 									h.append('authorization',user_access_token);
 									h.append('Accept','application/json');
-									let req = new Request(`${domain_url}/createCWT`,{
+									let req = new Request(`${domain_url}/createSWT`,{
 										method:"POST",
 										headers:h,
 										body:formData
