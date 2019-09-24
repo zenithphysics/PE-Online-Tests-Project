@@ -475,36 +475,17 @@
 					<option value="na"> Not Specified </option> 
 				</select>
 				`
+			
 				selection_panel.appendChild(chapter_selectdiv);
-		/*		var give_test_button = document.createElement('div');
+				var give_test_button = document.createElement('div');
 				give_test_button.setAttribute('class','col-6');
 				give_test_button.innerHTML=`
 				<br>
 				<br>
 				<button class="btn btn-green" onclick="giveTest()"> Give Test </button> 
 				`
-				selection_panel.appendChild(give_test_button);
-				var test_name_selectbox = document.getElementById("test_name_selectbox");
-				fetch(`${domain_url}/getSpecificFST`,{
-					method:"POST",
-					headers:{
-						authorization:user_access_token,
-						'Content-Type':'application/json'
-					},
-					body:JSON.stringify({domain:domain})
-				}).then(response=>response.json()).then(data=>{
-					if(data.is_successful)
-					{	
-						var test_name_selectbox = document.getElementById(`test_name_selectbox`);
-						data.fst_tests.forEach(test=>{
-							test_name_selectbox.innerHTML+=`<option value="${test.test_name}"> ${test.test_name}</option>`
-						})						
-					}
-					else
-					{
-						alert("Failed to fetch")
-					}
-				}) */
+				selection_panel.appendChild(give_test_button)
+				/* End of exists if */
 			}
 			else
 			{
