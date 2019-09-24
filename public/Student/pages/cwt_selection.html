@@ -326,16 +326,16 @@
                             navNameHolder.innerHTML=pe_username;
                             if(domain=="JEE_MAINS")
                             {
+								subject_selectbox.innerHTML=`<option value="na"> Not Selected </option>`
                                 if(student.packs.includes("JEE_MAINS_PCM"))
                                 {
-                                    subject_selectbox.innerHTML=`
+                                    subject_selectbox.innerHTML+=`
                                     <option value="Physics"> Physics </option>
                                     <option value="Chemistry"> Chemistry </option>
                                     <option value="Maths"> Maths </option>`
                                 }
                             	else
 								{
-									subject_selectbox.innerHTML="";
 									if(student.packs.includes("JEE_MAINS_P"))
 									{
 										subject_selectbox.innerHTML+=`
@@ -358,9 +358,11 @@
 							}
                             if(domain=="JEE_ADVANCED")
                             {
+								subject_selectbox.innerHTML=`<option value="na"> Not Selected </option>`
+
                                 if(student.packs.includes("JEE_ADVANACED_PCM"))
                                 {
-                                    subject_selectbox.innerHTML=`
+                                    subject_selectbox.innerHTML+=`
                                     <option value="Physics"> Physics </option>
                                     <option value="Chemistry"> Chemistry </option>
                                     <option value="Maths"> Maths </option>` 
@@ -389,9 +391,10 @@
                             }
                             if(domain=="NEET")
                             {
+								subject_selectbox.innerHTML=`<option value="na"> Not Selected </option>`
 								if(student.packs.includes("NEET_PCB"))
 								{
-									subject_selectbox.innerHTML=`
+									subject_selectbox.innerHTML+=`
 									<option value="Physics"> Physics </option>
 									<option value="Chemistry"> Chemistry </option>
 									<option value="Biology"> Biology </option>
@@ -418,6 +421,46 @@
                                     ` 
 								}
 							}
+							}
+							if(domain=="STATE_BOARD")
+							{
+								subject_selectbox.innerHTML=`<option value="na"> Not Selected </option>`
+								if(student.packs.includes("STATE_BOARD_PCMB"))
+								{
+									subject_selectbox.innerHTML+=`
+									<option value="Physics"> Physics </option>
+									<option value="Chemistry"> Chemistry </option>
+									<option value="Maths"> Maths </option>
+									<option value="Biology"> Biology </option>
+									`
+								}
+								else
+								{
+									if(student_packs.includes("STATE_BOARD_PCM") || student_packs.includes("STATE_BOARD_P"))
+									{
+										subject_selectbox.innerHTML+=`
+										<option value="Physics"> Physics </option>
+										`
+									}
+									if(student_packs.includes("STATE_BOARD_PCM") || student_packs.includes("STATE_BOARD_C"))
+									{
+										subject_selectbox.innerHTML+=`
+										<option value="Chemistry"> Chemistry </option>
+										`
+									}
+									if(student_packs.includes("STATE_BOARD_PCM") || student_packs.includes("STATE_BOARD_M"))
+									{
+										subject_selectbox.innerHTML+=`
+										<option value="Maths"> Maths </option>
+										`
+									}
+									if(student_packs.includes("STATE_BOARD_PCB") || student_packs.includes("STATE_BOARD_B"))
+									{
+										subject_selectbox.innerHTML+=`
+										<option value="Biology"> Biology </option>
+										`
+									}
+								}
 							}
 				
 						}})
