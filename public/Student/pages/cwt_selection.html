@@ -199,7 +199,8 @@
 	<script>
 	var pe_username;
     var pe_email;
-    var syllabus;
+	var syllabus;
+	var domain_object;
 	var user_access_token = localStorage.getItem("student_token");
 	var domain_url = "https://photonecademy.com/tests"
     var user_sidebar = document.getElementById("user_sidebar");
@@ -290,6 +291,9 @@
 		
 		function domainChanged(){
 			var domain = document.getElementById("domain_selectbox").value;
+			if(domain!="na")
+			{
+			domain_object = syllabus.filter(domain=>{return domain.name==domain});
 			if(document.getElementById("subject_selectbox")==null)
 			{
 				var subject_div = document.createElement('div');
@@ -672,6 +676,7 @@
 				
 						}})
 			}
+		}
 		}
 		$(document).ready(function() {
 			App.init();
