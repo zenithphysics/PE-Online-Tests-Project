@@ -327,33 +327,33 @@
                             {
                                 if(student.packs.includes("JEE_MAINS_PCM"))
                                 {
-                                    subject_selectbox.innerHTML+=`
+                                    subject_selectbox.innerHTML=`
                                     <option value="Physics"> Physics </option>
                                     <option value="Chemistry"> Chemistry </option>
                                     <option value="Maths"> Maths </option>
                                     `
                                 }
-                            else
-							{
-                                if(student.packs.includes("JEE_MAINS_P"))
-                                {
-                                    subject_selectbox.innerHTML+=`
-                                    <option value="Physics"> Physics </option>
-                                    `
-                                }
-                                if(student.packs.includes("JEE_MAINS_C"))
-                                {
-                                    subject_selectbox.innerHTML+=`
-                                    <option value="Chemistry"> Chemistry </option>
-                                    ` 
-                                }
-                                if(student.packs.includes("JEE_MAINS_M"))
-                                {
-                                    subject_selectbox.innerHTML+=`
-                                    <option value="Chemistry"> Maths </option>
-                                    ` 
-                                }
-                            }
+                            	else
+								{
+									if(student.packs.includes("JEE_MAINS_P"))
+									{
+										subject_selectbox.innerHTML+=`
+										<option value="Physics"> Physics </option>
+										`
+									}
+									if(student.packs.includes("JEE_MAINS_C"))
+									{
+										subject_selectbox.innerHTML+=`
+										<option value="Chemistry"> Chemistry </option>
+										` 
+									}
+									if(student.packs.includes("JEE_MAINS_M"))
+									{
+										subject_selectbox.innerHTML+=`
+										<option value="Chemistry"> Maths </option>
+										` 
+									}
+                            	}
                             }
                             if(domain="JEE_ADVANCED")
                             {
