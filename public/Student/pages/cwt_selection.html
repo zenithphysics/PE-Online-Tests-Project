@@ -256,9 +256,10 @@
                     headers:{
                         authorization:user_access_token
                     }
-                }).then(response=> response.json()).then(syllabus=>{
-                    console.log("Syllabus is");
-                    console.log(syllabus);
+                }).then(response=> response.json()).then(s=>{
+					console.log("Syllabus is ");
+					console.log(s);
+					syllabus = s;
                 })
             
 				if(student.packs.includes("JEE_MAINS_PCM") || student.packs.includes("JEE_MAINS_P") || student.packs.includes("JEE_MAINS_C") || student.packs.includes("JEE_MAINS_M"))
