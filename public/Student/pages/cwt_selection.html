@@ -489,7 +489,6 @@
 			}
 			else
 			{
-				var subject_selectbox = document.getElementById("subject_selectbox");
 			 /*	fetch(`${domain_url}/getSpecificFST`,{
 					method:"POST",
 					headers:{
@@ -510,8 +509,7 @@
 						alert("Failed to fetch")
 					}
 				}) */
-				selection_panel.appendChild(subject_div)
-                subject_selectbox = document.getElementById("subject_selectbox");
+				var subject_selectbox = document.getElementById("subject_selectbox");
                     fetch(`${domain_url}/verifyStudent`,{
                         headers:{
                             method:"GET",
