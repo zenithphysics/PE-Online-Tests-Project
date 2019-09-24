@@ -510,6 +510,169 @@
 						alert("Failed to fetch")
 					}
 				}) */
+				selection_panel.appendChild(subject_div)
+                subject_selectbox = document.getElementById("subject_selectbox");
+                    fetch(`${domain_url}/verifyStudent`,{
+                        headers:{
+                            method:"GET",
+                            authorization:user_access_token
+                        }
+                    }).then(response=>response.json()).then(data=>{
+                        console.log("is token verified? "+data.is_verified);
+                        if(data.is_verified==false)
+                        {
+                            document.location.href=`${domain_url}`;
+                        }
+                        if(data.is_verified==true)
+                        {
+                            console.log(data);
+                            var student = data.student;
+                            pe_username = student.studentID;
+                            pe_email = student.email;
+                            console.log("The Logged in user is :"+pe_username);
+                            console.log("The logged in users email id is :"+pe_email);
+                            sidebarNameHolder.innerHTML=pe_username;
+                            navNameHolder.innerHTML=pe_username;
+                            if(domain=="JEE_MAINS")
+                            {
+								subject_selectbox.innerHTML=`<option value="na"> Not Selected </option>`
+                                if(student.packs.includes("JEE_MAINS_PCM"))
+                                {
+                                    subject_selectbox.innerHTML+=`
+                                    <option value="Physics"> Physics </option>
+                                    <option value="Chemistry"> Chemistry </option>
+                                    <option value="Maths"> Maths </option>`
+                                }
+                            	else
+								{
+									if(student.packs.includes("JEE_MAINS_P"))
+									{
+										subject_selectbox.innerHTML+=`
+										<option value="Physics"> Physics </option>
+										`
+									}
+									if(student.packs.includes("JEE_MAINS_C"))
+									{
+										subject_selectbox.innerHTML+=`
+										<option value="Chemistry"> Chemistry </option>
+										` 
+									}
+									if(student.packs.includes("JEE_MAINS_M"))
+									{
+										subject_selectbox.innerHTML+=`
+										<option value="Chemistry"> Maths </option>
+										` 
+									}
+								}
+							}
+                            if(domain=="JEE_ADVANCED")
+                            {
+								subject_selectbox.innerHTML=`<option value="na"> Not Selected </option>`
+
+                                if(student.packs.includes("JEE_ADVANACED_PCM"))
+                                {
+                                    subject_selectbox.innerHTML+=`
+                                    <option value="Physics"> Physics </option>
+                                    <option value="Chemistry"> Chemistry </option>
+                                    <option value="Maths"> Maths </option>` 
+                                }
+                                else
+                                {
+                                if(student.packs.includes("JEE_ADVANCED_P"))
+                                {
+                                    subject_selectbox.innerHTML+=`
+                                    <option value="Physics"> Physics </option>
+                                    `
+                                }
+                                if(student.packs.includes("JEE_ADVANCED_C"))
+                                {
+                                    subject_selectbox.innerHTML+=`
+                                    <option value="Chemistry"> Chemistry </option>
+                                    ` 
+                                }
+                                if(student.packs.includes("JEE_ADVANCED_M"))
+                                {
+                                    subject_selectbox.innerHTML+=`
+                                    <option value="Maths"> Maths </option>
+                                    ` 
+                                }
+                                }
+                            }
+                            if(domain=="NEET")
+                            {
+								subject_selectbox.innerHTML=`<option value="na"> Not Selected </option>`
+								if(student.packs.includes("NEET_PCB"))
+								{
+									subject_selectbox.innerHTML+=`
+									<option value="Physics"> Physics </option>
+									<option value="Chemistry"> Chemistry </option>
+									<option value="Biology"> Biology </option>
+                                    `
+								}
+								else
+								{
+                                if(student.packs.includes("NEET_P"))
+                                {
+                                    subject_selectbox.innerHTML+=`
+                                    <option value="Physics"> Physics </option>
+                                    `
+                                }
+                                if(student.packs.includes("NEET_C"))
+                                {
+                                    subject_selectbox.innerHTML+=`
+                                    <option value="Chemistry"> Chemistry </option>
+                                    ` 
+                                }
+                                if(student.packs.includes("NEET_B"))
+                                {
+                                    subject_selectbox.innerHTML+=`
+                                    <option value="Biology"> Biology </option>
+                                    ` 
+								}
+							}
+							}
+							if(domain=="STATE_BOARD")
+							{
+								subject_selectbox.innerHTML=`<option value="na"> Not Selected </option>`
+								if(student.packs.includes("STATE_BOARD_PCMB"))
+								{
+									subject_selectbox.innerHTML+=`
+									<option value="Physics"> Physics </option>
+									<option value="Chemistry"> Chemistry </option>
+									<option value="Maths"> Maths </option>
+									<option value="Biology"> Biology </option>
+									`
+								}
+								else
+								{
+									if(student_packs.includes("STATE_BOARD_PCM") || student_packs.includes("STATE_BOARD_P"))
+									{
+										subject_selectbox.innerHTML+=`
+										<option value="Physics"> Physics </option>
+										`
+									}
+									if(student_packs.includes("STATE_BOARD_PCM") || student_packs.includes("STATE_BOARD_C"))
+									{
+										subject_selectbox.innerHTML+=`
+										<option value="Chemistry"> Chemistry </option>
+										`
+									}
+									if(student_packs.includes("STATE_BOARD_PCM") || student_packs.includes("STATE_BOARD_M"))
+									{
+										subject_selectbox.innerHTML+=`
+										<option value="Maths"> Maths </option>
+										`
+									}
+									if(student_packs.includes("STATE_BOARD_PCB") || student_packs.includes("STATE_BOARD_B"))
+									{
+										subject_selectbox.innerHTML+=`
+										<option value="Biology"> Biology </option>
+										`
+									}
+								}
+							}
+				
+						}})
 			}
 		}
 		$(document).ready(function() {
