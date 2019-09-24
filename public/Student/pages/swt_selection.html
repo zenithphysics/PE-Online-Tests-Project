@@ -761,7 +761,7 @@ aria-hidden="true">
                     authorization:user_access_token,
                     'Content-type':'application/json'
                 },
-                body:JSON.stringify({test_name:test_name});
+                body:JSON.stringify({test_name:test_name})
             }).then(res=>res.json()).then(output=>{
                 modal_duration.innerHTML=output.duration;
                 modal_correct_marks.innerHTML = output.correct_marks;
