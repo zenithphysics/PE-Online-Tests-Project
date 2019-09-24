@@ -290,7 +290,6 @@
 		
 		function domainChanged(){
 			var domain = document.getElementById("domain_selectbox").value;
-	
 			if(document.getElementById("subject_selectbox")==null)
 			{
 				var subject_div = document.createElement('div');
@@ -334,8 +333,8 @@
                                     <option value="Maths"> Maths </option>
                                     `
                                 }
-                                else
-                                {
+                            else
+							{
                                 if(student.packs.includes("JEE_MAINS_P"))
                                 {
                                     subject_selectbox.innerHTML+=`
