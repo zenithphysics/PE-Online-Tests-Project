@@ -293,16 +293,16 @@
 	
 			if(document.getElementById("subject_selectbox")==null)
 			{
-				var subject_selectbox = document.createElement('div');
-				subject_selectbox.setAttribute("class","col-6");
-				subject_selectbox.innerHTML=`
+				var subject_div = document.createElement('div');
+				subject_div.setAttribute("class","col-6");
+				subject_div.innerHTML=`
 				<label> Select Subject: </label>
                         <select id="subject_selectbox" class="form-control">  
                 </select>
                 `
                 
-                selection_panel.appendChild(subject_selectbox)
-                
+                selection_panel.appendChild(subject_div)
+                subject_selectbox = document.getElementById("subject_selectbox");
                     fetch(`${domain_url}/verifyStudent`,{
                         headers:{
                             method:"GET",
