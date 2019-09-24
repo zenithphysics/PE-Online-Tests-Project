@@ -1460,7 +1460,7 @@ app.get('/admin',(req,res)=>{
                     else
                     {
                         console.log('\x1b[32m%s\x1b[1m', '[/getTestBasicDetails] - Fetched basic test details');
-                        res.json({is_verified:true,is_successful:true,basic_details:tests})  
+                        res.json({is_verified:true,is_successful:true,basic_details:tests[0]})  
                     }
                 })
             }
