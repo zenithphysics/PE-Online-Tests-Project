@@ -686,9 +686,10 @@
 					<br>
 					<label> Select Test : </label>
 					<select class="form-control" id="test_name_selectbox">
-					<option value="Not Selected">
+					<option value="na"> Not Selected </option>
 					</select>
 					`
+					var test_name_selectbox = document.getElementById("test_name_selectbox");
 					fetch(`${domain_url}/getSpecificCWT`,{
 						method:"POST",
 						headers:{
@@ -697,7 +698,12 @@
 						},
 						body:JSON.stringify({domain:domain,subject:subject,chapter:chapter})
 					}).then(res=>res.json()).then(output=>{
-						console.log(output);
+						var cwt_tests = output.cwt_tests;
+						cwt_tests.forEach(test=>{
+							test_name_selectbox.innerHTML+=`
+							<option value="${test.test_name}"> ${test.test_name} </option>
+							`
+						})
 					})
 					selection_panel = document.getElementById("selection_panel");
 					selection_panel.appendChild(test_name_div);
@@ -709,6 +715,26 @@
 						<button class="btn btn-green" onclick="giveTest()"> Give Test </button> 
 						`
 						selection_panel.appendChild(give_test_button)
+			}
+			else
+			{
+				var test_name_selectbox = document.getElementById("test_name_selectbox");
+				test_name_selectbox.innerHTML=`<option value="na"> Not Selected </option>`;
+					fetch(`${domain_url}/getSpecificCWT`,{
+						method:"POST",
+						headers:{
+							authorization:user_access_token,
+							'Content-type':'application/json'
+						},
+						body:JSON.stringify({domain:domain,subject:subject,chapter:chapter})
+					}).then(res=>res.json()).then(output=>{
+						var cwt_tests = output.cwt_tests;
+						cwt_tests.forEach(test=>{
+							test_name_selectbox.innerHTML+=`
+							<option value="${test.test_name}"> ${test.test_name} </option>
+							`
+						})
+					})
 			}
 		}
 		}
