@@ -1296,6 +1296,35 @@ app.get('/admin',(req,res)=>{
                 })
             }
     })})
+    // GetSpecificCWT
+    app.post("/getSpecificCWT",verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-student',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/getSpecificCWT] - Student Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+                    
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/getSpecificCWT] - Student Verification Successful');  
+                console.log('\x1b[33m%s\x1b[1m', '[/getSpecificCWT] - Feteching CWT Tests...');  
+                Test.find({$and:[{"domain":req.body.domain},{"test_type":"CWT"},{"subject":req.body.subject},{"chapter":req.body.chapter}]},{"test_name":1
+                },(err,tests)=>{
+                    if(err)
+                    {
+                        console.log('\x1b[31m%s\x1b[1m', '[/getSpecificCWT] - Failed to fetch CWTs');
+                        console.log(err)  
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/getSpecificCWT] - Fetched CWT');
+                        res.json({is_verified:true,is_successful:true,cwt_tests:tests})  
+                    }
+                })
+            }
+    })})
     //getTest
 
     app.post(`/getTest`,verifyToken,(req,res)=>{

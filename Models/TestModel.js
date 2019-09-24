@@ -25,7 +25,7 @@ const testSchema = mongoose.Schema({
         required:false
   },
   chapter:{
-      type:String,
+      type:Strin{g,
       required:false
   },
   topic:{
