@@ -158,6 +158,8 @@
             
             var test_name = getUrlParameter('test_name');
             console.log(`test name from parameter ${test_name}`);
+            var questionTheme = getUrlParameter('question_theme')
+            console.log(`question theme is ${questionTheme}`)
             fetch(`${domain_url}/verifyStudent`,{
                 method:"GET",
                 headers:{
