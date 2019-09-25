@@ -1516,7 +1516,6 @@ app.get('/admin',(req,res)=>{
             }
     })
     })
-   
     // Modify Test
 
     app.post('/modifyTest',verifyToken,(req,res)=>{
@@ -1570,6 +1569,23 @@ app.get('/admin',(req,res)=>{
                         res.json({is_verified:true,is_successful:true})
                     }
                 })
+            }
+    })
+    })
+
+    // Start User Test
+    app.post("/startUserTest",verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-student',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/startUserTest] - Student Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/startUserTest] - Admin Verification Successful');  
+                console.log('\x1b[33m%s\x1b[1m', '[/startUserTest] - Verifying Packs');  
+                
             }
     })
     })
