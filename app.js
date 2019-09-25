@@ -1583,9 +1583,28 @@ app.get('/admin',(req,res)=>{
             }
             else
             {
-                console.log('\x1b[32m%s\x1b[1m', '[/startUserTest] - Admin Verification Successful');  
-                console.log('\x1b[33m%s\x1b[1m', '[/startUserTest] - Verifying Packs');  
-                
+                console.log('\x1b[32m%s\x1b[1m', '[/startUserTest] - Student Verification Successful');  
+                user_selected_theme = req.body.user_selected_theme;
+                user_question_theme = req.body.user_question_theme;
+                studentID = req.body.studentID;
+                test_name = req.body.test_name;
+                // Check if the user has already given test
+                Test.findOne({$and:[{"test_name":test_name,"taken_by":studentID}]},(err,test)=>{
+                    if(err)
+                    {
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else if(test==null)
+                    {
+                        // Student has not given the test before
+                        res.json({is_verified:true,is_successful:true})
+                    }
+                    else
+                    {
+                        // Student has given the test before
+                        res.json({is_verified:true,is_successful:false,given_before:true})
+                    }
+                })
             }
     })
     })
