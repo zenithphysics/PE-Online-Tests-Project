@@ -1604,7 +1604,7 @@ app.get('/admin',(req,res)=>{
                             }
                             else
                             {
-                                res.redirect("./Student/pages/testTheme1.html");
+                                res.json({is_verified:true,is_successful:true,given_before:false})
 
                             }
                         })
