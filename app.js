@@ -1604,7 +1604,7 @@ app.get('/admin',(req,res)=>{
                             }
                             else
                             {
-                                res.redirect(`./Student/pages/testTheme1.html`);
+                                res.redirect(`https://photonecademy.com/tests/Student/pages/testTheme1.html`);
 
                             }
                         })
