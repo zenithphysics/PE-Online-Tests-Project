@@ -277,12 +277,12 @@ fetch(`${domain_url}/verifyStudent`,{
 }).then(res => res.json()).then(data=>{
     if(data.is_verified)
     {
-        document.location.href=`${domain_url}`;
+        pe_username = data.student.studentID;
+
     }
     else
     {
-        pe_username = data.student.studentID;
-        
+        document.location.href=`${domain_url}`;
     }
 })
 </script>
