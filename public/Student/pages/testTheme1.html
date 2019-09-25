@@ -29,7 +29,7 @@
             <a class="btn btn-primary mr-1 mt-1 mb-1 mathsbtn"><b>Mathematics</b></a>
         </div>
         <div class="d-flex flex-column thinBar text-light" style="font-size: 1vw;width:31%;">
-            <span class="d-flex mb-1 mr-2">Candidate Name &nbsp;<span>: [Your Name]</span></span>
+            <span class="d-flex mb-1 mr-2">Candidate Name &nbsp;<span id="navbar-student-name"></span></span>
             <span class="d-flex mb-1 mr-3"> Remaining Time : &nbsp;
                 <span class="remainCounter">[00:00:00]</span>
             </span>
@@ -257,7 +257,7 @@
 <script>
 var pe_username;
 var domain_url = "https://photonecademy.com/tests"
-
+var navbar_student_name = document.getElementById("navbar-student-name");
 var user_access_token = localStorage.getItem("student_token");
 var urlParams = new URLSearchParams(window.location.search);
 function getUrlParameter(name) {
@@ -278,7 +278,7 @@ fetch(`${domain_url}/verifyStudent`,{
     if(data.is_verified)
     {
         pe_username = data.student.studentID;
-
+        navbar_student_name.innerHTML=`: ${pe_username}`
     }
     else
     {
