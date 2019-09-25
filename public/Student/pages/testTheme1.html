@@ -254,6 +254,20 @@
             </div>
         </div>
     </div>
+<script>
+var urlParams = new URLSearchParams(window.location.search);
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
+
+var test_name = getUrlParameter('test_name');
+var studentID = getUrlParameter('studentID');
+console.log(`studentID from paramter ${studentID}`);
+console.log(`test name from parameter ${test_name}`);
+</script>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
