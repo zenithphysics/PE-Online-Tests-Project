@@ -1601,11 +1601,11 @@ app.get('/admin',(req,res)=>{
                             if(err || test==null)
                             {
                                 res.json({is_verified:true,is_successful:false})
-                            
                             }
                             else
                             {
-                                res.render('https://photonecademy.com/tests/Student/pages/test_theme1.html')
+                                res.redirect(`./Student/pages/testTheme1.html/?test_name=${test.test_name},studentID=${studentID}`);
+                                
                             }
                         })
                     }
