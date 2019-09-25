@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<style>
+    .radio-btn {
+        border: 1px solid #079ad9;
+        width: 98%;
+        padding-top: .2vw;
+        font-size: 1.2vw;
+        padding-bottom: .3vw;
+        text-align: center;
+        font-weight: bold;
+        cursor: pointer;
+        /* border-radius: 40%; */
+        border-radius: 5px;
+        box-shadow: 0 .5vw #00023d;
+    }
+
+    /* .btn{
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    } */
+    .radio-btn:active {
+        /* border:1px solid red; */
+        background-color: #008ff8;
+        box-shadow: 0 5px #00023d;
+        transform: translateY(.2vw);
+        /* background-position: right center !important; */
+    }
+
+    .radio-btn input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    @media (max-width:629px) {
+        .radio-btn {
+            width: 100%;
+            font-size: 2.5vw;
+        }
+        .TopTime{
+            font-size: 2vw;
+        }
+        .QuestionImg{
+            width: 100%;
+        }
+    }
+
+    .bg-radio-btn {
+        background-image: linear-gradient(to right, #00c6ff 0%, #0072ff 51%, #00c6ff 100%);
+        transform: scale(1.2) !important;
+        color: white;
+    }
+</style>
+
+<body>
+    <div class="d-flex bg-dark justify-content-center align-items-center header">
+        <div class="d-flex mt-1 mb-1 ml-2 Logo">
+            <a href="index.html">
+                <img src="assets/images/photon logo.png" alt="" srcset="" style="width: 70%;height: auto;">
+            </a>
+        </div>
+        <div class="d-flex flex-1 TopTime mr-5 justify-content-end">
+            <span class="text-light mr-3">Student Name :&nbsp;
+                <span class="text-light"> [Your Name]</span>
+            </span>
+            <span class="text-light">Remaining Time :&nbsp;
+                <span class="remainCounter text-light"> [00:00:00]</span>
+            </span>
+        </div>
+        <span class="d-flex slider text-light mr-3" style="flex: -1;"><i class="fa fa-bars text-right"></i></span>
+    </div>
+    <div class="container-fluid mainContainer h-100" style="position:fixed">
+        <div class="d-flex flex-row">
+            <div class="col-lg-8 pl-2 pr-2 mt-1 leftSide">
+                <div class="d-flex flex-row btnrow2 justify-content-center">
+                    <a href="#" class="btn m-1 active phybtn">Physics</a>
+                    <a href="#" class="btn m-1 chembtn">Chemistry</a>
+                    <a href="#" class="btn m-1 biobtn">Biology</a>
+                </div>
+                <div class="row Qwrapper">
+                    <div class="w-100 p-2 Questions">
+
+                    </div>
+                </div>
+                <div class="d-flex flex-row flex-wrap justify-content-center btnrow2 Qfooter mt-2 mb-1">
+                    <button class="btn flex-1 m-1 prevbtn fsbtns"> &lt;&lt; Previous</button>
+                    <button class="btn flex-1 m-1 saveAnsbtn">Save & Next</button>
+                    <button class="btn flex-1 m-1 reviewbtn">Review Later</button>
+                    <button class="btn flex-1 m-1 clearAns">Clear Selection</button>
+                    <button class="btn flex-1 m-1 nextbtn fsbtns">Next >></button>
+                    <div class="d-flex text-center">
+                        <button class="btn flex-1 m-1 prevbtn respbtns justify-content-center"> &lt;&lt; Previous</button>
+                        <button class="btn flex-1 m-1 nextbtn respbtns justify-content-center">Next >></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 ml-2 p-0 pr-3 pl-1 rightSide">
+                <h5 class="text-center">Question[s] Navigation:</h5>
+                <div class="QuestionNo row mt-2 pt-2 ml-1" style="overflow: auto;height: 60%;">
+                    <table class="QueNo h-50 w-100">
+                        <tbody class="QnOwrapper">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-2 ml-3">
+                    <table class="table table-light table-borderless legends">
+                        <tbody>
+                            <tr>
+                                <td><div class="attempted"></div><span>Answered</span></td>
+                                <td><div class="unattempted"></div><span>Not Answered</span></td>
+                            </tr>
+                            <tr>
+                                <td><div class="review"></div><span>Marked for Review</span></td>
+                                <td><div class="unseen"></div><span>Not Visited</span></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="pb-1"><div class="Ansreview"></div><span>Answered & Marked for Review</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="rightBottomBtns" style="position: absolute;bottom: 0px;width: 98%;margin-bottom: .7vh;">
+                    <a href="instructions2.html" class="w-100 mt-3 btn bg-light text-dark"
+                        style="border:1px solid #ccc;">Instructions</a>
+                    <a class="w-100 mt-1 btn bg-light text-dark" style="border:1px solid #ccc;">Questions</a>
+                    <a href="summary.html" class="w-100 mt-1 btn bg-light text-dark"
+                        style="border:1px solid #ccc;">Submit Finished Test</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+<script src="assets/js/showQuestion2.js"></script>
+<!-- <script src="assets/js/sideHide.js"></script> -->
+
+</html>

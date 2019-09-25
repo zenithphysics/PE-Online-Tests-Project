@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+    <div class="hider">
+        <i class="fa fa-angle-right fa-2x bg-dark text-light">
+        </i>
+    </div>
+    <div class="d-flex align-items-center bg-dark p-1">
+        <div class="d-flex ml-2 logo">
+            <a href="index.html">
+                <img src="assets/images/photon logo.png" alt="Quiz logo" class="w-100">
+            </a>
+        </div>
+        <div class="d-flex flex-1 align-items-center text-center thinBar text-light ml-auto mr-auto">
+            <a class="btn btn-primary mr-1 mt-1 mb-1 phybtn"><b>Physics</b></a>
+            <a class="btn btn-primary mr-1 mt-1 mb-1 chembtn"><b>Chemistry</b></a>
+            <a class="btn btn-primary mr-1 mt-1 mb-1 mathsbtn"><b>Mathematics</b></a>
+        </div>
+        <div class="d-flex flex-column thinBar text-light" style="font-size: 1vw;width:31%;">
+            <span class="d-flex mb-1 mr-2">Candidate Name &nbsp;<span>: [Your Name]</span></span>
+            <span class="d-flex mb-1 mr-3"> Remaining Time : &nbsp;
+                <span class="remainCounter">[00:00:00]</span>
+            </span>
+        </div>
+        <div class="d-flex text-light align-self-center align-items-center justify-content-center ml-auto topVertical" style="font-size: 1vw;margin-right: 13%;">
+            <div class="d-flex p-2 align-self-center topVertical" style="border: 3px solid white;">
+                <i class="fa fa-user text-light" style="font-size:1.2vw;"></i>
+            </div>
+            <div class="d-flex flex-column pl-3">
+                <span>Candidate Name&nbsp;</span>
+                <span>Remaining Time</span>
+            </div>
+            <div class="d-flex flex-column pr-3">
+                <span class="text-warning">[Your Name]</span>
+                <span class="remainCounter text-warning">[00:00:00]</span>
+            </div>
+        </div>
+        <div class="d-flex mr-4">
+            <i class="fa fa-bars text-light toggleTop"></i>
+        </div>
+    </div>
+    <div class="p-1 d-flex justify-content-between bg-deepyellow topBar">
+        <div class="d-flex ml-3">
+            <span class="mr-3 text-light" style="font-size: 2vw;"><b>JEE-Main</b></span>
+        </div>
+        <div class="d-flex align-self-center subjectbtns">
+            <a class="btn btn-primary mr-1 phybtn active"><b>Physics</b></a>
+            <a class="btn btn-primary mr-1 chembtn"><b>Chemistry</b></a>
+            <a class="btn btn-primary mr-1 mathsbtn"><b>Mathematics</b></a>
+        </div>
+        <div class="d-flex mr-4 align-items-center langSelect">
+            <span class="text-right text-light mr-2">Paper Language</span>
+            <select class="custom-select" style="width: 10vw;">
+                <option value="eng">English</option>
+                <!-- <option value="hindi">Hindi</option> -->
+                <!-- <option value="mar">Marathi</option> -->
+            </select>
+        </div>
+    </div>
+    <div>
+        <div class="container-fluid wrapper mt-3 ml-1">
+            <div class="row">
+                <div class="col-lg-8 pt-2 w-100 QWrapper">
+                    <div class="row w-100">
+                        <div class="card questionsCard">
+                            <div class="card-body p-0">
+                                <div class="questions text-center" style="overflow: auto;">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2 mt-4 btnrow w-100 d-flex justify-content-center">
+                        <button class="btn btn-success saveAnsbtn"><b>Save & Next</b></button>
+                        <button class="btn bg-deepyellow text-light saveAnsReview"><b>Save & Mark For
+                                Review</b>
+                        </button>
+                        <button class="btn clearAns" style="border: 1px solid #ccc;"><b>Clear
+                                Response</b>
+                        </button>
+                        <button class="btn btn-primary reviewbtn"><b>Mark For Review & Next</b></button>
+                    </div>
+                    <div class="row d-flex btnrow w-100 justify-content-center" style="left:0;">
+                        <button class="btn backbtn mt-3">
+                            <b>&lt;&lt; Back</b> 
+                        </button>
+                        <button class="btn nextbtn mt-3"><b>Next >></b></button>
+                    </div>
+                </div>
+                <div class="col-lg-4 p-0 Qselect">
+                    <div class="questionNo row m-0 pl-2 pr-1">
+                        <table class="queNo h-50 w-100 text-center">
+                            <tbody>
+                                <tr>
+                                    <td class="btn quebtn nvisit" data-div="1">1</td>
+                                    <td class="btn quebtn nvisit" data-div="2">2</td>
+                                    <td class="btn quebtn nvisit" data-div="3">3</td>
+                                    <td class="btn quebtn nvisit" data-div="4">4</td>
+                                    <td class="btn quebtn nvisit" data-div="5">5</td>
+                                    <td class="btn quebtn nvisit" data-div="6">6</td>
+                                    <td class="btn quebtn nvisit" data-div="7">7</td>
+                                    <td class="btn quebtn nvisit" data-div="8">8</td>
+                                    <td class="btn quebtn nvisit" data-div="9">9</td>
+                                    <td class="btn quebtn nvisit" data-div="10">10</td>
+                                </tr>
+                                <tr>
+                                    <td class="btn quebtn nvisit" data-div="11">11</td>
+                                    <td class="btn quebtn nvisit" data-div="12">12</td>
+                                    <td class="btn quebtn nvisit" data-div="13">13</td>
+                                    <td class="btn quebtn nvisit" data-div="14">14</td>
+                                    <td class="btn quebtn nvisit" data-div="15">15</td>
+                                    <td class="btn quebtn nvisit" data-div="16">16</td>
+                                    <td class="btn quebtn nvisit" data-div="17">17</td>
+                                    <td class="btn quebtn nvisit" data-div="18">18</td>
+                                    <td class="btn quebtn nvisit" data-div="19">19</td>
+                                    <td class="btn quebtn nvisit" data-div="20">20</td>
+                                </tr>
+                                <tr>
+                                    <td class="btn quebtn nvisit" data-div="21">21</td>
+                                    <td class="btn quebtn nvisit" data-div="22">22</td>
+                                    <td class="btn quebtn nvisit" data-div="23">23</td>
+                                    <td class="btn quebtn nvisit" data-div="24">24</td>
+                                    <td class="btn quebtn nvisit" data-div="25">25</td>
+                                    <td class="btn quebtn nvisit" data-div="26">26</td>
+                                    <td class="btn quebtn nvisit" data-div="27">27</td>
+                                    <td class="btn quebtn nvisit" data-div="28">28</td>
+                                    <td class="btn quebtn nvisit" data-div="29">29</td>
+                                    <td class="btn quebtn nvisit" data-div="30">30</td>
+                                </tr>
+                                <tr>
+                                    <td class="btn quebtn nvisit" data-div="31">31</td>
+                                    <td class="btn quebtn nvisit" data-div="32">32</td>
+                                    <td class="btn quebtn nvisit" data-div="33">33</td>
+                                    <td class="btn quebtn nvisit" data-div="34">34</td>
+                                    <td class="btn quebtn nvisit" data-div="35">35</td>
+                                    <td class="btn quebtn nvisit" data-div="36">36</td>
+                                    <td class="btn quebtn nvisit" data-div="37">37</td>
+                                    <td class="btn quebtn nvisit" data-div="38">38</td>
+                                    <td class="btn quebtn nvisit" data-div="39">39</td>
+                                    <td class="btn quebtn nvisit" data-div="40">40</td>
+                                </tr>
+                                <tr>
+                                    <td class="btn quebtn nvisit" data-div="41">41</td>
+                                    <td class="btn quebtn nvisit" data-div="42">42</td>
+                                    <td class="btn quebtn nvisit" data-div="43">43</td>
+                                    <td class="btn quebtn nvisit" data-div="44">44</td>
+                                    <td class="btn quebtn nvisit" data-div="45">45</td>
+                                    <td class="btn quebtn nvisit" data-div="46">46</td>
+                                    <td class="btn quebtn nvisit" data-div="47">47</td>
+                                    <td class="btn quebtn nvisit" data-div="48">48</td>
+                                    <td class="btn quebtn nvisit" data-div="49">49</td>
+                                    <td class="btn quebtn nvisit" data-div="50">50</td>
+                                </tr>
+                                <tr>
+                                    <td class="btn quebtn nvisit" data-div="51">51</td>
+                                    <td class="btn quebtn nvisit" data-div="52">52</td>
+                                    <td class="btn quebtn nvisit" data-div="53">53</td>
+                                    <td class="btn quebtn nvisit" data-div="54">54</td>
+                                    <td class="btn quebtn nvisit" data-div="55">55</td>
+                                    <td class="btn quebtn nvisit" data-div="56">56</td>
+                                    <td class="btn quebtn nvisit" data-div="57">57</td>
+                                    <td class="btn quebtn nvisit" data-div="58">58</td>
+                                    <td class="btn quebtn nvisit" data-div="59">59</td>
+                                    <td class="btn quebtn nvisit" data-div="60">60</td>
+                                </tr>
+                                <tr>
+                                    <td class="btn quebtn nvisit" data-div="61">61</td>
+                                    <td class="btn quebtn nvisit" data-div="62">62</td>
+                                    <td class="btn quebtn nvisit" data-div="63">63</td>
+                                    <td class="btn quebtn nvisit" data-div="64">64</td>
+                                    <td class="btn quebtn nvisit" data-div="65">65</td>
+                                    <td class="btn quebtn nvisit" data-div="66">66</td>
+                                    <td class="btn quebtn nvisit" data-div="67">67</td>
+                                    <td class="btn quebtn nvisit" data-div="68">68</td>
+                                    <td class="btn quebtn nvisit" data-div="69">69</td>
+                                    <td class="btn quebtn nvisit" data-div="70">70</td>
+                                </tr>
+                                <tr>
+                                    <td class="btn quebtn nvisit" data-div="71">71</td>
+                                    <td class="btn quebtn nvisit" data-div="72">72</td>
+                                    <td class="btn quebtn nvisit" data-div="73">73</td>
+                                    <td class="btn quebtn nvisit" data-div="74">74</td>
+                                    <td class="btn quebtn nvisit" data-div="75">75</td>
+                                    <td class="btn quebtn nvisit" data-div="76">76</td>
+                                    <td class="btn quebtn nvisit" data-div="77">77</td>
+                                    <td class="btn quebtn nvisit" data-div="78">78</td>
+                                    <td class="btn quebtn nvisit" data-div="79">79</td>
+                                    <td class="btn quebtn nvisit" data-div="80">80</td>
+                                </tr>
+                                <tr>
+                                    <td class="btn quebtn nvisit" data-div="81">81</td>
+                                    <td class="btn quebtn nvisit" data-div="82">82</td>
+                                    <td class="btn quebtn nvisit" data-div="83">83</td>
+                                    <td class="btn quebtn nvisit" data-div="84">84</td>
+                                    <td class="btn quebtn nvisit" data-div="85">85</td>
+                                    <td class="btn quebtn nvisit" data-div="86">86</td>
+                                    <td class="btn quebtn nvisit" data-div="87">87</td>
+                                    <td class="btn quebtn nvisit" data-div="88">88</td>
+                                    <td class="btn quebtn nvisit" data-div="89">89</td>
+                                    <td class="btn quebtn nvisit" data-div="90">90</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="legend mt-3">
+                        <table class="table table-light table-bordered" style="margin: 0 auto;">
+                            <thead>
+                                <tr>
+                                    <td class="p-0 w-25">ICON</td>
+                                    <td class="p-0">Tag</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="p-0"><span class="btn legend-icons p-1" style="display: inline-block; background-image: url(../../assets/images/Logo1.png) !important;
+                                        background-size: 110% 105%;background-position: center;"></span></td>
+                                    <td class="p-0 pt-2"><span>Not Visited</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0"><span class="btn legend-icons visited"></span></td>
+                                    <td class="p-0 pt-2"><span>Not Answered</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0"><span class="btn legend-icons answered"></span></td>
+                                    <td class="p-0 pt-2"><span>Answered</span></td>
+                                </tr>
+                                 <tr>
+                                    <td class="p-0"><span class="btn legend-icons remark ml-1"></span></td>
+                                    <td class="p-0 pt-2"><span>Marked for review</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0 pt-2"><span class="btn legend-icons saveNremark ml-1"></span></td>
+                                    <td class="p-0 pt-2"><span>Answered & Marked for review<br>(will be considered for evaluation)</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-success submit mb-0 w-50 mt-5"><b>Submit Test</b></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+</script>
+<script src="assets/js/showQuestion.js"></script>
+<script src="assets/js/sideHide.js"></script>
+
+</html>
