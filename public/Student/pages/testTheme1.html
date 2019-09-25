@@ -255,6 +255,10 @@
         </div>
     </div>
 <script>
+var pe_username;
+var domain_url = "https://photonecademy.com/tests"
+
+var user_access_token = localStorage.getItem("student_token");
 var urlParams = new URLSearchParams(window.location.search);
 function getUrlParameter(name) {
     name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -264,9 +268,23 @@ function getUrlParameter(name) {
 };
 
 var test_name = getUrlParameter('test_name');
-var studentID = getUrlParameter('studentID');
-console.log(`studentID from paramter ${studentID}`);
 console.log(`test name from parameter ${test_name}`);
+fetch(`${domain_url}/verifyStudent`,{
+    method:"GET",
+    headers:{
+        authorization:user_access_token
+    }
+}).then(res => res.json()).then(data=>{
+    if(data.is_verified)
+    {
+        document.location.href=`${domain_url}`;
+    }
+    else
+    {
+        pe_username = data.student.studentID;
+        
+    }
+})
 </script>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
