@@ -278,6 +278,7 @@ fetch(`${domain_url}/verifyStudent`,{
     if(data.is_verified)
     {
         pe_username = data.student.studentID;
+        console.log(`Username is ${pe_username}`);
         navbar_student_name.innerHTML=`: ${pe_username}`
     }
     else
