@@ -467,6 +467,7 @@ var quizTheme1 = document.getElementById("quizTheme1");
         {
 			var selected_theme;
 			var question_theme;
+			var error=0;
 			var test_name = document.getElementById("test_name_selectbox").value;
             if(quizTheme1.getAttribute("class")=="theme-selected") // theme 1 is selected
             {
@@ -478,7 +479,8 @@ var quizTheme1 = document.getElementById("quizTheme1");
             }
             else
             {
-                alert("Please Select a theme");
+				alert("Please Select a theme");
+				error=1;
 			}
 			if(questionTheme1.getAttribute("class")=="question-theme-selected")
 			{
@@ -491,40 +493,49 @@ var quizTheme1 = document.getElementById("quizTheme1");
 			else
 			{
 				alert("Please Select A Question Theme");
+				error=1;
 			}
 
-			fetch(`${domain_url}/startUserTest`,{
-				method:"POST",
-				headers:{
-					authorization:user_access_token,
-					'Content-type':'application/json'
-				},
-				body:JSON.stringify({studentID:pe_username,test_name:test_name})
-			}).then(res=>res.json()).then(output=>{
-				console.log(output)
-				if(output.is_successful)
-				{
-					if(output.given_before)
-					{
-						alert("You have already given this test");
-					}
-					else
-					{
-						if(question_theme=="Theme1")
+			if(error==0)
+			{
+					fetch(`${domain_url}/startUserTest`,{
+						method:"POST",
+						headers:{
+							authorization:user_access_token,
+							'Content-type':'application/json'
+						},
+						body:JSON.stringify({studentID:pe_username,test_name:test_name})
+					}).then(res=>res.json()).then(output=>{
+						console.log(output)
+						if(output.is_successful)
 						{
-						document.location.href=`${domain_url}/Student/pages/testTheme1.html?test_name=${test_name}`;
+							if(output.given_before)
+							{
+								alert("You have already given this test");
+							}
+							else
+							{
+								if(selected_theme=="Theme1")
+								{
+								
+									document.location.href=`${domain_url}/Student/pages/testTheme1.html?test_name=${test_name},question_theme=${question_theme}`;			
+								}
+								else
+								{
+								document.location.href=`${domain_url}/Student/pages/testTheme2.html?test_name=${test_name},question_theme=${question_theme}`;
+								}
+							}
 						}
 						else
 						{
-						document.location.href=`${domain_url}/Student/pages/testTheme2.html?test_name=${test_name}`;
+							alert("Failed to start test")
 						}
-					}
-				}
-				else
-				{
-					alert("Failed to start test")
-				}
-			})
+					})
+			}
+			else
+			{
+				alert("Please Select Themes")
+			}
         }
 		$(document).ready(function() {
 			App.init();
