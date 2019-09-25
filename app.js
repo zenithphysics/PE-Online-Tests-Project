@@ -1604,7 +1604,7 @@ app.get('/admin',(req,res)=>{
                             }
                             else
                             {
-                                res.redirect(`./Student/pages/testTheme1.html?test_name=${test.test_name},studentID=${studentID}`);
+                                res.redirect(`./Student/pages/testTheme1.html`);
 
                             }
                         })
