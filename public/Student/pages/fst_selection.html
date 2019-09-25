@@ -499,7 +499,7 @@ var quizTheme1 = document.getElementById("quizTheme1");
 					authorization:user_access_token,
 					'Content-type':'application/json'
 				},
-				body:JSON.stringify({studentID:pe_username,test_name:test_name,user_selected_theme:selected_theme,user_question_theme:question_theme})
+				body:JSON.stringify({studentID:pe_username,test_name:test_name})
 			}).then(res=>res.json()).then(output=>{
 				console.log(output)
 				if(output.is_successful)

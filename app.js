@@ -1584,8 +1584,6 @@ app.get('/admin',(req,res)=>{
             else
             {
                 console.log('\x1b[32m%s\x1b[1m', '[/startUserTest] - Student Verification Successful');  
-                user_selected_theme = req.body.user_selected_theme;
-                user_question_theme = req.body.user_question_theme;
                 studentID = req.body.studentID;
                 test_name = req.body.test_name;
                 // Check if the user has already given test
