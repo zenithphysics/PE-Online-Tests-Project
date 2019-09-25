@@ -510,7 +510,14 @@ var quizTheme1 = document.getElementById("quizTheme1");
 					}
 					else
 					{
+						if(question_theme=="Theme1")
+						{
 						document.location.href=`${domain_url}/Student/pages/testTheme1.html?test_name=${test_name}`;
+						}
+						else
+						{
+						document.location.href=`${domain_url}/Student/pages/testTheme2.html?test_name=${test_name}`;
+						}
 					}
 				}
 				else

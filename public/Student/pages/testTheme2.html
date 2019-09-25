@@ -73,7 +73,7 @@
         </div>
         <div class="d-flex flex-1 TopTime mr-5 justify-content-end">
             <span class="text-light mr-3">Student Name :&nbsp;
-                <span class="text-light"> [Your Name]</span>
+                <span class="text-light" id="navbar-student-name"></span>
             </span>
             <span class="text-light">Remaining Time :&nbsp;
                 <span class="remainCounter text-light"> [00:00:00]</span>
@@ -142,6 +142,40 @@
             </div>
         </div>
     </div>
+    <script>
+            var pe_username;
+            var domain_url = "https://photonecademy.com/tests"
+            var navbar_student_name = document.getElementById("navbar-student-name");
+            console.log(navbar_student_name);
+            var user_access_token = localStorage.getItem("student_token");
+            var urlParams = new URLSearchParams(window.location.search);
+            function getUrlParameter(name) {
+                name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                var results = regex.exec(location.search);
+                return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+            };
+            
+            var test_name = getUrlParameter('test_name');
+            console.log(`test name from parameter ${test_name}`);
+            fetch(`${domain_url}/verifyStudent`,{
+                method:"GET",
+                headers:{
+                    authorization:user_access_token
+                }
+            }).then(res => res.json()).then(data=>{
+                if(data.is_verified)
+                {
+                    pe_username = data.student.studentID;
+                    console.log(`Username is ${pe_username}`);
+                    navbar_student_name.innerHTML=`: ${pe_username}`
+                }
+                else
+                {
+                    document.location.href=`${domain_url}`;
+                }
+            })
+            </script>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
