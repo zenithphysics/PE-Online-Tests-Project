@@ -1,4 +1,4 @@
 module.exports = {
-    database:'mongodb+srv://Prafulla:prafulla1998@pe-cluster-0wsad.mongodb.net/node-test?retryWrites=true&w=majority',
+    database:'mongodb://Prafulla:prafulla1998@photonecademy.com:27017/pe-tests-portal',
     secret:'yoursecret'
 }
