@@ -1605,7 +1605,7 @@ app.get('/admin',(req,res)=>{
                             }
                             else
                             {
-                                res.json({is_verified:true,is_successful:true,given_before:false,test:test})
+                                res.render('https://photonecademy.com/tests/Student/pages/test_theme1.html')
                             }
                         })
                     }
