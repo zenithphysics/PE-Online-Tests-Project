@@ -465,18 +465,60 @@ var quizTheme1 = document.getElementById("quizTheme1");
 
 		function startTest()
         {
+			var selected_theme;
+			var question_theme;
+			var test_name = document.getElementById("test_name_selectbox").value;
             if(quizTheme1.getAttribute("class")=="theme-selected") // theme 1 is selected
             {
-                alert("Theme 1 is selected");
+                selected_theme="Theme1";
             }
             else if(quizTheme2.getAttribute("class")=="theme-selected") // Theme 2 is selected
             {
-                alert("Theme 2 is selected");
+                selected_theme="Theme2";
             }
             else
             {
                 alert("Please Select a theme");
-            }
+			}
+			if(questionTheme1.getAttribute("class")=="question-theme-selected")
+			{
+				questionTheme1="questionWhite";
+			}
+			else if(questionTheme2.getAttribute("class")=="question-theme-selected")
+			{
+				questionTheme2="questionBlack";
+			}
+			else
+			{
+				alert("Please Select A Question Theme");
+			}
+
+			fetch(`${domain_url}/startUserTest`,{
+				method:"POST",
+				headers:{
+					authorization:user_access_token,
+					'Content-type':'application/json'
+				},
+                user_question_theme = req.body.user_question_theme;
+				body:JSON.stringify({studentID:pe_username,test_name:test_name,user_selected_theme:selected_theme,user_question_theme:question_theme})
+			}).then(res=>res.json()).then(output=>{
+				console.log(output)
+				if(output.is_successful)
+				{
+					if(output.given_before)
+					{
+						alert("You have already given this test");
+					}
+					else
+					{
+						
+					}
+				}
+				else
+				{
+					alert("Failed to start test")
+				}
+			})
         }
 		$(document).ready(function() {
 			App.init();
