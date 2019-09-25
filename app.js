@@ -1600,7 +1600,7 @@ app.get('/admin',(req,res)=>{
                         Test.findOne({"test_name":test_name},(err,test)=>{
                             if(err || test==null)
                             {
-                                res.json(is_verified:true,is_successful:false)
+                                res.json({is_verified:true,is_successful:false})
                             
                             }
                             else
