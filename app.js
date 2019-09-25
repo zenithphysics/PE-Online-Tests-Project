@@ -1597,7 +1597,17 @@ app.get('/admin',(req,res)=>{
                     else if(test==null)
                     {
                         // Student has not given the test before
-                        res.json({is_verified:true,is_successful:true,given_before:false,test:test[0]})
+                        Test.findOne({"test_name":test_name},(err,test)=>{
+                            if(err || test==null)
+                            {
+                                res.json(is_verified:true,is_successful:false)
+                            
+                            }
+                            else
+                            {
+                                res.json({is_verified:true,is_successful:true,given_before:false,test:test[0]})
+                            }
+                        })
                     }
                     else
                     {
