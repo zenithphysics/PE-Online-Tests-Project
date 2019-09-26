@@ -227,6 +227,7 @@ $(function () {
     });
     // Question selection 
     $(".quebtn").click(function (e) {
+        console.log("Question button clicked!!")
         e.preventDefault();
         viewdiv = $(this).attr("data-div");
         if (!$(this).hasClass("answered")) {
