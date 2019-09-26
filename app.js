@@ -1656,6 +1656,7 @@ app.get('/admin',(req,res)=>{
                                     }
                                     else
                                     {
+                                        pack_valid=1;
                                         // Step 1 : Identify Type of Test
                                         var test_type = test.test_type;
                                         if(test_type=="FST")
@@ -1663,8 +1664,183 @@ app.get('/admin',(req,res)=>{
                                             // Check domain
                                             if(test.domain=="NEET")
                                             {
-                                                
+                                                if(student.packs.includes("NEET_PCB")==false)
+                                                {
+                                                    pack_valid=0;
+                                                }
                                             }
+                                            else if(test.domain=="JEE_MAINS")
+                                            {
+                                                if(student.packs.includes("JEE_MAINS_PCM")==false)
+                                                {
+                                                    pack_valid=0;
+                                                }
+                                            }
+                                            else if(test.domain=="JEE_ADVANCED")
+                                            {
+                                                if(student.packs.includes("JEE_ADVANCED_PCM")==false)
+                                                {
+                                                    pack_valid=0;
+                                                }
+                                            }
+                                            else if(test.domain=="STATE_ENTRANCES")
+                                            {
+                                                if(student.packs.includes("STATE_ENTRANCES_PCMB")==false && student.packs.includes("STATE_ENTRANCES_PCM")==false && student.packs.includes("STATE_ENTRANCES_PCB")==false) 
+                                                {
+                                                    pack_valid=0;
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            // NEET CWT OR SWT
+                                            if(test.domain=="NEET")
+                                            {
+                                                if(test.subject=="Physics")
+                                                {
+                                                    if(student.packs.includes("NEET_PCB")==false && student.packs.includes("NEET_P")==false)
+                                                    {
+                                                        pack_valid=0;
+                                                    }
+                                                }
+                                                else if(test.subject=="Chemistry")
+                                                {
+                                                    if(student.packs.includes("NEET_PCB")==false && student.packs.includes("NEET_C")==false)
+                                                    {
+                                                        pack_valid=0;
+                                                    }
+                                                }
+                                                else if(test.subject=="Biology")
+                                                {
+                                                    if(student.packs.includes("NEET_PCB")==false && student.packs.includes("NEET_B")==false)
+                                                    {
+                                                        pack_valid=0;
+                                                    }
+                                                }
+                                          }
+                                          else if(test.domain=="JEE_MAINS")
+                                          {
+                                            if(test.subject=="Physics")
+                                            {
+                                                if(student.packs.includes("JEE_MAINS_PCM")==false && student.packs.includes("JEE_MAINS_P")==false)
+                                                {
+                                                    pack_valid=0;
+                                                }
+                                            }
+                                            else if(test.subject=="Chemistry")
+                                            {
+                                                if(student.packs.includes("JEE_MAINS_PCM")==false && student.packs.includes("JEE_MAINS_C")==false)
+                                                {
+                                                    pack_valid=0;
+                                                }
+                                            }
+                                            else if(test.subject=="Maths")
+                                            {
+                                                if(student.packs.includes("JEE_MAINS_PCM")==false && student.packs.includes("JEE_MAINS_M")==false)
+                                                {
+                                                    pack_valid=0;
+                                                }
+                                            }
+                                          }
+                                          else if(test.domain=="JEE_ADVANCED")
+                                          {
+                                            if(test.subject=="Physics")
+                                            {
+                                                if(student.packs.includes("JEE_ADVANCED_PCM")==false && student.packs.includes("JEE_ADVANCED_P")==false)
+                                                {
+                                                    pack_valid=0;
+                                                }
+                                            }
+                                            else if(test.subject=="Chemistry")
+                                            {
+                                                if(student.packs.includes("JEE_ADVANCED_PCM")==false && student.packs.includes("JEE_ADVANCED_C")==false)
+                                                {
+                                                    pack_valid=0;
+                                                }
+                                            }
+                                            else if(test.subject=="Maths")
+                                            {
+                                                if(student.packs.includes("JEE_ADVANCED_PCM")==false && student.packs.includes("JEE_ADVANCED_M")==false)
+                                                {
+                                                    pack_valid=0;
+                                                }
+                                            }
+                                          }
+                                          else if(test.domain=="STATE_ENTRANCES")
+                                          {
+                                            if(test.subject=="Physics")
+                                            {
+                                                if(student.packs.includes("STATE_ENTRANCES_PCMB")==false && student.packs.includes("STATE_ENTRANCES_PCB")==false && student.packs.includes("STATE_ENTRANCES_PCM")==false && student.packs.includes("STATE_ENTRANCES_P")==false)
+                                                {
+                                                    pack_valid=0;
+                                                }
+                                            }
+                                            else if(test.subject=="Chemistry")
+                                            {
+                                                if(student.packs.includes("STATE_ENTRANCES_PCMB")==false && student.packs.includes("STATE_ENTRANCES_PCB")==false && student.packs.includes("STATE_ENTRANCES_PCM")==false && student.packs.includes("STATE_ENTRANCES_C")==false)
+                                                {
+                                                    pack_valid=0;
+                                                }
+                                            }
+                                            else if(test.subject=="Maths")
+                                            {
+                                                if(student.packs.includes("STATE_ENTRANCES_PCMB")==false && student.packs.includes("STATE_ENTRANCES_PCM")==false && student.packs.includes("STATE_ENTRANCES_M")==false)
+                                                {
+                                                    pack_valid=0;
+                                                }
+                                            }
+                                            else if(test.subject=="Biology")
+                                            {
+                                                if(student.packs.includes("STATE_ENTRANCES_PCMB")==false && student.packs.includes("STATE_ENTRANCES_PCB")==false && student.packs.includes("STATE_ENTRANCES_B")==false)
+                                                {
+                                                    pack_valid=0;
+                                                }
+                                            }
+                                          }
+
+                                        }
+                                        if(pack_valid==0) // User is not authorized to give this  test
+                                        {
+                                            res.json({is_verified:true,is_successful:false,unauthorized:true})
+                                        }
+                                        else
+                                        {
+                                             // LOAD TEST
+                                             Test.find({"test_name":req.body.test_name},(err,test)=>{
+                                                if(err)
+                                                {
+                                                    console.log('\x1b[31m%s\x1b[1m', '[/VerifyPackAndGetTest] - Failed to fetch Test');
+                                                    console.log(err)  
+                                                    res.json({is_verified:true,is_successful:false})
+                                                }
+                                                else
+                                                {
+                                                    console.log('\x1b[32m%s\x1b[1m', '[/VerifyPackAndGetTest] -  Pack Authorized & Fetched Test');  
+                                                    var new_test = test;
+                                                    // ReConvert buffer to base64 string for question black images
+                                                    for(var i=0;i<test[0].question_images_black.length;i++)
+                                                    {
+                                                        new_test[0].question_images_black[i] = new Buffer(test[0].question_images_black[i]).toString('base64');
+                                                    }
+                                                    // Reconvert buffer to base64 string for question white images
+                                                    for(var i=0;i<test[0].question_images_white.length;i++)
+                                                    {
+                                                        new_test[0].question_images_white[i] = new Buffer(test[0].question_images_white[i]).toString('base64');
+                                                    }
+                                                     // Reconvert buffer to base64 string for answer white images
+                                                     for(var i=0;i<test[0].answer_images_white.length;i++)
+                                                     {
+                                                         new_test[0].answer_images_white[i] = new Buffer(test[0].answer_images_white[i]).toString('base64');
+                                                     }
+                                                       // ReConvert buffer to base64 string for answer black images
+                                                    for(var i=0;i<test[0].answer_images_black.length;i++)
+                                                    {
+                                                        new_test[0].answer_images_black[i] = new Buffer(test[0].answer_images_black[i]).toString('base64');
+                                                    }
+                                                    res.json({is_verified:true,is_successful:true,test:new_test[0]})
+        
+                                            } 
+                                        })
                                         }
                                     }
                                 })
@@ -1677,40 +1853,6 @@ app.get('/admin',(req,res)=>{
                         res.json({is_verified:true,is_successful:false,given_before:true})
                     }
                 })
-               /* Test.find({"test_name":req.body.test_name},(err,test)=>{
-                    if(err)
-                    {
-                        console.log('\x1b[31m%s\x1b[1m', '[/getTest] - Failed to fetch Test');
-                        console.log(err)  
-                        res.json({is_verified:true,is_successful:false})
-                    }
-                    else
-                    {
-                        console.log('\x1b[32m%s\x1b[1m', '[/getTest] - Fetched Test');  
-                        var new_test = test;
-                        // ReConvert buffer to base64 string for question black images
-                        for(var i=0;i<test[0].question_images_black.length;i++)
-                        {
-                            new_test[0].question_images_black[i] = new Buffer(test[0].question_images_black[i]).toString('base64');
-                        }
-                        // Reconvert buffer to base64 string for question white images
-                        for(var i=0;i<test[0].question_images_white.length;i++)
-                        {
-                            new_test[0].question_images_white[i] = new Buffer(test[0].question_images_white[i]).toString('base64');
-                        }
-                         // Reconvert buffer to base64 string for answer white images
-                         for(var i=0;i<test[0].answer_images_white.length;i++)
-                         {
-                             new_test[0].answer_images_white[i] = new Buffer(test[0].answer_images_white[i]).toString('base64');
-                         }
-                           // ReConvert buffer to base64 string for answer black images
-                        for(var i=0;i<test[0].answer_images_black.length;i++)
-                        {
-                            new_test[0].answer_images_black[i] = new Buffer(test[0].answer_images_black[i]).toString('base64');
-                        }
-                        res.json({is_verified:true,is_successful:true,test:new_test[0]})
-                    
-                } )
-            } */} 
+                 } 
     })
     })
