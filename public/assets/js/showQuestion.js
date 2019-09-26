@@ -52,7 +52,7 @@ $(function () {
     function createDivs() {
         if(test!="loading")
         {
-        for (let index = 0; index <= test.question_images.length; index++) {
+        for (let index = 0; index <= test.questions.length; index++) {
             $(".questions").append(`<div class="question" style="border: 0px solid red;">
             <h4 class="p-2" style="border-bottom: 3px solid #25b5e9;">Question ` + index + ` : </h4>
             <img class="w-50" src="../../assets/images/questions/` + index + `.png" alt="">
@@ -208,7 +208,7 @@ $(function () {
     // back/next question buttons
     $(".nextbtn").click(function (e) {
         e.preventDefault();
-        if(viewdiv<=90){
+        if(viewdiv<test.questions.length){
             viewdiv = +viewdiv + 1
         }
         showdiv()
