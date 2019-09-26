@@ -1,6 +1,5 @@
 $(function () {
-    if(test!="loading")
-    {
+    
     // alert("I'm ready")
     $(".toggleTop").click(function (e) {
         e.preventDefault();
@@ -227,7 +226,7 @@ $(function () {
     });
     // Question selection 
     $(".quebtn").click(function (e) {
-        console.log("Question button clicked!!")
+        console.log("Quebtn clicked");
         e.preventDefault();
         viewdiv = $(this).attr("data-div");
         if (!$(this).hasClass("answered")) {
@@ -253,4 +252,4 @@ $(function () {
             // alert(JSON.stringify(result))
         });
     });
-}});
+});
