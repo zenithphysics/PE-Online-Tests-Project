@@ -5,7 +5,7 @@
 <!--<![endif]-->
 <head>
 	<meta charset="utf-8" />
-	<title>Create NEET SWT</title>
+	<title>Create JEE ADVANCED SWT</title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
@@ -171,7 +171,7 @@
 							<span>Syllabus Manager</span>
 						</a>
 					</li>
-					<li class="has-sub active">
+					<li class="has-sub">
 						<a href="javascript:;">
 							<i class="fa fa-plus-circle" aria-hidden="true"></i>
 							<span>Create NEET Tests</span>
@@ -179,7 +179,7 @@
 						<ul class="sub-menu">
 							<li><a href="./create_neet_fst.html"> FST Test</a></li>
 							<li><a href="./create_neet_cwt.html"> CWT Test</a></li>
-							<li class="active"><a href="#"> SWT Test</a></li>
+							<li><a href="./create_neet_swt.html"> SWT Test</a></li>
 						</ul>
 					</li>
 					<li class="has-sub">
@@ -193,7 +193,7 @@
 							<li><a href="./create_jee_mains_swt.html"> SWT Test</a></li>
 						</ul>
 					</li>
-					<li class="has-sub">
+					<li class="has-sub active">
 						<a href="javascript:;">
 							<i class="fa fa-plus-circle" aria-hidden="true"></i>
 							<span>Create JEE ADVANCED Tests</span>
@@ -201,7 +201,7 @@
 						<ul class="sub-menu">
 							<li><a href="./create_jee_advanced_fst.html"> FST Test</a></li>
 							<li><a href="./create_jee_advanced_cwt.html"> CWT Test</a></li>
-							<li><a href="./create_jee_advanced_swt.html"> SWT Test</a></li>
+							<li class="active"><a href="#"> SWT Test</a></li>
 						</ul>
 					</li>
 					<li class="has-sub">
@@ -242,13 +242,13 @@
 		<div id="content" class="content">
 			<!-- begin breadcrumb -->
 			<ol class="breadcrumb pull-right">
-                <li class="breadcrumb-item "><a href="#">Create NEET Tests</a></li>
+                <li class="breadcrumb-item "><a href="#">Create JEE ADVANCED Tests</a></li>
                 <li class="breadcrumb-item active"><a href="#">SWT</a></li>
 
 			</ol>
 			<!-- end breadcrumb -->
 			<!-- begin page-header -->
-			<h1 class="page-header">Create NEET SWT Test</h1>
+			<h1 class="page-header">Create JEE ADVANCED SWT Test</h1>
 			<!-- end page-header -->
 			
 			<!-- begin panel -->
@@ -336,7 +336,7 @@
 	var user_access_token = localStorage.getItem("admin_token");
 	var no_of_questions = 0 ;
 	var syllabus;
-	var neet_syllabus;
+	var jee_advanced_syllabus;
     // TEST Related
     var questions_panel = document.getElementById("questions_panel")
 	// All Nameplace holders
@@ -388,20 +388,20 @@
 							// Processing Functions
 							var subject_selectbox  = document.getElementById("subject_selectbox")
 							var subjects;
-							// Step 1 - Get Syllabus of NEET
+							// Step 1 - Get Syllabus of JEE ADVANCED
 							if(syllabus!=null)
 							{
-								neet_syllabus = syllabus.filter((domain)=>{
-									return domain.name=="NEET";
+								jee_advanced_syllabus = syllabus.filter((domain)=>{
+									return domain.name=="JEE_ADVANCED";
 								})
-								console.log("%c NEET SYLLABUS - ","color:blue;font-weight:bold");
-								console.log(neet_syllabus);
+								console.log("%c JEE_ADVANCED SYLLABUS - ","color:blue;font-weight:bold");
+								console.log(jee_advanced_syllabus);
 
                                 var subject_selectbox = document.getElementById(`subject_selectbox`);
 				                
 				
                                 // Load Subjects into Subject Selectbox
-                                neet_syllabus[0].Subjects.forEach((subject)=>{
+                                jee_advanced_syllabus[0].Subjects.forEach((subject)=>{
                                     subject_selectbox.innerHTML+=`
                                     <option value="${subject.name}"> ${subject.name} </option>
                                     `
@@ -514,7 +514,7 @@
 				questions_panel.appendChild(question_element);
                 subject_name = document.getElementById("subject_selectbox").value;
                 section_selectbox = document.getElementById(`question-${no_of_questions}-section_selectbox`);
-                subject_object = neet_syllabus[0].Subjects.filter((subject)=>{ return subject.name==subject_name});
+                subject_object = jee_advanced_syllabus[0].Subjects.filter((subject)=>{ return subject.name==subject_name});
                 section_selectbox.innerHTML=`<option value="Not Specified"> Not Specified </option>`;
                 subject_object[0].Sections.forEach(section=>{
 					section_selectbox.innerHTML+=`<option value="${section.name}"> ${section.name} </option>`;
@@ -530,7 +530,7 @@
 				subject_name = document.getElementById("subject_selectbox").value;
 				var topic_selectbox = document.getElementById(`question-${question_number}-topic_selectbox`);
 				var chapter = document.getElementById(`question-${question_number}-chapter_selectbox`).value;
-				subject_object = neet_syllabus[0].Subjects.filter((subject)=>{ return subject.name==subject_name});
+				subject_object = jee_advanced_syllabus[0].Subjects.filter((subject)=>{ return subject.name==subject_name});
 				var topics = subject_object[0].Topics.filter((topic => { return topic.chapter == chapter}))
 				topic_selectbox.innerHTML+=`<option value="Not Specified"> Not Specified </option>`
 				topics.forEach(topic=>{
@@ -577,7 +577,7 @@
 			{
 				var subject = document.getElementById(`subject_selectbox`).value;
 				console.log(subject);
-				var subject_object = neet_syllabus[0].Subjects.filter((sub)=>{
+				var subject_object = jee_advanced_syllabus[0].Subjects.filter((sub)=>{
 					return sub.name==subject;
                 })
                 console.log(subject_object);
@@ -814,7 +814,7 @@
 									var formData = new FormData();
 									formData.append('test_name',test_name);
 									formData.append('test_type',"SWT");
-									formData.append('domain',"NEET");
+									formData.append('domain',"JEE_ADVANCED");
 									formData.append('duration',duration);
 									formData.append('subject',test_subject);
 									formData.append('questions',JSON.stringify(questions));
