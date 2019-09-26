@@ -305,8 +305,7 @@ fetch(`${domain_url}/verifyStudent`,{
     }
 
     function createDivs() {
-        if(test!="loading")
-        {
+
         for (let index = 1; index <= test.questions.length; index++) {
             $(".questions").append(`<div class="question" style="border: 0px solid red;">
             <h4 class="p-2" style="border-bottom: 3px solid #25b5e9;">Question ` + index + ` : </h4>
@@ -330,7 +329,6 @@ fetch(`${domain_url}/verifyStudent`,{
                 </tbody>
             </table>
         </div>`);
-        }
         }
     }
 
