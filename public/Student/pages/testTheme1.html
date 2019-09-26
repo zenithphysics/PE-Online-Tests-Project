@@ -209,7 +209,6 @@ fetch(`${domain_url}/verifyStudent`,{
                 test = output.test;
                 test_domain_nav_holder.innerHTML = test.domain.replace(/_/g,' ');
                 // (DYNAMIC) add tab buttons in question tab panel
-                var tr = document.createElement('tr')
                 is_multiple_of_10 = 0;
                 if(test.questions.length%10==0)
                 {
@@ -225,20 +224,14 @@ fetch(`${domain_url}/verifyStudent`,{
                     
                     if(i%10!=0) // number is less than 10 or not divisible by 10
                     {
-                       var td = document.createElement('td');
-                       td.setAttribute("class","btn quebtn nvisit");
-                       td.setAttribute("data-div",`${i}`);
-                       tr.appendChild(td)
+                        test_question_tab_buttons_panel.innerHTML+=`<tr>`
+                        test_question_tab_buttons_panel.innerHTML+=`<td class="btn quebtn nvisit" data-div="${i}">${i}</td>`
+                        
                     }
                     else
                     {
-                       var question_button = document.createElement('td');
-                       question_button.setAttribute("class","btn quebtn nvisit");
-                       question_button.setAttribute("data-div",`${i}`);
-                       question_button.innerText=`${i}`
-                       tr.appendChild(question_button)
-                       test_question_tab_buttons_panel.appendChild(tr);
-                       tr = document.createElement(tr);
+                        test_question_tab_buttons_panel.innerHTML+=`<td class="btn quebtn nvisit" data-div="${i}">${i}</td>`
+                        test_question_tab_buttons_panel.innerHTML+=`</tr>`
                     }
 
                 }
