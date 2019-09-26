@@ -367,13 +367,21 @@ fetch(`${domain_url}/verifyStudent`,{
     function showdiv() {
         if(test!="loading")
         {
-        if (viewdiv < 11)  /*edit: view div was 10*/{
+        if (viewdiv < 10) {
             viewrow = 1
         } else {
             viewrow = Math.floor(viewdiv / 10)
             viewrow = +viewrow + 1
         }
+        /* edit: added logic here */
+        if(viewdiv<10)
+        {
         viewqueNo = (viewdiv % 10)
+        }
+        else if(viewdiv%10==0)
+        {
+            viewqueNo = viewdiv
+        }
         // alert(viewrow)
         $(".question").css("display", "none");
         $(".question:nth-child(" + viewdiv + ")").css("display", "block");
