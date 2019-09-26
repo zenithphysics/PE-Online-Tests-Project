@@ -344,7 +344,6 @@
 
     function createQNo() { //QuestionTabs
         count = 1;
- 
         for (var i = 0; i < Math.floor(test.questions.length/10); i++) {
             var $row = $(".QnOwrapper").append("<tr class='w-100'> < td/>").children("tr:eq(" + (i) + ")");
             for (var k = 1; k <= 10; k++) {

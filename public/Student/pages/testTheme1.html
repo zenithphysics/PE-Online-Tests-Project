@@ -253,7 +253,6 @@ fetch(`${domain_url}/verifyStudent`,{
   // subject selection buttons
   function showQuestionScript(test) 
     {
-
     // alert("I'm ready")
     $(".toggleTop").click(function (e) {
         e.preventDefault();
@@ -307,7 +306,8 @@ fetch(`${domain_url}/verifyStudent`,{
     }
 
     function createDivs() {
-
+        if(question=='questionWhite')
+        {
         for (let index = 1; index <= test.questions.length; index++) {
             console.log(`creating question ${index}`)
             $(".questions").append(`<div class="question" style="border: 0px solid red;">
@@ -332,6 +332,35 @@ fetch(`${domain_url}/verifyStudent`,{
                 </tbody>
             </table>
         </div>`);
+        }
+        }
+        else
+        {
+            for (let index = 1; index <= test.questions.length; index++) {
+            console.log(`creating question ${index}`)
+            $(".questions").append(`<div class="question" style="border: 0px solid red;background-color:black;color:white">
+            <h4 class="p-2" style="border-bottom: 3px solid #25b5e9;">Question ` + index + ` : </h4>
+            <img class="w-50" src="data:image/jpeg;base64,${test.question_images_white[index-1]}" alt="">
+            <table class="table table-borderless mt-2 p-5">
+                <tbody>
+                    <tr>
+                        <td> 1 ) <input type="radio" value="1" name="Question` + index + `" id="rOption1_1">
+                           
+                        </td>
+                        <td> 2 ) <input type="radio" value="2" name="Question` + index + `" id="rOption1_1">
+                            
+                        </td>
+                        <td> 3 ) <input type="radio" value="3" name="Question` + index + `" id="rOption1_1">
+                            
+                        </td>
+                        <td> 4 ) <input type="radio" value="4" name="Question` + index + `" id="rOption1_1">
+                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>`);
+        }
         }
     }
 
