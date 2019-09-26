@@ -248,6 +248,18 @@ fetch(`${domain_url}/verifyStudent`,{
     }
 })
 
+function questionButtonClicked(e)
+    {
+        console.log("Quebtn clicked");
+        e.preventDefault();
+        viewdiv = $(this).attr("data-div");
+        if (!$(this).hasClass("answered")) {
+            $(this).addClass("visited")
+            // alert(viewdiv)
+        }
+        $(".question").css("display", "none");
+        $(".question:nth-child(" + viewdiv + ")").css("display", "block");
+    }
 
 // showQuestionScript
   // subject selection buttons
@@ -510,19 +522,7 @@ fetch(`${domain_url}/verifyStudent`,{
         showdiv()
     });
     // Question selection 
-    function questionButtonClicked(e)
-    {
-        console.log("Quebtn clicked");
-        e.preventDefault();
-        viewdiv = $(this).attr("data-div");
-        if (!$(this).hasClass("answered")) {
-            $(this).addClass("visited")
-            // alert(viewdiv)
-        }
-        $(".question").css("display", "none");
-        $(".question:nth-child(" + viewdiv + ")").css("display", "block");
-    }
-
+   
     // Submit the test for result
     $(".submit").click(function (e) {
         e.preventDefault();
