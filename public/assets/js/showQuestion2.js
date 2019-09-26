@@ -1,4 +1,4 @@
-$(function () {
+
     // alert("I'm ready")
     // Exam Logic
     viewdiv = 1
@@ -296,4 +296,3 @@ $(function () {
     //         // alert(JSON.stringify(result))
     //     });
     // });
-});
