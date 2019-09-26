@@ -299,6 +299,8 @@
     }
 
     function createDivs() {
+        if(questionTheme=="questionWhite")
+        {
         for (let index = 1; index <= test.questions.length; index++) {
             $(".Questions").append(`<div class="Question">
             <div class="d-flex justify-content-between row ml-1 pb-2 w-100" style="border-bottom: 3px solid #25b5e9;color: #333;font-size:1.5vw">
@@ -340,6 +342,51 @@
             </div>
         </div>`);
         }
+    }
+    else
+    {
+        for (let index = 1; index <= test.questions.length; index++) {
+            $(".Questions").append(`<div class="Question">
+            <div class="d-flex justify-content-between row ml-1 pb-2 w-100" style="border-bottom: 3px solid #25b5e9;color: white;background-color:black;font-size:1.5vw">
+                <div class="flex-1 font-weight-bold">Question No: ` + index + `</div>
+                <div class="flex-1 text-right font-weight-bold">Single Choice Type Question</div>
+            </div>
+            <div class="row w-100 ml-1">
+                <img class="QuestionImg" src="data:image/jpeg;base64,${test.question_images_black[index-1]}"` + index + `.png" alt="">
+                <table class="table table-borderless mt-2">
+                    <tbody>
+                    <tr class="d-flex justify-content-center">
+                    <td class="d-flex flex-1 justify-content-center align-items-center">
+                        <label class="radio-btn">
+                            <input type="radio" value="1" name="Question` + index + `" class="">
+                            Option 1
+                        </label>
+                    </td>
+                    <td class="d-flex flex-1 justify-content-center align-items-center">
+                        <label class="radio-btn">
+                            <input type="radio" value="2" name="Question` + index + `" class="">
+                            Option 2
+                        </label>
+                    </td>
+                    <td class="d-flex flex-1 justify-content-center align-items-center">
+                        <label class="radio-btn">
+                            <input type="radio" value="3" name="Question` + index + `" class="">
+                            Option 3
+                        </label>
+                    </td>
+                    <td class="d-flex flex-1 justify-content-center align-items-center">
+                        <label class="radio-btn">
+                            <input type="radio" value="4" name="Question` + index + `" class="">
+                            Option 4
+                        </label>
+                    </td>
+                </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>`);
+        }
+    }
     }
 
     function createQNo() { //QuestionTabs
