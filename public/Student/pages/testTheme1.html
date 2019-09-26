@@ -215,13 +215,13 @@ fetch(`${domain_url}/verifyStudent`,{
                 {
                     if(i%10!=0) // number is less than 10 or not divisible by 10
                     {
-                        test_question_tab_buttons_panel.innerText+=`<td class="btn quebtn nvisit" data-div="${i}">${i}</td>`   
+                        test_question_tab_buttons_panel.innerHTML+=`<td class="btn quebtn nvisit" data-div="${i}">${i}</td>`   
                     }
                     else
                     {
-                        test_question_tab_buttons_panel.innerText+=`<td class="btn quebtn nvisit" data-div="${i}">${i}</td>`
-                        test_question_tab_buttons_panel.innerText+=`</tr>`
-                        test_question_tab_buttons_panel.innerText+=`<tr>`
+                        test_question_tab_buttons_panel.innerHTML+=`<td class="btn quebtn nvisit" data-div="${i}">${i}</td>`
+                        test_question_tab_buttons_panel.innerHTML+=`</tr>`
+                        test_question_tab_buttons_panel.innerHTML+=`<tr>`
 
                     }
 
