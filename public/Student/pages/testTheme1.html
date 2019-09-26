@@ -102,7 +102,7 @@
                 <div class="col-lg-4 p-0 Qselect">
                     <div class="questionNo row m-0 pl-2 pr-1">
                         <table class="queNo h-50 w-100 text-center">
-                            <tbody>
+                            <tbody id="test_question_tab_buttons_panel">
                                
                             </tbody>
                         </table>
@@ -153,6 +153,7 @@ var domain_url = "https://photonecademy.com/tests"
 var navbar_student_name = document.getElementById("navbar-student-name");
 var test_page_title = document.getElementById("test_page_title");
 var test_domain_nav_holder = document.getElementById("test_domain_nav_holder")
+var test_question_tab_buttons_panel = document.getElementById("test_question_tab_buttons_panel");
 console.log(navbar_student_name);
 var user_access_token = localStorage.getItem("student_token");
 var urlParams = new URLSearchParams(window.location.search);
@@ -207,6 +208,29 @@ fetch(`${domain_url}/verifyStudent`,{
             {
                 test = output.test;
                 test_domain_nav_holder.innerHTML = test.domain.replace(/_/g,' ');
+                // (DYNAMIC) add tab buttons in question tab panel
+                var tr = document.createElement('tr')
+                for(let i=1;i<=test.questions.length;i++)
+                {
+                    
+                    if(i%10!=0) // number is less than 10 or not divisible by 10
+                    {
+                       var td = document.createElement('td');
+                       td.setAttribute("class","btn quebtn nvisit");
+                       td.setAttribute("data-div",`${i}`);
+                       tr.appendChild(td)
+                    }
+                    else
+                    {
+                        var td = document.createElement('td');
+                       td.setAttribute("class","btn quebtn nvisit");
+                       td.setAttribute("data-div",`${i}`);
+                       tr.appendChild(td)
+                       test_question_tab_buttons_panel.appendChild(tr);
+                       tr = document.createElement(tr);
+                    }
+
+                }
             }
         })
     }
