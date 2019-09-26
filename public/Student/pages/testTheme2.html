@@ -407,7 +407,15 @@
             viewrow = Math.floor(viewdiv / 10)
             viewrow = +viewrow + 1
         }
-        viewqueNo = (viewdiv % 10)
+        /* edit: added logic here */
+        if(viewdiv%10==0) //if viewdiv is a multiple of 10
+        {
+        viewqueNo = 10;
+        }
+        else
+        {
+            viewqueNo = viewdiv%10;
+        }
         $(".Question").css("display", "none");
         $(".Question:nth-child(" + viewdiv + ")").css("display", "block");
         if (!$(".QueNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").hasClass("attempted")) {
