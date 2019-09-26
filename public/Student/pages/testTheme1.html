@@ -210,19 +210,18 @@ fetch(`${domain_url}/verifyStudent`,{
                 test_domain_nav_holder.innerHTML = test.domain.replace(/_/g,' ');
                 // (DYNAMIC) add tab buttons in question tab panel
               
-                test_question_tab_buttons_panel.innerHTML+=`<tr>`
+                test_question_tab_buttons_panel.innerText+=`<tr>`
                 for(let i=1;i<=test.questions.length;i++)
                 {
                     if(i%10!=0) // number is less than 10 or not divisible by 10
                     {
-                        test_question_tab_buttons_panel.innerHTML+=`<td class="btn quebtn nvisit" data-div="${i}">${i}</td><br>`
-                        
+                        test_question_tab_buttons_panel.innerText+=`<td class="btn quebtn nvisit" data-div="${i}">${i}</td>`   
                     }
                     else
                     {
-                        test_question_tab_buttons_panel.innerHTML+=`<td class="btn quebtn nvisit" data-div="${i}">${i}</td>`
-                        test_question_tab_buttons_panel.innerHTML+=`</tr>`
-                        test_question_tab_buttons_panel.innerHTML+=`<tr>`
+                        test_question_tab_buttons_panel.innerText+=`<td class="btn quebtn nvisit" data-div="${i}">${i}</td>`
+                        test_question_tab_buttons_panel.innerText+=`</tr>`
+                        test_question_tab_buttons_panel.innerText+=`<tr>`
 
                     }
 
