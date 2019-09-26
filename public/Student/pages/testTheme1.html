@@ -232,11 +232,11 @@ fetch(`${domain_url}/verifyStudent`,{
                     }
                     else
                     {
-                       var td = document.createElement('td');
-                       td.setAttribute("class","btn quebtn nvisit");
-                       td.setAttribute("data-div",`${i}`);
-                       td.innerHTML=`${i}`;
-                       tr.appendChild(td)
+                       var question_button = document.createElement('td');
+                       question_button.setAttribute("class","btn quebtn nvisit");
+                       question_button.setAttribute("data-div",`${i}`);
+                       question_button.innerHTML=`${i}`
+                       tr.appendChild(question_button)
                        test_question_tab_buttons_panel.appendChild(tr);
                        tr = document.createElement(tr);
                     }
