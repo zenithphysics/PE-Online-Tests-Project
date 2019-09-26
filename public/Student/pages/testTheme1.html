@@ -207,6 +207,8 @@ fetch(`${domain_url}/verifyStudent`,{
             else
             {
                 test = output.test;
+                var script = document.createElement('script');
+                script.setAttribute('src','../../assets/js/showQuestion.js')
                 test_domain_nav_holder.innerHTML = test.domain.replace(/_/g,' ');
                 // (DYNAMIC) add tab buttons in question tab panel
                 var question_tab_html='';
@@ -254,7 +256,6 @@ fetch(`${domain_url}/verifyStudent`,{
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
 </script>
-<script src="../../assets/js/showQuestion.js"></script>
 <script src="../../assets/js/sideHide.js"></script>
 
 </html>
