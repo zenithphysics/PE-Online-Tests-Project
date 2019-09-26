@@ -5,7 +5,7 @@
 <!--<![endif]-->
 <head>
 	<meta charset="utf-8" />
-	<title>Create JEE ADVANCED FST</title>
+	<title>Create STATE BOARD FST</title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
@@ -193,24 +193,24 @@
 							<li><a href="./create_jee_mains_swt.html"> SWT Test</a></li>
 						</ul>
 					</li>
-					<li class="has-sub active">
+					<li class="has-sub">
 						<a href="javascript:;">
 							<i class="fa fa-plus-circle" aria-hidden="true"></i>
 							<span>Create JEE ADVANCED Tests</span>
 						</a>
 						<ul class="sub-menu">
-							<li class="active"><a href="#"> FST Test</a></li>
+							<li><a href="./create_jee_advanced_fst.html"> FST Test</a></li>
 							<li><a href="./create_jee_advanced_cwt.html"> CWT Test</a></li>
 							<li><a href="./create_jee_advanced_swt.html"> SWT Test</a></li>
 						</ul>
 					</li>
-					<li class="has-sub">
+					<li class="has-sub active">
 						<a href="javascript:;">
 							<i class="fa fa-plus-circle" aria-hidden="true"></i>
 							<span>Create STATE BOARD Tests</span>
 						</a>
 						<ul class="sub-menu">
-							<li><a href="./create_state_board_fst.html"> FST Test</a></li>
+							<li class="active"><a href="#"> FST Test</a></li>
 							<li><a href="./create_state_board_cwt.html"> CWT Test</a></li>
 							<li><a href="./create_state_board_swt.html"> SWT Test</a></li>
 						</ul>
@@ -242,13 +242,13 @@
 		<div id="content" class="content">
 			<!-- begin breadcrumb -->
 			<ol class="breadcrumb pull-right">
-                <li class="breadcrumb-item "><a href="#">Create JEE ADVANCED Tests</a></li>
+                <li class="breadcrumb-item "><a href="#">Create STATE BOARD Tests</a></li>
                 <li class="breadcrumb-item active"><a href="#">FST</a></li>
 
 			</ol>
 			<!-- end breadcrumb -->
 			<!-- begin page-header -->
-			<h1 class="page-header">Create JEE ADVANCED FST Test</h1>
+			<h1 class="page-header">Create STATE BOARD FST Test</h1>
 			<!-- end page-header -->
 			
 			<!-- begin panel -->
@@ -323,7 +323,7 @@
 	var user_access_token = localStorage.getItem("admin_token");
 	var no_of_questions = 0 ;
 	var syllabus;
-	var jee_advanced_syllabus;
+	var state_board_syllabus;
     // TEST Related
     var questions_panel = document.getElementById("questions_panel")
 	// All Nameplace holders
@@ -376,11 +376,11 @@
 							var chapter_selectbox  = document.getElementById("chapter_selectbox")
 							var topic_selectbox  = document.getElementById("topic_selectbox")
 							var subjects;
-							// Step 1 - Get Syllabus of JEE_ADVANCED
+							// Step 1 - Get Syllabus of STATE BOARD
 							if(syllabus!=null)
 							{
-								jee_advanced_syllabus = syllabus.filter((domain)=>{
-									return domain.name=="JEE_ADVANCED";
+								state_board_syllabus = syllabus.filter((domain)=>{
+									return domain.name=="STATE_BOARD";
 								})
 
 							}
@@ -497,20 +497,20 @@
 				var topic_selectbox = document.getElementById(`question-${no_of_questions}-topic_selectbox`);
 				var section_selectbox = document.getElementById(`question-${no_of_questions}-section_selectbox`);
 				// Load Subjects into Subject Selectbox
-				jee_advanced_syllabus[0].Subjects.forEach((subject)=>{
+				state_board_syllabus[0].Subjects.forEach((subject)=>{
 					subject_selectbox.innerHTML+=`
 					<option value="${subject.name}"> ${subject.name} </option>
 					`
 				})
 				// Load Sections into Section Selectbox
-				jee_advanced_syllabus[0].Subjects[0].Sections.forEach(section=>{
+				state_board_syllabus[0].Subjects[0].Sections.forEach(section=>{
 					section_selectbox.innerHTML+=`
 					<option value="${section.name}"> ${section.name} </option>
 				})`
 			})
 				// Load Chapters Select box of First Subject
 				chapter_selectbox.innerHTML=`<option value="Not Specified"> Not Specified </option>`;
-				jee_advanced_syllabus[0].Subjects[0].Chapters.forEach(chapter=>{
+				state_board_syllabus[0].Subjects[0].Chapters.forEach(chapter=>{
 					chapter_selectbox.innerHTML+=`<option value="${chapter.name}"> ${chapter.name} </option>`;
 				})
 				topic_selectbox.innerHTML='<option value="Not Specified"> Not Specified </option>';
@@ -555,7 +555,7 @@
 			{
 				var subject = document.getElementById(`question-${question_number}-subject_selectbox`).value;
 				console.log(subject);
-				var subject_object = jee_advanced_syllabus[0].Subjects.filter((sub)=>{
+				var subject_object = state_board_syllabus[0].Subjects.filter((sub)=>{
 					return sub.name==subject;
 				})
 				var chapters_selectbox = document.getElementById(`question-${question_number}-chapter_selectbox`);
@@ -582,7 +582,7 @@
 				var chapter = document.getElementById(`question-${question_number}-chapter_selectbox`).value;
 				var subject_name = document.getElementById(`question-${question_number}-subject_selectbox`).value;
 				console.log(chapter);
-				var subject_object = jee_advanced_syllabus[0].Subjects.filter((sub)=>{
+				var subject_object = state_board_syllabus[0].Subjects.filter((sub)=>{
 					return sub.name==subject_name;
 				})
 				var topic_selectbox = document.getElementById(`question-${question_number}-topic_selectbox`);
@@ -825,7 +825,7 @@
 									var formData = new FormData();
 									formData.append('test_name',test_name);
 									formData.append('test_type',"FST");
-									formData.append('domain',"JEE_ADVANCED");
+									formData.append('domain',"STATE_BOARD");
 									formData.append('duration',duration);
 									formData.append('questions',JSON.stringify(questions));
 									formData.append('correct_marks',correct_marks);
