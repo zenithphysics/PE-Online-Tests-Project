@@ -251,7 +251,6 @@ fetch(`${domain_url}/verifyStudent`,{
 function questionButtonClicked()
     {
         console.log("Quebtn clicked");
-        e.preventDefault();
         viewdiv = $(this).attr("data-div");
         if (!$(this).hasClass("answered")) {
             $(this).addClass("visited")
