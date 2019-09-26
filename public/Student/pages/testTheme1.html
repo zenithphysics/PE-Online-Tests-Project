@@ -510,7 +510,7 @@ fetch(`${domain_url}/verifyStudent`,{
         showdiv()
     });
     // Question selection 
-    $(".quebtn").click(function (e) {
+    $(document).delegate('.quebtn','click',function (e) {
         console.log("Quebtn clicked");
         e.preventDefault();
         viewdiv = $(this).attr("data-div");
