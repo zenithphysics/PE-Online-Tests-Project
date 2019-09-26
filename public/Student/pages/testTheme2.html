@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Quiz</title>
+    <title id="test_page_title">Quiz</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../../assets/css/style.css">
@@ -146,6 +146,8 @@
             var pe_username;
             var domain_url = "https://photonecademy.com/tests"
             var navbar_student_name = document.getElementById("navbar-student-name");
+            var test_page_title = document.getElementById("test_page_title");
+
             console.log(navbar_student_name);
             var user_access_token = localStorage.getItem("student_token");
             var urlParams = new URLSearchParams(window.location.search);
@@ -157,6 +159,7 @@
             };
             
             var test_name = getUrlParameter('test_name');
+            test_page_title.innerHTML = test_name;
             console.log(`test name from parameter ${test_name}`);
             var questionTheme = getUrlParameter('question_theme')
             console.log(`question theme is ${questionTheme}`)
