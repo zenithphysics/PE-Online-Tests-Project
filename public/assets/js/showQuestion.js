@@ -50,7 +50,9 @@ $(function () {
 
     alert(test);
     function createDivs() {
-        for (let index = 1; index <= 90; index++) {
+        if(test!="loading")
+        {
+        for (let index = 0; index <= test.question_images.length; index++) {
             $(".questions").append(`<div class="question" style="border: 0px solid red;">
             <h4 class="p-2" style="border-bottom: 3px solid #25b5e9;">Question ` + index + ` : </h4>
             <img class="w-50" src="../../assets/images/questions/` + index + `.png" alt="">
@@ -73,6 +75,7 @@ $(function () {
                 </tbody>
             </table>
         </div>`);
+        }
         }
     }
 
