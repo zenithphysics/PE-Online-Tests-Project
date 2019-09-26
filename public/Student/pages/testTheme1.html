@@ -210,6 +210,16 @@ fetch(`${domain_url}/verifyStudent`,{
                 test_domain_nav_holder.innerHTML = test.domain.replace(/_/g,' ');
                 // (DYNAMIC) add tab buttons in question tab panel
                 var tr = document.createElement('tr')
+                is_multiple_of_10 = 0;
+                if(test.questions.length%10==0)
+                {
+                    is_multiple_of_10=1;
+                }
+                is_less_than_10 = 0;
+                if(test.questions.length<10)
+                {
+                    is_less_than_10=1;
+                }
                 for(let i=1;i<=test.questions.length;i++)
                 {
                     
@@ -222,7 +232,7 @@ fetch(`${domain_url}/verifyStudent`,{
                     }
                     else
                     {
-                        var td = document.createElement('td');
+                       var td = document.createElement('td');
                        td.setAttribute("class","btn quebtn nvisit");
                        td.setAttribute("data-div",`${i}`);
                        tr.appendChild(td)
@@ -231,6 +241,11 @@ fetch(`${domain_url}/verifyStudent`,{
                     }
 
                 }
+                if(is_less_than_10)
+                {
+                    test_question_tab_buttons_panel.appendChild(tr);
+                }
+
             }
         })
     }
