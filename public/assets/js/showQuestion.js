@@ -1,6 +1,5 @@
 
-    if(test!="loading")
-    {
+ 
     // alert("I'm ready")
     $(".toggleTop").click(function (e) {
         e.preventDefault();
@@ -256,4 +255,4 @@
             // alert(JSON.stringify(result))
         });
     });
-    }
+  
