@@ -1806,7 +1806,7 @@ app.get('/admin',(req,res)=>{
                                         else
                                         {
                                              // LOAD TEST
-                                             Test.find({"test_name":req.body.test_name},(err,test)=>{
+                                             Test.find({"test_name":req.body.test_name},{"answer_key":0},(err,test)=>{
                                                 if(err)
                                                 {
                                                     console.log('\x1b[31m%s\x1b[1m', '[/VerifyPackAndGetTest] - Failed to fetch Test');
