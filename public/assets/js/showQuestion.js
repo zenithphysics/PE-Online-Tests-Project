@@ -48,6 +48,7 @@ $(function () {
         if (currentSecs !== -1) setTimeout(decrement, 1000);
     }
 
+    alert(test);
     function createDivs() {
         for (let index = 1; index <= 90; index++) {
             $(".questions").append(`<div class="question" style="border: 0px solid red;">
