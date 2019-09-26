@@ -219,19 +219,19 @@ fetch(`${domain_url}/verifyStudent`,{
                     if(i % 10 == 0) // number is divisible by 10;
                     {
                         console.log(`[10 counter] - number - ${i}`)
-                        question_tab_html+=`<td class="btn quebtn nvisit" data-div="${i}">${i}</td>`
+                        question_tab_html+=`<td class="btn quebtn nvisit" onclick="questionButtonClicked()" data-div="${i}">${i}</td>`
                         question_tab_html+=`</tr></tr>`
                     }
                     else
                     {
                         if(i==1)
                         {
-                            question_tab_html=`<tr><td class="btn quebtn nvisit visited" data-div="${i}">${i}</td>`
+                            question_tab_html=`<tr><td class="btn quebtn nvisit visited" onclick="questionButtonClicked()" data-div="${i}">${i}</td>`
 
                         }
                         else
                         {
-                            question_tab_html+=`<td class="btn quebtn nvisit" data-div="${i}">${i}</td>`   
+                            question_tab_html+=`<td class="btn quebtn nvisit" onclick="questionButtonClicked()" data-div="${i}">${i}</td>`   
                         }
                     }
 
@@ -510,7 +510,8 @@ fetch(`${domain_url}/verifyStudent`,{
         showdiv()
     });
     // Question selection 
-    $(".quebtn").click(function (e) {
+    function questionButtonClicked(e)
+    {
         console.log("Quebtn clicked");
         e.preventDefault();
         viewdiv = $(this).attr("data-div");
@@ -520,7 +521,7 @@ fetch(`${domain_url}/verifyStudent`,{
         }
         $(".question").css("display", "none");
         $(".question:nth-child(" + viewdiv + ")").css("display", "block");
-    });
+    }
 
     // Submit the test for result
     $(".submit").click(function (e) {
