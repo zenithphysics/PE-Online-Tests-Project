@@ -271,6 +271,7 @@ function getUrlParameter(name) {
 
 var test_name = getUrlParameter('test_name');
 test_page_title.innerHTML = test_name;
+var test;
 var questionTheme = getUrlParameter('question_theme')
 console.log(`question theme is ${questionTheme}`)
 console.log(`test name from parameter ${test_name}`);
@@ -285,6 +286,16 @@ fetch(`${domain_url}/verifyStudent`,{
         pe_username = data.student.studentID;
         console.log(`Username is ${pe_username}`);
         navbar_student_name.innerHTML=`: ${pe_username}`
+        fetch(`${domain_url}/VerifyPackAndGetTest`,{
+            method:"POST",
+            headers:{
+                authorization:user_access_token,
+                'Content-type':'application/json'
+            },
+            body:JSON.stringify({studentID:pe_username,test_name:test_name})
+        }).then(res=>res.json()).then(output=>{
+            console.log(output);
+        })
     }
     else
     {
