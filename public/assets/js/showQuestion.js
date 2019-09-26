@@ -1,4 +1,6 @@
 $(function () {
+    if(test!="loading")
+    {
     // alert("I'm ready")
     $(".toggleTop").click(function (e) {
         e.preventDefault();
@@ -37,6 +39,8 @@ $(function () {
     setTimeout(decrement, 1000);
 
     function decrement() {
+        if(test!="loading")
+        {
         var displayedSecs = currentSecs % 60;
         var displayedMin = Math.floor(currentSecs / 60) % 60;
         var displayedHrs = Math.floor(currentSecs / 60 / 60);
@@ -46,9 +50,9 @@ $(function () {
         $(".remainCounter").html("[" + displayedHrs + " : " + displayedMin + " : " +
             displayedSecs + "]");
         if (currentSecs !== -1) setTimeout(decrement, 1000);
+        }
     }
 
-    alert(test);
     function createDivs() {
         if(test!="loading")
         {
@@ -248,4 +252,4 @@ $(function () {
             // alert(JSON.stringify(result))
         });
     });
-});
+}});
