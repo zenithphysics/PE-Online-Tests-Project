@@ -5,7 +5,7 @@
 <!--<![endif]-->
 <head>
 	<meta charset="utf-8" />
-	<title>Create STATE BOARD SWT</title>
+	<title>Create STATE ENTRANCES FST</title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
@@ -36,6 +36,16 @@
     margin-left: auto;
     margin-right: auto;
 }
+.create-test-btn
+{
+	margin-top: 15px;
+    width:96%;
+    height: 50px;
+    font-size: 1.5em;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
 .delete-question-btn
 {
     width:46%;
@@ -52,18 +62,8 @@
     width:98%;
     margin-left: auto;
     margin-right: auto;
-    height:230px;
+    height:400px;
     border:5px dotted black;
-}
-.create-test-btn
-{
-	margin-top: 15px;
-    width:96%;
-    height: 50px;
-    font-size: 1.5em;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
 }
 </style>
 <body>
@@ -96,7 +96,7 @@
 					<form class="navbar-form">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="Enter keyword" />
-							<button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+							<button type="submit"  class="btn btn-search"><i class="fa fa-search"></i></button>
 						</div>
 					</form>
 				</li>
@@ -207,12 +207,12 @@
 					<li class="has-sub active">
 						<a href="javascript:;">
 							<i class="fa fa-plus-circle" aria-hidden="true"></i>
-							<span>Create STATE BOARD Tests</span>
+							<span>Create STATE ENTRANCES Tests</span>
 						</a>
 						<ul class="sub-menu">
-							<li><a href="./create_state_board_fst.html"> FST Test</a></li>
-							<li><a href="./create_state_board_cwt.html"> CWT Test</a></li>
-							<li class="active"><a href="#"> SWT Test</a></li>
+							<li class="active"><a href="#"> FST Test</a></li>
+							<li><a href="./create_state_entrances_cwt.html"> CWT Test</a></li>
+							<li><a href="./create_state_entrances_swt.html"> SWT Test</a></li>
 						</ul>
 					</li>
 					<li class="has-sub">
@@ -242,13 +242,13 @@
 		<div id="content" class="content">
 			<!-- begin breadcrumb -->
 			<ol class="breadcrumb pull-right">
-                <li class="breadcrumb-item "><a href="#">Create STATE BOARD Tests</a></li>
-                <li class="breadcrumb-item active"><a href="#">SWT</a></li>
+                <li class="breadcrumb-item "><a href="#">Create STATE ENTRANCES Tests</a></li>
+                <li class="breadcrumb-item active"><a href="#">FST</a></li>
 
 			</ol>
 			<!-- end breadcrumb -->
 			<!-- begin page-header -->
-			<h1 class="page-header">Create STATE BOARD SWT Test</h1>
+			<h1 class="page-header">Create STATE ENTRANCES FST Test</h1>
 			<!-- end page-header -->
 			
 			<!-- begin panel -->
@@ -260,35 +260,22 @@
 				</div>
 				<div class="panel-body">
 					<div class="row">
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<h5><label> Test Name </label></h5>
-							<h6><input type="text" placeholder="Enter Test Name (Unique)" class="form-control" min="0" step="1" id="test_name"></h6>
-                            
-                        </div>
-                        <div class="col-md-4">
-                                <h5><label> Subject </label></h5>
-                                <select  class="form-control" id="subject_selectbox" onchange="subjectChanged()">
-
-                                </select>      
+							<h6><input type="text" id="test_name" placeholder="Enter Name Of Test (Unique)" class="form-control"></h6>
 						</div>
-						<div class="col-md-4">
-								<h5><label> Duration</label></h5>
-								<input type="number" class="form-control" value="1" placeholder="Duration (in hours)" id="duration">
-						</div>
-						<br>
-						<div class="col-md-6">
-							<br>
+						<div class="col-md-3">
 							<h5><label> Marks for Correct Answer:</label></h5>
 							<input type="number" value="4" class="form-control" id="correct_marks">
 						</div>
-						<div class="col-md-6">
-							<br>
+						<div class="col-md-3">	
 							<h5><label> Marks for Wrong Answer:</label></h5>
 							<input type="number" value="-1" class="form-control" id="wrong_marks">
 						</div>
-						<br>
-						<br>
-						<br>
+						<div class="col-md-3">	
+							<h5><label> Duration (in Hours):</label></h5>
+							<input type="number" value="1" min=0 class="form-control" id="duration">
+						</div>
                         <div class="col-md-12" id="questions_panel">
 
                         </div>
@@ -298,10 +285,10 @@
                     <button class="btn btn-green add-question-btn" onclick="addQuestion()"><i class="fa fa-plus-circle" aria-hidden="true"></i>
                         ADD QUESTION  </button>
                     <button class="btn btn-danger delete-question-btn" onclick="deleteQuestion()"><i class="fa fa-minus-circle" aria-hidden="true"></i>
-                        DELETE QUESTION</button>
-					</div>
-					<br>
-					<button class="btn btn-green create-test-btn" onclick="createTest()"> Create Test </button>
+						DELETE QUESTION</button>
+						<br>
+						<button class="btn btn-green create-test-btn" onclick="createTest()"> Create Test </button>
+                    </div>
 				</div>
 			</div>
 			<!-- end panel -->
@@ -332,11 +319,11 @@
 	<script>
 	var pe_username;
 	var pe_email;
-	var domain_url = "https://photonecademy.com/tests"
+	var domain_url = "https://photonecademy.com/tests";
 	var user_access_token = localStorage.getItem("admin_token");
 	var no_of_questions = 0 ;
 	var syllabus;
-	var state_board_syllabus;
+	var state_entrances_syllabus;
     // TEST Related
     var questions_panel = document.getElementById("questions_panel")
 	// All Nameplace holders
@@ -356,7 +343,6 @@
 		if(user_access_token==null)
 		{
 			document.location.href=`${domain_url}/admin`;
-
 		}
 
 		fetch(`${domain_url}/verifyAdmin`,{
@@ -387,28 +373,16 @@
 						syllabus = data.syllabus;
 							// Processing Functions
 							var subject_selectbox  = document.getElementById("subject_selectbox")
+							var chapter_selectbox  = document.getElementById("chapter_selectbox")
+							var topic_selectbox  = document.getElementById("topic_selectbox")
 							var subjects;
-							// Step 1 - Get Syllabus of STATE_BOARD
+							// Step 1 - Get Syllabus of STATE ENTRANCES
 							if(syllabus!=null)
 							{
-								state_board_syllabus = syllabus.filter((domain)=>{
-									return domain.name=="STATE_BOARD";
+								state_entrances_syllabus = syllabus.filter((domain)=>{
+									return domain.name=="STATE_ENTRANCES";
 								})
-								console.log("%c STATE_BOARD SYLLABUS - ","color:blue;font-weight:bold");
-								console.log(state_board_syllabus);
 
-                                var subject_selectbox = document.getElementById(`subject_selectbox`);
-				                
-				
-                                // Load Subjects into Subject Selectbox
-                                state_board_syllabus[0].Subjects.forEach((subject)=>{
-                                    subject_selectbox.innerHTML+=`
-                                    <option value="${subject.name}"> ${subject.name} </option>
-                                    `
-                                })
-                                
-
-							
 							}
 					}
 					else
@@ -425,50 +399,50 @@
             // add Question
             function addQuestion()
             {
-                document.getElementById("subject_selectbox").disabled="disabled";
                 // Increment The Number Of Question
                 no_of_questions+=1;
 				// Add The Question in the UI
 				var question_element = document.createElement('div');
 				question_element.setAttribute("id",`question-${no_of_questions}`);
 				question_element.setAttribute("class","card");
-                question_element.innerHTML+=`<br>
+                question_element.innerHTML=`
                     <div class="card-header">
                          Question ${no_of_questions}
                     </div>
 					<div class="card-body" style="height:wrap">
 						<div class="row">
-							<div class="col-md-6">
-								<h4 style='display:inline-block')">Add / Change Question White Image</h4> : <input type="file" id="question-white-${no_of_questions}-input" name="question-${no_of_questions}-input" onchange="changeQuestionWhiteImage(this,'${no_of_questions}')">
-                        		<br>
-                        		<img class="image_panel" style="width:100%;height:300px" id="question-white-${no_of_questions}-image">
-								</img>
-							</div>
-							<div class="col-md-6">
-								<h4 style='display:inline-block')">Add / Change Question Black Image</h4> : <input type="file" id="question-black-${no_of_questions}-input" name="question-black-${no_of_questions}-input" onchange="changeQuestionBlackImage(this,'${no_of_questions}')">
-								<br>
-								<img class="image_panel" style="width:100%;height:300px"id="question-black-${no_of_questions}-image">
+						<div class="col-md-6">
+                        <h4 style='display:inline-block')">Add / Change Question White Image</h4> : <input type="file" id="question-white-${no_of_questions}-input" name="question-${no_of_questions}-input" onchange="changeQuestionWhiteImage(this,'${no_of_questions}')">
+                        <br>
+                        <img class="image_panel" style="width:100%;height:200px" id="question-white-${no_of_questions}-image">
+						</img>
+						</div>
+						<div class="col-md-6">
+						<h4 style='display:inline-block')">Add / Change Question Black Image</h4> : <input type="file" id="question-black-${no_of_questions}-input" name="question-black-${no_of_questions}-input" onchange="changeQuestionBlackImage(this,'${no_of_questions}')">
+						<br>
+						<img class="image_panel" style="width:100%;height:200px"id="question-black-${no_of_questions}-image">
                            
-								</img>
-							</div>
+						</img>
+						</div>
 						</div>
 						<br>
 						<br>
 						<div class="row">
-							<div class="col-md-6">
-								<h4 style='display:inline-block')">Add / Change Answer White Image</h4> : <input type="file" id="answer-white-${no_of_questions}-input" name="question-${no_of_questions}-input" onchange="changeAnswerWhiteImage(this,'${no_of_questions}')">
-								<br>
-								<img class="image_panel" style="width:100%;height:300px" id="answer-white-${no_of_questions}-image">
-								</img>
-							</div>
-							<div class="col-md-6">
-								<h4 style='display:inline-block')">Add / Change Answer Black Image</h4> : <input type="file" id="answer-black-${no_of_questions}-input" name="answer-black-${no_of_questions}-input" onchange="changeAnswerBlackImage(this,'${no_of_questions}')">
-								<br>
-								<img class="image_panel" style="width:100%;height:300px" id="answer-black-${no_of_questions}-image">
-								
-								</img>
-							</div>
+						<div class="col-md-6">
+                        <h4 style='display:inline-block')">Add / Change Answer White Image</h4> : <input type="file" id="answer-white-${no_of_questions}-input" name="question-${no_of_questions}-input" onchange="changeAnswerWhiteImage(this,'${no_of_questions}')">
+                        <br>
+                        <img class="image_panel" style="width:100%;height:300px" id="answer-white-${no_of_questions}-image">
+						</img>
 						</div>
+						<div class="col-md-6">
+						<h4 style='display:inline-block')">Add / Change Answer Black Image</h4> : <input type="file" id="answer-black-${no_of_questions}-input" name="answer-black-${no_of_questions}-input" onchange="changeAnswerBlackImage(this,'${no_of_questions}')">
+						<br>
+						<img class="image_panel" style="width:100%;height:300px"id="answer-black-${no_of_questions}-image">
+                           
+						</img>
+						</div>
+						</div>
+
 						<br>
 						<br>
 						<h4><label> Solution Video </label></h4>
@@ -476,9 +450,16 @@
                     </div>
                     <div class="card-footer text-muted">
 					<div class="row">
-						<div class="col-3">
+						<div class="col-2">
+							<label> Subject : </label>
+							<select class="form-control" onchange="subjectChanged('${no_of_questions}')" id="question-${no_of_questions}-subject_selectbox">
+							
+							</select>
+						</div>
+						<div class="col-1">
 							<label> Section : </label>
 							<select class="form-control" id="question-${no_of_questions}-section_selectbox">
+								<option value="Not Specified"> Not Specified </option>
 							</select>
 						</div>
 						<div class="col-3">
@@ -489,19 +470,18 @@
 						<div class="col-3">
 							<label> Topic : </label>
 							<select class="form-control" id="question-${no_of_questions}-topic_selectbox">
-								<option value="Not Specified"> Not Specified </option>
 							</select>
 						</div>
-						<div class="col-3">
+						<div class="col-2">
 							<label> Correct Answer : </label>
 							<select class="form-control" id="question-${no_of_questions}-correct_answer">
-								<option value='a'> A </option>
-								<option value='b'> B </option>
-								<option value='c'> C </option>
-								<option value='d'> D </option>
+							<option value='a'> A </option>
+							<option value='b'> B </option>
+							<option value='c'> C </option>
+							<option value='d'> D </option>
 							</select>
 						</div>
-						<div class="col-3">
+						<div class="col-1">
 							<label> Difficulty : </label>
 							<select class="form-control" id="question-${no_of_questions}-DLevel_selectbox">
 							<option value="Level 1"> Level 1 </option>
@@ -511,33 +491,31 @@
 						</div>
                     </div>
 				`
-				questions_panel.appendChild(question_element);
-                subject_name = document.getElementById("subject_selectbox").value;
-                section_selectbox = document.getElementById(`question-${no_of_questions}-section_selectbox`);
-                subject_object = state_board_syllabus[0].Subjects.filter((subject)=>{ return subject.name==subject_name});
-                section_selectbox.innerHTML=`<option value="Not Specified"> Not Specified </option>`;
-                subject_object[0].Sections.forEach(section=>{
-					section_selectbox.innerHTML+=`<option value="${section.name}"> ${section.name} </option>`;
-				var q_chapter_selectbox = document.getElementById(`question-${no_of_questions}-chapter_selectbox`);
-				q_chapter_selectbox.innerHTML=`<option value="Not Specified"> Not Specified </option>`
-				subject_object[0].Chapters.forEach(chapter=>{
-					q_chapter_selectbox.innerHTML+=`<option value="${chapter.name}"> ${chapter.name} </option>`
+				questions_panel.appendChild(question_element)
+				var subject_selectbox = document.getElementById(`question-${no_of_questions}-subject_selectbox`);
+				var chapter_selectbox = document.getElementById(`question-${no_of_questions}-chapter_selectbox`);
+				var topic_selectbox = document.getElementById(`question-${no_of_questions}-topic_selectbox`);
+				var section_selectbox = document.getElementById(`question-${no_of_questions}-section_selectbox`);
+				// Load Subjects into Subject Selectbox
+				state_entrances_syllabus[0].Subjects.forEach((subject)=>{
+					subject_selectbox.innerHTML+=`
+					<option value="${subject.name}"> ${subject.name} </option>
+					`
 				})
-                })
+				// Load Sections into Section Selectbox
+				state_entrances_syllabus[0].Subjects[0].Sections.forEach(section=>{
+					section_selectbox.innerHTML+=`
+					<option value="${section.name}"> ${section.name} </option>
+				})`
+			})
+				// Load Chapters Select box of First Subject
+				chapter_selectbox.innerHTML=`<option value="Not Specified"> Not Specified </option>`;
+				state_entrances_syllabus[0].Subjects[0].Chapters.forEach(chapter=>{
+					chapter_selectbox.innerHTML+=`<option value="${chapter.name}"> ${chapter.name} </option>`;
+				})
+				topic_selectbox.innerHTML='<option value="Not Specified"> Not Specified </option>';
             }
-			// Changed Chapter
-			function chapterChanged(question_number){
-				subject_name = document.getElementById("subject_selectbox").value;
-				var topic_selectbox = document.getElementById(`question-${question_number}-topic_selectbox`);
-				var chapter = document.getElementById(`question-${question_number}-chapter_selectbox`).value;
-				subject_object = state_board_syllabus[0].Subjects.filter((subject)=>{ return subject.name==subject_name});
-				var topics = subject_object[0].Topics.filter((topic => { return topic.chapter == chapter}))
-				topic_selectbox.innerHTML+=`<option value="Not Specified"> Not Specified </option>`
-				topics.forEach(topic=>{
-					topic_selectbox.innerHTML+=`<option value="${topic.name}"> ${topic.name} </option>`;
-				})
 
-			}
 			// Change Question 
 			function changeQuestionWhiteImage(input,question_number)
 			{
@@ -573,19 +551,58 @@
 				no_of_questions=no_of_questions-1;
 			}
 			// on Subject Change
-			function subjectChanged()
+			function subjectChanged(question_number)
 			{
-				var subject = document.getElementById(`subject_selectbox`).value;
+				var subject = document.getElementById(`question-${question_number}-subject_selectbox`).value;
 				console.log(subject);
-				var subject_object = state_board_syllabus[0].Subjects.filter((sub)=>{
+				var subject_object = state_entrances_syllabus[0].Subjects.filter((sub)=>{
 					return sub.name==subject;
-                })
-                console.log(subject_object);
-               
-                document.getElementById("subject_selectbox").disabled="disabled";
+				})
+				var chapters_selectbox = document.getElementById(`question-${question_number}-chapter_selectbox`);
+				chapters_selectbox.innerHTML=`
+					<option value="Not Specified"> Not Specified </option>
+					`
+				subject_object[0].Chapters.forEach(chapter=>{
+					chapters_selectbox.innerHTML+=`
+					<option value="${chapter.name}"> ${chapter.name} </option>
+					`
+				})	
+				var topic_selectbox = document.getElementById(`question-${question_number}-topic_selectbox`);
+				topic_selectbox.innerHTML='<option value="Not Specified"> Not Specified </option>';
+				var section_selectbox = document.getElementById(`question-${question_number}-section_selectbox`);
+				section_selectbox.innerHTML=`<option value="Not Specified"> Not Specified </option>`;
+				
+				subject_object[0].Sections.forEach(section=>{
+					section_selectbox.innerHTML+=`<option value="${section.name}"> ${section.name}</option>`;
+				})
 			}
+			// on Chapter Change
+			function chapterChanged(question_number)
+			{
+				var chapter = document.getElementById(`question-${question_number}-chapter_selectbox`).value;
+				var subject_name = document.getElementById(`question-${question_number}-subject_selectbox`).value;
+				console.log(chapter);
+				var subject_object = state_entrances_syllabus[0].Subjects.filter((sub)=>{
+					return sub.name==subject_name;
+				})
+				var topic_selectbox = document.getElementById(`question-${question_number}-topic_selectbox`);
+				if(chapter!="Not Specified")
+				{
+					var topics = subject_object[0].Topics.filter((topic)=>{
+						return topic.chapter == chapter;
+					})
+					topic_selectbox.innerHTML=`<option value="Not Specified"> Not Specified </option>`;
+					topics.forEach((topic)=>{
+						topic_selectbox.innerHTML+=`
+						<option value="${topic.name}"> ${topic.name} </option>
+						`
+					})
+
+				}
 			
-				function createTest(){
+			}
+			// Create FST
+			function createTest(){
 				var error=0;
 
 				//  Get Test Version 
@@ -595,18 +612,11 @@
 					error=1;
 					alert("Please Enter A Valid Test Name")
 				}
-				// Get Test subject
-				var test_subject = document.getElementById("subject_selectbox").value;
-				if(test_subject==null || test_subject=="")
-				{
-					alert("Please select test subject");
-				}
-			
 				//  Get Marks For Correct & Wrong Answers
 				var correct_marks = document.getElementById("correct_marks").value;
 				var wrong_marks = document.getElementById("wrong_marks").value;
 				// Get Duration
-			    duration = document.getElementById("duration").value
+				var duration = document.getElementById("duration").value
 				if(duration==null || duration=="")
 				{
 					alert("Please Enter Test duration")
@@ -633,7 +643,7 @@
 				var all_preprocessed = false;
 				for(i=1;i<=no_of_questions;i++)
 				{
-					var question_subject = document.getElementById(`subject_selectbox`).value;
+					var question_subject = document.getElementById(`question-${i}-subject_selectbox`).value;
 					var question_section = document.getElementById(`question-${i}-section_selectbox`).value;
 					var question_chapter = document.getElementById(`question-${i}-chapter_selectbox`).value;
 					var question_topic = document.getElementById(`question-${i}-topic_selectbox`).value;
@@ -699,7 +709,7 @@
 								}
 								// Get Question Subject,Chapter and Topic
 								
-								var question_subject = document.getElementById(`subject_selectbox`).value;
+								var question_subject = document.getElementById(`question-${i}-subject_selectbox`).value;
 								// Increment the counter of that subject;
 								for(let i=0;i<subjects_set.length;i++)
 								{
@@ -788,7 +798,8 @@
 								if(error==0)
 								{
 								// Create The Question Object
-								var Question = {"section":question_section,
+								var Question = {"subject":question_subject,
+												"section":question_section,
 												"chapter":question_chapter,
 												"topic":question_topic,		
 												"DLevel":question_DLevel}
@@ -813,10 +824,9 @@
 									// Create The Test Object (Important)
 									var formData = new FormData();
 									formData.append('test_name',test_name);
-									formData.append('test_type',"SWT");
-									formData.append('domain',"STATE_BOARD");
+									formData.append('test_type',"FST");
+									formData.append('domain',"STATE_ENTRANCES");
 									formData.append('duration',duration);
-									formData.append('subject',test_subject);
 									formData.append('questions',JSON.stringify(questions));
 									formData.append('correct_marks',correct_marks);
 									formData.append('wrong_marks',wrong_marks);
@@ -831,7 +841,6 @@
 									formData.append(`section_details`,JSON.stringify(section_details));
 									formData.append(`chapter_details`,JSON.stringify(chapter_details));
 									formData.append(`topic_details`,JSON.stringify(topic_details));
-									// done with main
 									// Load Answers in form Data
 									for(let i=0;i<answer_images_white.length;i++)
 									{
@@ -854,7 +863,7 @@
 									let h = new Headers();
 									h.append('authorization',user_access_token);
 									h.append('Accept','application/json');
-									let req = new Request(`${domain_url}/createSWT`,{
+									let req = new Request(`${domain_url}/createFST`,{
 										method:"POST",
 										headers:h,
 										body:formData
@@ -873,6 +882,7 @@
 								}
 							}
 				}
+				
 			}
 		$(document).ready(function() {
 			App.init();

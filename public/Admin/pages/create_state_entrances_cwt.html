@@ -5,7 +5,7 @@
 <!--<![endif]-->
 <head>
 	<meta charset="utf-8" />
-	<title>Create STATE BOARD CWT</title>
+	<title>Create STATE ENTRANCES CWT</title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
@@ -207,12 +207,12 @@
 					<li class="has-sub active">
 						<a href="javascript:;">
 							<i class="fa fa-plus-circle" aria-hidden="true"></i>
-							<span>Create STATE BOARD Tests</span>
+							<span>Create STATE ENTRANCES Tests</span>
 						</a>
 						<ul class="sub-menu">
-							<li><a href="./create_state_board_fst.html"> FST Test</a></li>
+							<li><a href="./create_state_entrances_fst.html"> FST Test</a></li>
 							<li class="active"><a href="#"> CWT Test</a></li>
-							<li><a href="./create_state_board_swt.html"> SWT Test</a></li>
+							<li><a href="./create_state_entrances_swt.html"> SWT Test</a></li>
 						</ul>
 					</li>
 					<li class="has-sub">
@@ -242,13 +242,13 @@
 		<div id="content" class="content">
 			<!-- begin breadcrumb -->
 			<ol class="breadcrumb pull-right">
-                <li class="breadcrumb-item "><a href="#">Create STATE BOARD Tests</a></li>
+                <li class="breadcrumb-item "><a href="#">Create STATE ENTRANCES Tests</a></li>
                 <li class="breadcrumb-item active"><a href="#">CWT</a></li>
 
 			</ol>
 			<!-- end breadcrumb -->
 			<!-- begin page-header -->
-			<h1 class="page-header">Create STATE BOARD CWT Test</h1>
+			<h1 class="page-header">Create STATE ENTRANCES CWT Test</h1>
 			<!-- end page-header -->
 			
 			<!-- begin panel -->
@@ -339,7 +339,7 @@
 	var no_of_questions = 0 ;
 	var syllabus;
 	var domain_url = "https://photonecademy.com/tests"
-	var state_board_syllabus;
+	var state_entrances_syllabus;
 	var duration;
     // TEST Related
     var questions_panel = document.getElementById("questions_panel")
@@ -394,20 +394,20 @@
 							var chapter_selectbox  = document.getElementById("chapter_selectbox")
 							var topic_selectbox  = document.getElementById("topic_selectbox")
 							var subjects;
-							// Step 1 - Get Syllabus of STATE BOARD
+							// Step 1 - Get Syllabus of STATE ENTRNACES
 							if(syllabus!=null)
 							{
-								state_board_syllabus = syllabus.filter((domain)=>{
-									return domain.name=="STATE_BOARD";
+								state_entrances_syllabus = syllabus.filter((domain)=>{
+									return domain.name=="STATE_ENTRANCES";
 								})
-								console.log("%c STATE BOARD SYLLABUS - ","color:blue;font-weight:bold");
-								console.log(state_board_syllabus);
+								console.log("%c STATE ENTRANCES SYLLABUS - ","color:blue;font-weight:bold");
+								console.log(state_entrances_syllabus);
 
                                 var subject_selectbox = document.getElementById(`subject_selectbox`);
 				                var chapter_selectbox = document.getElementById(`chapter_selectbox`);
 				
                                 // Load Subjects into Subject Selectbox
-                                state_board_syllabus[0].Subjects.forEach((subject)=>{
+                                state_entrances_syllabus[0].Subjects.forEach((subject)=>{
                                     subject_selectbox.innerHTML+=`
                                     <option value="${subject.name}"> ${subject.name} </option>
                                     `
@@ -415,7 +415,7 @@
                                 
                                 // Load Chapters Select box of First Subject
                                 chapter_selectbox.innerHTML='';
-                                state_board_syllabus[0].Subjects[0].Chapters.forEach(chapter=>{
+                                state_entrances_syllabus[0].Subjects[0].Chapters.forEach(chapter=>{
                                     chapter_selectbox.innerHTML+=`<option value="${chapter.name}"> ${chapter.name} </option>`;
                                 })
 
@@ -529,7 +529,7 @@
                 topic_selectbox.innerHTML=`<option value="Not Specified"> Not Specified </option>`;
                 subject_name = document.getElementById("subject_selectbox").value;
                 chapter_name = document.getElementById("chapter_selectbox").value;
-                subject_object = state_board_syllabus[0].Subjects.filter((subject)=>{ return subject.name==subject_name});
+                subject_object = state_entrances_syllabus[0].Subjects.filter((subject)=>{ return subject.name==subject_name});
                 topics = subject_object[0].Topics.filter((topic)=>{ return topic.chapter == chapter_name });
                 console.log(topics);
                 topics.forEach(topic=>{
@@ -581,7 +581,7 @@
 			{
 				var subject = document.getElementById(`subject_selectbox`).value;
 				console.log(subject);
-				var subject_object = state_board_syllabus[0].Subjects.filter((sub)=>{
+				var subject_object = state_entrances_syllabus[0].Subjects.filter((sub)=>{
 					return sub.name==subject;
                 })
                 console.log(subject_object);
@@ -833,7 +833,7 @@
 									var formData = new FormData();
 									formData.append('test_name',test_name);
 									formData.append('test_type',"CWT");
-									formData.append('domain',"STATE_BOARD");
+									formData.append('domain',"STATE_ENTRANCES");
 									formData.append('duration',duration);
 									formData.append('subject',test_subject);
 									formData.append(`chapter`,test_chapter);
