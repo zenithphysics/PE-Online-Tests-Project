@@ -52,10 +52,10 @@ $(function () {
     function createDivs() {
         if(test!="loading")
         {
-        for (let index = 0; index <= test.questions.length; index++) {
+        for (let index = 1; index <= test.questions.length; index++) {
             $(".questions").append(`<div class="question" style="border: 0px solid red;">
             <h4 class="p-2" style="border-bottom: 3px solid #25b5e9;">Question ` + index + ` : </h4>
-            <img class="w-50" src="data:image/jpeg;base64,${test.question_images_white[index]}" alt="">
+            <img class="w-50" src="data:image/jpeg;base64,${test.question_images_white[index-1]}" alt="">
             <table class="table table-borderless mt-2 p-5">
                 <tbody>
                     <tr>
