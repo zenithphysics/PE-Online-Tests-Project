@@ -1,5 +1,7 @@
 
-if(test!=loading) {
+$(function () {
+    if(test!="loading")
+    {
     // alert("I'm ready")
     $(".toggleTop").click(function (e) {
         e.preventDefault();
@@ -29,11 +31,10 @@ if(test!=loading) {
         "Question2": "3",
         "Question3": "4"
     }
-    if(test!="loading")
-    {
+ 
     createDivs()
     showdiv()
-    }
+   
     // Counter
     var initialSecs = 10800;
     var currentSecs = initialSecs;
@@ -257,4 +258,4 @@ if(test!=loading) {
             // alert(JSON.stringify(result))
         });
     });
-}
+}});
