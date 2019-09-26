@@ -353,10 +353,10 @@ aria-hidden="true">
 					<option value="NEET"> NEET </option>
 					`
 				}
-				if(student.packs.includes("STATE_BOARD_PCM") || student.packs.includes("STATE_BOARD_PCB") || student.packs.includes("STATE_BOARD_PCMB") || student.packs.includes("STATE_BOARD_P") || student.packs.includes("STATE_BOARD_C") || student.packs.includes("STATE_BOARD_M") || student.packs.includes("STATE_BOARD_B"))
+				if(student.packs.includes("STATE_ENTRANCES_PCM") || student.packs.includes("STATE_ENTRANCES_PCB") || student.packs.includes("STATE_ENTRANCES_PCMB") || student.packs.includes("STATE_ENTRANCES_P") || student.packs.includes("STATE_ENTRANCES_C") || student.packs.includes("STATE_ENTRANCES_M") || student.packs.includes("STATE_ENTRANCES_B"))
 				{
 					domain_selectbox.innerHTML+=`
-					<option value="STATE_BOARD"> STATE BOARD </option>
+					<option value="STATE_ENTRANCES"> STATE ENTRANCES </option>
 					`
 				}
 
@@ -505,10 +505,10 @@ aria-hidden="true">
 								}
 							}
 							}
-							if(domain=="STATE_BOARD")
+							if(domain=="STATE_ENTRANCES")
 							{
 								subject_selectbox.innerHTML=`<option value="na"> Not Selected </option>`
-								if(student.packs.includes("STATE_BOARD_PCMB"))
+								if(student.packs.includes("STATE_ENTRANCES_PCMB"))
 								{
 									subject_selectbox.innerHTML+=`
 									<option value="Physics"> Physics </option>
@@ -519,25 +519,25 @@ aria-hidden="true">
 								}
 								else
 								{
-									if(student_packs.includes("STATE_BOARD_PCM") || student_packs.includes("STATE_BOARD_P"))
+									if(student_packs.includes("STATE_ENTRANCES_PCM") || student_packs.includes("STATE_ENTRANCES_P"))
 									{
 										subject_selectbox.innerHTML+=`
 										<option value="Physics"> Physics </option>
 										`
 									}
-									if(student_packs.includes("STATE_BOARD_PCM") || student_packs.includes("STATE_BOARD_C"))
+									if(student_packs.includes("STATE_ENTRANCES_PCM") || student_packs.includes("STATE_ENTRANCES_C"))
 									{
 										subject_selectbox.innerHTML+=`
 										<option value="Chemistry"> Chemistry </option>
 										`
 									}
-									if(student_packs.includes("STATE_BOARD_PCM") || student_packs.includes("STATE_BOARD_M"))
+									if(student_packs.includes("STATE_ENTRANCES_PCM") || student_packs.includes("STATE_ENTRANCES_M"))
 									{
 										subject_selectbox.innerHTML+=`
 										<option value="Maths"> Maths </option>
 										`
 									}
-									if(student_packs.includes("STATE_BOARD_PCB") || student_packs.includes("STATE_BOARD_B"))
+									if(student_packs.includes("STATE_ENTRANCES_PCB") || student_packs.includes("STATE_ENTRANCES_B"))
 									{
 										subject_selectbox.innerHTML+=`
 										<option value="Biology"> Biology </option>
@@ -687,10 +687,10 @@ aria-hidden="true">
 								}
 							}
 							}
-							if(domain=="STATE_BOARD")
+							if(domain=="STATE_ENTRANCES")
 							{
 								subject_selectbox.innerHTML=`<option value="na"> Not Selected </option>`
-								if(student.packs.includes("STATE_BOARD_PCMB"))
+								if(student.packs.includes("STATE_ENTRANCES_PCMB"))
 								{
 									subject_selectbox.innerHTML+=`
 									<option value="Physics"> Physics </option>
@@ -701,25 +701,25 @@ aria-hidden="true">
 								}
 								else
 								{
-									if(student_packs.includes("STATE_BOARD_PCM") || student_packs.includes("STATE_BOARD_P"))
+									if(student_packs.includes("STATE_ENTRANCES_PCM") || student_packs.includes("STATE_ENTRANCES_P"))
 									{
 										subject_selectbox.innerHTML+=`
 										<option value="Physics"> Physics </option>
 										`
 									}
-									if(student_packs.includes("STATE_BOARD_PCM") || student_packs.includes("STATE_BOARD_C"))
+									if(student_packs.includes("STATE_ENTRANCES_PCM") || student_packs.includes("STATE_ENTRANCES_C"))
 									{
 										subject_selectbox.innerHTML+=`
 										<option value="Chemistry"> Chemistry </option>
 										`
 									}
-									if(student_packs.includes("STATE_BOARD_PCM") || student_packs.includes("STATE_BOARD_M"))
+									if(student_packs.includes("STATE_ENTRANCES_PCM") || student_packs.includes("STATE_ENTRANCES_M"))
 									{
 										subject_selectbox.innerHTML+=`
 										<option value="Maths"> Maths </option>
 										`
 									}
-									if(student_packs.includes("STATE_BOARD_PCB") || student_packs.includes("STATE_BOARD_B"))
+									if(student_packs.includes("STATE_ENTRANCES_PCB") || student_packs.includes("STATE_ENTRANCES_B"))
 									{
 										subject_selectbox.innerHTML+=`
 										<option value="Biology"> Biology </option>
