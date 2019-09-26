@@ -1478,7 +1478,7 @@ app.get('/admin',(req,res)=>{
             else
             {
                 console.log('\x1b[32m%s\x1b[1m', '[/getTest] - Admin Verification Successful');  
-                console.log('\x1b[33m%s\x1b[1m', '[/getTest] - Feteching All SWT Tests...');  
+                console.log('\x1b[33m%s\x1b[1m', '[/getTest] - Feteching Test...');  
                 Test.find({"test_name":req.body.test_name},(err,test)=>{
                     if(err)
                     {
@@ -1613,5 +1613,104 @@ app.get('/admin',(req,res)=>{
                     }
                 })
             }
+    })
+    })
+
+    // VerifyAndGetTest
+    app.post(`/VerifyPackAndGetTest`,verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-student',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/VerifyPackAndGetTest] - Student Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/VerifyPackAndGetTest] - Student Verification Successful');  
+                console.log('\x1b[33m%s\x1b[1m', '[/VerifyPackAndGetTest] - Verifying Student Pack...'); 
+                var studentID = req.body.studentID;
+                var test_name = req.body.test_name; 
+
+                // First Check if student has already given test
+                Test.findOne({$and:[{"test_name":test_name,"taken_by":studentID}]},(err,test)=>{
+                    if(err)
+                    {
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else if(test==null)
+                    {
+                        // Student has not given the test before
+                        Test.findOne({"test_name":test_name},(err,test)=>{
+                            if(err || test==null)
+                            {
+                                res.json({is_verified:true,is_successful:false})
+                            }
+                            else
+                            {
+                                // Student has not  given test before
+                                // Get Student Packs
+                                Student.findOne({"studentID":studentID},(err,student)=>{
+                                    if(err || student==null)
+                                    {
+                                        console.log('\x1b[31m%s\x1b[1m', '[/VerifyPackAndGetTest] - Student Not Found');  
+                                    }
+                                    else
+                                    {
+                                        // Step 1 : Identify Type of Test
+                                        var test_type = test.test_type;
+                                        if(test_type=="FST")
+                                        {
+                                            // Check domain
+                                            if(test.domain=="NEET")
+                                            {
+                                                
+                                            }
+                                        }
+                                    }
+                                })
+                            }
+                        })
+                    }
+                    else
+                    {
+                        // Student has given the test before
+                        res.json({is_verified:true,is_successful:false,given_before:true})
+                    }
+                })
+               /* Test.find({"test_name":req.body.test_name},(err,test)=>{
+                    if(err)
+                    {
+                        console.log('\x1b[31m%s\x1b[1m', '[/getTest] - Failed to fetch Test');
+                        console.log(err)  
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/getTest] - Fetched Test');  
+                        var new_test = test;
+                        // ReConvert buffer to base64 string for question black images
+                        for(var i=0;i<test[0].question_images_black.length;i++)
+                        {
+                            new_test[0].question_images_black[i] = new Buffer(test[0].question_images_black[i]).toString('base64');
+                        }
+                        // Reconvert buffer to base64 string for question white images
+                        for(var i=0;i<test[0].question_images_white.length;i++)
+                        {
+                            new_test[0].question_images_white[i] = new Buffer(test[0].question_images_white[i]).toString('base64');
+                        }
+                         // Reconvert buffer to base64 string for answer white images
+                         for(var i=0;i<test[0].answer_images_white.length;i++)
+                         {
+                             new_test[0].answer_images_white[i] = new Buffer(test[0].answer_images_white[i]).toString('base64');
+                         }
+                           // ReConvert buffer to base64 string for answer black images
+                        for(var i=0;i<test[0].answer_images_black.length;i++)
+                        {
+                            new_test[0].answer_images_black[i] = new Buffer(test[0].answer_images_black[i]).toString('base64');
+                        }
+                        res.json({is_verified:true,is_successful:true,test:new_test[0]})
+                    
+                } )
+            } */} 
     })
     })
