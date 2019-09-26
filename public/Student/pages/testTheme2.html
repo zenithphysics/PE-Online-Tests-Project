@@ -369,13 +369,14 @@
 
     function createQNo() {
         count = 1;
-        for (var i = 0; i < 9; i++) {
+ 
+        for (var i = 0; i < test.questions.length/10; i++) {
             var $row = $(".QnOwrapper").append("<tr class='w-100'> < td/>").children("tr:eq(" + (i) + ")");
             for (var k = 1; k <= 10; k++) {
                 $row.append(`<td class="btn Quebtn unseen" data-div="` + count + `">` + count + `</td>`);
                 count++;
             }
-        }
+        } 
     }
 
     function showdiv() {
