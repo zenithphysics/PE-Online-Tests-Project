@@ -374,14 +374,8 @@ fetch(`${domain_url}/verifyStudent`,{
             viewrow = +viewrow + 1
         }
         /* edit: added logic here */
-        if(viewdiv<10)
-        {
         viewqueNo = (viewdiv % 10)
-        }
-        else if(viewdiv%10==0)
-        {
-            viewqueNo = viewdiv
-        }
+
         // alert(viewrow)
         $(".question").css("display", "none");
         $(".question:nth-child(" + viewdiv + ")").css("display", "block");
