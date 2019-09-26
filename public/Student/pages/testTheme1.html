@@ -250,6 +250,7 @@ fetch(`${domain_url}/verifyStudent`,{
 
 function questionButtonClicked()
     {
+        viewdiv=1;
         console.log("Quebtn clicked");
         viewdiv = $(this).attr("data-div");
         if (!$(this).hasClass("answered")) {
