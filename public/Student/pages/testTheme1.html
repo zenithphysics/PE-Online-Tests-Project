@@ -210,7 +210,7 @@ fetch(`${domain_url}/verifyStudent`,{
             else
             {
                 test = output.test;
-                showQuestionScript();
+                showQuestionScript(test);
                 test_domain_nav_holder.innerHTML = test.domain.replace(/_/g,' ');
                 // (DYNAMIC) add tab buttons in question tab panel
                 var question_tab_html='';
@@ -250,7 +250,9 @@ fetch(`${domain_url}/verifyStudent`,{
 
 
 // showQuestionScript
-
+  // subject selection buttons
+  function showQuestionScript(test) 
+    {
 
     // alert("I'm ready")
     $(".toggleTop").click(function (e) {
@@ -386,9 +388,7 @@ fetch(`${domain_url}/verifyStudent`,{
         }
     }
 
-    // subject selection buttons
-    function showQuestionScript() 
-    {
+  
     $(".phybtn").click(function (e) {
         e.preventDefault();
         $(this).addClass("active")
