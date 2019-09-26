@@ -496,7 +496,7 @@ fetch(`${domain_url}/verifyStudent`,{
     // back/next question buttons
     $(".nextbtn").click(function (e) {
         e.preventDefault();
-        if(viewdiv<test.questions.length){
+        if(viewdiv<=test.questions.length){
             viewdiv = +viewdiv + 1
         }
         showdiv()
