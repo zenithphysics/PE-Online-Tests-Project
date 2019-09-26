@@ -235,7 +235,7 @@ fetch(`${domain_url}/verifyStudent`,{
                        var td = document.createElement('td');
                        td.setAttribute("class","btn quebtn nvisit");
                        td.setAttribute("data-div",`${i}`);
-                       td.innerHTML=i;
+                       td.innerHTML=`${i}`;
                        tr.appendChild(td)
                        test_question_tab_buttons_panel.appendChild(tr);
                        tr = document.createElement(tr);
