@@ -216,18 +216,19 @@ fetch(`${domain_url}/verifyStudent`,{
                     {
                         console.log(`[10 counter] - number - ${i}`)
                         test_question_tab_buttons_panel.innerHTML+=`<td class="btn quebtn nvisit" data-div="${i}">${i}</td>`
-                        test_question_tab_buttons_panel.innerHTML+=`</tr>`
-                        test_question_tab_buttons_panel.innerHTML+=`<tr>`
+                        test_question_tab_buttons_panel.innerHTML+=`</tr></tr>`
                     }
                     else
                     {
                         if(i==1)
                         {
-                            test_question_tab_buttons_panel.innerHTML+=`<tr>`
+                            test_question_tab_buttons_panel.innerHTML+=`<tr><td class="btn quebtn nvisit" data-div="${i}">${i}</td>`
 
                         }
-                        console.log(`normal counter - number -${i}`)
+                        else
+                        {
                         test_question_tab_buttons_panel.innerHTML+=`<td class="btn quebtn nvisit" data-div="${i}">${i}</td>`   
+                        }
                     }
 
                 }
