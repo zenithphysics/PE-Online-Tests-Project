@@ -295,6 +295,24 @@ fetch(`${domain_url}/verifyStudent`,{
             body:JSON.stringify({studentID:pe_username,test_name:test_name})
         }).then(res=>res.json()).then(output=>{
             console.log(output);
+            if(output.is_successful==false)
+            {
+                if(output.unauthorized)
+                {
+                    alert("You are not authorized to give this test!");
+                    document.location.href=`${domain_url}/Student/pages/fst_selection.html`;
+                }
+                else if(output.given_before)
+                {
+                    alert("You have already given this test before!")
+                    document.location.href=`${domain_url}/Student/pages/fst_selection.html`;
+
+                }
+            }
+            else
+            {
+                test = output.test;
+            }
         })
     }
     else
