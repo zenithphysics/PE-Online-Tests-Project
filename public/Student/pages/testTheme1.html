@@ -211,16 +211,18 @@ fetch(`${domain_url}/verifyStudent`,{
                 // (DYNAMIC) add tab buttons in question tab panel
               
                 test_question_tab_buttons_panel.innerHTML+=`<tr>`
-                for(let i=1;i<=test.questions.length;i++)
+                for(var i=1;i<=test.questions.length;i++)
                 {
-                    if(i%10==0) // number is less than 10 or not divisible by 10
+                    if(i % 10 == 0) // number is divisible by 10;
                     {
+                        console.log(`[10 counter] - number - ${i}`)
                         test_question_tab_buttons_panel.innerHTML+=`<td class="btn quebtn nvisit" data-div="${i}">${i}</td>`
                         test_question_tab_buttons_panel.innerHTML+=`</tr>`
                         test_question_tab_buttons_panel.innerHTML+=`<tr>`
                     }
                     else
                     {
+                        console.log(`normal counter - number -${i}`)
                         test_question_tab_buttons_panel.innerHTML+=`<td class="btn quebtn nvisit" data-div="${i}">${i}</td>`   
                     }
 
