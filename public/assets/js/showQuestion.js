@@ -29,9 +29,11 @@ $(function () {
         "Question2": "3",
         "Question3": "4"
     }
+    if(test!="loading")
+    {
     createDivs()
     showdiv()
-
+    }
     // Counter
     var initialSecs = 10800;
     var currentSecs = initialSecs;
@@ -83,6 +85,8 @@ $(function () {
     }
 
     function showdiv() {
+        if(test!="loading")
+        {
         if (viewdiv < 10) {
             viewrow = 1
         } else {
@@ -99,6 +103,7 @@ $(function () {
                     $(".queNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").addClass("visited");
                 }
             }
+        }
         }
     }
 
