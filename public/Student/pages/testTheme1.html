@@ -210,7 +210,6 @@ fetch(`${domain_url}/verifyStudent`,{
                 test_domain_nav_holder.innerHTML = test.domain.replace(/_/g,' ');
                 // (DYNAMIC) add tab buttons in question tab panel
               
-                test_question_tab_buttons_panel.innerHTML+=`<tr>`
                 for(var i=1;i<=test.questions.length;i++)
                 {
                     if(i % 10 == 0) // number is divisible by 10;
@@ -222,6 +221,11 @@ fetch(`${domain_url}/verifyStudent`,{
                     }
                     else
                     {
+                        if(i==1)
+                        {
+                            test_question_tab_buttons_panel.innerHTML+=`<tr>`
+
+                        }
                         console.log(`normal counter - number -${i}`)
                         test_question_tab_buttons_panel.innerHTML+=`<td class="btn quebtn nvisit" data-div="${i}">${i}</td>`   
                     }
