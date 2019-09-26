@@ -219,14 +219,14 @@ fetch(`${domain_url}/verifyStudent`,{
                     if(i % 10 == 0) // number is divisible by 10;
                     {
                         console.log(`[10 counter] - number - ${i}`)
-                        question_tab_html+=`<td class="btn quebtn nvisit visited" data-div="${i}">${i}</td>`
+                        question_tab_html+=`<td class="btn quebtn nvisit" data-div="${i}">${i}</td>`
                         question_tab_html+=`</tr></tr>`
                     }
                     else
                     {
                         if(i==1)
                         {
-                            question_tab_html=`<tr><td class="btn quebtn nvisit" data-div="${i}">${i}</td>`
+                            question_tab_html=`<tr><td class="btn quebtn nvisit visited" data-div="${i}">${i}</td>`
 
                         }
                         else
