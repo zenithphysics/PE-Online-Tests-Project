@@ -1942,19 +1942,20 @@ app.get('/admin',(req,res)=>{
                                     // Traverse each question 
                                     for(let i=0;i<test.questions.length;i++)
                                     {
+                    
                                         if(test.questions[i].topic==test.topic_details.topics[i]) // IF question belongs to that topic
                                         {
                                             if(test_result[i]==0) // Answer is wrong
                                             {
-                                                total_wrong_topic++;
+                                                total_wrong_topic+=1;
                                             }
                                             else if(test_result[i]==1) // Answer is Correct
                                             {
-                                                total_correct_topic++;
+                                                total_correct_topic+=1;
                                             }
                                             else
                                             {
-                                                total_unattempted_topic++;
+                                                total_unattempted_topic+=1;
                                             }
                                         }
                                     }
