@@ -266,57 +266,27 @@ DLevel_details:{
         type:Number,
         required:false
     },
-    DLevel1_stats:{
-        total_correct:{
-            type:Number,
-            required:false,
-            default:0
-        },
-        total_unattempted:{
-            type:Number,
-            required:false,
-            default:0
-        },
-        total_wrong:{
-            type:Number,
-            required:false,
-            default:0
+    DLevel_stats:[ // Stats of each sections
+        {
+            total_correct:{
+                type:Number,
+                required:false,
+                default:0
+            },
+            total_unattempted:{
+                type:Number,
+                required:false,
+                default:0
+            },
+            total_wrong:{
+                type:Number,
+                required:false,
+                default:0
+            }
         }
-    },
-    DLevel2_stats:{
-        total_correct:{
-            type:Number,
-            required:false,
-            default:0
-        },
-        total_unattempted:{
-            type:Number,
-            required:false,
-            default:0
-        },
-        total_wrong:{
-            type:Number,
-            required:false,
-            default:0
-        }
-    },
-    DLevel3_stats:{
-        total_correct:{
-            type:Number,
-            required:false,
-            default:0
-        },
-        total_unattempted:{
-            type:Number,
-            required:false,
-            default:0
-        },
-        total_wrong:{
-            type:Number,
-            required:false,
-            default:0
-        }
-    }
+        ] 
+  
+  
 }
 });
 

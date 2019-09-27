@@ -1929,12 +1929,9 @@ app.get('/admin',(req,res)=>{
                                 for(let i=0;i<test.subject_details.subjects.length;i++){
                                     if(test.subject_details.subjects_stats!=undefined)
                                     {
-                                        console.log("** IN IF ***");
-
                                     var total_correct = test.subject_details.subjects_stats[i].total_correct;
                                     var total_wrong = test.subject_details.subjects_stats[i].total_wrong;
                                     var total_unattempted = test.subject_details.subjects_stats[i].total_unattempted;
-                                    console.log(`total correct - ${total_correct} , total wrong - ${total_wrong} , total unattempted - ${total_unattempted}`)
 
                                 }
                                     else
@@ -1972,16 +1969,13 @@ app.get('/admin',(req,res)=>{
                             for(let i=0;i<test.section_details.sections.length;i++){
                                 if(test.section_details.sections_stats!=undefined)
                                 {
-                                console.log("** IN IF ***");
                                 var total_correct = test.section_details.sections_stats[i].total_correct;
                                 var total_wrong = test.section_details.sections_stats[i].total_wrong;
                                 var total_unattempted = test.section_details.sections_stats[i].total_unattempted;
-                                console.log(`total correct - ${total_correct} , total wrong - ${total_wrong} , total unattempted - ${total_unattempted}`)
 
                             }
                                 else
                                 {
-                                console.log("IN ELSE , TEST HAS NOT BEEN SUBMITTED BEFORE")
                                 var total_correct = 0;
                                 var total_wrong = 0;
                                 var total_unattempted = 0;
@@ -2011,15 +2005,12 @@ app.get('/admin',(req,res)=>{
                                 for(let i=0;i<test.chapter_details.chapters.length;i++){
                                     if(test.chapter_details.chapters_stats!=undefined)
                                     {
-                                    console.log("** IN IF ***");
                                     var total_correct = test.chapter_details.chapters_stats[i].total_correct;
                                     var total_wrong = test.chapter_details.chapters_stats[i].total_wrong;
                                     var total_unattempted = test.chapter_details.chapters_stats[i].total_unattempted;
-                                    console.log(`total correct - ${total_correct} , total wrong - ${total_wrong} , total unattempted - ${total_unattempted}`)
                                     }
                                     else
                                     {
-                                    console.log("IN ELSE , TEST HAS NOT BEEN SUBMITTED BEFORE")
                                     var total_correct = 0;
                                     var total_wrong = 0;
                                     var total_unattempted = 0;
@@ -2055,17 +2046,13 @@ app.get('/admin',(req,res)=>{
                                 for(let i=0;i<test.topic_details.topics.length;i++){
                                     if(test.topic_details.topics_stats!=undefined)
                                     {
-                                    console.log("** IN IF ***");
                                     var total_correct_topic = test.topic_details.topics_stats[i].total_correct;
                                     var total_wrong_topic = test.topic_details.topics_stats[i].total_wrong;
                                     var total_unattempted_topic = test.topic_details.topics_stats[i].total_unattempted;
-                                    console.log(` total _correct ${total_correct_topic}`);
-                                    console.log(total_wrong_topic);
-                                    console.log(total_unattempted_topic);
+                         
                                 }
                                     else
                                     {
-                                    console.log("IN ELSE , TEST HAS NOT BEEN SUBMITTED BEFORE")
                                     var total_correct_topic = 0;
                                     var total_wrong_topic = 0;
                                     var total_unattempted_topic = 0;
@@ -2091,108 +2078,49 @@ app.get('/admin',(req,res)=>{
                                     }
                                     topic_stats.push({total_correct:total_correct_topic,total_wrong:total_wrong_topic,total_unattempted:total_unattempted_topic})
                                 }
-                                
-                                var DLevel1_stats=[];
+                                DLevels = ["Level 1","Level 2","Level 3"]
+                                var DLevel_stats=[];
                                 // DLevel1 Stats
-                                if(test.DLevel_details.DLevel1_stats!=undefined)
-                                {
-                                var total_correct_DL1 = test.DLevel_details.DLevel1_stats.total_correct;
-                                var total_wrong_DL1 = test.DLevel_details.DLevel1_stats.total_wrong;
-                                var total_unattempted_DL1 = test.DLevel_details.DLevel1_stats.total_unattempted;
-                                }
-                                else
-                                {
-                                    var total_correct_DL1=0;
-                                    var total_wrong_DL1=0;
-                                    var total_unattempted_DL1=0;
-                                }
-                                for(let j=0;j<test.questions.length;j++)
-                                    {
-                                        if(test.questions[j].DLevel=="Level 1") // IF question belongs to that dlevel1
-                                        {
-                                            if(test_result[j]==0) // Answer is wrong
-                                            {
-                                                total_wrong_DL1+=1;
-                                            }
-                                            else if(test_result[j]==1) // Answer is Correct
-                                            {
-                                                total_correct_DL1+=1;
-                                            }
-                                            else
-                                            {
-                                                total_unattempted_DL1+=1;
-                                            }
-                                        }
-                                    }
-                                DLevel1_stats.push({total_correct:total_correct_DL1,total_wrong:total_wrong_DL1,total_unattempted:total_unattempted_DL1})
-                                
-                                var DLevel2_stats=[];
-                                // DLevel2 Stats
-                                if(test.DLevel_details.DLevel2_stats!=undefined)
-                                {
-                                var total_correct_DL2= test.DLevel_details.DLevel2_stats.total_correct;
-                                var total_wrong_DL2 = test.DLevel_details.DLevel2_stats.total_wrong;
-                                var total_unattempted_DL2 = test.DLevel_details.DLevel2_stats.total_unattempted;
-                                }
-                                else
-                                {
-                                    var total_correct_DL2=0;
-                                    var total_wrong_DL2=0;
-                                    var total_unattempted_DL2=0;
-                                }
-                                for(let j=0;j<test.questions.length;j++)
-                                    {
-                                        if(test.questions[j].DLevel=="Level 2") // IF question belongs to that dlevel2
-                                        {
-                                            if(test_result[j]==0) // Answer is wrong
-                                            {
-                                                total_wrong_DL2+=1;
-                                            }
-                                            else if(test_result[j]==1) // Answer is Correct
-                                            {
-                                                total_correct_DL2+=1;
-                                            }
-                                            else
-                                            {
-                                                total_unattempted_DL2+=1;
-                                            }
-                                        }
-                                    }
-                                DLevel2_stats.push({total_correct:total_correct_DL2,total_wrong:total_wrong_DL2,total_unattempted:total_unattempted_DL2})
 
-                                var DLevel3_stats=[];
-                                // DLevel3 Stats
-                                if(test.DLevel_details.DLevel2_stats!=undefined)
-                                {
-                                var total_correct_DL3= test.DLevel_details.DLevel3_stats.total_correct;
-                                var total_wrong_DL3 = test.DLevel_details.DLevel3_stats.total_wrong;
-                                var total_unattempted_DL3 = test.DLevel_details.DLevel3_stats.total_unattempted;
-                                }
-                                else
-                                {
-                                    var total_correct_DL3=0;
-                                    var total_wrong_DL3=0;
-                                    var total_unattempted_DL3=0;
-                                }
-                                for(let j=0;j<test.questions.length;j++)
+                                for(let i=0;i<DLevels.length;i++){
+                                    if(test.DLevel_details.DLevel_stats!=undefined)
                                     {
-                                        if(test.questions[j].DLevel=="Level 3") // IF question belongs to that dlevel2
+                                    var total_correct = test.DLevel_details.DLevel_stats[i].total_correct;
+                                    var total_wrong= test.DLevel_details.DLevel_stats[i].total_wrong;
+                                    var total_unattempted = test.DLevel_details.DLevel_stats[i].total_unattempted;
+                                    console.log(total_wrong_topic);
+                                    console.log(total_unattempted_topic);
+                                }
+                                    else
+                                    {
+                                    var total_correct = 0;
+                                    var total_wrong = 0;
+                                    var total_unattempted = 0;
+                                    }
+                                    // Traverse each question 
+                                    for(let j=0;j<test.questions.length;j++)
+                                    {
+                                        if(test.questions[j].topic==DLevels[i]) // IF question belongs to that topic
                                         {
                                             if(test_result[j]==0) // Answer is wrong
                                             {
-                                                total_wrong_DL3+=1;
+                                                total_wrong_topic+=1;
                                             }
                                             else if(test_result[j]==1) // Answer is Correct
                                             {
-                                                total_correct_DL3+=1;
+                                                total_correct_topic+=1;
                                             }
                                             else
                                             {
-                                                total_unattempted_DL3+=1;
+                                                total_unattempted_topic+=1;
                                             }
                                         }
                                     }
-                                DLevel3_stats.push({total_correct:total_correct_DL3,total_wrong:total_wrong_DL3,total_unattempted:total_unattempted_DL3})
+                                    DLevel_stats.push({total_correct:total_correct_topic,total_wrong:total_wrong_topic,total_unattempted:total_unattempted_topic})
+                                }
+                                
+                                
+                               
                              /*   console.log("SUBJECT STATS");
                                 console.log(subject_stats);
                                 console.log("SECTION STATS");
