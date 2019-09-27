@@ -1929,6 +1929,8 @@ app.get('/admin',(req,res)=>{
                                 for(let i=0;i<test.subject_details.subjects.length;i++){
                                     if(test.subject_details.subject_stats!=null)
                                     {
+                                        console.log("** IN IF ***");
+
                                     var total_correct = test.subject_details.subject_stats[i].total_correct;
                                     var total_wrong = test.subject_details.subject_stats[i].total_wrong;
                                     var total_unattempted = test.subject_details.subject_stats[i].total_unattempted;
@@ -1968,6 +1970,7 @@ app.get('/admin',(req,res)=>{
                             for(let i=0;i<test.section_details.sections.length;i++){
                                 if(test.section_details.section_stats!=null)
                                 {
+                                console.log("** IN IF ***");
                                 var total_correct = test.section_details.section_stats[i].total_correct;
                                 var total_wrong = test.section_details.section_stats[i].total_wrong;
                                 var total_unattempted = test.section_details.section_stats[i].total_unattempted;
@@ -2004,6 +2007,7 @@ app.get('/admin',(req,res)=>{
                                 for(let i=0;i<test.chapter_details.chapters.length;i++){
                                     if(test.chapter_details.chapter_stats!=null)
                                     {
+                                    console.log("** IN IF ***");
                                     var total_correct = test.chapter_details.chapter_stats[i].total_correct;
                                     var total_wrong = test.chapter_details.chapter_stats[i].total_wrong;
                                     var total_unattempted = test.chapter_details.chapter_stats[i].total_unattempted;
@@ -2044,9 +2048,9 @@ app.get('/admin',(req,res)=>{
 
                                 // TOPIC STATS
                                 for(let i=0;i<test.topic_details.topics.length;i++){
-                                    if(test.topic_details.topic_stats[0]!=null)
+                                    if(test.topic_details.topic_stats!=null)
                                     {
-                                    console.log("** IN IF ");
+                                    console.log("** IN IF ***");
                                     var total_correct_topic = test.topic_details.topics_stats[i].total_correct;
                                     var total_wrong_topic = test.topic_details.topic_stats[i].total_wrong;
                                     var total_unattempted_topic = test.topic_details.topic_stats[i].total_unattempted;
