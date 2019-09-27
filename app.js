@@ -2083,9 +2083,9 @@ app.get('/admin',(req,res)=>{
                                 // DLevel1 Stats
                                 if(test.DLevel_details.DLevel1_stats!=null)
                                 {
-                                var total_correct_DL1 = test.DLevel_details.DLevel1_stats[i].total_correct;
-                                var total_wrong_DL1 = test.DLevel_details.DLevel1_stats[i].total_wrong;
-                                var total_unattempted_DL1 = test.DLevel_details.DLevel1_stats[i].total_unattempted;
+                                var total_correct_DL1 = test.DLevel_details.DLevel1_stats.total_correct;
+                                var total_wrong_DL1 = test.DLevel_details.DLevel1_stats.total_wrong;
+                                var total_unattempted_DL1 = test.DLevel_details.DLevel1_stats.total_unattempted;
                                 }
                                 else
                                 {
@@ -2117,9 +2117,9 @@ app.get('/admin',(req,res)=>{
                                 // DLevel2 Stats
                                 if(test.DLevel_details.DLevel2_stats!=null)
                                 {
-                                var total_correct_DL2= test.DLevel_details.DLevel2_stats[i].total_correct;
-                                var total_wrong_DL2 = test.DLevel_details.DLevel2_stats[i].total_wrong;
-                                var total_unattempted_DL2 = test.DLevel_details.DLevel2_stats[i].total_unattempted;
+                                var total_correct_DL2= test.DLevel_details.DLevel2_stats.total_correct;
+                                var total_wrong_DL2 = test.DLevel_details.DLevel2_stats.total_wrong;
+                                var total_unattempted_DL2 = test.DLevel_details.DLevel2_stats.total_unattempted;
                                 }
                                 else
                                 {
@@ -2151,9 +2151,9 @@ app.get('/admin',(req,res)=>{
                                 // DLevel3 Stats
                                 if(test.DLevel_details.DLevel2_stats!=null)
                                 {
-                                var total_correct_DL3= test.DLevel_details.DLevel3_stats[i].total_correct;
-                                var total_wrong_DL3 = test.DLevel_details.DLevel3_stats[i].total_wrong;
-                                var total_unattempted_DL3 = test.DLevel_details.DLevel3_stats[i].total_unattempted;
+                                var total_correct_DL3= test.DLevel_details.DLevel3_stats.total_correct;
+                                var total_wrong_DL3 = test.DLevel_details.DLevel3_stats.total_wrong;
+                                var total_unattempted_DL3 = test.DLevel_details.DLevel3_stats.total_unattempted;
                                 }
                                 else
                                 {
