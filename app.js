@@ -2046,10 +2046,14 @@ app.get('/admin',(req,res)=>{
                                 for(let i=0;i<test.topic_details.topics.length;i++){
                                     if(test.topic_details.topic_stats!=null)
                                     {
+                                    console.log("** IN IF ");
                                     var total_correct_topic = test.topic_details.topics_stats[i].total_correct;
                                     var total_wrong_topic = test.topic_details.topic_stats[i].total_wrong;
                                     var total_unattempted_topic = test.topic_details.topic_stats[i].total_unattempted;
-                                    }
+                                    console.log(total_correct_topic);
+                                    console.log(total_wrong_topic);
+                                    console.log(total_unattempted_topic);
+                                }
                                     else
                                     {
                                     console.log("IN ELSE , TEST HAS NOT BEEN SUBMITTED BEFORE")
