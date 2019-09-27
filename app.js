@@ -1965,7 +1965,7 @@ app.get('/admin',(req,res)=>{
                                     subject_stats.push({total_correct:total_correct,total_wrong:total_wrong,total_unattempted:total_unattempted})
                                 } 
                             // SECTION STATS
-                            for(let i=0;i<test.section_details.subjects.length;i++){
+                            for(let i=0;i<test.section_details.sections.length;i++){
                                 if(test.section_details.section_stats!=null)
                                 {
                                 var total_correct = test.section_details.section_stats[i].total_correct;
