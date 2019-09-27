@@ -2044,7 +2044,7 @@ app.get('/admin',(req,res)=>{
 
                                 // TOPIC STATS
                                 for(let i=0;i<test.topic_details.topics.length;i++){
-                                    if(test.topic_details.topic_stats!=null)
+                                    if(test.topic_details.topic_stats[0]!=null)
                                     {
                                     console.log("** IN IF ");
                                     var total_correct_topic = test.topic_details.topics_stats[i].total_correct;
