@@ -1928,7 +1928,7 @@ app.get('/admin',(req,res)=>{
                                 
                             // SUBJECT STATS
                                 for(let i=0;i<test.subject_details.subjects.length;i++){
-                                    if(test.subject_details.subjects_stats!=undefined && test.subject_details.subjects_stats!=null)
+                                    if(test.subject_details.subjects_stats!=[])
                                     {
                                     var total_correct = test.subject_details.subjects_stats[i].total_correct;
                                     var total_wrong = test.subject_details.subjects_stats[i].total_wrong;
@@ -1967,7 +1967,7 @@ app.get('/admin',(req,res)=>{
                                 } 
                             // SECTION STATS
                             for(let i=0;i<test.section_details.sections.length;i++){
-                                if(test.section_details.sections_stats!=undefined && test.section_details.sections_stats!=null)
+                                if(test.section_details.sections_stats!=[])
                                 {
                                 var total_correct = test.section_details.sections_stats[i].total_correct;
                                 var total_wrong = test.section_details.sections_stats[i].total_wrong;
@@ -2003,7 +2003,7 @@ app.get('/admin',(req,res)=>{
                             } 
                             // CHAPTER STATS
                                 for(let i=0;i<test.chapter_details.chapters.length;i++){
-                                    if(test.chapter_details.chapters_stats!=undefined && test.chapter_details.chapters_stats!=null)
+                                    if(test.chapter_details.chapters_stats!=[])
                                     {
                                     var total_correct = test.chapter_details.chapters_stats[i].total_correct;
                                     var total_wrong = test.chapter_details.chapters_stats[i].total_wrong;
@@ -2044,7 +2044,7 @@ app.get('/admin',(req,res)=>{
 
                                 // TOPIC STATS
                                 for(let i=0;i<test.topic_details.topics.length;i++){
-                                    if(test.topic_details.topics_stats!=undefined && test.topic_details.topics_stats!=null)
+                                    if(test.topic_details.topics_stats!=[])
                                     {
                                     var total_correct_topic = test.topic_details.topics_stats[i].total_correct;
                                     var total_wrong_topic = test.topic_details.topics_stats[i].total_wrong;
@@ -2083,7 +2083,7 @@ app.get('/admin',(req,res)=>{
                                 // DLevel1 Stats
 
                                 for(let i=0;i<DLevels.length;i++){
-                                    if(test.DLevel_details.DLevel_stats!=undefined)
+                                    if(test.DLevel_details.DLevel_stats!=[])
                                     {
                                     var total_correct = test.DLevel_details.DLevel_stats[i].total_correct;
                                     var total_wrong= test.DLevel_details.DLevel_stats[i].total_wrong;
