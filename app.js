@@ -2190,7 +2190,7 @@ app.get('/admin',(req,res)=>{
                                 console.log(topic_stats);*/
                                 console.log("TOTAL MARKS"); 
                                 console.log(total_marks);
-                                
+                                Test.syncIndexes();
                                 Test.findOneAndUpdate({"test_name":test.test_name},{$set:{
                                     "section_details.sections_stats":section_stats,
                                     "topic_details.topics_stats":topic_stats,
@@ -2199,8 +2199,11 @@ app.get('/admin',(req,res)=>{
                                     "test_taken_count":taken_count,
                                     "DLevel_details.DLevel1_stats":DLevel1_stats,
                                     "DLevel_details.DLevel2_stats":DLevel2_stats,
-                                    "DLevel_details.DLevel3_stats":DLevel3_stats
-                                }},(err,output)=>{
+                                    "DLevel_details.DLevel3_stats":DLevel3_stats,
+                                    "question_details.total_correct":total_questions_correct,
+                                    "question_details.total_unattempted":total_questions_unattempted,
+                                    "question_details,total_wrong":total_questions_wrong
+                                },$addToSet:{"taken_by":studentID}},(err,output)=>{
                                     if(err || output==null)
                                     {
                                         res.json({is_verified:true,is_successful:false})
