@@ -314,25 +314,25 @@
                     <tr class="d-flex justify-content-center">
                     <td class="d-flex flex-1 justify-content-center align-items-center">
                         <label class="radio-btn">
-                            <input type="radio" value="a" id="Question${index}" name="Question` + index + `" class="">
+                            <input type="radio" value="a" id="Question${index}" name="Question` + index + `" >
                             Option A
                         </label>
                     </td>
                     <td class="d-flex flex-1 justify-content-center align-items-center">
                         <label class="radio-btn">
-                            <input type="radio" value="b" id="Question${index}" name="Question` + index + `" class="">
+                            <input type="radio" value="b" id="Question${index}" name="Question` + index + `" >
                             Option B
                         </label>
                     </td>
                     <td class="d-flex flex-1 justify-content-center align-items-center">
                         <label class="radio-btn">
-                            <input type="radio" value="c" id="Question${index}" name="Question` + index + `" class="">
+                            <input type="radio" value="c" id="Question${index}" name="Question` + index + `" >
                             Option C
                         </label>
                     </td>
                     <td class="d-flex flex-1 justify-content-center align-items-center">
                         <label class="radio-btn">
-                            <input type="radio" value="d" id="Question${index}" name="Question` + index + `" class="">
+                            <input type="radio" value="d" id="Question${index}" name="Question` + index + `" >
                             Option D
                         </label>
                     </td>
@@ -358,25 +358,25 @@
                     <tr class="d-flex justify-content-center">
                     <td class="d-flex flex-1 justify-content-center align-items-center">
                         <label class="radio-btn">
-                            <input type="radio" value="a" id="Question${index}" name="Question` + index + `" class="">
+                            <input type="radio" value="a" id="Question${index}" name="Question` + index + `" >
                             Option A
                         </label>
                     </td>
                     <td class="d-flex flex-1 justify-content-center align-items-center">
                         <label class="radio-btn">
-                            <input type="radio" value="b" id="Question${index}" name="Question` + index + `" class="">
+                            <input type="radio" value="b" id="Question${index}" name="Question` + index + `">
                             Option B
                         </label>
                     </td>
                     <td class="d-flex flex-1 justify-content-center align-items-center">
                         <label class="radio-btn">
-                            <input type="radio" value="c" id="Question${index}" name="Question` + index + `" class="">
+                            <input type="radio" value="c" id="Question${index}" name="Question` + index + `" >
                             Option C
                         </label>
                     </td>
                     <td class="d-flex flex-1 justify-content-center align-items-center">
                         <label class="radio-btn">
-                            <input type="radio" value="d" id="Question${index}" name="Question` + index + `" class="">
+                            <input type="radio" value="d" id="Question${index}" name="Question` + index + `" >
                             Option D
                         </label>
                     </td>
@@ -577,7 +577,7 @@
        {
            var input = document.getElementById(`Question${i}`);
            console.log(input);
-           if(input.checked)
+           if(input.checked=="checked")
            {
                answer = input.value;
            }
