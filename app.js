@@ -2200,9 +2200,9 @@ app.get('/admin',(req,res)=>{
                                     "DLevel_details.DLevel1_stats":DLevel1_stats,
                                     "DLevel_details.DLevel2_stats":DLevel2_stats,
                                     "DLevel_details.DLevel3_stats":DLevel3_stats,
-                                    "question_details.total_correct":total_questions_correct,
-                                    "question_details.total_unattempted":total_questions_unattempted,
-                                    "question_details.total_wrong":total_questions_wrong
+                                    "question_details.0.total_correct":total_questions_correct,
+                                    "question_details.0.total_unattempted":total_questions_unattempted,
+                                    "question_details.0.total_wrong":total_questions_wrong
                                 },$addToSet:{"taken_by":studentID}},(err,output)=>{
                                     if(err || output==null)
                                     {
