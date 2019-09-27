@@ -1934,6 +1934,7 @@ app.get('/admin',(req,res)=>{
                                     }
                                     else
                                     {
+                                    console.log("IN ELSE , TEST HAS NOT BEEN SUBMITTED BEFORE")
                                     var total_correct_topic = 0;
                                     var total_wrong_topic = 0;
                                     var total_unattempted_topic = 0;
