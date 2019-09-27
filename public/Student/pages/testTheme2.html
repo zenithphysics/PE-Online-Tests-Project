@@ -558,7 +558,7 @@
     
      $(".submit").click(function (e) {
        e.preventDefault();
-       data = $(".Question input").serialize()
+     /*  data = $(".Question input").serialize()
        console.log(data);
 
        data = data.split("&")
@@ -571,8 +571,10 @@
     //         // alert(JSON.stringify(result))
       console.log(result)
        });
-     });
+     }); */arguments
 
+     var radio_buttons = $(`.Question input[type="radio"]`)
+     console.log(radio_buttons);
         }
             </script>
 </body>
