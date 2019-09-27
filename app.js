@@ -1930,6 +1930,7 @@ app.get('/admin',(req,res)=>{
                                 for(let i=0;i<test.subject_details.subjects.length;i++){
                                     if(test.subject_details.subjects_stats!=[])
                                     {
+                                    console.log("Subject stats exists")
                                     var total_correct = test.subject_details.subjects_stats[i].total_correct;
                                     var total_wrong = test.subject_details.subjects_stats[i].total_wrong;
                                     var total_unattempted = test.subject_details.subjects_stats[i].total_unattempted;
