@@ -462,6 +462,7 @@ fetch(`${domain_url}/verifyStudent`,{
     // Save Answer Button
     $(".saveAnsbtn").click(function (e) {
         e.preventDefault();
+        console.log(`View div is question no - ${viewdiv}`)
         if ($(".question:nth-child(" + viewdiv + ") table tbody td input").is(":checked")) {
             if (viewdiv <= 10) // changed to <=
         {
