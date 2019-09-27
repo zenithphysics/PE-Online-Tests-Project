@@ -2031,7 +2031,7 @@ app.get('/admin',(req,res)=>{
                                         {
                                             test.questions[j].chapter=test.chapter;
                                         }
-                                        if(test.questions[j].chapter==test.chapters_details.chapters[i]) // IF question belongs to that chapter
+                                        if(test.questions[j].chapter==test.chapter_details.chapters[i]) // IF question belongs to that chapter
                                         {
                                             if(test_result[j]==0) // Answer is wrong
                                             {
