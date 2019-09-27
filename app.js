@@ -1927,13 +1927,13 @@ app.get('/admin',(req,res)=>{
                                 
                             // SUBJECT STATS
                                 for(let i=0;i<test.subject_details.subjects.length;i++){
-                                    if(test.subject_details.subject_stats!=undefined)
+                                    if(test.subject_details.subjects_stats!=undefined)
                                     {
                                         console.log("** IN IF ***");
 
-                                    var total_correct = test.subject_details.subject_stats[i].total_correct;
-                                    var total_wrong = test.subject_details.subject_stats[i].total_wrong;
-                                    var total_unattempted = test.subject_details.subject_stats[i].total_unattempted;
+                                    var total_correct = test.subject_details.subjects_stats[i].total_correct;
+                                    var total_wrong = test.subject_details.subjects_stats[i].total_wrong;
+                                    var total_unattempted = test.subject_details.subjects_stats[i].total_unattempted;
                                     }
                                     else
                                     {
@@ -1968,12 +1968,12 @@ app.get('/admin',(req,res)=>{
                                 } 
                             // SECTION STATS
                             for(let i=0;i<test.section_details.sections.length;i++){
-                                if(test.section_details.section_stats!=undefined)
+                                if(test.section_details.sections_stats!=undefined)
                                 {
                                 console.log("** IN IF ***");
-                                var total_correct = test.section_details.section_stats[i].total_correct;
-                                var total_wrong = test.section_details.section_stats[i].total_wrong;
-                                var total_unattempted = test.section_details.section_stats[i].total_unattempted;
+                                var total_correct = test.section_details.sections_stats[i].total_correct;
+                                var total_wrong = test.section_details.sections_stats[i].total_wrong;
+                                var total_unattempted = test.section_details.sections_stats[i].total_unattempted;
                                 }
                                 else
                                 {
@@ -2008,9 +2008,9 @@ app.get('/admin',(req,res)=>{
                                     if(test.chapter_details.chapter_stats!=undefined)
                                     {
                                     console.log("** IN IF ***");
-                                    var total_correct = test.chapter_details.chapter_stats[i].total_correct;
-                                    var total_wrong = test.chapter_details.chapter_stats[i].total_wrong;
-                                    var total_unattempted = test.chapter_details.chapter_stats[i].total_unattempted;
+                                    var total_correct = test.chapter_details.chapters_stats[i].total_correct;
+                                    var total_wrong = test.chapter_details.chapters_stats[i].total_wrong;
+                                    var total_unattempted = test.chapter_details.chapters_stats[i].total_unattempted;
                                     }
                                     else
                                     {
@@ -2052,8 +2052,8 @@ app.get('/admin',(req,res)=>{
                                     {
                                     console.log("** IN IF ***");
                                     var total_correct_topic = test.topic_details.topics_stats[i].total_correct;
-                                    var total_wrong_topic = test.topic_details.topic_stats[i].total_wrong;
-                                    var total_unattempted_topic = test.topic_details.topic_stats[i].total_unattempted;
+                                    var total_wrong_topic = test.topic_details.topics_stats[i].total_wrong;
+                                    var total_unattempted_topic = test.topic_details.topics_stats[i].total_unattempted;
                                     console.log(total_correct_topic);
                                     console.log(total_wrong_topic);
                                     console.log(total_unattempted_topic);
