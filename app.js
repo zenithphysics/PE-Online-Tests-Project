@@ -1872,10 +1872,13 @@ app.get('/admin',(req,res)=>{
                     console.log('\x1b[32m%s\x1b[1m', '[/submitTest] - Admin Verification Successful'); 
                     studentID = req.body.studentID;
                     test_name = req.body.test_name;
-                    user_answer_keey = req.body.user_answer_key;
+                    user_answer_key = req.body.user_answer_key;
 
-                    // Get Test
-                    
+                    console.log(`Student ID - ${studentID}`);
+                    console.log(`Test Name - ${test_name}`);
+                    console.log(`Users Answer:`);
+                    console.log(user_answer_key)
+
                    
                 }
             })
