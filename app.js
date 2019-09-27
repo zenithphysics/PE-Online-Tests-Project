@@ -1927,7 +1927,7 @@ app.get('/admin',(req,res)=>{
                                 
                             // SUBJECT STATS
                                 for(let i=0;i<test.subject_details.subjects.length;i++){
-                                    if(test.subject_details.subject_stats!=null)
+                                    if(test.subject_details.subject_stats!=undefined)
                                     {
                                         console.log("** IN IF ***");
 
@@ -1968,7 +1968,7 @@ app.get('/admin',(req,res)=>{
                                 } 
                             // SECTION STATS
                             for(let i=0;i<test.section_details.sections.length;i++){
-                                if(test.section_details.section_stats!=null)
+                                if(test.section_details.section_stats!=undefined)
                                 {
                                 console.log("** IN IF ***");
                                 var total_correct = test.section_details.section_stats[i].total_correct;
@@ -2005,7 +2005,7 @@ app.get('/admin',(req,res)=>{
                             } 
                             // CHAPTER STATS
                                 for(let i=0;i<test.chapter_details.chapters.length;i++){
-                                    if(test.chapter_details.chapter_stats!=null)
+                                    if(test.chapter_details.chapter_stats!=undefined)
                                     {
                                     console.log("** IN IF ***");
                                     var total_correct = test.chapter_details.chapter_stats[i].total_correct;
@@ -2048,7 +2048,7 @@ app.get('/admin',(req,res)=>{
 
                                 // TOPIC STATS
                                 for(let i=0;i<test.topic_details.topics.length;i++){
-                                    if(test.topic_details.topic_stats!=null)
+                                    if(test.topic_details.topic_stats!=undefined)
                                     {
                                     console.log("** IN IF ***");
                                     var total_correct_topic = test.topic_details.topics_stats[i].total_correct;
@@ -2089,7 +2089,7 @@ app.get('/admin',(req,res)=>{
                                 
                                 var DLevel1_stats=[];
                                 // DLevel1 Stats
-                                if(test.DLevel_details.DLevel1_stats!=null)
+                                if(test.DLevel_details.DLevel1_stats!=undefined)
                                 {
                                 var total_correct_DL1 = test.DLevel_details.DLevel1_stats.total_correct;
                                 var total_wrong_DL1 = test.DLevel_details.DLevel1_stats.total_wrong;
@@ -2123,7 +2123,7 @@ app.get('/admin',(req,res)=>{
                                 
                                 var DLevel2_stats=[];
                                 // DLevel2 Stats
-                                if(test.DLevel_details.DLevel2_stats!=null)
+                                if(test.DLevel_details.DLevel2_stats!=undefined)
                                 {
                                 var total_correct_DL2= test.DLevel_details.DLevel2_stats.total_correct;
                                 var total_wrong_DL2 = test.DLevel_details.DLevel2_stats.total_wrong;
@@ -2157,7 +2157,7 @@ app.get('/admin',(req,res)=>{
 
                                 var DLevel3_stats=[];
                                 // DLevel3 Stats
-                                if(test.DLevel_details.DLevel2_stats!=null)
+                                if(test.DLevel_details.DLevel2_stats!=undefined)
                                 {
                                 var total_correct_DL3= test.DLevel_details.DLevel3_stats.total_correct;
                                 var total_wrong_DL3 = test.DLevel_details.DLevel3_stats.total_wrong;
