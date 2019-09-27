@@ -1856,3 +1856,27 @@ app.get('/admin',(req,res)=>{
                  } 
     })
     })
+
+    // SubmitTest
+
+    app.post('/submitTest',verifyToken,(req,res)=>{
+            console.log("[/submitTest] - Verifying Student")
+            jwt.verify(req.token,'pe-tests-student',(err,authData)=>{
+                if(err){
+                    console.log('\x1b[31m%s\x1b[1m', '[/submitTest] - Admin Verification Failed');  
+                    console.log(err);
+                    res.json({is_verified:false})
+                }
+                else
+                {
+                    console.log('\x1b[32m%s\x1b[1m', '[/submitTest] - Admin Verification Successful'); 
+                    studentID = req.body.studentID;
+                    test_name = req.body.test_name;
+                    user_answer_keey = req.body.user_answer_key;
+
+                    // Get Test
+                    
+                   
+                }
+            })
+    })

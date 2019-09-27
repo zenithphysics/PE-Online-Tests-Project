@@ -567,6 +567,18 @@ fetch(`${domain_url}/verifyStudent`,{
         console.log("Test result is");
         console.log(user_answer_key);
 
+        fetch(`${domain_url}/submitTest`,{
+            method:"POST",
+            headers:{
+                authorization:user_access_token,
+                'Content-type':'application/json'
+            },
+            body:JSON.stringify({studentID:pe_username,test_name:test.test_name,user_answer_key:user_answer_key})
+        }).then(res=>res.json()).then(output=>{
+            console.log(output)
+
+        })
+
     });
 }
   
