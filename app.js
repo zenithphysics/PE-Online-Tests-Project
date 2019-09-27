@@ -1916,15 +1916,133 @@ app.get('/admin',(req,res)=>{
                                 }
                             }
                     
-                            // Question details
-                            if(test.test_type=="FST") // Enter Subject,Chapter,Topic,DLevel,Section wise details
-                            {
+                       
                                 var subject_stats = [];
                                 var section_stats = [];
                                 var chapter_stats = [];
                                 var topic_stats = [];
                                 var dlevel_stats = [];
 
+                                
+                            // SUBJECT STATS
+                                for(let i=0;i<test.subject_details.subjects.length;i++){
+                                    if(test.subject_details.subject_stats!=null)
+                                    {
+                                    var total_correct = test.subject_details.subject_stats[i].total_correct;
+                                    var total_wrong = test.subject_details.subject_stats[i].total_wrong;
+                                    var total_unattempted = test.subject_details.subject_stats[i].total_unattempted;
+                                    }
+                                    else
+                                    {
+                                    console.log("IN ELSE , TEST HAS NOT BEEN SUBMITTED BEFORE")
+                                    var total_correct = 0;
+                                    var total_wrong = 0;
+                                    var total_unattempted = 0;
+                                    }
+                                    // Traverse each question 
+                                    for(let j=0;j<test.questions.length;j++)
+                                    {
+                                        if(test.test_type=="CWT" || test.test_type=="SWT")
+                                        {   
+                                            test.questions[j].subject=test.subject;
+                                        }
+                                        if(test.questions[j].subject==test.subject_details.subjects[i]) // IF question belongs to that topic
+                                        {
+                                            if(test_result[j]==0) // Answer is wrong
+                                            {
+                                                total_wrong+=1;
+                                            }
+                                            else if(test_result[j]==1) // Answer is Correct
+                                            {
+                                                total_correct+=1;
+                                            }
+                                            else
+                                            {
+                                                total_unattempted+=1;
+                                            }
+                                        }
+                                    }
+                                    subject_stats.push({total_correct:total_correct,total_wrong:total_wrong,total_unattempted:total_unattempted})
+                                } 
+                            // SECTION STATS
+                            for(let i=0;i<test.section_details.subjects.length;i++){
+                                if(test.section_details.section_stats!=null)
+                                {
+                                var total_correct = test.section_details.section_stats[i].total_correct;
+                                var total_wrong = test.section_details.section_stats[i].total_wrong;
+                                var total_unattempted = test.section_details.section_stats[i].total_unattempted;
+                                }
+                                else
+                                {
+                                console.log("IN ELSE , TEST HAS NOT BEEN SUBMITTED BEFORE")
+                                var total_correct = 0;
+                                var total_wrong = 0;
+                                var total_unattempted = 0;
+                                }
+                                // Traverse each question 
+                                for(let j=0;j<test.questions.length;j++)
+                                {
+                                    if(test.questions[j].section==test.section_details.sections[i]) // IF question belongs to that topic
+                                    {
+                                        if(test_result[j]==0) // Answer is wrong
+                                        {
+                                            total_wrong+=1;
+                                        }
+                                        else if(test_result[j]==1) // Answer is Correct
+                                        {
+                                            total_correct+=1;
+                                        }
+                                        else
+                                        {
+                                            total_unattempted+=1;
+                                        }
+                                    }
+                                }
+                                section_stats.push({total_correct:total_correct,total_wrong:total_wrong,total_unattempted:total_unattempted})
+                            } 
+                            // CHAPTER STATS
+                                for(let i=0;i<test.chapter_details.chapters.length;i++){
+                                    if(test.chapter_details.chapter_stats!=null)
+                                    {
+                                    var total_correct = test.chapter_details.chapter_stats[i].total_correct;
+                                    var total_wrong = test.chapter_details.chapter_stats[i].total_wrong;
+                                    var total_unattempted = test.chapter_details.chapter_stats[i].total_unattempted;
+                                    }
+                                    else
+                                    {
+                                    console.log("IN ELSE , TEST HAS NOT BEEN SUBMITTED BEFORE")
+                                    var total_correct = 0;
+                                    var total_wrong = 0;
+                                    var total_unattempted = 0;
+                                    }
+                                    // Traverse each question 
+                                    for(let j=0;j<test.questions.length;j++)
+                                    {
+                                        if(test.test_type=="CWT")
+                                        {
+                                            test.questions[j].chapter=test.chapter;
+                                        }
+                                        if(test.questions[j].chapter==test.chapter_details.chapters[i]) // IF question belongs to that topic
+                                        {
+                                            if(test_result[j]==0) // Answer is wrong
+                                            {
+                                                total_wrong+=1;
+                                            }
+                                            else if(test_result[j]==1) // Answer is Correct
+                                            {
+                                                total_correct+=1;
+                                            }
+                                            else
+                                            {
+                                                total_unattempted+=1;
+                                            }
+                                        }
+                                    }
+                                    chapter_stats.push({total_correct:total_correct,total_wrong:total_wrong,total_unattempted:total_unattempted})
+
+                                }
+
+                                // TOPIC STATS
                                 for(let i=0;i<test.topic_details.topics.length;i++){
                                     if(test.topic_details.topic_stats!=null)
                                     {
@@ -1960,17 +2078,15 @@ app.get('/admin',(req,res)=>{
                                     }
                                     topic_stats.push({total_correct:total_correct_topic,total_wrong:total_wrong_topic,total_unattempted:total_unattempted_topic})
                                 }
-                               
-                                console.log(topic_stats);
-                            }
-                            else if(test.test_type=="CWT") // Enter Topic,DLevel, Section wise details
-                            {
-
-                            }
-                            else if(test.test_type=="SWT") // Topic, Chapter, DLevel, Section Wise Details
-                            {
-
-                            } 
+                                
+                                console.log("SUBJECT STATS");
+                                console.log(subject_stats);
+                                console.log("SECTION STATS");
+                                console.log(section_stats);
+                                console.log("CHAPTER STATS")
+                                console.log(chapter_stats);
+                                console.log("TOPIC STATS");
+                                console.log(topic_stats)
                         }
                     })
                    
