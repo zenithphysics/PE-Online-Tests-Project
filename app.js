@@ -1926,7 +1926,7 @@ app.get('/admin',(req,res)=>{
                                 var dlevel_stats = [];
 
                                 for(let i=0;i<test.topic_details.topics.length;i++){
-                                    if(test.topic_details.topic_stats[i]!=null)
+                                    if(test.topic_details.topic_stats!=null)
                                     {
                                     var total_correct_topic = test.topic_details.topics_stats[i].total_correct;
                                     var total_wrong_topic = test.topic_details.topic_stats[i].total_wrong;
