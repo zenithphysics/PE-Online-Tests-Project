@@ -552,9 +552,9 @@ fetch(`${domain_url}/verifyStudent`,{
        for(let i=1;i<=test.questions.length;i++)
        {
            var input = document.getElementById(`Question${i}`);
-           if(input.checked=="checked")
+           if(input.checked)
            {
-               answer = input.value;
+               answer=input.value;
            }
            else
            {
