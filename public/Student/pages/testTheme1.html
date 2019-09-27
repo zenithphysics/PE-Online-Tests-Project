@@ -398,13 +398,21 @@ fetch(`${domain_url}/verifyStudent`,{
 
     function saveNreview() {
         if ($(".question:nth-child(" + viewdiv + ") table tbody td input").is(":checked")) {
-            if (viewdiv <= 10) {
+                if (viewdiv <= 10) // changed to <=
+            {
                 viewrow = 1
-                viewqueNo = viewdiv
             } else {
                 viewrow = Math.floor(viewdiv / 10)
                 viewrow = +viewrow + 1
-                viewqueNo = (viewdiv % 10)
+            }
+            /* edit: added logic here */
+            if(viewdiv%10==0) //if viewdiv is a multiple of 10
+            {
+            viewqueNo = 10;
+            }
+            else
+            {
+                viewqueNo = viewdiv%10;
             }
             $(".queNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").removeClass("visited");
             $(".queNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").addClass("saveNremark");
@@ -455,14 +463,22 @@ fetch(`${domain_url}/verifyStudent`,{
     $(".saveAnsbtn").click(function (e) {
         e.preventDefault();
         if ($(".question:nth-child(" + viewdiv + ") table tbody td input").is(":checked")) {
-            if (viewdiv <= 10) {
-                viewrow = 1
-                viewqueNo = viewdiv
-            } else {
-                viewrow = Math.floor(viewdiv / 10)
-                viewrow = +viewrow + 1
-                viewqueNo = (viewdiv % 10)
-            }
+            if (viewdiv <= 10) // changed to <=
+        {
+            viewrow = 1
+        } else {
+            viewrow = Math.floor(viewdiv / 10)
+            viewrow = +viewrow + 1
+        }
+        /* edit: added logic here */
+        if(viewdiv%10==0) //if viewdiv is a multiple of 10
+        {
+        viewqueNo = 10;
+        }
+        else
+        {
+            viewqueNo = viewdiv%10;
+        }
             $(".queNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").removeClass("visited");
             $(".queNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").addClass("answered text-light");
             viewdiv = +viewdiv + 1
@@ -484,13 +500,21 @@ fetch(`${domain_url}/verifyStudent`,{
         if ($(".question:nth-child(" + viewdiv + ") input").is(":checked")) {
             $(".question:nth-child(" + viewdiv + ") input").prop("checked", false);
         }
-        if (viewdiv <= 10) {
+        if (viewdiv <= 10) // changed to <=
+        {
             viewrow = 1
-            viewqueNo = viewdiv
         } else {
             viewrow = Math.floor(viewdiv / 10)
             viewrow = +viewrow + 1
-            viewqueNo = (viewdiv % 10)
+        }
+        /* edit: added logic here */
+        if(viewdiv%10==0) //if viewdiv is a multiple of 10
+        {
+        viewqueNo = 10;
+        }
+        else
+        {
+            viewqueNo = viewdiv%10;
         }
         $(".queNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").removeClass("saveNremark remark answered text-light")
         $(".queNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").addClass("visited")
