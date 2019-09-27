@@ -1873,7 +1873,6 @@ app.get('/admin',(req,res)=>{
                     studentID = req.body.studentID;
                     test_name = req.body.test_name;
                     user_answer_key = req.body.user_answer_key;
-                    Test.syncIndexes();
 
                     console.log(`Student ID - ${studentID}`);
                     console.log(`Test Name - ${test_name}`);
