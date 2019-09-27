@@ -2086,7 +2086,9 @@ app.get('/admin',(req,res)=>{
                                 console.log("CHAPTER STATS")
                                 console.log(chapter_stats);
                                 console.log("TOPIC STATS");
-                                console.log(topic_stats)
+                                console.log(topic_stats);
+                                console.log("TOTAL MARKS");
+                                console.log(total_marks);
                         }
                     })
                    
