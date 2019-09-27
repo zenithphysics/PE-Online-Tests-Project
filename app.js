@@ -1928,13 +1928,12 @@ app.get('/admin',(req,res)=>{
                                 
                             // SUBJECT STATS
                                 for(let i=0;i<test.subject_details.subjects.length;i++){
-                                    if(test.subject_details.subjects_stats!=undefined)
+                                    if(test.subject_details.subjects_stats!=undefined && test.subject_details.subjects_stats!=null)
                                     {
                                     var total_correct = test.subject_details.subjects_stats[i].total_correct;
                                     var total_wrong = test.subject_details.subjects_stats[i].total_wrong;
                                     var total_unattempted = test.subject_details.subjects_stats[i].total_unattempted;
-
-                                }
+                                     }
                                     else
                                     {
                                     var total_correct = 0;
@@ -1968,7 +1967,7 @@ app.get('/admin',(req,res)=>{
                                 } 
                             // SECTION STATS
                             for(let i=0;i<test.section_details.sections.length;i++){
-                                if(test.section_details.sections_stats!=undefined)
+                                if(test.section_details.sections_stats!=undefined && test.section_details.sections_stats!=null)
                                 {
                                 var total_correct = test.section_details.sections_stats[i].total_correct;
                                 var total_wrong = test.section_details.sections_stats[i].total_wrong;
@@ -2004,7 +2003,7 @@ app.get('/admin',(req,res)=>{
                             } 
                             // CHAPTER STATS
                                 for(let i=0;i<test.chapter_details.chapters.length;i++){
-                                    if(test.chapter_details.chapters_stats!=undefined)
+                                    if(test.chapter_details.chapters_stats!=undefined && test.chapter_details.chapters_stats!=null)
                                     {
                                     var total_correct = test.chapter_details.chapters_stats[i].total_correct;
                                     var total_wrong = test.chapter_details.chapters_stats[i].total_wrong;
@@ -2045,7 +2044,7 @@ app.get('/admin',(req,res)=>{
 
                                 // TOPIC STATS
                                 for(let i=0;i<test.topic_details.topics.length;i++){
-                                    if(test.topic_details.topics_stats!=undefined)
+                                    if(test.topic_details.topics_stats!=undefined && test.topic_details.topics_stats!=null)
                                     {
                                     var total_correct_topic = test.topic_details.topics_stats[i].total_correct;
                                     var total_wrong_topic = test.topic_details.topics_stats[i].total_wrong;
@@ -2138,9 +2137,7 @@ app.get('/admin',(req,res)=>{
                                     "chapter_details.chapters_stats":chapter_stats,
                                     "subject_details.subjects_stats":subject_stats,
                                     "test_taken_count":taken_count,
-                                    "DLevel_details.DLevel1_stats":DLevel1_stats,
-                                    "DLevel_details.DLevel2_stats":DLevel2_stats,
-                                    "DLevel_details.DLevel3_stats":DLevel3_stats,
+                                    "DLevel_details.DLevel_stats":DLevel_stats,
                                     "question_details.0.total_correct":total_questions_correct,
                                     "question_details.0.total_unattempted":total_questions_unattempted,
                                     "question_details.0.total_wrong":total_questions_wrong
