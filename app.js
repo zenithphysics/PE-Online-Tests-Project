@@ -2009,7 +2009,7 @@ app.get('/admin',(req,res)=>{
                             } 
                             // CHAPTER STATS
                                 for(let i=0;i<test.chapter_details.chapters.length;i++){
-                                    if(test.chapter_details.chapter_stats!=undefined)
+                                    if(test.chapter_details.chapters_stats!=undefined)
                                     {
                                     console.log("** IN IF ***");
                                     var total_correct = test.chapter_details.chapters_stats[i].total_correct;
@@ -2031,7 +2031,7 @@ app.get('/admin',(req,res)=>{
                                         {
                                             test.questions[j].chapter=test.chapter;
                                         }
-                                        if(test.questions[j].chapter==test.chapter_details.chapters[i]) // IF question belongs to that chapter
+                                        if(test.questions[j].chapter==test.chapters_details.chapters[i]) // IF question belongs to that chapter
                                         {
                                             if(test_result[j]==0) // Answer is wrong
                                             {
@@ -2053,7 +2053,7 @@ app.get('/admin',(req,res)=>{
 
                                 // TOPIC STATS
                                 for(let i=0;i<test.topic_details.topics.length;i++){
-                                    if(test.topic_details.topic_stats!=undefined)
+                                    if(test.topic_details.topics_stats!=undefined)
                                     {
                                     console.log("** IN IF ***");
                                     var total_correct_topic = test.topic_details.topics_stats[i].total_correct;
