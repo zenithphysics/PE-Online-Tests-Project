@@ -573,9 +573,12 @@
        }); */
 
        var user_answer_key=[];
-       var answer_key = document.getElementBy(`Question${i}`).value;    
-  
-       console.log(answer_key)
+       for(let i=1;i<=test.questions.length;i++)
+       {
+           var answer = document.getElementBy(`Question${i}`);
+           user_answer_key.push(answer);
+       }
+       console.log(user_answer_key)
      });
 
         }
