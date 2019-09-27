@@ -316,16 +316,16 @@ fetch(`${domain_url}/verifyStudent`,{
             <table class="table table-borderless mt-2 p-5">
                 <tbody>
                     <tr>
-                        <td> Option A <input type="radio" value="a" name="Question` + index + `" id="rOption1_1">
+                        <td> Option A <input type="radio" value="a" id="Question${index}" name="Question` + index + `" id="rOption1_1">
                            
                         </td>
-                        <td> Option B <input type="radio" value="b" name="Question` + index + `" id="rOption1_1">
+                        <td> Option B <input type="radio" value="b" id="Question${index}" name="Question` + index + `" id="rOption1_1">
                             
                         </td>
-                        <td> Option C <input type="radio" value="c" name="Question` + index + `" id="rOption1_1">
+                        <td> Option C <input type="radio" value="c" id="Question${index}" name="Question` + index + `" id="rOption1_1">
                             
                         </td>
-                        <td> Option D <input type="radio" value="d" name="Question` + index + `" id="rOption1_1">
+                        <td> Option D <input type="radio" value="d" id="Question${index}" name="Question` + index + `" id="rOption1_1">
                             
                         </td>
                     </tr>
@@ -344,16 +344,16 @@ fetch(`${domain_url}/verifyStudent`,{
             <table class="table table-borderless mt-2 p-5">
                 <tbody>
                     <tr>
-                        <td> Option A <input type="radio" value="a" name="Question` + index + `" id="rOption1_1">
+                        <td> Option A <input type="radio" value="a" id="Question${index}"  name="Question` + index + `" id="rOption1_1">
                            
                         </td>
-                        <td> Option B <input type="radio" value="b" name="Question` + index + `" id="rOption1_1">
+                        <td> Option B <input type="radio" value="b"  id="Question${index}" name="Question` + index + `" id="rOption1_1">
                             
                         </td>
-                        <td> Option C <input type="radio" value="c" name="Question` + index + `" id="rOption1_1">
+                        <td> Option C <input type="radio" value="c" id="Question${index}" name="Question` + index + `" id="rOption1_1">
                             
                         </td>
-                        <td> Option D <input type="radio" value="d" name="Question` + index + `" id="rOption1_1">
+                        <td> Option D <input type="radio" value="d" id="Question${index}" name="Question` + index + `" id="rOption1_1">
                             
                         </td>
                     </tr>
@@ -533,6 +533,7 @@ fetch(`${domain_url}/verifyStudent`,{
 
     // Submit the test for result
     $(".submit").click(function (e) {
+        /*
         e.preventDefault();
         data = $(".question input").serialize()
         data = data.split("&")
@@ -545,9 +546,25 @@ fetch(`${domain_url}/verifyStudent`,{
             result["" + question + ""] = "" + answer + "";
             // alert(JSON.stringify(result))
         });
-        console.log(result);
+        console.log(result); */
 
-        
+        var user_answer_key=[];
+       for(let i=1;i<=test.questions.length;i++)
+       {
+           var input = document.getElementById(`Question${i}`);
+           console.log(input);
+           if(input.checked)
+           {
+               answer = input.value;
+           }
+           else
+           {
+               answer = "na";
+           }
+           user_answer_key.push(answer);
+       }
+
+
     });
 }
   
