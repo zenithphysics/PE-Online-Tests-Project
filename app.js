@@ -2095,7 +2095,7 @@ app.get('/admin',(req,res)=>{
                                 }
                                 for(let j=0;j<test.questions.length;j++)
                                     {
-                                        if(test.questions[j].DLevel=="Level1") // IF question belongs to that dlevel1
+                                        if(test.questions[j].DLevel=="Level 1") // IF question belongs to that dlevel1
                                         {
                                             if(test_result[j]==0) // Answer is wrong
                                             {
@@ -2129,7 +2129,7 @@ app.get('/admin',(req,res)=>{
                                 }
                                 for(let j=0;j<test.questions.length;j++)
                                     {
-                                        if(test.questions[j].DLevel=="Level2") // IF question belongs to that dlevel2
+                                        if(test.questions[j].DLevel=="Level 2") // IF question belongs to that dlevel2
                                         {
                                             if(test_result[j]==0) // Answer is wrong
                                             {
@@ -2163,7 +2163,7 @@ app.get('/admin',(req,res)=>{
                                 }
                                 for(let j=0;j<test.questions.length;j++)
                                     {
-                                        if(test.questions[j].DLevel=="Level3") // IF question belongs to that dlevel2
+                                        if(test.questions[j].DLevel=="Level 3") // IF question belongs to that dlevel2
                                         {
                                             if(test_result[j]==0) // Answer is wrong
                                             {
