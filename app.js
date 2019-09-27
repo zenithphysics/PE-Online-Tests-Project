@@ -2207,6 +2207,7 @@ app.get('/admin',(req,res)=>{
                                     if(err || output==null)
                                     {
                                         res.json({is_verified:true,is_successful:false})
+                                        console.log(err)
                                     }
                                     else
                                     {
