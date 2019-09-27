@@ -316,16 +316,16 @@ fetch(`${domain_url}/verifyStudent`,{
             <table class="table table-borderless mt-2 p-5">
                 <tbody>
                     <tr>
-                        <td> Option A <input type="radio" value="a" id="Question${index}" name="Question` + index + `" id="rOption1_1">
+                        <td> Option A <input type="radio" value="a" name="Question` + index + `" id="rOption1_1">
                            
                         </td>
-                        <td> Option B <input type="radio" value="b" id="Question${index}" name="Question` + index + `" id="rOption1_1">
+                        <td> Option B <input type="radio" value="b" name="Question` + index + `" id="rOption1_1">
                             
                         </td>
-                        <td> Option C <input type="radio" value="c" id="Question${index}" name="Question` + index + `" id="rOption1_1">
+                        <td> Option C <input type="radio" value="c" name="Question` + index + `" id="rOption1_1">
                             
                         </td>
-                        <td> Option D <input type="radio" value="d" id="Question${index}" name="Question` + index + `" id="rOption1_1">
+                        <td> Option D <input type="radio" value="d" name="Question` + index + `" id="rOption1_1">
                             
                         </td>
                     </tr>
@@ -344,16 +344,16 @@ fetch(`${domain_url}/verifyStudent`,{
             <table class="table table-borderless mt-2 p-5">
                 <tbody>
                     <tr>
-                        <td> Option A <input type="radio" value="a" id="Question${index}"  name="Question` + index + `" id="rOption1_1">
+                        <td> Option A <input type="radio" value="a" name="Question` + index + `" id="rOption1_1">
                            
                         </td>
-                        <td> Option B <input type="radio" value="b"  id="Question${index}" name="Question` + index + `" id="rOption1_1">
+                        <td> Option B <input type="radio" value="b" name="Question` + index + `" id="rOption1_1">
                             
                         </td>
-                        <td> Option C <input type="radio" value="c" id="Question${index}" name="Question` + index + `" id="rOption1_1">
+                        <td> Option C <input type="radio" value="c" name="Question` + index + `" id="rOption1_1">
                             
                         </td>
-                        <td> Option D <input type="radio" value="d" id="Question${index}" name="Question` + index + `" id="rOption1_1">
+                        <td> Option D <input type="radio" value="d" name="Question` + index + `" id="rOption1_1">
                             
                         </td>
                     </tr>
@@ -398,21 +398,13 @@ fetch(`${domain_url}/verifyStudent`,{
 
     function saveNreview() {
         if ($(".question:nth-child(" + viewdiv + ") table tbody td input").is(":checked")) {
-                if (viewdiv <= 10) // changed to <=
-            {
+            if (viewdiv <= 10) {
                 viewrow = 1
+                viewqueNo = viewdiv
             } else {
                 viewrow = Math.floor(viewdiv / 10)
                 viewrow = +viewrow + 1
-            }
-            /* edit: added logic here */
-            if(viewdiv%10==0) //if viewdiv is a multiple of 10
-            {
-            viewqueNo = 10;
-            }
-            else
-            {
-                viewqueNo = viewdiv%10;
+                viewqueNo = (viewdiv % 10)
             }
             $(".queNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").removeClass("visited");
             $(".queNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").addClass("saveNremark");
@@ -462,26 +454,15 @@ fetch(`${domain_url}/verifyStudent`,{
     // Save Answer Button
     $(".saveAnsbtn").click(function (e) {
         e.preventDefault();
-        console.log(`View div is question no - ${viewdiv}`)
         if ($(".question:nth-child(" + viewdiv + ") table tbody td input").is(":checked")) {
-    
-        // Above Line is an edit ^^
-        if (viewdiv <= 10) // changed to <=
-        {
-            viewrow = 1
-        } else {
-            viewrow = Math.floor(viewdiv / 10)
-            viewrow = +viewrow + 1
-        }
-        /* edit: added logic here */
-        if(viewdiv%10==0) //if viewdiv is a multiple of 10
-        {
-        viewqueNo = 10;
-        }
-        else
-        {
-            viewqueNo = viewdiv%10;
-        }
+            if (viewdiv <= 10) {
+                viewrow = 1
+                viewqueNo = viewdiv
+            } else {
+                viewrow = Math.floor(viewdiv / 10)
+                viewrow = +viewrow + 1
+                viewqueNo = (viewdiv % 10)
+            }
             $(".queNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").removeClass("visited");
             $(".queNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").addClass("answered text-light");
             viewdiv = +viewdiv + 1
@@ -503,21 +484,13 @@ fetch(`${domain_url}/verifyStudent`,{
         if ($(".question:nth-child(" + viewdiv + ") input").is(":checked")) {
             $(".question:nth-child(" + viewdiv + ") input").prop("checked", false);
         }
-        if (viewdiv <= 10) // changed to <=
-        {
+        if (viewdiv <= 10) {
             viewrow = 1
+            viewqueNo = viewdiv
         } else {
             viewrow = Math.floor(viewdiv / 10)
             viewrow = +viewrow + 1
-        }
-        /* edit: added logic here */
-        if(viewdiv%10==0) //if viewdiv is a multiple of 10
-        {
-        viewqueNo = 10;
-        }
-        else
-        {
-            viewqueNo = viewdiv%10;
+            viewqueNo = (viewdiv % 10)
         }
         $(".queNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").removeClass("saveNremark remark answered text-light")
         $(".queNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").addClass("visited")
@@ -575,22 +548,7 @@ fetch(`${domain_url}/verifyStudent`,{
         });
         console.log(result); */
 
-        var user_answer_key=[];
-       for(let i=1;i<=test.questions.length;i++)
-       {
-           var input = document.getElementById(`Question${i}`);
-           console.log(input);
-           if(input.checked)
-           {
-               answer=input.value;
-           }
-           else
-           {
-               answer = "na";
-           }
-           user_answer_key.push(answer);
-       }
-       console.log(user_answer_key)
+
     });
 }
   
