@@ -2102,7 +2102,7 @@ app.get('/admin',(req,res)=>{
                                     // Traverse each question 
                                     for(let j=0;j<test.questions.length;j++)
                                     {
-                                        if(test.questions[j].topic==DLevels[i]) // IF question belongs to that topic
+                                        if(test.questions[j].DLevel==DLevels[i]) // IF question belongs to that topic
                                         {
                                             if(test_result[j]==0) // Answer is wrong
                                             {
