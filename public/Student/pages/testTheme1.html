@@ -547,7 +547,25 @@ fetch(`${domain_url}/verifyStudent`,{
             // alert(JSON.stringify(result))
         });
         console.log(result); */
-
+        
+        var user_answer_key=[];
+        for(let i=1;i<=test.questions.length;i++)
+        {
+            // check for each question
+            var is_checked=false;
+            var answer="na"
+            var radio_buttons = document.getElementsByName(`Question${i}`);
+            radio_buttons.forEach(button=>{
+                if(button.checked)
+                {
+                    answer = button.value;
+                }
+            })
+            user_answer_key.push(answer)
+            
+        }
+        console.log("Test result is");
+        console.log(user_answer_key);
 
     });
 }
