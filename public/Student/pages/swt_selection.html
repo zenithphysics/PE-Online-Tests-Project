@@ -205,9 +205,9 @@ aria-hidden="true">
       <hr/>
       <h5> Select Theme</h5>
       <br>
-      <img id="quizTheme1" src="../PE_Resources/theme1.png" width="400" height="250">
+      <img id="quizTheme2" src="../PE_Resources/theme1.png" width="400" height="250">
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      <img id="quizTheme2" src="../PE_Resources/theme2.png" width="400" height="250">
+      <img id="quizTheme1" src="../PE_Resources/theme2.png" width="400" height="250">
       <br>
       <br>
       <h5> Question Theme</h5>
@@ -824,21 +824,79 @@ aria-hidden="true">
             $("#giveTestModal").modal('show');
             }
         }
-
-        function startTest()
+		function startTest()
         {
+			var selected_theme;
+			var question_theme;
+			var error=0;
+			var test_name = document.getElementById("test_name_selectbox").value;
             if(quizTheme1.getAttribute("class")=="theme-selected") // theme 1 is selected
             {
-                alert("Theme 1 is selected");
+                selected_theme="Theme1";
             }
             else if(quizTheme2.getAttribute("class")=="theme-selected") // Theme 2 is selected
             {
-                alert("Theme 2 is selected");
+                selected_theme="Theme2";
             }
             else
             {
-                alert("Please Select a theme");
-            }
+				alert("Please Select a theme");
+				error=1;
+			}
+			if(questionTheme1.getAttribute("class")=="question-theme-selected")
+			{
+				question_theme="questionWhite";
+			}
+			else if(questionTheme2.getAttribute("class")=="question-theme-selected")
+			{
+				question_theme="questionBlack";
+			}
+			else
+			{
+				alert("Please Select A Question Theme");
+				error=1;
+			}
+
+			if(error==0)
+			{
+					fetch(`${domain_url}/startUserTest`,{
+						method:"POST",
+						headers:{
+							authorization:user_access_token,
+							'Content-type':'application/json'
+						},
+						body:JSON.stringify({studentID:pe_username,test_name:test_name})
+					}).then(res=>res.json()).then(output=>{
+						console.log(output)
+						if(output.is_successful)
+						{
+							if(output.given_before)
+							{
+								alert("You have already given this test");
+							}
+							else
+							{
+								if(selected_theme=="Theme1")
+								{
+					
+								document.location.href=`${domain_url}/Student/pages/testTheme1.html?test_name=${test_name}&question_theme=${question_theme}`;			
+								}
+								else
+								{
+								document.location.href=`${domain_url}/Student/pages/testTheme2.html?test_name=${test_name}&question_theme=${question_theme}`;
+								}
+							}
+						}
+						else
+						{
+							alert("Failed to start test")
+						}
+					})
+			}
+			else
+			{
+				alert("Please Select Themes")
+			}
         }
 		$(document).ready(function() {
 			App.init();
