@@ -552,7 +552,6 @@ fetch(`${domain_url}/verifyStudent`,{
        for(let i=1;i<=test.questions.length;i++)
        {
            var input = document.getElementById(`Question${i}`);
-           console.log(input);
            if(input.checked)
            {
                answer = input.value;
@@ -563,8 +562,7 @@ fetch(`${domain_url}/verifyStudent`,{
            }
            user_answer_key.push(answer);
        }
-
-
+       console.log(user_access_token)
     });
 }
   
