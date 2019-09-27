@@ -1940,7 +1940,7 @@ app.get('/admin',(req,res)=>{
                                     var total_unattempted_topic = 0;
                                     }
                                     // Traverse each question 
-                                    for(let j=0;i<test.questions.length;i++)
+                                    for(let j=0;i<test.questions.length;j++)
                                     {
                                         if(test.questions[j].topic==test.topic_details.topics[i]) // IF question belongs to that topic
                                         {
