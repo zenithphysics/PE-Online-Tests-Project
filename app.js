@@ -1928,6 +1928,7 @@ app.get('/admin',(req,res)=>{
                                 
                             // SUBJECT STATS
                                 for(let i=0;i<test.subject_details.subjects.length;i++){
+                                    console.log("in for subjects")
                                     if(test.subject_details.subjects_stats!=null)
                                     {
                                     console.log("Subject stats exists")
@@ -1937,6 +1938,7 @@ app.get('/admin',(req,res)=>{
                                      }
                                     else
                                     {
+                                        console.log("in else")
                                     var total_correct = 0;
                                     var total_wrong = 0;
                                     var total_unattempted = 0;
