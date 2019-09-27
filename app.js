@@ -1925,10 +1925,19 @@ app.get('/admin',(req,res)=>{
                                 var topic_stats = [];
                                 var dlevel_stats = [];
 
-                                test.topic_details.topics.forEach(topic=>{
+                                for(let i=0;i<test.topic_details.topics.length;i++){
+                                    if(test.topic_details.topic_stats[i]!=null)
+                                    {
+                                    var total_correct_topic = test.topic_details.topics_stats[i].total_correct;
+                                    var total_wrong_topic = test.topic_details.topic_stats[i].total_wrong;
+                                    var total_unattempted_topic = test.topic_details.topic_stats[i].total_unattempted;
+                                    }
+                                    else
+                                    {
                                     var total_correct_topic = 0;
                                     var total_wrong_topic = 0;
                                     var total_unattempted_topic = 0;
+                                    }
                                     // Traverse each question 
                                     for(let i=0;i<test.questions.length;i++)
                                     {
@@ -1948,8 +1957,8 @@ app.get('/admin',(req,res)=>{
                                             }
                                         }
                                     }
-                                    topic_stats.push({total_correct:total_correct_topic,total_wrong:total_wrong_topic,total_unattempted_topic:total_unattempted_topic})
-                                })
+                                    topic_stats.push({total_correct:total_correct_topic,total_wrong:total_wrong_topic,total_unattempted:total_unattempted_topic})
+                                }
                                
                                 console.log(topic_stats);
                             }
