@@ -1934,7 +1934,9 @@ app.get('/admin',(req,res)=>{
                                     var total_correct = test.subject_details.subjects_stats[i].total_correct;
                                     var total_wrong = test.subject_details.subjects_stats[i].total_wrong;
                                     var total_unattempted = test.subject_details.subjects_stats[i].total_unattempted;
-                                    }
+                                    console.log(`total correct - ${total_correct} , total wrong - ${total_wrong} , total unattempted - ${total_unattempted}`)
+
+                                }
                                     else
                                     {
                                     var total_correct = 0;
@@ -1974,7 +1976,9 @@ app.get('/admin',(req,res)=>{
                                 var total_correct = test.section_details.sections_stats[i].total_correct;
                                 var total_wrong = test.section_details.sections_stats[i].total_wrong;
                                 var total_unattempted = test.section_details.sections_stats[i].total_unattempted;
-                                }
+                                console.log(`total correct - ${total_correct} , total wrong - ${total_wrong} , total unattempted - ${total_unattempted}`)
+
+                            }
                                 else
                                 {
                                 console.log("IN ELSE , TEST HAS NOT BEEN SUBMITTED BEFORE")
@@ -2011,6 +2015,7 @@ app.get('/admin',(req,res)=>{
                                     var total_correct = test.chapter_details.chapters_stats[i].total_correct;
                                     var total_wrong = test.chapter_details.chapters_stats[i].total_wrong;
                                     var total_unattempted = test.chapter_details.chapters_stats[i].total_unattempted;
+                                    console.log(`total correct - ${total_correct} , total wrong - ${total_wrong} , total unattempted - ${total_unattempted}`)
                                     }
                                     else
                                     {
