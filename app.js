@@ -1879,6 +1879,18 @@ app.get('/admin',(req,res)=>{
                     console.log(`Users Answer:`);
                     console.log(user_answer_key)
 
+                    Test.findOne({"test_name":test_name},(err,test)=>{
+                        if(err || test==null)
+                        {
+                            console.log('\x1b[31m%s\x1b[1m', '[/submitTest] - Error in fetching test');  
+                            res.json({is_verified:true,is_successful:false})
+                            console.log(err)
+                        }
+                        else
+                        {
+                            console.log(test)
+                        }
+                    })
                    
                 }
             })
