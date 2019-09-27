@@ -1941,7 +1941,7 @@ app.get('/admin',(req,res)=>{
                                     // Traverse each question 
                                     for(let i=0;i<test.questions.length;i++)
                                     {
-                                        if(test.questions[i].topic==topic)
+                                        if(test.questions[i].topic==test.topic_details.topics[i]) // IF question belongs to that topic
                                         {
                                             if(test_result[i]==0) // Answer is wrong
                                             {
