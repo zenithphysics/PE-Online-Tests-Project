@@ -285,8 +285,6 @@ DLevel_details:{
             }
         }
         ] 
-  
-  
 }
 });
 
