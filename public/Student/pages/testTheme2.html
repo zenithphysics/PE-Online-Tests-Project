@@ -570,13 +570,18 @@
        result["" + question + ""] = "" + answer + "";
     //         // alert(JSON.stringify(result))
       console.log(result)
-       });
-     }); */arguments
+       }); */
 
-     var radio_buttons = $(`.Question input[type="radio"]`)
-     console.log(radio_buttons);
-        })
-    }
+       var user_answer_key;
+       for(let i=1;i<=test.questions.length;i++)
+       {
+           var answer = document.getElementsByName(`Question${i}`).value;
+           user_answer_key.push(answer);
+       }
+       console.log(user_answer_key)
+     });
+
+        }
             </script>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
