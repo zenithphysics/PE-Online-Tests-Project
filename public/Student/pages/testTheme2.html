@@ -139,7 +139,7 @@
                     <a href="instructions2.html" class="w-100 mt-3 btn bg-light text-dark"
                         style="border:1px solid #ccc;">Instructions</a>
                     <a class="w-100 mt-1 btn bg-light text-dark" style="border:1px solid #ccc;">Questions</a>
-                    <a href="summary.html" class="w-100 mt-1 btn bg-light text-dark"
+                    <a href="summary.html" class="w-100 mt-1 btn bg-light text-dark submit"
                         style="border:1px solid #ccc;">Submit Finished Test</a>
                 </div>
             </div>
@@ -555,21 +555,21 @@
         $(".Question:nth-child(" + viewdiv + ")").css("display", "block");
     });
 
-    // Submit the test for result
-    // $(".submit").click(function (e) {
-    //     e.preventDefault();
-    //     data = $(".question input").serialize()
-    //     data = data.split("&")
-    //     // alert(data)
-    //     result = {}
-    //     $.each(data, function (index, val) {
-    //         question = val.split("=")[0];
-    //         answer = val.split("=")[1]
-    //         // alert(question+":"+answer)
-    //         result["" + question + ""] = "" + answer + "";
+    
+     $(".submit").click(function (e) {
+       e.preventDefault();
+       data = $(".question input").serialize()
+       data = data.split("&")
+     
+       result = {}
+      $.each(data, function (index, val) {
+         question = val.split("=")[0];
+       answer = val.split("=")[1]
+       // alert(question+":"+answer)
+       result["" + question + ""] = "" + answer + "";
     //         // alert(JSON.stringify(result))
-    //     });
-    // });
+       });
+     });
 
         }
             </script>
