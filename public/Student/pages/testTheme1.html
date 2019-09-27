@@ -465,8 +465,8 @@ fetch(`${domain_url}/verifyStudent`,{
         console.log(`View div is question no - ${viewdiv}`)
         if ($(".question:nth-child(" + viewdiv + ") table tbody td input").is(":checked")) {
         // Check the question
-        document.getElementById(`Question${viewdiv}`).checked=true;
-        console.log(document.getElementById(`Question${viewdiv}`).value);
+        var radioBoxes = document.getElementsByName(`Question${viewdiv}`);
+        console.log(radioBoxes);
         // Above Line is an edit ^^
         if (viewdiv <= 10) // changed to <=
         {
