@@ -1590,7 +1590,7 @@ app.get('/admin',(req,res)=>{
                 Test.findOne({$and:[{"test_name":test_name,"taken_by":studentID}]},(err,test)=>{
                     if(err)
                     {
-                        res.json({is_verified:true,is_successful:false})
+                        res.json({is_verified:true,is_successful:true,given_before:true})
                     }
                     else if(test==null)
                     {
