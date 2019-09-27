@@ -314,25 +314,25 @@
                     <tr class="d-flex justify-content-center">
                     <td class="d-flex flex-1 justify-content-center align-items-center">
                         <label class="radio-btn">
-                            <input type="radio" value="a" name="Question` + index + `" class="">
+                            <input type="radio" value="a" id="Question${index}" name="Question` + index + `" class="">
                             Option A
                         </label>
                     </td>
                     <td class="d-flex flex-1 justify-content-center align-items-center">
                         <label class="radio-btn">
-                            <input type="radio" value="b" name="Question` + index + `" class="">
+                            <input type="radio" value="b" id="Question${index}" name="Question` + index + `" class="">
                             Option B
                         </label>
                     </td>
                     <td class="d-flex flex-1 justify-content-center align-items-center">
                         <label class="radio-btn">
-                            <input type="radio" value="c" name="Question` + index + `" class="">
+                            <input type="radio" value="c" id="Question${index}" name="Question` + index + `" class="">
                             Option C
                         </label>
                     </td>
                     <td class="d-flex flex-1 justify-content-center align-items-center">
                         <label class="radio-btn">
-                            <input type="radio" value="d" name="Question` + index + `" class="">
+                            <input type="radio" value="d" id="Question${index}" name="Question` + index + `" class="">
                             Option D
                         </label>
                     </td>
@@ -358,25 +358,25 @@
                     <tr class="d-flex justify-content-center">
                     <td class="d-flex flex-1 justify-content-center align-items-center">
                         <label class="radio-btn">
-                            <input type="radio" value="a" name="Question` + index + `" class="">
+                            <input type="radio" value="a" id="Question${index}" name="Question` + index + `" class="">
                             Option A
                         </label>
                     </td>
                     <td class="d-flex flex-1 justify-content-center align-items-center">
                         <label class="radio-btn">
-                            <input type="radio" value="b" name="Question` + index + `" class="">
+                            <input type="radio" value="b" id="Question${index}" name="Question` + index + `" class="">
                             Option B
                         </label>
                     </td>
                     <td class="d-flex flex-1 justify-content-center align-items-center">
                         <label class="radio-btn">
-                            <input type="radio" value="c" name="Question` + index + `" class="">
+                            <input type="radio" value="c" id="Question${index}" name="Question` + index + `" class="">
                             Option C
                         </label>
                     </td>
                     <td class="d-flex flex-1 justify-content-center align-items-center">
                         <label class="radio-btn">
-                            <input type="radio" value="d" name="Question` + index + `" class="">
+                            <input type="radio" value="d" id="Question${index}" name="Question` + index + `" class="">
                             Option D
                         </label>
                     </td>
@@ -575,7 +575,7 @@
        var user_answer_key=[];
        for(let i=1;i<=test.questions.length;i++)
        {
-           var answer = document.getElementsByName(`Question${i}`);
+           var answer = document.getElementById(`Question${i}`).value;
            user_answer_key.push(answer);
        }
        console.log(user_answer_key)
