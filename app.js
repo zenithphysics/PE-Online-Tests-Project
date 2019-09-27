@@ -2162,6 +2162,16 @@ app.get('/admin',(req,res)=>{
                                         result.test_chapter = test.chapter;
                                         result.total_marks = total_marks;
                                         result.answers =  test_result;
+                                        result.save((err,output)=>{
+                                            if(err)
+                                            {
+                                                res.json({is_verified:true,is_successful:false,result_saved:false})
+                                            }
+                                            else
+                                            {
+                                                res.json({is_verified:true,is_successful:true})
+                                            }
+                                        });
                                     }
                                 }) 
 
