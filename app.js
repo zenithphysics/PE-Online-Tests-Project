@@ -2179,7 +2179,7 @@ app.get('/admin',(req,res)=>{
                                             }
                                         }
                                     }
-                                DLevel2_stats.push({total_correct:total_correct_DL3,total_wrong:total_wrong_DL3,total_unattempted:total_unattempted_DL3})
+                                DLevel3_stats.push({total_correct:total_correct_DL3,total_wrong:total_wrong_DL3,total_unattempted:total_unattempted_DL3})
                              /*   console.log("SUBJECT STATS");
                                 console.log(subject_stats);
                                 console.log("SECTION STATS");
