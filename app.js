@@ -1888,7 +1888,79 @@ app.get('/admin',(req,res)=>{
                         }
                         else
                         {
-                            console.log(test)
+                            var total_questions_correct=0;
+                            var total_questions_unattempted=0;
+                            var total_questions_wrong=0;
+                            var total_marks=0;
+                            var test_result = []; // 0 - Wrong, 1- Correct, 2 - Unattempted
+                            // Calculation of User Question Stats
+                            for(let i=0;i<test.answer_key.length;i++)
+                            {
+                                // Compare with user answer key
+                                if(user_answer_key[i]==test.answer_key[i])
+                                {
+                                    test_result.push(1); // Answer is correct
+                                    total_marks = total_marks + test.correct_marks;
+                                    total_questions_correct+=1;
+                                }
+                                else if(user_answer_key[i]=="na")
+                                {
+                                    test_result.push(2) // Unattempted
+                                    total_questions_unattempted+=1;
+                                }
+                                else
+                                {
+                                    test_result.push(0); // Answer is wrong
+                                    total_marks = total_marks + test.wrong_marks; // + because wrong marks is in '-'
+                                    total_questions_wrong+=1;
+                                }
+                            }
+                    
+                            // Question details
+                            if(test.test_type=="FST") // Enter Subject,Chapter,Topic,DLevel,Section wise details
+                            {
+                                var subject_stats = [];
+                                var section_stats = [];
+                                var chapter_stats = [];
+                                var topic_stats = [];
+                                var dlevel_stats = [];
+
+                                test.topic_details.topics.forEach(topic=>{
+                                    var total_correct_topic = 0;
+                                    var total_wrong_topic = 0;
+                                    var total_unattempted_topic = 0;
+                                    // Traverse each question 
+                                    for(let i=0;i<test.questions.length;i++)
+                                    {
+                                        if(test.questions[i].topic==topic)
+                                        {
+                                            if(test_result[i]==0) // Answer is wrong
+                                            {
+                                                total_wrong_topic++;
+                                            }
+                                            else if(test_result[i]==1) // Answer is Correct
+                                            {
+                                                total_correct_topic++;
+                                            }
+                                            else
+                                            {
+                                                total_unattempted_topic++;
+                                            }
+                                        }
+                                    }
+                                    topic_stats.push({total_correct:total_correct_topic,total_wrong:total_wrong_topic,total_unattempted_topic:total_unattempted_topic})
+                                })
+                               
+                                console.log(topic_stats);
+                            }
+                            else if(test.test_type=="CWT") // Enter Topic,DLevel, Section wise details
+                            {
+
+                            }
+                            else if(test.test_type=="SWT") // Topic, Chapter, DLevel, Section Wise Details
+                            {
+
+                            } 
                         }
                     })
                    
