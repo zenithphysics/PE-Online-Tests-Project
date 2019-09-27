@@ -559,8 +559,9 @@
      $(".submit").click(function (e) {
        e.preventDefault();
        data = $(".Question input").serialize()
-       data = data.split("&")
        console.log(data);
+
+       data = data.split("&")
        result = {}
       $.each(data, function (index, val) {
          question = val.split("=")[0];
