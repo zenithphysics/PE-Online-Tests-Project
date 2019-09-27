@@ -2153,8 +2153,18 @@ app.get('/admin',(req,res)=>{
                                     else
                                     {
                                         console.log("TEST HAS BEEN SUBMITTED");
+                                        var result = new Result();
+                                        result.test_type = test.test_type;
+                                        result.test_name = test.test_name;
+                                        result.studentID = studentID;
+                                        result.test_subject = test.subject;
+                                        result.test_domain = test.domain;
+                                        result.test_chapter = test.chapter;
+                                        result.total_marks = total_marks;
+                                        result.answers =  test_result;
                                     }
                                 }) 
+
                         }
                     })
                    
