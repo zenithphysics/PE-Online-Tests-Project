@@ -575,7 +575,15 @@
        var user_answer_key=[];
        for(let i=1;i<=test.questions.length;i++)
        {
-           var answer = document.getElementById(`Question${i}`).value;
+           var input = document.getElementById(`Question${i}`);
+           if(input.checked)
+           {
+               answer = input.value;
+           }
+           else
+           {
+               answer = "na";
+           }
            user_answer_key.push(answer);
        }
        console.log(user_answer_key)
