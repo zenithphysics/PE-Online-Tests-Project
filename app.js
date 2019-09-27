@@ -2192,10 +2192,10 @@ app.get('/admin',(req,res)=>{
                                 console.log(total_marks);
                                 
                                 Test.findOneAndUpdate({"test_name":test.test_name},{$set:{
-                                    "section_details.section_stats":section_stats,
-                                    "topic_details.topic_stats":topic_stats,
-                                    "chapter_details.chapter_stats":chapter_stats,
-                                    "subject_details.subject_stats":subject_stats,
+                                    "section_details.sections_stats":section_stats,
+                                    "topic_details.topics_stats":topic_stats,
+                                    "chapter_details.chapters_stats":chapter_stats,
+                                    "subject_details.subjects_stats":subject_stats,
                                     "test_taken_count":taken_count,
                                     "DLevel_details.DLevel1_stats":DLevel1_stats,
                                     "DLevel_details.DLevel2_stats":DLevel2_stats,
