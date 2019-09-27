@@ -1940,16 +1940,15 @@ app.get('/admin',(req,res)=>{
                                     var total_unattempted_topic = 0;
                                     }
                                     // Traverse each question 
-                                    for(let i=0;i<test.questions.length;i++)
+                                    for(let j=0;i<test.questions.length;i++)
                                     {
-                    
-                                        if(test.questions[i].topic==test.topic_details.topics[i]) // IF question belongs to that topic
+                                        if(test.questions[j].topic==test.topic_details.topics[i]) // IF question belongs to that topic
                                         {
-                                            if(test_result[i]==0) // Answer is wrong
+                                            if(test_result[j]==0) // Answer is wrong
                                             {
                                                 total_wrong_topic+=1;
                                             }
-                                            else if(test_result[i]==1) // Answer is Correct
+                                            else if(test_result[j]==1) // Answer is Correct
                                             {
                                                 total_correct_topic+=1;
                                             }
