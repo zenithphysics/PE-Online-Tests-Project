@@ -464,7 +464,10 @@ fetch(`${domain_url}/verifyStudent`,{
         e.preventDefault();
         console.log(`View div is question no - ${viewdiv}`)
         if ($(".question:nth-child(" + viewdiv + ") table tbody td input").is(":checked")) {
-            if (viewdiv <= 10) // changed to <=
+        // Check the question
+        document.getElementById(`Question${viewdiv}`).checked=true;
+        // Above Line is an edit ^^
+        if (viewdiv <= 10) // changed to <=
         {
             viewrow = 1
         } else {
