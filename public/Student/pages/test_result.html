@@ -24,8 +24,11 @@
     <table id="resultDataTable" class="display" style="width:100%">
     
     </table>
-    <button class="btn btn-success" onclick="showAnalysis()"> View Analysis </button>
-    <div id="analysisArea" style="padding:10px;">
+    <div id="overallAnalysisArea">
+
+    </div>
+    <button class="btn btn-success" onclick="showAnalysis()"> View Selection Analysis </button>
+    <div id="selectionAnalysisArea" style="padding:10px;">
 
     </div>
 </div>
@@ -39,6 +42,8 @@ var domain_url = "https://photonecademy.com/tests"
 var test_title_navbar = document.getElementById("test_title_navbar");
 var student_marks_navbar = document.getElementById("student_marks_navbar");
 var resultDataTable = document.getElementById(`resultDataTable`)
+var overallAnalysisArea = document.getElementById(`overallAnalysisArea`);
+var selectionAnalysisArea = document.getElementById(`selectionAnalysisArea)
 var data_table_header_content = `
 <thead>
     <tr> 
