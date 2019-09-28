@@ -2186,7 +2186,7 @@ app.get('/admin',(req,res)=>{
 
 
     // Get All Test Results of a student
-    fetch('/getAllTestResults',verifyToken,(req,res)=>{
+    app.post('/getAllTestResults',verifyToken,(req,res)=>{
         jwt.verify(req.token,'pe-tests-student',(err,authData)=>{
             if(err){
                 console.log('\x1b[31m%s\x1b[1m', '[/getAllTestResults] - Student Verification Failed');  
