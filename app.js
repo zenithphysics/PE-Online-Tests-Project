@@ -2153,6 +2153,7 @@ app.get('/admin',(req,res)=>{
                                     else
                                     {
                                         console.log("TEST HAS BEEN SUBMITTED");
+                                 
                                         var result = new Result();
                                         result.test_type = test.test_type;
                                         result.test_name = test.test_name;

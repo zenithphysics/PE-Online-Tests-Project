@@ -19,9 +19,10 @@ const resultSchema = new Schema({
        unique:false
    },
    taken_on:{
-       type:String,
+       type:Date,
        required:false,
-       unique:false
+       unique:false,
+       default:Date.now
    },
    studentID:{
        type:String,
