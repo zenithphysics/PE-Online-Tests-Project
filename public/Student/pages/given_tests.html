@@ -264,7 +264,7 @@
                         var date = new Date(result.taken_on);
                         var total_marks = result.answers.length * result.test_correct_marks;
                         var score = `${result.total_marks} / ${total_marks}`;
-                        
+                        test_results_panel.innerHTML="";
                         var taken_on = `${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`
                         var li = document.createElement('li')
                         li.setAttribute("class","list-group-item");
