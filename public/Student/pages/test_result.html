@@ -14,13 +14,19 @@
     <!-- PATTERN FLY -->
 </head>
 <body>
-    
+<nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" id="test_title_navbar" href="#">(Test_name)</a>
+
+</nav>   
 <script>
 var pe_username;
 var pe_email;
 var result;
 var user_access_token = localStorage.getItem("student_token");
 var domain_url = "https://photonecademy.com/tests"
+// Related to this page
+var test_title_navbar = document.getElementById("test_title_navbar");
+
 function getUrlParameter(name) {
     name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
     var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
@@ -55,6 +61,14 @@ fetch(`${domain_url}/verifyStudent`,{
                     body:JSON.stringify({studentID:pe_username,test_name:test_name})
                 }).then(res=>res.json()).then(output=>{
                     console.log(output)
+                    if(output.is_successful)
+                    {
+                        test_title_navbar.innerHTML=test_name;
+                    }
+                    else
+                    {
+                        alert("Failed to get result")
+                    }
                 })
 			}
 		})
