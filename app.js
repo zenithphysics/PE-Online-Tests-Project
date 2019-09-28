@@ -1923,7 +1923,7 @@ app.get('/admin',(req,res)=>{
                                 var question_stats=[];
                                 //QUESTION STATS
                                 for(let i=0;i<test.questions.length;i++){
-                                    if(test.question_details.question_stats.length!=0)
+                                    if(test.question_details.questions_stats.length!=0)
                                     {
                                     console.log("question stats exists")
                                      total_correct = test.question_details.question_stats[i].total_correct;
