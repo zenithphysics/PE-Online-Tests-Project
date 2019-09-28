@@ -20,7 +20,7 @@
 <body>
 <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" id="test_title_navbar" href="#">(Test_name)</a>
-        <a class="navbar-brand" style="float:right" id="student_marks_navbar"> [Marks] </a>
+        <a class="navbar-brand" href="#" style="float:right" id="student_marks_navbar"> [Marks] </a>
 </nav>   
 <script>
 var pe_username;
@@ -69,7 +69,7 @@ fetch(`${domain_url}/verifyStudent`,{
                     if(output.is_successful)
                     {
                         test_title_navbar.innerHTML=test_name;
-                        var t_marks = output.result.test_correct_marks * output.answers.length;
+                        var t_marks = output.result.test_correct_marks * output.result.answers.length;
                         var score = `${output.result.total_marks} / ${t_marks}`
                         student_marks_navbar.innerHTML=score;
                     }
