@@ -2174,7 +2174,7 @@ app.get('/admin',(req,res)=>{
                                     "test_taken_count":taken_count,
                                     "DLevel_details.DLevel_stats":DLevel_stats,
                                     "question_details.questions_stats":question_stats
-                                },$addToSet:{"taken_by":studentID}},(err,output)=>{
+                                },$addToSet:{"taken_by":studentID}},{strict:false},(err,output)=>{
                                     if(err || output==null)
                                     {
                                         res.json({is_verified:true,is_successful:false})
