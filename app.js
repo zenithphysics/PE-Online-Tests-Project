@@ -2229,6 +2229,8 @@ app.get('/admin',(req,res)=>{
                     }
                     else
                     {
+                        console.log('\x1b[32m%s\x1b[1m', '[/getSpecificTestResult] - Result Fetched');  
+                        console.log(result)
                         res.json({is_verified:true,is_successful:true,result:result})
                         
                     }
