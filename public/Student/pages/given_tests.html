@@ -276,7 +276,11 @@
                     }
                 })
 			}
-		})
+        })
+        function showResult(test_name)
+        {
+            document.location.href=`${domain_url}/Student/pages/test_result.html?test_name=${test_name}`;
+        }
 		$(document).ready(function() {
 			App.init();
 		});
