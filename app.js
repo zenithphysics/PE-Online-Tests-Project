@@ -2173,7 +2173,7 @@ app.get('/admin',(req,res)=>{
                                     "subject_details.subjects_stats":subject_stats,
                                     "test_taken_count":taken_count,
                                     "DLevel_details.DLevel_stats":DLevel_stats,
-                                    "question_details.questions_stats":question_stats
+                                    "question_details.0.questions_stats":question_stats
                                 },$addToSet:{"taken_by":studentID}},{strict:false},(err,output)=>{
                                     if(err || output==null)
                                     {
