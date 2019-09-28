@@ -2222,14 +2222,14 @@ app.get('/admin',(req,res)=>{
             else
             {
                 console.log('\x1b[32m%s\x1b[1m', '[/getSpecificTestResult] - Student Verification Successful');  
-                Result.find({$and:[{"studentID":req.body.username},{"test_name":test_name}]},(err,results)=>{
-                    if(err || results==null)
+                Result.findOne({$and:[{"studentID":req.body.username},{"test_name":req.body.test_name}]},(err,result)=>{
+                    if(err || result==null)
                     {
                         res.json({is_verified:true,is_successful:false})
                     }
                     else
                     {
-                        res.json({is_verified:true,is_successful:true,results:results})
+                        res.json({is_verified:true,is_successful:true,result:result})
                         
                     }
                 })
