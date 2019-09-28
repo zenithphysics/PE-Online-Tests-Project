@@ -260,7 +260,7 @@
                     console.log(output);
                     if(output.is_successful)
                     {
-                        test_results_panel.innerHTML=`<li class="list-group-item> Test Name <span style="float:right"> Taken On </span> `;
+                        test_results_panel.innerHTML=`<li class="list-group-item> Test Name <span style="float:right"> Taken On </span> </li>`;
                         output.results.forEach(result=>{
                         var date = new Date(result.taken_on);
                         var taken_on = `${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`
