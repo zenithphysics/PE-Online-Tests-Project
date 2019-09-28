@@ -200,7 +200,8 @@
 	var pe_email;
 	var user_access_token = localStorage.getItem("student_token");
 	var domain_url = "https://photonecademy.com/tests"
-	var user_sidebar = document.getElementById("user_sidebar");
+    var user_sidebar = document.getElementById("user_sidebar");
+    var test_results_panel = document.getElementById("test_results_panel");
 	// All Nameplace holders
 
 		// Sidebar Name Holder
@@ -243,7 +244,18 @@
 				sidebarNameHolder.innerHTML=pe_username;
 				navNameHolder.innerHTML=pe_username;
 				console.log("Student Packs Are - ");
-				console.log(authDetails.packs);
+                
+                // Get Results
+                fetch(`${domain_url}/getAllTestResults`,{
+                    method:"POST",
+                    headers:{
+                        authorization:user_access_token,
+                        'Content-type':'application/json'
+                    },
+                    body:JSON.stringify(studentID:pe_username)
+                }).then(res=>res.json()).then(output=>{
+                    console.log(output);
+                })
 			}
 		})
 		$(document).ready(function() {

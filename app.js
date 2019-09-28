@@ -2182,3 +2182,29 @@ app.get('/admin',(req,res)=>{
                 }
             })
     })
+
+
+    // Get All Test Results of a student
+    fetch('/getAllTestResults',verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-student',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/getAllTestResults] - Student Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/getAllTestResults] - Student Verification Successful');  
+                Result.find({"studentID":req.body.studentID},(err,results)=>{
+                    if(err || results==null)
+                    {
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else
+                    {
+                        res.json({is_verified:true,is_successful:true})
+                    }
+                })
+            }
+        })
+    })
