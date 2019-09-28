@@ -119,6 +119,7 @@ fetch(`${domain_url}/verifyStudent`,{
                         var score = `Your Score : ${output.result.total_marks} / ${t_marks}`
                         student_marks_navbar.innerHTML=score;
                         resultDataTable.innerHTML=data_table_header_content+data_table_content+data_table_fotter_content;
+                        $(`#resultDataTable`).DataTable();
                     }
                     else
                     {
