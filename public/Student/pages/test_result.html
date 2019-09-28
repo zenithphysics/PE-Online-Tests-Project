@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title id="result-title">Result</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
@@ -22,6 +22,11 @@
         <a class="navbar-brand" id="test_title_navbar" href="#">(Test_name)</a>
         <a class="navbar-brand" href="#" style="float:right" id="student_marks_navbar"> [Marks] </a>
 </nav>   
+<div class="container">
+    <table id="resultDataTable" class="display" style="width:100%">
+    
+    </table>
+</div>
 <script>
 var pe_username;
 var pe_email;
@@ -31,6 +36,47 @@ var domain_url = "https://photonecademy.com/tests"
 // Related to this page
 var test_title_navbar = document.getElementById("test_title_navbar");
 var student_marks_navbar = document.getElementById("student_marks_navbar");
+var resultDataTable = document.getElementById(`resultDataTable`)
+var data_table_header_content = `
+<thead>
+    <tr> 
+        <th> Sr No. </th>
+        <th> Q No </th>
+        <th> Your Answer </th>
+        <th> Marks Scored </th>
+        <th> DLevel </th>
+        <th> Subject </th>
+        <th> Section </th>
+        <th> Chapter </th>
+        <th> Topic </th>
+        <th> % Correct </th>
+        <th> % Wrong </th>
+        <th> % Unattempted </th>
+    </tr>
+</thead>
+<tbody>
+`
+var data_table_content=``;
+
+var data_table_fotter_content = `
+</tbody>
+<tfoot>
+            <tr>
+                    <th> Sr No. </th>
+                    <th> Q No </th>
+                    <th> Your Answer </th>
+                    <th> Marks Scored </th>
+                    <th> DLevel </th>
+                    <th> Subject </th>
+                    <th> Section </th>
+                    <th> Chapter </th>
+                    <th> Topic </th>
+                    <th> % Correct </th>
+                    <th> % Wrong </th>
+                    <th> % Unattempted </th>
+            </tr>
+</tfoot>
+`
 
 function getUrlParameter(name) {
     name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -72,6 +118,7 @@ fetch(`${domain_url}/verifyStudent`,{
                         var t_marks = output.result.test_correct_marks * output.result.answers.length;
                         var score = `Your Score : ${output.result.total_marks} / ${t_marks}`
                         student_marks_navbar.innerHTML=score;
+                        resultDataTable.innerHTML=data_table_header_content+data_table_content+data_table_fotter_content;
                     }
                     else
                     {
