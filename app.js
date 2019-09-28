@@ -1923,6 +1923,10 @@ app.get('/admin',(req,res)=>{
                                 var topic_stats = [];
                                 var dlevel_stats = [];
                                 var question_stats=[];
+
+                                var total_correct_count_user = 0;
+                                var total_wrong_count_user = 0;
+                                var total_unattempted_count_user = 0;
                                 //QUESTION STATS
                                 for(let i=0;i<test.questions.length;i++){
                                     if(test.question_details.length>=1)
@@ -1943,14 +1947,17 @@ app.get('/admin',(req,res)=>{
                                             if(test_result[i]==0) // Answer is wrong
                                             {
                                                 total_wrong+=1;
+                                                total_wrong_count_user+=1;
                                             }
                                             else if(test_result[i]==1) // Answer is Correct
                                             {
                                                 total_correct+=1;
+                                                total_correct_count_user+=1;
                                             }
                                             else
                                             {
                                                 total_unattempted+=1;
+                                                total_unattempted_count_user+=1
                                             }
                                     question_stats.push({total_correct:total_correct,total_unattempted:total_unattempted,total_wrong:total_wrong})
                                 } 
@@ -2191,6 +2198,9 @@ app.get('/admin',(req,res)=>{
                                         result.total_marks = total_marks;
                                         result.test_correct_marks = test.correct_marks;
                                         result.answers =  test_result;
+                                        result.total_correct = total_correct_count_user;
+                                        result.total_wrong = total_wrong_count_user;
+                                        result.total_unattempted = total_unattempted_count_user;
                                         result.save((err,output)=>{
                                             if(err)
                                             {

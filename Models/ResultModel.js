@@ -57,6 +57,18 @@ const resultSchema = new Schema({
    answers:{
        type:Array,
        required:false
+   },
+   total_correct:{
+       type:Number,
+       required:false
+   },
+   total_wrong:{
+       type:Number,
+       required:false
+   },
+   total_unattempted:{
+       type:Number,
+       required:false
    }
 });
 

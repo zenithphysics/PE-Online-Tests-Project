@@ -124,8 +124,11 @@ fetch(`${domain_url}/verifyStudent`,{
                         test_title_navbar.innerHTML=test_name;
                         var t_marks = output.result.test_correct_marks * output.result.answers.length;
                         var score = `Your Score : ${output.result.total_marks} / ${t_marks}`
+                        result = output.result;
+                        test = output.test;
                         student_marks_navbar.innerHTML=score;
                         parsed_all = 0;
+                        show_result=0;
                         for(let i=0;i<output.test.questions.length;i++)
                         {
                             var answer;
@@ -170,9 +173,12 @@ fetch(`${domain_url}/verifyStudent`,{
                                 parsed_all=1;
                                 resultDataTable.innerHTML=`${data_table_header_content}<tbody>${data_table_content}</tbody>${data_table_fotter_content}`;
                                 $(`#resultDataTable`).DataTable();
-
+                                show_result=1;
                             }
                         }
+                    
+
+                        // Show Overall Analysis
                     
                     }
                     else
@@ -181,7 +187,7 @@ fetch(`${domain_url}/verifyStudent`,{
                     }
                 })
 			}
-		})
+        })
 
 </script>
 </body>
