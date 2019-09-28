@@ -1925,7 +1925,7 @@ app.get('/admin',(req,res)=>{
                                 var question_stats=[];
                                 //QUESTION STATS
                                 for(let i=0;i<test.questions.length;i++){
-                                    if(test.question_details.length!=0)
+                                    if(test.question_details.length>=1)
                                     {
                                     console.log("question stats exists")
                                      total_correct = test.question_details[0].questions_stats[i].total_correct;
