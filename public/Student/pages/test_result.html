@@ -118,9 +118,9 @@ fetch(`${domain_url}/verifyStudent`,{
                         {
                             var answer;
                             var marks_scored=0;
-                            percent_correct = parseFloat((output.test.question_details[0][i].total_correct/output.test.test_taken_count)*100).toFixed(3);
-                            percent_wrong = parseFloat((output.test.question_details[0][i].total_wrong/output.test.test_taken_count)*100).toFixed(3);
-                            percent_unattempted = parseFloat((output.test.question_details[0][i].total_unattempted/output.test.test_taken_count)*100).toFixed(3);
+                            percent_correct = parseFloat((output.test.question_details[0].question_stats[i].total_correct/output.test.test_taken_count)*100).toFixed(3);
+                            percent_wrong = parseFloat((output.test.question_details[0].question_stats[i].total_wrong/output.test.test_taken_count)*100).toFixed(3);
+                            percent_unattempted = parseFloat((output.test.question_details[0].question_stats[i].total_unattempted/output.test.test_taken_count)*100).toFixed(3);
 
                             if(output.result.answers[i]==0)
                             {
