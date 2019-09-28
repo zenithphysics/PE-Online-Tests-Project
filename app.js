@@ -1938,9 +1938,6 @@ app.get('/admin',(req,res)=>{
                                      total_unattempted = 0;
                                     }
                                     // Traverse each question 
-                                    for(let j=0;j<test.questions.length;j++)
-                                    {
-                                       
                                             if(test_result[j]==0) // Answer is wrong
                                             {
                                                 total_wrong+=1;
@@ -1953,8 +1950,6 @@ app.get('/admin',(req,res)=>{
                                             {
                                                 total_unattempted+=1;
                                             }
-                                       
-                                    }
                                     question_stats.push({total_correct:total_correct,total_unattempted:total_unattempted,total_wrong:total_wrong})
                                 } 
                             // SUBJECT STATS
