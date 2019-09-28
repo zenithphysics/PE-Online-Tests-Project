@@ -2210,3 +2210,29 @@ app.get('/admin',(req,res)=>{
             }
         })
     })
+
+    // Get Specific Test Result
+    app.post('/getSpecificTestResult',verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-student',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/getSpecificTestResult] - Student Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                console.log('\x1b[32m%s\x1b[1m', '[/getSpecificTestResult] - Student Verification Successful');  
+                Result.find({$and:[{"studentID":req.body.username},{"test_name":test_name}]},(err,results)=>{
+                    if(err || results==null)
+                    {
+                        res.json({is_verified:true,is_successful:false})
+                    }
+                    else
+                    {
+                        res.json({is_verified:true,is_successful:true,results:results})
+                        
+                    }
+                })
+            }
+        })
+    })

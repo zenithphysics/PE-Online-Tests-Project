@@ -16,6 +16,10 @@
 <body>
     
 <script>
+var pe_username;
+var pe_email;
+var user_access_token = localStorage.getItem("student_token");
+var domain_url = "https://photonecademy.com/tests"
 function getUrlParameter(name) {
     name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
     var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
@@ -23,7 +27,29 @@ function getUrlParameter(name) {
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 };
 var test_name = getUrlParameter('test_name');
-console.log(`Test Name is ${test_name}`);
+
+fetch(`${domain_url}/verifyStudent`,{
+			headers:{
+				method:"GET",
+				authorization:user_access_token
+			}
+		}).then(response=>response.json()).then(data=>{
+			console.log("is token verified? "+data.is_verified);
+			if(data.is_verified==false)
+			{
+				document.location.href=`${domain_url}`;
+			}
+			if(data.is_verified==true)
+			{
+				console.log(data);
+				var authDetails = data.student;
+				pe_username = authDetails.studentID;
+				
+		
+			}
+		})
+
+cosole.log(` Test Name is ${test_name} and StudentID is ${pe_username}`)
 </script>
 </body>
 </html>
