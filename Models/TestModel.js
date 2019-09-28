@@ -109,7 +109,7 @@ answer_images_black:[
   // ********************************* STATISTICS RELATED ATTRIBUTES *****************************************/
   question_details:   // For Question wise  stats
       {
-          question_stats:[{
+          questions_stats:[{
             total_correct:{
                 type:Number,
                 required:false,
