@@ -114,6 +114,38 @@ fetch(`${domain_url}/verifyStudent`,{
                         var t_marks = output.result.test_correct_marks * output.result.answers.length;
                         var score = `Your Score : ${output.result.total_marks} / ${t_marks}`
                         student_marks_navbar.innerHTML=score;
+                        for(let i=0;i<output.test.questions.length;i++)
+                        {
+                            var answer;
+                            var marks_scored=0;
+                            if(output.result.answers[i]==0)
+                            {
+                                answer="Wrong";
+                                marks_scored=marks_scored+output.test.wrong_marks;
+                            }
+                            else if(output.result.answers[i]==1)
+                            {
+                                answer="Correct";
+                                marks_scored=marks_scored+output.test.correct_marks;
+                            }
+                            else
+                            {
+                                answer="Unattempted";
+                                marks_scored=0;
+                            }
+                            data_table_content.innerHTML=`
+                            <tr>
+                                <td> ${i+1} </td>
+                                <td> Q.${i+1} </td>
+                                <td> ${answer} </td>
+                                <td> ${marks_scored} </td>
+                                <td> ${output.test.questions[i].DLevel} </td>
+                                <td> ${output.test.questions[i].subject} </td>
+                                <td> ${output.test.questions[i].section} </td>
+                                <td> ${output.test.questions[i].chapter} </td>
+                                <td> ${output.test.questions[i].topic} </td>
+                            `
+                        }
                         resultDataTable.innerHTML=data_table_header_content+data_table_content+data_table_fotter_content;
                         $(`#resultDataTable`).DataTable();
                     }

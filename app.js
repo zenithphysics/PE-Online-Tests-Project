@@ -1889,9 +1889,8 @@ app.get('/admin',(req,res)=>{
                         }
                         else
                         {
-                            var total_questions_correct=0;
-                            var total_questions_unattempted=0;
-                            var total_questions_wrong=0;
+                          
+
                             var total_marks=0;
                             var taken_count = test.test_taken_count+1;
                             var test_result = []; // 0 - Wrong, 1- Correct, 2 - Unattempted
@@ -1924,8 +1923,43 @@ app.get('/admin',(req,res)=>{
                                 var chapter_stats = [];
                                 var topic_stats = [];
                                 var dlevel_stats = [];
-
-                                
+                                var question_stats=[];
+                                //QUESTION STATS
+                                for(let i=0;i<test.questions.length;i++){
+                                    if(test.question_details.question_stats.length!=0)
+                                    {
+                                    console.log("question stats exists")
+                                     total_correct = test.question_details.question_stats[i].total_correct;
+                                     total_wrong = test.question_details.question_stats[i].total_wrong;
+                                     total_unattempted = test.question_details.question_stats[i].total_unattempted;
+                                     }
+                                    else
+                                    {
+                                        console.log("in else")
+                                     total_correct = 0;
+                                     total_wrong = 0;
+                                     total_unattempted = 0;
+                                    }
+                                    // Traverse each question 
+                                    for(let j=0;j<test.questions.length;j++)
+                                    {
+                                       
+                                            if(test_result[j]==0) // Answer is wrong
+                                            {
+                                                total_wrong+=1;
+                                            }
+                                            else if(test_result[j]==1) // Answer is Correct
+                                            {
+                                                total_correct+=1;
+                                            }
+                                            else
+                                            {
+                                                total_unattempted+=1;
+                                            }
+                                       
+                                    }
+                                    question_stats.push({total_correct:total_correct,total_wrong:total_wrong,total_unattempted:total_unattempted})
+                                } 
                             // SUBJECT STATS
                                 for(let i=0;i<test.subject_details.subjects.length;i++){
                                     console.log("in for subjects")
@@ -2141,9 +2175,7 @@ app.get('/admin',(req,res)=>{
                                     "subject_details.subjects_stats":subject_stats,
                                     "test_taken_count":taken_count,
                                     "DLevel_details.DLevel_stats":DLevel_stats,
-                                    "question_details.0.total_correct":total_questions_correct,
-                                    "question_details.0.total_unattempted":total_questions_unattempted,
-                                    "question_details.0.total_wrong":total_questions_wrong
+                                    "question_details.question_stats":question_stats
                                 },$addToSet:{"taken_by":studentID}},(err,output)=>{
                                     if(err || output==null)
                                     {

@@ -109,21 +109,23 @@ answer_images_black:[
   // ********************************* STATISTICS RELATED ATTRIBUTES *****************************************/
   question_details:   // For Question wise  stats
       {
-          total_correct:{
-              type:Number,
-              required:false,
-              default:0
-          },
-          total_unattempted:{
-              type:Number,
-              required:false,
-              default:0
-          },
-          total_wrong:{
-              type:Number,
-              required:false,
-              default:0
-          }
+          question_stats:[{
+            total_correct:{
+                type:Number,
+                required:false,
+                default:0
+            },
+            total_unattempted:{
+                type:Number,
+                required:false,
+                default:0
+            },
+            total_wrong:{
+                type:Number,
+                required:false,
+                default:0
+            }
+          }]
     }
   ,
   subject_details:  // For Subject Wise Stats
