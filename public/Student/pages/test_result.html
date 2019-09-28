@@ -114,6 +114,7 @@ fetch(`${domain_url}/verifyStudent`,{
                         var t_marks = output.result.test_correct_marks * output.result.answers.length;
                         var score = `Your Score : ${output.result.total_marks} / ${t_marks}`
                         student_marks_navbar.innerHTML=score;
+                        parsed_all = 0;
                         for(let i=0;i<output.test.questions.length;i++)
                         {
                             var answer;
@@ -153,9 +154,15 @@ fetch(`${domain_url}/verifyStudent`,{
                                 <td> ${percent_unattempted} %</td>
                             </tr>
                             `
+                            if(i==output.test.questions.length-1)
+                            {
+                                parsed_all=1;
+                                $(`#resultDataTable`).DataTable();
+
+                            }
                         }
                         resultDataTable.innerHTML=data_table_header_content+data_table_content+data_table_fotter_content;
-                        $(`#resultDataTable`).DataTable();
+                    
                     }
                     else
                     {
