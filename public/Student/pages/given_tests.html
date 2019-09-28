@@ -260,7 +260,7 @@
                     console.log(output);
                     if(output.is_successful)
                     {
-                        test_results_panel.innerHTML=`<li class="list-group-item"><b> Test Name<span style="float:right"><pre>                          </pre></span><span style="float:right"> Date</span><span style="float:right"> Score<pre>                  </pre></span> </b></li>`;
+                        test_results_panel.innerHTML=`<li class="list-group-item"><b> Test Name<span style="float:right"><pre>                          </pre></span><span style="float:right"> Date <pre>        </pre></span><span style="float:right"> Score<pre>                  </pre></span> </b></li>`;
                         output.results.forEach(result=>{
                         var date = new Date(result.taken_on);
                         var total_marks = result.answers.length * result.test_correct_marks;
@@ -269,7 +269,7 @@
                         var taken_on = `${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`
                         var li = document.createElement('li')
                         li.setAttribute("class","list-group-item");
-                        li.innerHTML=`${result.test_name} <span class="badge badge-green" style="float:right" onclick="viewResult('${result.test_name}')"> View Result </span> <span style="float:right"> ${taken_on} </span><span style="float:right"> ${score}<pre>              </pre></span></li> `;
+                        li.innerHTML=`${result.test_name} <span class="badge badge-green" style="float:right" onclick="viewResult('${result.test_name}')"> View Result </span> <span style="float:right"> ${taken_on} <pre>        </pre></span><span style="float:right"> ${score}<pre>              </pre></span></li> `;
                      
                         test_results_panel.appendChild(li);
                         })
