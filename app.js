@@ -2162,6 +2162,7 @@ app.get('/admin',(req,res)=>{
                                         result.test_domain = test.domain;
                                         result.test_chapter = test.chapter;
                                         result.total_marks = total_marks;
+                                        result.test_correct_marks = test.correct_marks;
                                         result.answers =  test_result;
                                         result.save((err,output)=>{
                                             if(err)
