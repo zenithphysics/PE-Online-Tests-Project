@@ -2221,6 +2221,7 @@ app.get('/admin',(req,res)=>{
             }
             else
             {
+                var test_name = req.body.test_name;
                 console.log('\x1b[32m%s\x1b[1m', '[/getSpecificTestResult] - Student Verification Successful');  
                 Result.findOne({$and:[{"studentID":req.body.studentID},{"test_name":req.body.test_name}]},(err,result)=>{
                     if(err || result==null)
@@ -2231,8 +2232,23 @@ app.get('/admin',(req,res)=>{
                     else
                     {
                         console.log('\x1b[32m%s\x1b[1m', '[/getSpecificTestResult] - Result Fetched');  
-                        console.log(result)
-                        res.json({is_verified:true,is_successful:true,result:result})
+                        var result = result;
+                        Test.findOne({"test_name":test_name},(err,test)=>
+                        {
+                            if(err || test==null)
+                            {
+                                console.log('\x1b[31m%s\x1b[1m', '[/getSpecificTestResult] -  Failed to fetch test');  
+                                console.log(err)
+                                res.json({is_verified:true,is_successful:false})
+
+                            }
+                            else
+                            {
+                                console.log('\x1b[32m%s\x1b[1m', '[/getSpecificTestResult] - Result & Test Fetched');  
+                                res.json({is_verified:true,is_successful:true,result:result,test:test})
+
+                            }
+                        })
                         
                     }
                 })
