@@ -1923,12 +1923,12 @@ app.get('/admin',(req,res)=>{
                                 var question_stats=[];
                                 //QUESTION STATS
                                 for(let i=0;i<test.questions.length;i++){
-                                    if(test.question_details.questions_stats.length!=0)
+                                    if(test.question_details[0].questions_stats.length!=0)
                                     {
                                     console.log("question stats exists")
-                                     total_correct = test.question_details.questions_stats[i].total_correct;
-                                     total_wrong = test.question_details.questions_stats[i].total_wrong;
-                                     total_unattempted = test.question_details.questions_stats[i].total_unattempted;
+                                     total_correct = test.question_details[0].questions_stats[i].total_correct;
+                                     total_wrong = test.question_details[0].questions_stats[i].total_wrong;
+                                     total_unattempted = test.question_details[0].questions_stats[i].total_unattempted;
                                      }
                                     else
                                     {
