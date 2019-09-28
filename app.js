@@ -1955,7 +1955,7 @@ app.get('/admin',(req,res)=>{
                                             }
                                        
                                     }
-                                    question_stats.push({total_correct:total_correct,total_wrong:total_wrong,total_unattempted:total_unattempted})
+                                    question_stats.push({total_correct:total_correct,total_unattempted:total_unattempted,total_wrong:total_wrong})
                                 } 
                             // SUBJECT STATS
                                 for(let i=0;i<test.subject_details.subjects.length;i++){
