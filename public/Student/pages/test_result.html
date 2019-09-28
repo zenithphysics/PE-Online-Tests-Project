@@ -44,12 +44,12 @@ fetch(`${domain_url}/verifyStudent`,{
 				console.log(data);
 				var authDetails = data.student;
 				pe_username = authDetails.studentID;
-				
+				console.log(` Test Name is ${test_name} and StudentID is ${pe_username}`)
+
 		
 			}
 		})
 
-console.log(` Test Name is ${test_name} and StudentID is ${pe_username}`)
 </script>
 </body>
 </html>
