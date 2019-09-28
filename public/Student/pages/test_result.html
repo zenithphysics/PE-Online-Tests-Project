@@ -70,7 +70,7 @@ fetch(`${domain_url}/verifyStudent`,{
                     {
                         test_title_navbar.innerHTML=test_name;
                         var t_marks = output.result.test_correct_marks * output.result.answers.length;
-                        var score = `${output.result.total_marks} / ${t_marks}`
+                        var score = `Your Score : ${output.result.total_marks} / ${t_marks}`
                         student_marks_navbar.innerHTML=score;
                     }
                     else
