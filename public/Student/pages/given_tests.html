@@ -252,7 +252,7 @@
                         authorization:user_access_token,
                         'Content-type':'application/json'
                     },
-                    body:JSON.stringify(studentID:pe_username)
+                    body:JSON.stringify({studentID:pe_username})
                 }).then(res=>res.json()).then(output=>{
                     console.log(output);
                 })
