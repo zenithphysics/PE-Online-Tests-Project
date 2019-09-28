@@ -1938,11 +1938,11 @@ app.get('/admin',(req,res)=>{
                                      total_unattempted = 0;
                                     }
                                     // Traverse each question 
-                                            if(test_result[j]==0) // Answer is wrong
+                                            if(test_result[i]==0) // Answer is wrong
                                             {
                                                 total_wrong+=1;
                                             }
-                                            else if(test_result[j]==1) // Answer is Correct
+                                            else if(test_result[i]==1) // Answer is Correct
                                             {
                                                 total_correct+=1;
                                             }
