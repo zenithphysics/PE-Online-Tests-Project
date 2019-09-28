@@ -260,11 +260,12 @@
                     console.log(output);
                     if(output.is_successful)
                     {
+                        test_results_panel.innerHTML="";
                         output.results.forEach(result=>{
                         var li = document.createElement('li')
                         li.setAttribute("class","list-group-item");
                         li.innerHTML=`
-                        <h4> ${result.test_name} </h4> 
+                         ${result.test_name} 
                         `
                         test_results_panel.appendChild(li);
                         })
