@@ -20,7 +20,7 @@
 <body>
 <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" id="test_title_navbar" href="#">(Test_name)</a>
-
+        <a class="navbar-brand" style="float:right" id="student_marks_navbar"> [Marks] </a>
 </nav>   
 <script>
 var pe_username;
@@ -30,6 +30,7 @@ var user_access_token = localStorage.getItem("student_token");
 var domain_url = "https://photonecademy.com/tests"
 // Related to this page
 var test_title_navbar = document.getElementById("test_title_navbar");
+var student_marks_navbar = document.getElementById("student_marks_navbar");
 
 function getUrlParameter(name) {
     name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -68,6 +69,9 @@ fetch(`${domain_url}/verifyStudent`,{
                     if(output.is_successful)
                     {
                         test_title_navbar.innerHTML=test_name;
+                        var t_marks = output.result.test_correct_marks * output.answers.length;
+                        var score = `${output.result.total_marks} / ${t_marks}`
+                        student_marks_navbar.innerHTML=score;
                     }
                     else
                     {
