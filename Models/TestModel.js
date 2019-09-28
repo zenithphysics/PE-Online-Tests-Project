@@ -126,8 +126,7 @@ answer_images_black:[
                 default:0
             }
           }]
-    }
-  ,
+    },
   subject_details:  // For Subject Wise Stats
       {
           subjects:{        //Array of Distinct Subjects
