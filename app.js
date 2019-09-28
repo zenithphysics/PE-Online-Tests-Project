@@ -1902,18 +1902,15 @@ app.get('/admin',(req,res)=>{
                                 {
                                     test_result.push(1); // Answer is correct
                                     total_marks = total_marks + test.correct_marks;
-                                    total_questions_correct+=1;
                                 }
                                 else if(user_answer_key[i]=="na")
                                 {
                                     test_result.push(2) // Unattempted
-                                    total_questions_unattempted+=1;
                                 }
                                 else
                                 {
                                     test_result.push(0); // Answer is wrong
                                     total_marks = total_marks + test.wrong_marks; // + because wrong marks is in '-'
-                                    total_questions_wrong+=1;
                                 }
                             }
                     
