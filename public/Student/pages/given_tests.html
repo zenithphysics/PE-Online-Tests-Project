@@ -263,7 +263,7 @@
                         test_results_panel.innerHTML=`<li class="list-group-item"><b> Test Name<span style="float:right"> Date</span><span style="float:right"> Score<pre>                  </pre></span> </b></li>`;
                         output.results.forEach(result=>{
                         var date = new Date(result.taken_on);
-                        var total_marks = result.answers.length * test.correct_marks;
+                        var total_marks = result.answers.length * result.correct_marks;
                         var score = `${result.total_marks} / ${total_marks}`;
                         
                         var taken_on = `${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`
