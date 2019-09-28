@@ -10,6 +10,7 @@
   "author": "Prafulla Raichurkar",
   "license": "ISC",
   "dependencies": {
+    "@patternfly/patternfly": "^2.33.5",
     "atob": "^2.1.2",
     "body-parser": "^1.19.0",
     "btoa": "^1.2.1",
