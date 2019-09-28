@@ -269,7 +269,7 @@
                         var taken_on = `${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`
                         var li = document.createElement('li')
                         li.setAttribute("class","list-group-item");
-                        li.innerHTML=`${result.test_name} <span style="float:right"><button class="btn btn-green" onclick="viewResult('${result.test_name}')"> View Result </button> </span> <span style="float:right"> ${taken_on} </span><span style="float:right"> ${score}<pre>              </pre></span></li> `;
+                        li.innerHTML=`${result.test_name} <span style="float:right"><button class="btn btn-green" onclick="viewResult('${result.test_name}')"> View Result </button><pre>            </pre> </span> <span style="float:right"> ${taken_on} </span><span style="float:right"> ${score}<pre>              </pre></span></li> `;
                      
                         test_results_panel.appendChild(li);
                         })
