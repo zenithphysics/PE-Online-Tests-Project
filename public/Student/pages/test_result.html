@@ -157,11 +157,11 @@ fetch(`${domain_url}/verifyStudent`,{
                             if(i==output.test.questions.length-1)
                             {
                                 parsed_all=1;
+                                resultDataTable.innerHTML=data_table_header_content+data_table_content+data_table_fotter_content;
                                 $(`#resultDataTable`).DataTable();
 
                             }
                         }
-                        resultDataTable.innerHTML=data_table_header_content+data_table_content+data_table_fotter_content;
                     
                     }
                     else
