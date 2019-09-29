@@ -286,8 +286,38 @@ fetch(`${domain_url}/verifyStudent`,{
                                                             if(highest_result.length>0)
                                                             {
                                                                 
+                                                                LoadAnalysis();
+                                                               
 
-                                                                for(let i=0;i<test.subject_details.subjects.length;i++)
+                                                            }
+                                                    }
+                                                    else
+                                                    {
+                                                        console.log("FAILED TO GET RESULTS")
+                                                    }
+                                                })
+                            }
+                            else
+                            {
+                                console.log("FAILED TO GET RESULTS")
+                            }
+                        })
+              
+
+
+                        
+
+                    }
+                    else
+                    {
+                        alert("Failed to get result")
+                    }
+                })
+			}
+        })
+        
+        async function LoadAnalysis(){
+            for(let i=0;i<test.subject_details.subjects.length;i++)
                                                                 {
                                                                     // For Each Subject
 
@@ -434,7 +464,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                 
                                                                 `
 
-                                                                createChart(i);
+                                                                await createChart(i)
                                                                
 
                                                                         }
@@ -447,34 +477,7 @@ fetch(`${domain_url}/verifyStudent`,{
 
                                                                
                                                                 }
-
-                                                            }
-                                                    }
-                                                    else
-                                                    {
-                                                        console.log("FAILED TO GET RESULTS")
-                                                    }
-                                                })
-                            }
-                            else
-                            {
-                                console.log("FAILED TO GET RESULTS")
-                            }
-                        })
-              
-
-
-                        
-
-                    }
-                    else
-                    {
-                        alert("Failed to get result")
-                    }
-                })
-			}
-        })
-        
+        }
         async function createChart(i)
         {
               //// DONUT CHARTS CONFIGURATION
