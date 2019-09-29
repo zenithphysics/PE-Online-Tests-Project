@@ -233,16 +233,19 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                 percentage_unattempted_average = parseFloat((total_unattempted_average/(test.test_taken_count*test.questions.length)*100)).toFixed(3)
 
                                                                 overallAnalysisArea.innerHTML=`
+                                                                <div id="donut-chart-overall-user"  class="donut_margin donut_other_margins"></div>
                                                                 <div id="donut-chart-overall-highest"  class="donut_margin donut_other_margins"></div>
                                                                 `
                                                                  //// DONUT CHARTS CONFIGURATION
+
+                                                                        // For User 
                                                                         var c3ChartDefaults = $().c3ChartDefaults();
                                                                         var donutData = {
                                                                         type : 'donut',
                                                                         columns: [
-                                                                            ['% Correct', percentage_correct_highest],
-                                                                            ['% Unattempted', percentage_unattempted_highest],
-                                                                            ['% Wrong', percentage_wrong_highest]
+                                                                            ['% Correct', percentage_correct_user],
+                                                                            ['% Unattempted', percentage_unattempted_user],
+                                                                            ['% Wrong', percentage_wrong_user]
                                                                         ],
                                                                         onclick: function (d, i) { console.log("onclick", d, i); },
                                                                         onmouseover: function (d, i) { console.log("onmouseover", d, i); },
@@ -251,7 +254,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                     
                                                                         // Right Legend
                                                                         var donutChartRightConfig = c3ChartDefaults.getDefaultRelationshipDonutConfig();
-                                                                        donutChartRightConfig.bindto = '#donut-chart-overall-highest';
+                                                                        donutChartRightConfig.bindto = '#donut-chart-overall-user';
                                                                         donutChartRightConfig.tooltip = {show: true};
                                                                         donutChartRightConfig.data = donutData;
                                                                         donutChartRightConfig.legend = {
@@ -268,6 +271,40 @@ fetch(`${domain_url}/verifyStudent`,{
 
                                                                         var donutChartRightLegend = c3.generate(donutChartRightConfig);
                                                                         $().pfSetDonutChartTitle("#donut-chart-overall-highest", "Highest");
+
+                                                                        // For Highest
+                                                                        var c3ChartDefaults = $().c3ChartDefaults();
+                                                                        var donutData = {
+                                                                        type : 'donut',
+                                                                        columns: [
+                                                                            ['% Correct', percentage_correct_highest],
+                                                                            ['% Unattempted', percentage_unattempted_highest],
+                                                                            ['% Wrong', percentage_wrong_highest]
+                                                                        ],
+                                                                        onclick: function (d, i) { console.log("onclick", d, i); },
+                                                                        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+                                                                        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+                                                                        };
+                                                                    
+                                                                        // Right Legend
+                                                                        var donutChartRightConfig = c3ChartDefaults.getDefaultRelationshipDonutConfig();
+                                                                        donutChartRightConfig.bindto = '#donut-chart-overall-user';
+                                                                        donutChartRightConfig.tooltip = {show: true};
+                                                                        donutChartRightConfig.data = donutData;
+                                                                        donutChartRightConfig.legend = {
+                                                                        show: true,
+                                                                        position: 'right'
+                                                                        };
+                                                                        donutChartRightConfig.size = {
+                                                                        width: 251,
+                                                                        height: 161
+                                                                        };
+                                                                        donutChartRightConfig.tooltip = {
+                                                                        contents: $().pfDonutTooltipContents
+                                                                        };
+
+                                                                        var donutChartRightLegend = c3.generate(donutChartRightConfig);
+                                                                        $().pfSetDonutChartTitle("#donut-chart-overall-user", "User");
 
                                                             }
                                                     }
