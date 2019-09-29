@@ -2169,6 +2169,8 @@ app.get('/admin',(req,res)=>{
                                 console.log(topic_stats);*/
                                 console.log("TOTAL MARKS"); 
                                 console.log(total_marks);
+                                console.log("Question STATS");
+                                console.log(question_stats);
                                 Test.syncIndexes();
                                 Test.findOneAndUpdate({"test_name":test.test_name},{$set:{
                                     "section_details.sections_stats":section_stats,
