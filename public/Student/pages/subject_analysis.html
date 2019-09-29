@@ -359,17 +359,17 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                         if(j==test.questions.length-1) // All traversed
                                                                         {
                                                                             // Percentages of User
-                                                                            percentage_correct_user = parseFloat((total_correct_user/(test.test_taken_count*test.subject_details.subjects_question_count)*100)).toFixed(3)
-                                                                            percentage_wrong_user = parseFloat((total_wrong_user/(test.test_taken_count*test.subject_details.subjects_question_count)*100)).toFixed(3)
-                                                                            percentage_unattempted_user = parseFloat((total_unattempted_user/(test.test_taken_count*test.subject_details.subjects_question_count)*100)).toFixed(3)
+                                                                            percentage_correct_user = parseFloat((total_correct_user/(test.test_taken_count*test.subject_details.subjects_question_count[i])*100)).toFixed(3)
+                                                                            percentage_wrong_user = parseFloat((total_wrong_user/(test.test_taken_count*test.subject_details.subjects_question_count[i])*100)).toFixed(3)
+                                                                            percentage_unattempted_user = parseFloat((total_unattempted_user/(test.test_taken_count*test.subject_details.subjects_question_count[i])*100)).toFixed(3)
                                                                             console.log(` % correct user - ${percentage_correct_user}`)
                                                                             console.log(` % wrong user - ${percentage_wrong_user}`)
                                                                             console.log(` % unattempted user - ${percentage_unattempted_user}`)
 
                                                                             // Percentages of Highest User
-                                                                            percentage_correct_highest = parseFloat((total_correct_highest/(test.test_taken_count*test.subject_details.subjects_question_count)*100)).toFixed(3)
-                                                                            percentage_wrong_highest = parseFloat((total_wrong_highest/(test.test_taken_count*test.subject_details.subjects_question_count)*100)).toFixed(3)
-                                                                            percentage_unattempted_highest = parseFloat((total_unattempted_highest/(test.test_taken_count*test.subject_details.subjects_question_count)*100)).toFixed(3)
+                                                                            percentage_correct_highest = parseFloat((total_correct_highest/(test.test_taken_count*test.subject_details.subjects_question_count[i])*100)).toFixed(3)
+                                                                            percentage_wrong_highest = parseFloat((total_wrong_highest/(test.test_taken_count*test.subject_details.subjects_question_count[i])*100)).toFixed(3)
+                                                                            percentage_unattempted_highest = parseFloat((total_unattempted_highest/(test.test_taken_count*test.subject_details.subjects_question_count[i])*100)).toFixed(3)
                                                                       
                                                                             analysisArea = document.getElementById(`analysisArea${i}`)
                                                                 analysisArea.innerHTML=`
