@@ -390,11 +390,11 @@ fetch(`${domain_url}/verifyStudent`,{
 
                                                                 overallAnalysisArea.innerHTML=`
                                                                 <div class="progress_bar_container" display="inline-block;width:30%;float:left">
-                                                                <div class="progress_container" style="display:inline-block">
+                                                                <div class="progress_container" style="display:inline-block;float:left">
                                                                 <div class="progress-description">
                                                                 Highest Performance
                                                                 </div>
-                                                                <div class="progress progress-label-top-right" style="height:20px;">
+                                                                <div class="progress progress-label-top-right" style="height:20px;float:left">
                                                                 <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_correct_highest}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_correct_highest}%;background-color:#02006D"  data-toggle="tooltip" title="${percentage_correct_highest}% Correct">
                                                                     <span><strong>${percentage_correct_highest} % </strong> Correct </span>
                                                                 </div>
@@ -407,11 +407,11 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                 </div>
                                                                 </div>
                                                                 <br>
-                                                                <div id="usersPerformance" class="progress_container" style="display:inline-block">
+                                                                <div id="usersPerformance" class="progress_container" style="display:inline-block;float:left">
                                                                 <div class="progress-description" >
                                                                 Your Performance
                                                                 </div>
-                                                                <div class="progress progress-label-top-right" style="height:20px" >
+                                                                <div class="progress progress-label-top-right" style="height:20px;float:left" >
                                                                 <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_correct_user}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_correct_user}%;background-color:#02006D"  data-toggle="tooltip" title="${percentage_correct_user}% Correct">
                                                                     <span><strong>${percentage_correct_user} % </strong> Correct </span>
                                                                 </div>
@@ -424,11 +424,11 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                 </div>
                                                                 </div>
                                                                 <br>
-                                                                <div class="progress_container" style="display:inline-block">
+                                                                <div class="progress_container" style="display:inline-block;float:left">
                                                                 <div class="progress-description">
                                                                 Average Performance
                                                                 </div>
-                                                                <div class="progress progress-label-top-right" style="height:20px">
+                                                                <div class="progress progress-label-top-right" style="height:20px;float:left">
                                                                 <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_correct_average}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_correct_average}%;background-color:#02006D"  data-toggle="tooltip" title="${percentage_correct_average}% Correct">
                                                                     <span><strong>${percentage_correct_average} % </strong> Correct </span>
                                                                 </div>
