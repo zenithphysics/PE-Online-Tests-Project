@@ -141,7 +141,7 @@
 <div class="wrapper">
 <nav id="sidebar">
     <div class="sidebar-header">
-        <h3>Bootstrap Sidebar</h3>
+        <h3 id="test_name_header"></h3>
     </div>
 
     <ul class="list-unstyled components">
@@ -212,11 +212,11 @@ var all_results;
 var user_access_token = localStorage.getItem("student_token");
 var domain_url = "https://photonecademy.com/tests"
 // Related to this page
-var test_title_navbar = document.getElementById("test_title_navbar");
 var student_marks_navbar = document.getElementById("student_marks_navbar");
 var resultDataTable = document.getElementById(`resultDataTable`)
 var overallAnalysisArea = document.getElementById(`overallAnalysisArea`);
 var selectionAnalysisArea = document.getElementById(`selectionAnalysisArea`)
+var test_name_header = document.getElementById("test_name_header");
 var data_table_header_content = `
 <thead>
     <tr> 
@@ -265,7 +265,7 @@ function getUrlParameter(name) {
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 };
 var test_name = getUrlParameter('test_name');
-
+test_name_header.innerHTML=test_name;
 fetch(`${domain_url}/verifyStudent`,{
 			headers:{
 				method:"GET",
@@ -294,7 +294,6 @@ fetch(`${domain_url}/verifyStudent`,{
                     console.log(output)
                     if(output.is_successful)
                     {
-                        test_title_navbar.innerHTML=test_name;
                         var t_marks = output.result.test_correct_marks * output.result.answers.length;
                         var score = `Your Score : ${output.result.total_marks} / ${t_marks}`
                         result = output.result;
