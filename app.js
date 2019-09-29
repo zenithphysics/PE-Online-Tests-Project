@@ -1931,14 +1931,14 @@ app.get('/admin',(req,res)=>{
                                 for(let i=0;i<test.questions.length;i++){
                                     if(test.question_details.length>=1)
                                     {
-                                    console.log("question stats exists")
+                                    console.log("QUESTION STATS EXIST")
                                      total_correct = test.question_details[0].questions_stats[i].total_correct;
                                      total_wrong = test.question_details[0].questions_stats[i].total_wrong;
                                      total_unattempted = test.question_details[0].questions_stats[i].total_unattempted;
                                      }
                                     else
                                     {
-                                        console.log("in else")
+                                     console.log("QUESTION STATS DOES NOT EXIST")
                                      total_correct = 0;
                                      total_wrong = 0;
                                      total_unattempted = 0;
@@ -1963,17 +1963,16 @@ app.get('/admin',(req,res)=>{
                                 } 
                             // SUBJECT STATS
                                 for(let i=0;i<test.subject_details.subjects.length;i++){
-                                    console.log("in for subjects")
                                     if(test.subject_details.subjects_stats.length!=0)
                                     {
-                                    console.log("Subject stats exists")
+                                    console.log("SUBJECT STATS EXIST")
                                      total_correct = test.subject_details.subjects_stats[i].total_correct;
                                      total_wrong = test.subject_details.subjects_stats[i].total_wrong;
                                      total_unattempted = test.subject_details.subjects_stats[i].total_unattempted;
                                      }
                                     else
                                     {
-                                        console.log("in else")
+                                     console.log("SUBJET STATS DOES NOT EXIST")
                                      total_correct = 0;
                                      total_wrong = 0;
                                      total_unattempted = 0;
@@ -2007,13 +2006,14 @@ app.get('/admin',(req,res)=>{
                             for(let i=0;i<test.section_details.sections.length;i++){
                                 if(test.section_details.sections_stats.length!=0)
                                 {
+                                 console.log("SECTION STATS EXISTS")
                                  total_correct = test.section_details.sections_stats[i].total_correct;
                                  total_wrong = test.section_details.sections_stats[i].total_wrong;
                                  total_unattempted = test.section_details.sections_stats[i].total_unattempted;
-
                             }
                                 else
                                 {
+                                 console.log("SECTION STATS DOES NOT EXIST")
                                  total_correct = 0;
                                  total_wrong = 0;
                                  total_unattempted = 0;
@@ -2043,12 +2043,14 @@ app.get('/admin',(req,res)=>{
                                 for(let i=0;i<test.chapter_details.chapters.length;i++){
                                     if(test.chapter_details.chapters_stats.length!=0)
                                     {
+                                     console.log("CHAPTER STATS EXISTS")
                                      total_correct = test.chapter_details.chapters_stats[i].total_correct;
                                      total_wrong = test.chapter_details.chapters_stats[i].total_wrong;
                                      total_unattempted = test.chapter_details.chapters_stats[i].total_unattempted;
                                     }
                                     else
                                     {
+                                     console.log("CHAPTER STATS DOES NOT EXISTS")
                                      total_correct = 0;
                                      total_wrong = 0;
                                      total_unattempted = 0;
@@ -2084,13 +2086,14 @@ app.get('/admin',(req,res)=>{
                                 for(let i=0;i<test.topic_details.topics.length;i++){
                                     if(test.topic_details.topics_stats.length!=0)
                                     {
+                                     console.log("TOPIC STATS EXISTS")
                                      total_correct_topic = test.topic_details.topics_stats[i].total_correct;
                                      total_wrong_topic = test.topic_details.topics_stats[i].total_wrong;
                                      total_unattempted_topic = test.topic_details.topics_stats[i].total_unattempted;
-                         
                                 }
                                     else
                                     {
+                                     console.log("TOPIC STATS DOES NOT EXIST")
                                      total_correct_topic = 0;
                                      total_wrong_topic = 0;
                                      total_unattempted_topic = 0;
