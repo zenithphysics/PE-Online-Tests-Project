@@ -323,7 +323,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                     total_wrong_highest=0;
                                                                     total_unattempted_highest=0;
 
-                                                                    for(let j=0;j<=test.questions.length;j++)
+                                                                    for(let j=0;j<test.questions.length;j++)
                                                                     {
                                                                         if(test.questions[j].subject==test.subject_details.subjects[i]) // If Subject Matches
                                                                         {
