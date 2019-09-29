@@ -220,8 +220,18 @@ fetch(`${domain_url}/verifyStudent`,{
 
                         
 
+                    }
+                    else
+                    {
+                        alert("Failed to get result")
+                    }
+                })
+			}
+        })
+        
                         // Show Overall Analysis (IMP)
-
+                        if(highest_result.length>0)
+                        {
                          // User Percentages
                             percentage_correct_user = parseFloat((result.total_correct/test.questions.length)*100).toFixed(3)
                             percentage_wrong_user = parseFloat((result.total_wrong/test.questions.length)*100).toFixed(3)
@@ -245,14 +255,6 @@ fetch(`${domain_url}/verifyStudent`,{
                             percentage_wrong_unattempted = parseFloat((total_unattempted_average/(test.test_taken_count*test.questions.length)*100)).toFixed(3)
 
                         }
-                    else
-                    {
-                        alert("Failed to get result")
-                    }
-                })
-			}
-        })
-
 </script>
 </body>
 </html>
