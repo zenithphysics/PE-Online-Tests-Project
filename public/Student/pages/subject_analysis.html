@@ -179,7 +179,7 @@
                 <a class="navbar-brand" href="#" style="float:right" id="student_marks_navbar"></a>
      </nav>   
      <div id="resultContainer">
-        <h3> Subject Wise Analysis  :- </h3>
+        <h5>&nbsp&nbsp Subject Wise Analysis  :- </h5>
      </div>
 
 </div>
@@ -298,25 +298,81 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                             <b> ${test.subject_details.subjects[i]} Analysis </b>
                                                                         </div>
                                                                         <div class="card-body">
-                                                                                <div id="overallAnalysisArea" style="width:100%">
-
+                                                                                <div id="analysisArea${i}" style="width:100%">
+                                                                                    
                                                                                 </div>
                                                                         </div>
                                                                     </div>
                                                                     <br>
                                                                     
                                                                     `
-                                                                }
+                                                                    /* PERCENTAGE VALUES */
 
+                                                                    // Direct Values
+                                                                    
+                                                                    percentage_correct_average = parseFloat((test.subject_details.subjects_stats[i].total_correct/(test.test_taken_count*test.subject_details.subjects_question_count)*100)).toFixed(3)
+                                                                    percentage_wrong_average = parseFloat((test.subject_details.subjects_stats[i].total_wrong/(test.test_taken_count*test.subject_details.subjects_question_count)*100)).toFixed(3)
+                                                                    percentage_unattempted_average = parseFloat((test.subject_details.subjects_stats[i].total_unattempted/(test.test_taken_count*test.subject_details.subjects_question_count)*100)).toFixed(3)
 
-                                                               
+                                                                    // Indirect Values
+                                                                    total_correct_user=0;
+                                                                    total_wrong_user=0;
+                                                                    total_unattempted_user=0;
 
+                                                                    total_correct_highest=0;
+                                                                    total_wrong_highest=0;
+                                                                    total_unattempted_highest=0;
 
-                                                                overallAnalysisArea.innerHTML=`
+                                                                    for(let j=0;j<=test.questions.length;j++)
+                                                                    {
+                                                                        if(test.questions[j].subject==subject) // If Subject Matches
+                                                                        {
+                                                                            // Check if Correct
+                                                                            if(result.answers[j]==1) // If answer is correct
+                                                                            {
+                                                                               total_correct_user+=1; 
+                                                                            }
+                                                                            if(highest_result.answers[j]==1)
+                                                                            {
+                                                                                total_correct_highest+=1;
+                                                                            }
+                                                                            // Check if wrong
+                                                                            if(result.answers[j]==0)
+                                                                            {
+                                                                                total_wrong_user+=1;
+                                                                            }
+                                                                            if(highest_result.answers[j]==0)
+                                                                            {
+                                                                                total_wrong_highest+=1;
+                                                                            }
+                                                                            // Check if Unattempted
+                                                                            if(result.answers[j]==2)
+                                                                            {
+                                                                                total_unattempted_user+=1;
+                                                                            }
+                                                                            if(highest_result.answers[j]==2)
+                                                                            {
+                                                                                total_unattempted_highest+=1;
+                                                                            }
+                                                                        }
+
+                                                                        if(j==test.questions.length-1) // All traversed
+                                                                        {
+                                                                            // Percentages of User
+                                                                            percentage_correct_user = parseFloat((total_correct_user/(test.test_taken_count*test.subject_details.subjects_question_count)*100)).toFixed(3)
+                                                                            percentage_wrong_user = parseFloat((total_wrong_user/(test.test_taken_count*test.subject_details.subjects_question_count)*100)).toFixed(3)
+                                                                            percentage_unattempted_user = parseFloat((total_unattempted_user/(test.test_taken_count*test.subject_details.subjects_question_count)*100)).toFixed(3)
+                                                                            // Percentages of Highest User
+                                                                            percentage_correct_highest = parseFloat((total_correct_highest/(test.test_taken_count*test.subject_details.subjects_question_count)*100)).toFixed(3)
+                                                                            percentage_wrong_highest = parseFloat((total_wrong_highest/(test.test_taken_count*test.subject_details.subjects_question_count)*100)).toFixed(3)
+                                                                            percentage_unattempted_highest = parseFloat((total_unattempted_highest/(test.test_taken_count*test.subject_details.subjects_question_count)*100)).toFixed(3)
+                                                                      
+                                                                            analysisArea = document.getElementById(`analysisArea${i}`)
+                                                                analysisArea.innerHTML=`
                                                                 <div class="chart_containter" style="display:inline-block;float:right;padding-top:-100px">
-                                                                    <div id="donut-chart-overall-user"  class="donut_margin donut_other_margins"></div>
-                                                                    <div id="donut-chart-overall-average"  class="donut_margin donut_other_margins"></div>
-                                                                    <div id="donut-chart-overall-highest"  class="donut_margin donut_other_margins"></div>
+                                                                    <div id="donut-chart-${i}-user"  class="donut_margin donut_other_margins"></div>
+                                                                    <div id="donut-chart-${i}-average"  class="donut_margin donut_other_margins"></div>
+                                                                    <div id="donut-chart-${i}-highest"  class="donut_margin donut_other_margins"></div>
                                                                 </div>
                                                                 <div class="progress_bar_container" style="display:inline-block">
                                                                     <div class="progress_container" style="display:inline-block">
@@ -389,7 +445,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                     
                                                                         // Right Legend
                                                                         var donutChartRightConfig = c3ChartDefaults.getDefaultRelationshipDonutConfig();
-                                                                        donutChartRightConfig.bindto = '#donut-chart-overall-user';
+                                                                        donutChartRightConfig.bindto = `#donut-chart-${i}-user`;
                                                                         donutChartRightConfig.tooltip = {show: true};
                                                                         donutChartRightConfig.data = donutData;
                                                                         donutChartRightConfig.legend = {
@@ -405,7 +461,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                         };
 
                                                                         var donutChartRightLegend = c3.generate(donutChartRightConfig);
-                                                                        $().pfSetDonutChartTitle("#donut-chart-overall-user", "User");
+                                                                        $().pfSetDonutChartTitle(`#donut-chart-${i}-user`, "User");
                                                                         // For Average
                                                                         var c3ChartDefaults = $().c3ChartDefaults();
                                                                         var donutData = {
@@ -420,7 +476,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                     
                                                                         // Right Legend
                                                                         var donutChartRightConfig = c3ChartDefaults.getDefaultRelationshipDonutConfig();
-                                                                        donutChartRightConfig.bindto = '#donut-chart-overall-average';
+                                                                        donutChartRightConfig.bindto = `#donut-chart-${i}-average`;
                                                                         donutChartRightConfig.tooltip = {show: true};
                                                                         donutChartRightConfig.data = donutData;
                                                                         donutChartRightConfig.legend = {
@@ -436,7 +492,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                         };
 
                                                                         var donutChartRightLegend = c3.generate(donutChartRightConfig);
-                                                                        $().pfSetDonutChartTitle("#donut-chart-overall-average", "Average");
+                                                                        $().pfSetDonutChartTitle(`#donut-chart-${i}-average`, "Average");
                                                                         // For Highest
                                                                         var c3ChartDefaults = $().c3ChartDefaults();
                                                                         var donutData = {
@@ -451,7 +507,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                     
                                                                         // Right Legend
                                                                         var donutChartRightConfig = c3ChartDefaults.getDefaultRelationshipDonutConfig();
-                                                                        donutChartRightConfig.bindto = '#donut-chart-overall-highest';
+                                                                        donutChartRightConfig.bindto = `#donut-chart-${i}-highest`;
                                                                         donutChartRightConfig.tooltip = {show: true};
                                                                         donutChartRightConfig.data = donutData;
                                                                         donutChartRightConfig.legend = {
@@ -467,7 +523,19 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                         };
 
                                                                         var donutChartRightLegend = c3.generate(donutChartRightConfig);
-                                                                        $().pfSetDonutChartTitle("#donut-chart-overall-highest", "Highest");
+                                                                        $().pfSetDonutChartTitle(`#donut-chart-${i}-highest`, "Highest");
+
+
+                                                                        }
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                                    }
+
+
+                                                               
+                                                                }
 
                                                             }
                                                     }
