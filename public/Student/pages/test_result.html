@@ -263,6 +263,7 @@ function getUrlParameter(name) {
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 };
 var test_name = getUrlParameter('test_name');
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Links Management
 var result_page_link = document.getElementById("result_page_link");
 var subject_analysis_link = document.getElementById("subject_analysis_link");
@@ -273,6 +274,11 @@ var dlevel_analysis_link = document.getElementById("dlevel_analysis_link");
 
 result_page_link.href = "#";
 subject_analysis_link.href = `${domain_url}/Student/pages/subject_analysis.html?test_name=${test_name}`;
+section_analysis_link.href = `${domain_url}/Student/pages/section_analysis.html?test_name=${test_name}`;
+chapter_analysis_link.href = `${domain_url}/Student/pages/chapter_analysis.html?test_name=${test_name}`;
+topic_analysis_link.href = `${domain_url}/Student/pages/topic_analysis.html?test_name=${test_name}`
+dlevel_analysis_link = `${domain_url}/Student/pages/dlevel_analysis.html?test_name=${test_name}`
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 test_name_header.innerHTML=test_name;
 fetch(`${domain_url}/verifyStudent`,{
 			headers:{
