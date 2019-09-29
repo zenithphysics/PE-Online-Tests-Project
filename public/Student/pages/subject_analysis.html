@@ -310,9 +310,9 @@ fetch(`${domain_url}/verifyStudent`,{
 
                                                                     // Direct Values
                                                                     
-                                                                    percentage_correct_average = parseFloat((test.subject_details.subjects_stats[i].total_correct/(test.test_taken_count*test.subject_details.subjects_question_count)*100)).toFixed(3)
-                                                                    percentage_wrong_average = parseFloat((test.subject_details.subjects_stats[i].total_wrong/(test.test_taken_count*test.subject_details.subjects_question_count)*100)).toFixed(3)
-                                                                    percentage_unattempted_average = parseFloat((test.subject_details.subjects_stats[i].total_unattempted/(test.test_taken_count*test.subject_details.subjects_question_count)*100)).toFixed(3)
+                                                                    percentage_correct_average = parseFloat((test.subject_details.subjects_stats[i].total_correct/(test.test_taken_count*test.subject_details.subjects_question_count[i])*100)).toFixed(3)
+                                                                    percentage_wrong_average = parseFloat((test.subject_details.subjects_stats[i].total_wrong/(test.test_taken_count*test.subject_details.subjects_question_count[i])*100)).toFixed(3)
+                                                                    percentage_unattempted_average = parseFloat((test.subject_details.subjects_stats[i].total_unattempted/(test.test_taken_count*test.subject_details.subjects_question_count[i])*100)).toFixed(3)
 
                                                                     // Indirect Values
                                                                     var total_correct_user=0;
