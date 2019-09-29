@@ -148,23 +148,23 @@
 
     <ul class="list-unstyled components">
         <li class="active">
-            <a id="result_page_link" href="#">Result</a>
+            <a id="result_page_link" href="#">Subject Analysis</a>
         </li>
         <li>
             <a id="subject_analysis_link" href="#"> Subject Wise Analysis </a>
         </li>
         <li>
-            <a id="section_analysis_link" href="#">Section Wise Analysis</a>
+            <a id="section_analysis_link" href="section_analysis.html">Section Wise Analysis</a>
             
         </li>
         <li>
-            <a id="chapter_analysis_link" href="#"> Chapter Wise Analysis </a>
+            <a id="chapter_analysis_link" href="chapter_analysis.html"> Chapter Wise Analysis </a>
         </li>
         <li>
-            <a id="topic_analysis_link" href="#"> Topic Wise Analysis </a>
+            <a id="topic_analysis_link" href="topic_analysis.html"> Topic Wise Analysis </a>
         </li>
         <li>
-           <a id="dlevel_analysis_link" href="#"> Difficulty Level Analysis </a>
+           <a  id="dlevel_analysis_link" href="dlevel_analysis.html"> Difficulty Level Analysis </a>
         </li>
         <li>
             <a href="result_answers.html"> Answers </a>
@@ -176,9 +176,7 @@
     <nav class="navbar navbar-dark bg-dark">
                 <a class="navbar-brand" href="#" style="float:right" id="student_marks_navbar"></a>
      </nav>   
-    <table id="resultDataTable" class="display" style="width:100%">
-    
-    </table>
+
 
     <button class="btn btn-success" style="margin-left: auto;margin-right:auto;width:40%;text-align: center;display: block;" onclick="showAnalysis()"> View Selection Analysis </button>
     <br>
@@ -207,62 +205,13 @@ var user_access_token = localStorage.getItem("student_token");
 var domain_url = "https://photonecademy.com/tests"
 // Related to this page
 var student_marks_navbar = document.getElementById("student_marks_navbar");
-var resultDataTable = document.getElementById(`resultDataTable`)
 var overallAnalysisArea = document.getElementById(`overallAnalysisArea`);
 var selectionAnalysisArea = document.getElementById(`selectionAnalysisArea`)
 var test_name_header = document.getElementById("test_name_header");
 
-// Links Management
-var result_page_link = document.getElementById("result_page_link");
-var subject_analysis_link = document.getElementById("subject_analysis_link");
-var section_analysis_link = document.getElementById("section_analysis_link");
-var chapter_analysis_link = document.getElementById("chapter_analysis_link");
-var topic_analysis_link = document.getElementById("topic_analysis_link");
-var dlevel_analysis_link = document.getElementById("dlevel_analysis_link");
 
-result_page_link.href = "#";
-subject_analysis_link = `${domain_url}/tests/Student/pages/subject_analysis.html?test_name=${test_name}`;
-///////////////////
-var data_table_header_content = `
-<thead>
-    <tr> 
-        <th> Sr No. </th>
-        <th> Q No </th>
-        <th> Your Answer </th>
-        <th> Marks Scored </th>
-        <th> DLevel </th>
-        <th> Subject </th>
-        <th> Section </th>
-        <th> Chapter </th>
-        <th> Topic </th>
-        <th> % Correct </th>
-        <th> % Wrong </th>
-        <th> % Unattempted </th>
-    </tr>
-</thead>
 
-`
-var data_table_content=``;
 
-var data_table_fotter_content = `
-
-<tfoot>
-            <tr>
-                    <th> Sr No. </th>
-                    <th> Q No </th>
-                    <th> Your Answer </th>
-                    <th> Marks Scored </th>
-                    <th> DLevel </th>
-                    <th> Subject </th>
-                    <th> Section </th>
-                    <th> Chapter </th>
-                    <th> Topic </th>
-                    <th> % Correct </th>
-                    <th> % Wrong </th>
-                    <th> % Unattempted </th>
-            </tr>
-</tfoot>
-`
 
 function getUrlParameter(name) {
     name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -300,60 +249,8 @@ fetch(`${domain_url}/verifyStudent`,{
                     console.log(output)
                     if(output.is_successful)
                     {
-                        var t_marks = output.result.test_correct_marks * output.result.answers.length;
-                        var score = `Your Score : ${output.result.total_marks} / ${t_marks}`
-                        result = output.result;
-                        test = output.test;
-                        student_marks_navbar.innerHTML=score;
-                        parsed_all = 0;
-                        show_result=0;
-                        for(let i=0;i<output.test.questions.length;i++)
-                        {
-                            var answer;
-                            var marks_scored=0;
-                            percent_correct = parseFloat((output.test.question_details.questions_stats[i].total_correct/output.test.test_taken_count)*100).toFixed(3);
-                            percent_wrong = parseFloat((output.test.question_details.questions_stats[i].total_wrong/output.test.test_taken_count)*100).toFixed(3);
-                            percent_unattempted = parseFloat((output.test.question_details.questions_stats[i].total_unattempted/output.test.test_taken_count)*100).toFixed(3);
-
-                            if(output.result.answers[i]==0)
-                            {
-                                answer="Wrong";
-                                marks_scored=marks_scored+output.test.wrong_marks;
-                            }
-                            else if(output.result.answers[i]==1)
-                            {
-                                answer="Correct";
-                                marks_scored=marks_scored+output.test.correct_marks;
-                            }
-                            else
-                            {
-                                answer="Unattempted";
-                                marks_scored=0;
-                            }
-                            data_table_content+=`
-                            <tr>
-                                <td> ${i+1} </td>
-                                <td> Q.${i+1} </td>
-                                <td> ${answer} </td>
-                                <td> ${marks_scored} </td>
-                                <td> ${output.test.questions[i].DLevel} </td>
-                                <td> ${output.test.questions[i].subject} </td>
-                                <td> ${output.test.questions[i].section} </td>
-                                <td> ${output.test.questions[i].chapter} </td>
-                                <td> ${output.test.questions[i].topic} </td>
-                                <td> ${percent_correct} %</td>
-                                <td> ${percent_wrong} %</td>
-                                <td> ${percent_unattempted} %</td>
-                            </tr>
-                            `
-                            if(i==output.test.questions.length-1)
-                            {
-                                parsed_all=1;
-                                resultDataTable.innerHTML=`${data_table_header_content}<tbody>${data_table_content}</tbody>${data_table_fotter_content}`;
-                                $(`#resultDataTable`).DataTable();
-                                show_result=1;
-                            }
-                        }
+                    
+                      
                         // Get All Results
                         fetch(`${domain_url}/getAllResults`,{
                             method:"POST",
