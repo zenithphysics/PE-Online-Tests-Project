@@ -212,16 +212,7 @@ var overallAnalysisArea = document.getElementById(`overallAnalysisArea`);
 var selectionAnalysisArea = document.getElementById(`selectionAnalysisArea`)
 var test_name_header = document.getElementById("test_name_header");
 
-// Links Management
-var result_page_link = document.getElementById("result_page_link");
-var subject_analysis_link = document.getElementById("subject_analysis_link");
-var section_analysis_link = document.getElementById("section_analysis_link");
-var chapter_analysis_link = document.getElementById("chapter_analysis_link");
-var topic_analysis_link = document.getElementById("topic_analysis_link");
-var dlevel_analysis_link = document.getElementById("dlevel_analysis_link");
 
-result_page_link.href = "#";
-subject_analysis_link.href = `${domain_url}/Student/pages/subject_analysis.html?test_name=${test_name}`;
 
 ///////////////////
 var data_table_header_content = `
@@ -272,6 +263,16 @@ function getUrlParameter(name) {
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 };
 var test_name = getUrlParameter('test_name');
+// Links Management
+var result_page_link = document.getElementById("result_page_link");
+var subject_analysis_link = document.getElementById("subject_analysis_link");
+var section_analysis_link = document.getElementById("section_analysis_link");
+var chapter_analysis_link = document.getElementById("chapter_analysis_link");
+var topic_analysis_link = document.getElementById("topic_analysis_link");
+var dlevel_analysis_link = document.getElementById("dlevel_analysis_link");
+
+result_page_link.href = "#";
+subject_analysis_link.href = `${domain_url}/Student/pages/subject_analysis.html?test_name=${test_name}`;
 test_name_header.innerHTML=test_name;
 fetch(`${domain_url}/verifyStudent`,{
 			headers:{
