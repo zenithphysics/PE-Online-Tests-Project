@@ -332,7 +332,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                             {
                                                                                total_correct_user+=1; 
                                                                             }
-                                                                            if(highest_result.answers[j]==1)
+                                                                            if(highest_result[0].answers[j]==1)
                                                                             {
                                                                                 total_correct_highest+=1;
                                                                             }
@@ -341,7 +341,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                             {
                                                                                 total_wrong_user+=1;
                                                                             }
-                                                                            if(highest_result.answers[j]==0)
+                                                                            if(highest_result[0].answers[j]==0)
                                                                             {
                                                                                 total_wrong_highest+=1;
                                                                             }
@@ -350,7 +350,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                             {
                                                                                 total_unattempted_user+=1;
                                                                             }
-                                                                            if(highest_result.answers[j]==2)
+                                                                            if(highest_result[0].answers[j]==2)
                                                                             {
                                                                                 total_unattempted_highest+=1;
                                                                             }
