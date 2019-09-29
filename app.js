@@ -2310,6 +2310,35 @@ app.get('/admin',(req,res)=>{
             {
                 var test_name = req.body.test_name;
                 console.log('\x1b[32m%s\x1b[1m', '[/getAllResults] - Student Verification Successful');  
+                Result.find({"test_name":req.body.test_name},(err,results)=>{
+                    if(err || results==null)
+                    {
+                        res.json({is_verified:true,is_successful:false})
+                        console.log(err);
+                    }
+                    else
+                    {
+                        console.log('\x1b[32m%s\x1b[1m', '[/getAllResults] - All Results Fetched');  
+                        res.json({is_verified:true,is_successful:true,results:results})             
+                    }
+                })
+            }
+        })
+    })
+
+    // Get Top Result of a Test
+
+    app.post('/getTopResult',verifyToken,(req,res)=>{
+        jwt.verify(req.token,'pe-tests-student',(err,authData)=>{
+            if(err){
+                console.log('\x1b[31m%s\x1b[1m', '[/getTopResult] - Student Verification Failed');  
+                console.log(err);
+                res.json({is_verified:false})
+            }
+            else
+            {
+                var test_name = req.body.test_name;
+                console.log('\x1b[32m%s\x1b[1m', '[/getTopResult] - Student Verification Successful');  
                 Result.findOne({"test_name":req.body.test_name},{$sort:{"total_marks":-1}},(err,topResult)=>{
                     if(err || topResult==null)
                     {
@@ -2318,12 +2347,10 @@ app.get('/admin',(req,res)=>{
                     }
                     else
                     {
-                        console.log('\x1b[32m%s\x1b[1m', '[/getAllResults] - top result Fetched');  
+                        console.log('\x1b[32m%s\x1b[1m', '[/getTopResult] - Top Result Fetched');  
                         res.json({is_verified:true,is_successful:true,topResult:topResult})             
                     }
                 })
             }
         })
     })
-
-    // Get Top Result of a Test

@@ -178,10 +178,46 @@ fetch(`${domain_url}/verifyStudent`,{
                                 show_result=1;
                             }
                         }
-                    
-
+                        // Get All Results
+                        fetch(`${domain_url}/getAllResults`,{
+                            method:"POST",
+                            headers:{
+                                authorization:user_access_token,
+                                'Content-type':'application/json'
+                            },
+                            body:JSON.stringify({test_name:test_name})
+                        }).then(res=>res.json()).then(data=>{
+                            console.log(data)
+                            if(data.is_successful)
+                            {
+                                all_results = data.results;
+                            }
+                            else
+                            {
+                                console.log("FAILED TO GET RESULTS")
+                            }
+                        })
+                        // Get Top Result
+                        fetch(`${domain_url}/getTopResult`,{
+                            method:"POST",
+                            headers:{
+                                authorization:user_access_token,
+                                'Content-type':'application/json'
+                            },
+                            body:JSON.stringify({test_name:test_name})
+                        }).then(res=>res.json()).then(data=>{
+                            console.log(data)
+                            if(data.is_successful)
+                            {
+                                highest_result = data.topResult;
+                            }
+                            else
+                            {
+                                console.log("FAILED TO GET RESULTS")
+                            }
+                        })
                         // Show Overall Analysis
-                    
+                        
                     }
                     else
                     {
