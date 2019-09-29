@@ -1929,7 +1929,7 @@ app.get('/admin',(req,res)=>{
                                 var total_unattempted_count_user = 0;
                                 //QUESTION STATS
                                 for(let i=0;i<test.questions.length;i++){
-                                    if(test.question_details.question_stats!=[])
+                                    if(test.question_details.question_stats!=null)
                                     {
                                     console.log("QUESTION STATS EXIST")
                                      total_correct = test.question_details.questions_stats[i].total_correct;
