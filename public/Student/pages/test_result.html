@@ -391,6 +391,11 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                 percentage_unattempted_average = parseFloat((total_unattempted_average/(test.test_taken_count*test.questions.length)*100)).toFixed(3)
 
                                                                 overallAnalysisArea.innerHTML=`
+                                                                <div class="chart_containter" style="display:inline-block;float:right;padding-top:-100px">
+                                                                    <div id="donut-chart-overall-user"  class="donut_margin donut_other_margins"></div>
+                                                                    <div id="donut-chart-overall-average"  class="donut_margin donut_other_margins"></div>
+                                                                    <div id="donut-chart-overall-highest"  class="donut_margin donut_other_margins"></div>
+                                                                </div>
                                                                 <div class="progress_bar_container" style="display:inline-block">
                                                                     <div class="progress_container" style="display:inline-block">
                                                                         <div class="progress-description">
@@ -408,9 +413,6 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div id="donut-chart-overall-user"  class="donut_margin donut_other_margins"></div>
-                                                                    <div id="donut-chart-overall-average"  class="donut_margin donut_other_margins"></div>
-                                                                    <div id="donut-chart-overall-highest"  class="donut_margin donut_other_margins"></div>
                                                                     <br>
                                                                     <div id="usersPerformance" class="progress_container" style="display:inline-block;margin-top:0px;">
                                                                         <div class="progress-description" >
@@ -446,10 +448,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                    <div id="donut-chart-overall-user"  class="donut_margin donut_other_margins"></div>
-                                                                    <div id="donut-chart-overall-average"  class="donut_margin donut_other_margins"></div>
-                                                                    <div id="donut-chart-overall-highest"  class="donut_margin donut_other_margins"></div>
-    
+                  
                                                                 
                                                                 `
                                                                  //// DONUT CHARTS CONFIGURATION
