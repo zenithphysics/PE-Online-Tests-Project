@@ -216,9 +216,35 @@ fetch(`${domain_url}/verifyStudent`,{
                                 console.log("FAILED TO GET RESULTS")
                             }
                         })
-                        // Show Overall Analysis
+
+
                         
-                    }
+
+                        // Show Overall Analysis (IMP)
+
+                         // User Percentages
+                            percentage_correct_user = parseFloat((result.total_correct/test.questions.length)*100).toFixed(3)
+                            percentage_wrong_user = parseFloat((result.total_wrong/test.questions.length)*100).toFixed(3)
+                            percentage_unattempted_user = parseFloat((result.total_unattempted/test.questions.length)*100).toFixed(3)
+                         // Highest Percentages
+                            percentage_correct_highest = parseFloat((highest_result.total_correct/test.questions.length)*100).toFixed(3)
+                            percentage_wrong_highest = parseFloat((highest_result.total_wrong/test.questions.length)*100).toFixed(3)
+                            percentage_unattempted_highest = parseFloat((highest_result.total_unattempted/test.questions.length)*100).toFixed(3)
+                        //  Average Percentages
+                            total_correct_average = 0;
+                            total_wrong_average = 0;
+                            total_unattempted_average = 0;
+                            test.question_details.questions_stats.forEach(question=>{
+                                total_correct_average += question.total_correct;
+                                total_wrong_average += question.total_wrong;
+                                total_unattempted += question.total_unattempted;
+                            })
+
+                            percentage_correct_average = parseFloat((total_correct_average/(test.test_taken_count*test.questions.length)*100)).toFixed(3)
+                            percentage_wrong_average = parseFloat((total_wrong_average/(test.test_taken_count*test.questions.length)*100)).toFixed(3)
+                            percentage_wrong_unattempted = parseFloat((total_unattempted_average/(test.test_taken_count*test.questions.length)*100)).toFixed(3)
+
+                        }
                     else
                     {
                         alert("Failed to get result")
