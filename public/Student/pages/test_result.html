@@ -427,26 +427,27 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                 </div>
                                                                 <br>
                                                                 <div class="progress_container" style="display:inline-block">
-                                                                <div class="progress-description">
-                                                                Average Performance
-                                                                </div>
-                                                                <div class="progress progress-label-top-right" style="height:20px">
-                                                                <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_correct_average}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_correct_average}%;background-color:#02006D"  data-toggle="tooltip" title="${percentage_correct_average}% Correct">
-                                                                    <span><strong>${percentage_correct_average} % </strong> Correct </span>
-                                                                </div>
-                                                                <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_unattempted_average}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_unattempted_average}%;background-color:#55DAFD"  data-toggle="tooltip" title="${percentage_unattempted_average}% Unattempted">
-                                                                    <span><strong>${percentage_unattempted_average} % </strong> Unattempted </span>
-                                                                </div>
-                                                                <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_wrong_average}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_wrong_average}%;background-color:#6F00FF"  data-toggle="tooltip" title="${percentage_wrong_user}% Wrong">
-                                                                    <span><strong>${percentage_wrong_average} % </strong> Wrong </span>
-                                                                </div>
-                                                                </div>
+                                                                    <div class="progress-description">
+                                                                        Average Performance
+                                                                    </div>
+                                                                    <div class="progress progress-label-top-right" style="height:20px">
+                                                                        <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_correct_average}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_correct_average}%;background-color:#02006D"  data-toggle="tooltip" title="${percentage_correct_average}% Correct">
+                                                                            <span><strong>${percentage_correct_average} % </strong> Correct </span>
+                                                                        </div>
+                                                                        <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_unattempted_average}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_unattempted_average}%;background-color:#55DAFD"  data-toggle="tooltip" title="${percentage_unattempted_average}% Unattempted">
+                                                                            <span><strong>${percentage_unattempted_average} % </strong> Unattempted </span>
+                                                                        </div>
+                                                                        <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_wrong_average}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_wrong_average}%;background-color:#6F00FF"  data-toggle="tooltip" title="${percentage_wrong_user}% Wrong">
+                                                                            <span><strong>${percentage_wrong_average} % </strong> Wrong </span>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                                 </div> 
-                                                                <div id="donut-chart-overall-user"  class="donut_margin donut_other_margins"></div>
-                                                                <div id="donut-chart-overall-average"  class="donut_margin donut_other_margins"></div>
-                                                                <div id="donut-chart-overall-highest"  class="donut_margin donut_other_margins"></div>
-
+                                                                <div class="chart_containter" style="display:inline-block">
+                                                                    <div id="donut-chart-overall-user"  class="donut_margin donut_other_margins"></div>
+                                                                    <div id="donut-chart-overall-average"  class="donut_margin donut_other_margins"></div>
+                                                                    <div id="donut-chart-overall-highest"  class="donut_margin donut_other_margins"></div>
+                                                                </div>
                                                                 `
                                                                  //// DONUT CHARTS CONFIGURATION
 
