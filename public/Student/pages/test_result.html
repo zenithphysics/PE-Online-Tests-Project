@@ -222,7 +222,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                 test.question_details.questions_stats.forEach(question=>{
                                                                     total_correct_average += question.total_correct;
                                                                     total_wrong_average += question.total_wrong;
-                                                                    total_unattempted += question.total_unattempted;
+                                                                    total_unattempted_average += question.total_unattempted;
                                                                 })
 
                                                                 percentage_correct_average = parseFloat((total_correct_average/(test.test_taken_count*test.questions.length)*100)).toFixed(3)
