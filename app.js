@@ -2339,7 +2339,7 @@ app.get('/admin',(req,res)=>{
             {
                 var test_name = req.body.test_name;
                 console.log('\x1b[32m%s\x1b[1m', '[/getTopResult] - Student Verification Successful');  
-                Result.aggregate({$sort:{"total_marks":-1},$limit:1},(result)=>{
+                Result.find().sort({"total_marks":-1}).limit(1).then(result=>{
                     console.log(result);
                 })
             }
