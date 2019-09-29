@@ -2340,7 +2340,13 @@ app.get('/admin',(req,res)=>{
                 var test_name = req.body.test_name;
                 console.log('\x1b[32m%s\x1b[1m', '[/getTopResult] - Student Verification Successful');  
                 Result.find().sort({"total_marks":-1}).limit(1).then(result=>{
-                    console.log(result);
+                    res.json({is_verified:true,is_successful:true,topResult:result})
+                    console.log('\x1b[32m%s\x1b[1m', '[/getTopResult] - Top Result Fetched');  
+                }).catch(err=>{
+                    console.log(err);
+                    res.json({is_verified:true,is_successful:false})
+                    console.log('\x1b[31m%s\x1b[1m', '[/getTopResult] - Failed to fetch top result');  
+
                 })
             }
         })
