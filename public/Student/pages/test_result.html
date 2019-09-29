@@ -395,6 +395,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                 percentage_unattempted_average = parseFloat((total_unattempted_average/(test.test_taken_count*test.questions.length)*100)).toFixed(3)
 
                                                                 overallAnalysisArea.innerHTML=`
+                                                                <div class="progress_bar_container" display="inline-block;width:40%">
                                                                 <div class="progress_container" style="display:inline-block">
                                                                 <div class="progress-description">
                                                                 Highest Performance
@@ -444,8 +445,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                 </div>
                                                                 </div>
                                                                 </div>
-
-                                                                
+                                                                </div>  
                                                                 <div id="donut-chart-overall-user"  class="donut_margin donut_other_margins"></div>
                                                                 <div id="donut-chart-overall-average"  class="donut_margin donut_other_margins"></div>
                                                                 <div id="donut-chart-overall-highest"  class="donut_margin donut_other_margins"></div>
