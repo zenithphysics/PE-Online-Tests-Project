@@ -253,6 +253,7 @@ fetch(`${domain_url}/verifyStudent`,{
                     if(output.is_successful)
                     {
                         result = output.result;
+                        test = output.test;
                         // Get All Results
                         fetch(`${domain_url}/getAllResults`,{
                             method:"POST",
