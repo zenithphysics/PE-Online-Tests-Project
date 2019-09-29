@@ -391,62 +391,62 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                 percentage_unattempted_average = parseFloat((total_unattempted_average/(test.test_taken_count*test.questions.length)*100)).toFixed(3)
 
                                                                 overallAnalysisArea.innerHTML=`
-                                                                <div class="progress_bar_container" display="inline-block;width:30%;float:left">
-                                                                <div class="progress_container" style="display:inline-block">
-                                                                <div class="progress-description">
-                                                                Highest Performance
-                                                                </div>
-                                                                <div class="progress progress-label-top-right" style="height:20px;">
-                                                                <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_correct_highest}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_correct_highest}%;background-color:#02006D"  data-toggle="tooltip" title="${percentage_correct_highest}% Correct">
-                                                                    <span><strong>${percentage_correct_highest} % </strong> Correct </span>
-                                                                </div>
-                                                                <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_unattempted_highest}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_unattempted_highest}%;background-color:#55DAFD"  data-toggle="tooltip" title="${percentage_unattempted_highest}% Unattempted">
-                                                                    <span><strong>${percentage_unattempted_highest} % </strong> Unattempted </span>
-                                                                </div>
-                                                                <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_wrong_highest}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_wrong_highest}%;background-color:#6F00FF"  data-toggle="tooltip" title="${percentage_wrong_highest}% Wrong">
-                                                                    <span><strong>${percentage_wrong_highest} % </strong> Wrong </span>
-                                                                </div>
-                                                                </div>
-                                                                </div>
-                                                                <br>
-                                                                <div id="usersPerformance" class="progress_container" style="display:inline-block">
-                                                                <div class="progress-description" >
-                                                                Your Performance
-                                                                </div>
-                                                                <div class="progress progress-label-top-right" style="height:20px" >
-                                                                <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_correct_user}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_correct_user}%;background-color:#02006D"  data-toggle="tooltip" title="${percentage_correct_user}% Correct">
-                                                                    <span><strong>${percentage_correct_user} % </strong> Correct </span>
-                                                                </div>
-                                                                <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_unattempted_user}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_unattempted_user}%;background-color:#55DAFD"  data-toggle="tooltip" title="${percentage_unattempted_user}% Unattempted">
-                                                                    <span><strong>${percentage_unattempted_user} % </strong> Unattempted </span>
-                                                                </div>
-                                                                <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_wrong_user}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_wrong_user}%;background-color:#6F00FF"  data-toggle="tooltip" title="${percentage_wrong_user}% Wrong">
-                                                                    <span><strong>${percentage_wrong_user} % </strong> Wrong </span>
-                                                                </div>
-                                                                </div>
-                                                                </div>
-                                                                <br>
-                                                                <div class="progress_container" style="display:inline-block">
-                                                                    <div class="progress-description">
-                                                                        Average Performance
-                                                                    </div>
-                                                                    <div class="progress progress-label-top-right" style="height:20px">
-                                                                        <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_correct_average}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_correct_average}%;background-color:#02006D"  data-toggle="tooltip" title="${percentage_correct_average}% Correct">
-                                                                            <span><strong>${percentage_correct_average} % </strong> Correct </span>
+                                                                <div class="progress_bar_container" display="inline-block;float:left">
+                                                                    <div class="progress_container" style="display:inline-block">
+                                                                        <div class="progress-description">
+                                                                             Highest Performance
                                                                         </div>
-                                                                        <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_unattempted_average}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_unattempted_average}%;background-color:#55DAFD"  data-toggle="tooltip" title="${percentage_unattempted_average}% Unattempted">
-                                                                            <span><strong>${percentage_unattempted_average} % </strong> Unattempted </span>
-                                                                        </div>
-                                                                        <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_wrong_average}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_wrong_average}%;background-color:#6F00FF"  data-toggle="tooltip" title="${percentage_wrong_user}% Wrong">
-                                                                            <span><strong>${percentage_wrong_average} % </strong> Wrong </span>
+                                                                        <div class="progress progress-label-top-right" style="height:20px;">
+                                                                            <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_correct_highest}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_correct_highest}%;background-color:#02006D"  data-toggle="tooltip" title="${percentage_correct_highest}% Correct">
+                                                                                <span><strong>${percentage_correct_highest} % </strong> Correct </span>
+                                                                            </div>
+                                                                            <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_unattempted_highest}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_unattempted_highest}%;background-color:#55DAFD"  data-toggle="tooltip" title="${percentage_unattempted_highest}% Unattempted">
+                                                                                <span><strong>${percentage_unattempted_highest} % </strong> Unattempted </span>
+                                                                            </div>
+                                                                            <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_wrong_highest}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_wrong_highest}%;background-color:#6F00FF"  data-toggle="tooltip" title="${percentage_wrong_highest}% Wrong">
+                                                                                <span><strong>${percentage_wrong_highest} % </strong> Wrong </span>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                                </div> 
+                                                                    <br>
+                                                                    <div id="usersPerformance" class="progress_container" style="display:inline-block">
+                                                                        <div class="progress-description" >
+                                                                            Your Performance
+                                                                        </div>
+                                                                        <div class="progress progress-label-top-right" style="height:20px" >
+                                                                            <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_correct_user}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_correct_user}%;background-color:#02006D"  data-toggle="tooltip" title="${percentage_correct_user}% Correct">
+                                                                                <span><strong>${percentage_correct_user} % </strong> Correct </span>
+                                                                            </div>
+                                                                            <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_unattempted_user}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_unattempted_user}%;background-color:#55DAFD"  data-toggle="tooltip" title="${percentage_unattempted_user}% Unattempted">
+                                                                                <span><strong>${percentage_unattempted_user} % </strong> Unattempted </span>
+                                                                            </div>
+                                                                            <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_wrong_user}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_wrong_user}%;background-color:#6F00FF"  data-toggle="tooltip" title="${percentage_wrong_user}% Wrong">
+                                                                                <span><strong>${percentage_wrong_user} % </strong> Wrong </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="progress_container" style="display:inline-block">
+                                                                        <div class="progress-description">
+                                                                            Average Performance
+                                                                        </div>
+                                                                        <div class="progress progress-label-top-right" style="height:20px">
+                                                                            <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_correct_average}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_correct_average}%;background-color:#02006D"  data-toggle="tooltip" title="${percentage_correct_average}% Correct">
+                                                                                <span><strong>${percentage_correct_average} % </strong> Correct </span>
+                                                                            </div>
+                                                                            <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_unattempted_average}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_unattempted_average}%;background-color:#55DAFD"  data-toggle="tooltip" title="${percentage_unattempted_average}% Unattempted">
+                                                                                <span><strong>${percentage_unattempted_average} % </strong> Unattempted </span>
+                                                                            </div>
+                                                                            <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_wrong_average}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_wrong_average}%;background-color:#6F00FF"  data-toggle="tooltip" title="${percentage_wrong_user}% Wrong">
+                                                                                <span><strong>${percentage_wrong_average} % </strong> Wrong </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 <div class="chart_containter" style="display:inline-block">
                                                                     <div id="donut-chart-overall-user"  class="donut_margin donut_other_margins"></div>
                                                                     <div id="donut-chart-overall-average"  class="donut_margin donut_other_margins"></div>
                                                                     <div id="donut-chart-overall-highest"  class="donut_margin donut_other_margins"></div>
+                                                                </div>
                                                                 </div>
                                                                 `
                                                                  //// DONUT CHARTS CONFIGURATION
