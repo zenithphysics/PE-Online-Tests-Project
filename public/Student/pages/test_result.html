@@ -449,10 +449,7 @@ fetch(`${domain_url}/verifyStudent`,{
                             {
                                 parsed_all=1;
                                 resultDataTable.innerHTML=`${data_table_header_content}<tbody>${data_table_content}</tbody>${data_table_fotter_content}`;
-                                $(`#resultDataTable`).DataTable({pageLength: 10,filter:true,deferRender: true,
-                                                                    scrollY: 200,
-                                                                    scrollCollapse: true,
-                                                                    scroller: true});
+                                $(`#resultDataTable`).DataTable();
                                 show_result=1;
                             }
                         }
