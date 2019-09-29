@@ -286,38 +286,8 @@ fetch(`${domain_url}/verifyStudent`,{
                                                             if(highest_result.length>0)
                                                             {
                                                                 
-                                                                LoadAnalysis();
-                                                               
 
-                                                            }
-                                                    }
-                                                    else
-                                                    {
-                                                        console.log("FAILED TO GET RESULTS")
-                                                    }
-                                                })
-                            }
-                            else
-                            {
-                                console.log("FAILED TO GET RESULTS")
-                            }
-                        })
-              
-
-
-                        
-
-                    }
-                    else
-                    {
-                        alert("Failed to get result")
-                    }
-                })
-			}
-        })
-        
-        async function LoadAnalysis(){
-            for(let i=0;i<test.subject_details.subjects.length;i++)
+                                                                for(let i=0;i<test.subject_details.subjects.length;i++)
                                                                 {
                                                                     // For Each Subject
 
@@ -464,26 +434,11 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                 
                                                                 `
 
-                                                                await createChart(i)
-                                                               
-
-                                                                        }
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                    }
-
-
-                                                               
-                                                                }
-        }
-         function createChart(i)
-        {
-              //// DONUT CHARTS CONFIGURATION
+                        
+                                                                 //// DONUT CHARTS CONFIGURATION
 
                                                                         // For User 
-                                                                        var c3ChartDefaults =   $().c3ChartDefaults();
+                                                                        var c3ChartDefaults = $().c3ChartDefaults();
                                                                         var donutData = {
                                                                         type : 'donut',
                                                                         columns: [
@@ -495,7 +450,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                         };
                                                                     
                                                                         // Right Legend
-                                                                        var donutChartRightConfig =  c3ChartDefaults.getDefaultRelationshipDonutConfig();
+                                                                        var donutChartRightConfig = c3ChartDefaults.getDefaultRelationshipDonutConfig();
                                                                         donutChartRightConfig.bindto = `#donut-chart-${i}-user`;
                                                                         donutChartRightConfig.tooltip = {show: true};
                                                                         donutChartRightConfig.data = donutData;
@@ -511,8 +466,8 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                         contents: $().pfDonutTooltipContents
                                                                         };
 
-                                                                        var donutChartRightLegend =   c3.generate(donutChartRightConfig);
-                                                                         $().pfSetDonutChartTitle(`#donut-chart-${i}-user`, "User");
+                                                                        var donutChartRightLegend = c3.generate(donutChartRightConfig);
+                                                                        $().pfSetDonutChartTitle(`#donut-chart-${i}-user`, "User");
                                                                         // For Average
                                                                         var c3ChartDefaults = $().c3ChartDefaults();
                                                                         var donutData = {
@@ -542,10 +497,10 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                         contents: $().pfDonutTooltipContents
                                                                         };
 
-                                                                        var donutChartRightLegend =  c3.generate(donutChartRightConfig);
-                                                                         $().pfSetDonutChartTitle(`#donut-chart-${i}-average`, "Average");
+                                                                        var donutChartRightLegend = c3.generate(donutChartRightConfig);
+                                                                        $().pfSetDonutChartTitle(`#donut-chart-${i}-average`, "Average");
                                                                         // For Highest
-                                                                        var c3ChartDefaults =  $().c3ChartDefaults();
+                                                                        var c3ChartDefaults = $().c3ChartDefaults();
                                                                         var donutData = {
                                                                         type : 'donut',
                                                                         columns: [
@@ -573,10 +528,48 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                         contents: $().pfDonutTooltipContents
                                                                         };
 
-                                                                        var donutChartRightLegend =  c3.generate(donutChartRightConfig);
-                                                                         $().pfSetDonutChartTitle(`#donut-chart-${i}-highest`, "Highest");
+                                                                        var donutChartRightLegend = c3.generate(donutChartRightConfig);
+                                                                        $().pfSetDonutChartTitle(`#donut-chart-${i}-highest`, "Highest");
 
-        }
+
+                                                                        }
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                                    }
+
+
+                                                               
+                                                                }
+
+                                                            }
+                                                    }
+                                                    else
+                                                    {
+                                                        console.log("FAILED TO GET RESULTS")
+                                                    }
+                                                })
+                            }
+                            else
+                            {
+                                console.log("FAILED TO GET RESULTS")
+                            }
+                        })
+              
+
+
+                        
+
+                    }
+                    else
+                    {
+                        alert("Failed to get result")
+                    }
+                })
+			}
+        })
+        
                        
 </script>
 </body>
