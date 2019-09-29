@@ -433,102 +433,9 @@ fetch(`${domain_url}/verifyStudent`,{
                   
                                                                 
                                                                 `
-                                                                 //// DONUT CHARTS CONFIGURATION
 
-                                                                        // For User 
-                                                                        c3ChartDefaults = $().c3ChartDefaults();
-                                                                         donutData = {
-                                                                        type : 'donut',
-                                                                        columns: [
-                                                                            ['% Correct', percentage_correct_user],
-                                                                            ['% Unattempted', percentage_unattempted_user],
-                                                                            ['% Wrong', percentage_wrong_user]
-                                                                        ],
-                                                                      
-                                                                        };
-                                                                    
-                                                                        // Right Legend
-                                                                         donutChartRightConfig = c3ChartDefaults.getDefaultRelationshipDonutConfig();
-                                                                        donutChartRightConfig.bindto = `#donut-chart-${i}-user`;
-                                                                        donutChartRightConfig.tooltip = {show: true};
-                                                                        donutChartRightConfig.data = donutData;
-                                                                        donutChartRightConfig.legend = {
-                                                                        show: true,
-                                                                        position: 'right'
-                                                                        };
-                                                                        donutChartRightConfig.size = {
-                                                                        width: 251,
-                                                                        height: 161
-                                                                        };
-                                                                        donutChartRightConfig.tooltip = {
-                                                                        contents: $().pfDonutTooltipContents
-                                                                        };
-
-                                                                         donutChartRightLegend = c3.generate(donutChartRightConfig);
-                                                                        $().pfSetDonutChartTitle(`#donut-chart-${i}-user`, "User");
-                                                                        // For Average
-                                                                         c3ChartDefaults = $().c3ChartDefaults();
-                                                                         donutData = {
-                                                                        type : 'donut',
-                                                                        columns: [
-                                                                            ['% Correct', percentage_correct_average],
-                                                                            ['% Unattempted', percentage_unattempted_average],
-                                                                            ['% Wrong', percentage_wrong_average]
-                                                                        ],
-                                                                   
-                                                                        };
-                                                                    
-                                                                        // Right Legend
-                                                                         donutChartRightConfig = c3ChartDefaults.getDefaultRelationshipDonutConfig();
-                                                                        donutChartRightConfig.bindto = `#donut-chart-${i}-average`;
-                                                                        donutChartRightConfig.tooltip = {show: true};
-                                                                        donutChartRightConfig.data = donutData;
-                                                                        donutChartRightConfig.legend = {
-                                                                        show: true,
-                                                                        position: 'right'
-                                                                        };
-                                                                        donutChartRightConfig.size = {
-                                                                        width: 251,
-                                                                        height: 161
-                                                                        };
-                                                                        donutChartRightConfig.tooltip = {
-                                                                        contents: $().pfDonutTooltipContents
-                                                                        };
-
-                                                                         donutChartRightLegend = c3.generate(donutChartRightConfig);
-                                                                        $().pfSetDonutChartTitle(`#donut-chart-${i}-average`, "Average");
-                                                                        // For Highest
-                                                                         c3ChartDefaults = $().c3ChartDefaults();
-                                                                         donutData = {
-                                                                        type : 'donut',
-                                                                        columns: [
-                                                                            ['% Correct', percentage_correct_highest],
-                                                                            ['% Unattempted', percentage_unattempted_highest],
-                                                                            ['% Wrong', percentage_wrong_highest]
-                                                                        ],
-                                                                   
-                                                                        };
-                                                                    
-                                                                        // Right Legend
-                                                                         donutChartRightConfig = c3ChartDefaults.getDefaultRelationshipDonutConfig();
-                                                                        donutChartRightConfig.bindto = `#donut-chart-${i}-highest`;
-                                                                        donutChartRightConfig.tooltip = {show: true};
-                                                                        donutChartRightConfig.data = donutData;
-                                                                        donutChartRightConfig.legend = {
-                                                                        show: true,
-                                                                        position: 'right'
-                                                                        };
-                                                                        donutChartRightConfig.size = {
-                                                                        width: 251,
-                                                                        height: 161
-                                                                        };
-                                                                        donutChartRightConfig.tooltip = {
-                                                                        contents: $().pfDonutTooltipContents
-                                                                        };
-
-                                                                         donutChartRightLegend = c3.generate(donutChartRightConfig);
-                                                                        $().pfSetDonutChartTitle(`#donut-chart-${i}-highest`, "Highest");
-
+                                                                createChart(i);
+                                                               
 
                                                                         }
                                                                    
@@ -568,6 +475,105 @@ fetch(`${domain_url}/verifyStudent`,{
 			}
         })
         
+        async function createChart(i)
+        {
+              //// DONUT CHARTS CONFIGURATION
+
+                                                                        // For User 
+                                                                        var c3ChartDefaults =  await $().c3ChartDefaults();
+                                                                        var donutData = {
+                                                                        type : 'donut',
+                                                                        columns: [
+                                                                            ['% Correct', percentage_correct_user],
+                                                                            ['% Unattempted', percentage_unattempted_user],
+                                                                            ['% Wrong', percentage_wrong_user]
+                                                                        ],
+                                                                      
+                                                                        };
+                                                                    
+                                                                        // Right Legend
+                                                                        var donutChartRightConfig = await c3ChartDefaults.getDefaultRelationshipDonutConfig();
+                                                                        donutChartRightConfig.bindto = `#donut-chart-${i}-user`;
+                                                                        donutChartRightConfig.tooltip = {show: true};
+                                                                        donutChartRightConfig.data = donutData;
+                                                                        donutChartRightConfig.legend = {
+                                                                        show: true,
+                                                                        position: 'right'
+                                                                        };
+                                                                        donutChartRightConfig.size = {
+                                                                        width: 251,
+                                                                        height: 161
+                                                                        };
+                                                                        donutChartRightConfig.tooltip = {
+                                                                        contents: $().pfDonutTooltipContents
+                                                                        };
+
+                                                                        var donutChartRightLegend =  await c3.generate(donutChartRightConfig);
+                                                                        await $().pfSetDonutChartTitle(`#donut-chart-${i}-user`, "User");
+                                                                        // For Average
+                                                                        var c3ChartDefaults = await $().c3ChartDefaults();
+                                                                        var donutData = {
+                                                                        type : 'donut',
+                                                                        columns: [
+                                                                            ['% Correct', percentage_correct_average],
+                                                                            ['% Unattempted', percentage_unattempted_average],
+                                                                            ['% Wrong', percentage_wrong_average]
+                                                                        ],
+                                                                   
+                                                                        };
+                                                                    
+                                                                        // Right Legend
+                                                                        var donutChartRightConfig = await c3ChartDefaults.getDefaultRelationshipDonutConfig();
+                                                                        donutChartRightConfig.bindto = `#donut-chart-${i}-average`;
+                                                                        donutChartRightConfig.tooltip = {show: true};
+                                                                        donutChartRightConfig.data = donutData;
+                                                                        donutChartRightConfig.legend = {
+                                                                        show: true,
+                                                                        position: 'right'
+                                                                        };
+                                                                        donutChartRightConfig.size = {
+                                                                        width: 251,
+                                                                        height: 161
+                                                                        };
+                                                                        donutChartRightConfig.tooltip = {
+                                                                        contents: $().pfDonutTooltipContents
+                                                                        };
+
+                                                                        var donutChartRightLegend =  await c3.generate(donutChartRightConfig);
+                                                                      await   $().pfSetDonutChartTitle(`#donut-chart-${i}-average`, "Average");
+                                                                        // For Highest
+                                                                        var c3ChartDefaults =  await $().c3ChartDefaults();
+                                                                        var donutData = {
+                                                                        type : 'donut',
+                                                                        columns: [
+                                                                            ['% Correct', percentage_correct_highest],
+                                                                            ['% Unattempted', percentage_unattempted_highest],
+                                                                            ['% Wrong', percentage_wrong_highest]
+                                                                        ],
+                                                                   
+                                                                        };
+                                                                    
+                                                                        // Right Legend
+                                                                        var donutChartRightConfig = await c3ChartDefaults.getDefaultRelationshipDonutConfig();
+                                                                        donutChartRightConfig.bindto = `#donut-chart-${i}-highest`;
+                                                                        donutChartRightConfig.tooltip = {show: true};
+                                                                        donutChartRightConfig.data = donutData;
+                                                                        donutChartRightConfig.legend = {
+                                                                        show: true,
+                                                                        position: 'right'
+                                                                        };
+                                                                        donutChartRightConfig.size = {
+                                                                        width: 251,
+                                                                        height: 161
+                                                                        };
+                                                                        donutChartRightConfig.tooltip = {
+                                                                        contents: $().pfDonutTooltipContents
+                                                                        };
+
+                                                                        var donutChartRightLegend = await  c3.generate(donutChartRightConfig);
+                                                                        await $().pfSetDonutChartTitle(`#donut-chart-${i}-highest`, "Highest");
+
+        }
                        
 </script>
 </body>
