@@ -1932,9 +1932,9 @@ app.get('/admin',(req,res)=>{
                                     if(test.question_details.length!=0)
                                     {
                                     console.log("QUESTION STATS EXIST")
-                                     total_correct = test.question_details[0].questions_stats[i].total_correct;
-                                     total_wrong = test.question_details[0].questions_stats[i].total_wrong;
-                                     total_unattempted = test.question_details[0].questions_stats[i].total_unattempted;
+                                     total_correct = test.question_details.questions_stats[i].total_correct;
+                                     total_wrong = test.question_details.questions_stats[i].total_wrong;
+                                     total_unattempted = test.question_details.questions_stats[i].total_unattempted;
                                      }
                                     else
                                     {
@@ -2182,7 +2182,7 @@ app.get('/admin',(req,res)=>{
                                     "subject_details.subjects_stats":subject_stats,
                                     "test_taken_count":taken_count,
                                     "DLevel_details.DLevel_stats":DLevel_stats,
-                                    "question_details.0.questions_stats":question_stats
+                                    "question_details.questions_stats":question_stats
                                 },$addToSet:{"taken_by":studentID}},{strict:false},(err,output)=>{
                                     if(err || output==null)
                                     {
