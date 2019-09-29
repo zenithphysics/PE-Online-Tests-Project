@@ -2310,18 +2310,20 @@ app.get('/admin',(req,res)=>{
             {
                 var test_name = req.body.test_name;
                 console.log('\x1b[32m%s\x1b[1m', '[/getAllResults] - Student Verification Successful');  
-                Result.find({"test_name":req.body.test_name},(err,results)=>{
-                    if(err || results==null)
+                Result.findOne({"test_name":req.body.test_name},{$sort:{"total_marks":-1}},(err,topResult)=>{
+                    if(err || topResult==null)
                     {
                         res.json({is_verified:true,is_successful:false})
                         console.log(err);
                     }
                     else
                     {
-                        console.log('\x1b[32m%s\x1b[1m', '[/getAllResults] - All Results Fetched');  
-                        res.json({is_verified:true,is_successful:true,results:results})             
+                        console.log('\x1b[32m%s\x1b[1m', '[/getAllResults] - top result Fetched');  
+                        res.json({is_verified:true,is_successful:true,topResult:topResult})             
                     }
                 })
             }
         })
     })
+
+    // Get Top Result of a Test
