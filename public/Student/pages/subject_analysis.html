@@ -483,7 +483,7 @@ fetch(`${domain_url}/verifyStudent`,{
               //// DONUT CHARTS CONFIGURATION
 
                                                                         // For User 
-                                                                        var c3ChartDefaults =  await $().c3ChartDefaults();
+                                                                        var c3ChartDefaults =   $().c3ChartDefaults();
                                                                         var donutData = {
                                                                         type : 'donut',
                                                                         columns: [
@@ -495,7 +495,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                         };
                                                                     
                                                                         // Right Legend
-                                                                        var donutChartRightConfig = await c3ChartDefaults.getDefaultRelationshipDonutConfig();
+                                                                        var donutChartRightConfig =  c3ChartDefaults.getDefaultRelationshipDonutConfig();
                                                                         donutChartRightConfig.bindto = `#donut-chart-${i}-user`;
                                                                         donutChartRightConfig.tooltip = {show: true};
                                                                         donutChartRightConfig.data = donutData;
@@ -511,10 +511,10 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                         contents: $().pfDonutTooltipContents
                                                                         };
 
-                                                                        var donutChartRightLegend =  await c3.generate(donutChartRightConfig);
-                                                                        await $().pfSetDonutChartTitle(`#donut-chart-${i}-user`, "User");
+                                                                        var donutChartRightLegend =   c3.generate(donutChartRightConfig);
+                                                                         $().pfSetDonutChartTitle(`#donut-chart-${i}-user`, "User");
                                                                         // For Average
-                                                                        var c3ChartDefaults = await $().c3ChartDefaults();
+                                                                        var c3ChartDefaults = $().c3ChartDefaults();
                                                                         var donutData = {
                                                                         type : 'donut',
                                                                         columns: [
@@ -526,7 +526,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                         };
                                                                     
                                                                         // Right Legend
-                                                                        var donutChartRightConfig = await c3ChartDefaults.getDefaultRelationshipDonutConfig();
+                                                                        var donutChartRightConfig = c3ChartDefaults.getDefaultRelationshipDonutConfig();
                                                                         donutChartRightConfig.bindto = `#donut-chart-${i}-average`;
                                                                         donutChartRightConfig.tooltip = {show: true};
                                                                         donutChartRightConfig.data = donutData;
@@ -542,10 +542,10 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                         contents: $().pfDonutTooltipContents
                                                                         };
 
-                                                                        var donutChartRightLegend =  await c3.generate(donutChartRightConfig);
-                                                                      await   $().pfSetDonutChartTitle(`#donut-chart-${i}-average`, "Average");
+                                                                        var donutChartRightLegend =  c3.generate(donutChartRightConfig);
+                                                                         $().pfSetDonutChartTitle(`#donut-chart-${i}-average`, "Average");
                                                                         // For Highest
-                                                                        var c3ChartDefaults =  await $().c3ChartDefaults();
+                                                                        var c3ChartDefaults =  $().c3ChartDefaults();
                                                                         var donutData = {
                                                                         type : 'donut',
                                                                         columns: [
@@ -557,7 +557,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                         };
                                                                     
                                                                         // Right Legend
-                                                                        var donutChartRightConfig = await c3ChartDefaults.getDefaultRelationshipDonutConfig();
+                                                                        var donutChartRightConfig = c3ChartDefaults.getDefaultRelationshipDonutConfig();
                                                                         donutChartRightConfig.bindto = `#donut-chart-${i}-highest`;
                                                                         donutChartRightConfig.tooltip = {show: true};
                                                                         donutChartRightConfig.data = donutData;
@@ -573,8 +573,8 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                         contents: $().pfDonutTooltipContents
                                                                         };
 
-                                                                        var donutChartRightLegend = await  c3.generate(donutChartRightConfig);
-                                                                        await $().pfSetDonutChartTitle(`#donut-chart-${i}-highest`, "Highest");
+                                                                        var donutChartRightLegend =  c3.generate(donutChartRightConfig);
+                                                                         $().pfSetDonutChartTitle(`#donut-chart-${i}-highest`, "Highest");
 
         }
                        
