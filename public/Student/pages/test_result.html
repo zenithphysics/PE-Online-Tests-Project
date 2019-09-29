@@ -11,8 +11,9 @@
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="../../assets/patternfly/dist/js/patternfly.min.js"></script>
 
-    <!-- PATTERN FLY -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.9/c3.min.css">
+    <!-- C3  -->
+    <link rel="stylesheet" href="../../assets/c3/c3.css">
+    <script src="../../assets/c3/c3.min.js"></script>
 
 </head>
 <body>
@@ -234,7 +235,6 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                 `
                                                                  //// DONUT CHARTS CONFIGURATION
                                                                         var c3ChartDefaults = $().c3ChartDefaults();
-
                                                                         var donutData = {
                                                                         type : 'donut',
                                                                         columns: [
