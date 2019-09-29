@@ -2339,17 +2339,8 @@ app.get('/admin',(req,res)=>{
             {
                 var test_name = req.body.test_name;
                 console.log('\x1b[32m%s\x1b[1m', '[/getTopResult] - Student Verification Successful');  
-                Result.findOne({"test_name":req.body.test_name},{$sort:{"total_marks":-1}},(err,topResult)=>{
-                    if(err || topResult==null)
-                    {
-                        res.json({is_verified:true,is_successful:false})
-                        console.log(err);
-                    }
-                    else
-                    {
-                        console.log('\x1b[32m%s\x1b[1m', '[/getTopResult] - Top Result Fetched');  
-                        res.json({is_verified:true,is_successful:true,topResult:topResult})             
-                    }
+                Result.aggregate({$sort:{"total_marks":-1},$limit:1},(result)=>{
+                    console.log(result);
                 })
             }
         })
