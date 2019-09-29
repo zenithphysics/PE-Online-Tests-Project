@@ -227,9 +227,9 @@ fetch(`${domain_url}/verifyStudent`,{
                             percentage_wrong_user = parseFloat((result.total_wrong/test.questions.length)*100).toFixed(3)
                             percentage_unattempted_user = parseFloat((result.total_unattempted/test.questions.length)*100).toFixed(3)
                          // Highest Percentages
-                            percentage_correct_highest = parseFloat((highest_result.total_correct/test.questions.length)*100).toFixed(3)
-                            percentage_wrong_highest = parseFloat((highest_result.total_wrong/test.questions.length)*100).toFixed(3)
-                            percentage_unattempted_highest = parseFloat((highest_result.total_unattempted/test.questions.length)*100).toFixed(3)
+                            percentage_correct_highest = parseFloat((highest_result[0].total_correct/test.questions.length)*100).toFixed(3)
+                            percentage_wrong_highest = parseFloat((highest_result[0].total_wrong/test.questions.length)*100).toFixed(3)
+                            percentage_unattempted_highest = parseFloat((highest_result[0].total_unattempted/test.questions.length)*100).toFixed(3)
                         //  Average Percentages
                             total_correct_average = 0;
                             total_wrong_average = 0;
