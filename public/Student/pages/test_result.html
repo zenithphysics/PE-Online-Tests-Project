@@ -239,7 +239,9 @@ fetch(`${domain_url}/verifyStudent`,{
 
                                                                 overallAnalysisArea.innerHTML=`
                                                                 <div id="donut-chart-overall-user"  class="donut_margin donut_other_margins"></div>
+                                                                <div id="donut-chart-overall-average"  class="donut_margin donut_other_margins"></div>
                                                                 <div id="donut-chart-overall-highest"  class="donut_margin donut_other_margins"></div>
+
                                                                 `
                                                                  //// DONUT CHARTS CONFIGURATION
 
@@ -274,7 +276,37 @@ fetch(`${domain_url}/verifyStudent`,{
 
                                                                         var donutChartRightLegend = c3.generate(donutChartRightConfig);
                                                                         $().pfSetDonutChartTitle("#donut-chart-overall-user", "User");
+                                                                        // For Average
+                                                                        var c3ChartDefaults = $().c3ChartDefaults();
+                                                                        var donutData = {
+                                                                        type : 'donut',
+                                                                        columns: [
+                                                                            ['% Correct', percentage_correct_average],
+                                                                            ['% Unattempted', percentage_unattempted_average],
+                                                                            ['% Wrong', percentage_wrong_average]
+                                                                        ],
+                                                                   
+                                                                        };
+                                                                    
+                                                                        // Right Legend
+                                                                        var donutChartRightConfig = c3ChartDefaults.getDefaultRelationshipDonutConfig();
+                                                                        donutChartRightConfig.bindto = '#donut-chart-overall-average';
+                                                                        donutChartRightConfig.tooltip = {show: true};
+                                                                        donutChartRightConfig.data = donutData;
+                                                                        donutChartRightConfig.legend = {
+                                                                        show: true,
+                                                                        position: 'right'
+                                                                        };
+                                                                        donutChartRightConfig.size = {
+                                                                        width: 251,
+                                                                        height: 161
+                                                                        };
+                                                                        donutChartRightConfig.tooltip = {
+                                                                        contents: $().pfDonutTooltipContents
+                                                                        };
 
+                                                                        var donutChartRightLegend = c3.generate(donutChartRightConfig);
+                                                                        $().pfSetDonutChartTitle("#donut-chart-overall-average", "Average");
                                                                         // For Highest
                                                                         var c3ChartDefaults = $().c3ChartDefaults();
                                                                         var donutData = {
