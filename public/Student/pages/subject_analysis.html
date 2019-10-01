@@ -456,7 +456,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                         var donutChartRightConfig = c3ChartDefaults.getDefaultRelationshipDonutConfig();
                                                                         donutChartRightConfig.bindto = `#donut-chart-${i}-user`;
                                                                         donutChartRightConfig.tooltip = {show: true};
-                                                                        donutChartRightConfig.data = donut_data_user[j];
+                                                                        donutChartRightConfig.data = donut_data_user[i];
                                                                         donutChartRightConfig.legend = {
                                                                         show: true,
                                                                         position: 'right'
@@ -485,7 +485,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                         var donutChartRightConfig = c3ChartDefaults.getDefaultRelationshipDonutConfig();
                                                                         donutChartRightConfig.bindto = `#donut-chart-${i}-average`;
                                                                         donutChartRightConfig.tooltip = {show: true};
-                                                                        donutChartRightConfig.data = donut_data_average[j];
+                                                                        donutChartRightConfig.data = donut_data_average[i];
                                                                         donutChartRightConfig.legend = {
                                                                         show: true,
                                                                         position: 'right'
@@ -515,7 +515,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                         var donutChartRightConfig = c3ChartDefaults.getDefaultRelationshipDonutConfig();
                                                                         donutChartRightConfig.bindto = `#donut-chart-${i}-highest`;
                                                                         donutChartRightConfig.tooltip = {show: true};
-                                                                        donutChartRightConfig.data = donut_data_highest[j];
+                                                                        donutChartRightConfig.data = donut_data_highest[i];
                                                                         donutChartRightConfig.legend = {
                                                                         show: true,
                                                                         position: 'right'
