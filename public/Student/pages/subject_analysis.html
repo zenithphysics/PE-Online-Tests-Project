@@ -294,10 +294,12 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                 {
                                                                     // For Each Subject
 
-                                                                    resultContainer.innerHTML+=`
-                                                                    <br>
-                                                                    <div class="card" style="width:83%;margin-left:auto;margin-right:auto">
-                                                                        <div class="card-header">
+                                                                    var card_div = document.createElement('div');
+                                                                    card_div.style.width="83%";
+                                                                    card_div.style.marginLeft="auto";
+                                                                    card_div.style.marginRight="auto";
+                                                                    card_div.innerHTML=`
+                                                                    <div class="card-header">
                                                                             <b> ${test.subject_details.subjects[i]} Analysis </b>
                                                                         </div>
                                                                         <div class="card-body">
@@ -305,10 +307,8 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                                     
                                                                                 </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <br>
-                                                                    
                                                                     `
+                                                                    resultContainer.appendChild(card_div);
                                                                     /* PERCENTAGE VALUES */
 
                                                                     // Direct Values
