@@ -337,7 +337,7 @@ fetch(`${domain_url}/verifyStudent`,{
 
                                                                     for(let j=0;j<test.questions.length;j++)
                                                                     {
-                                                                        if(test.questions[j].DLevel==test.DLevel_details.DLevels[i]) // If Subject Matches
+                                                                        if(test.questions[j].DLevel==DLevels[i]) // If Subject Matches
                                                                         {
                                                                             // Check if Correct
                                                                             if(result.answers[j]==1) // If answer is correct
