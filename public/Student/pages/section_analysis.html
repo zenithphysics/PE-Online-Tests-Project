@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title id="result-title">Subject Wise Analysis</title>
+    <title id="result-title">Section Wise Analysis </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -152,10 +152,10 @@
         <li>
             <a id="result_page_link" href="#">Result</a>
         </li>
-        <li class="active">
+        <li>
             <a id="subject_analysis_link" href="#"> Subject Wise Analysis </a>
         </li>
-        <li>
+        <li class="active">
             <a id="section_analysis_link" href="section_analysis.html">Section Wise Analysis</a>
             
         </li>
@@ -179,7 +179,7 @@
                 <a class="navbar-brand" href="#" style="float:right" id="student_marks_navbar"></a>
      </nav>   
      <div id="resultContainer">
-        <h5>&nbsp&nbsp Subject Wise Analysis  :- </h5>
+        <h5>&nbsp&nbsp Section Wise Analysis  :- </h5>
      </div>
 
 </div>
@@ -222,8 +222,8 @@ var donut_data_user=[];
 var donut_data_average=[];
 var donut_data_highest=[];
 result_page_link.href = `${domain_url}/Student/pages/test_result.html?test_name=${test_name}`;
-subject_analysis_link.href = `#`;
-section_analysis_link.href = `${domain_url}/Student/pages/section_analysis.html?test_name=${test_name}`;
+subject_analysis_link.href = `${domain_url}/Student/pages/subject_analysis.html?test_name=${test_name}`;
+section_analysis_link.href = `#`;
 chapter_analysis_link.href = `${domain_url}/Student/pages/chapter_analysis.html?test_name=${test_name}`;
 topic_analysis_link.href = `${domain_url}/Student/pages/topic_analysis.html?test_name=${test_name}`;
 dlevel_analysis_link = `${domain_url}/Student/pages/dlevel_analysis.html?test_name=${test_name}`;
@@ -283,9 +283,9 @@ fetch(`${domain_url}/verifyStudent`,{
                                                             {
                                                                 
 
-                                                                for(let i=0;i<test.subject_details.subjects.length;i++)
+                                                                for(let i=0;i<test.section_details.sections.length;i++)
                                                                 {
-                                                                    // For Each Subject
+                                                                    // For Each Section
 
                                                                     var card_div = document.createElement('div');
                                                                     card_div.style.width="83%";
@@ -293,7 +293,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                     card_div.style.marginRight="auto";
                                                                     card_div.innerHTML=`
                                                                     <div class="card-header">
-                                                                            <b> ${test.subject_details.subjects[i]} Analysis </b>
+                                                                            <b> ${test.section_details.sections[i]} Analysis </b>
                                                                         </div>
                                                                         <div class="card-body">
                                                                                 <div id="analysisArea${i}" style="width:100%">
@@ -308,9 +308,9 @@ fetch(`${domain_url}/verifyStudent`,{
 
                                                                     // Direct Values
                                                                     
-                                                                    percentage_correct_average = parseFloat((test.subject_details.subjects_stats[i].total_correct/(test.test_taken_count*test.subject_details.subjects_question_count[i])*100)).toFixed(3)
-                                                                    percentage_wrong_average = parseFloat((test.subject_details.subjects_stats[i].total_wrong/(test.test_taken_count*test.subject_details.subjects_question_count[i])*100)).toFixed(3)
-                                                                    percentage_unattempted_average = parseFloat((test.subject_details.subjects_stats[i].total_unattempted/(test.test_taken_count*test.subject_details.subjects_question_count[i])*100)).toFixed(3)
+                                                                    percentage_correct_average = parseFloat((test.section_details.sections_stats[i].total_correct/(test.test_taken_count*test.section_details.sections_question_count[i])*100)).toFixed(3)
+                                                                    percentage_wrong_average = parseFloat((test.section_details.sections_stats[i].total_wrong/(test.test_taken_count*test.section_details.sections_question_count[i])*100)).toFixed(3)
+                                                                    percentage_unattempted_average = parseFloat((test.section_details.sections_stats[i].total_unattempted/(test.test_taken_count*test.section_details.sections_question_count[i])*100)).toFixed(3)
 
                                                                     // Indirect Values
                                                                     var total_correct_user=0;
@@ -323,7 +323,7 @@ fetch(`${domain_url}/verifyStudent`,{
 
                                                                     for(let j=0;j<test.questions.length;j++)
                                                                     {
-                                                                        if(test.questions[j].subject==test.subject_details.subjects[i]) // If Subject Matches
+                                                                        if(test.questions[j].subject==test.section_details.sections[i]) // If Subject Matches
                                                                         {
                                                                             // Check if Correct
                                                                             if(result.answers[j]==1) // If answer is correct
@@ -357,17 +357,17 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                         if(j==test.questions.length-1) // All traversed
                                                                         {
                                                                             // Percentages of User
-                                                                            percentage_correct_user = parseFloat((total_correct_user/(test.test_taken_count*test.subject_details.subjects_question_count[i])*100)).toFixed(3)
-                                                                            percentage_wrong_user = parseFloat((total_wrong_user/(test.test_taken_count*test.subject_details.subjects_question_count[i])*100)).toFixed(3)
-                                                                            percentage_unattempted_user = parseFloat((total_unattempted_user/(test.test_taken_count*test.subject_details.subjects_question_count[i])*100)).toFixed(3)
+                                                                            percentage_correct_user = parseFloat((total_correct_user/(test.test_taken_count*test.section_details.sections_question_count[i])*100)).toFixed(3)
+                                                                            percentage_wrong_user = parseFloat((total_wrong_user/(test.test_taken_count*test.section_details.sections_question_count[i])*100)).toFixed(3)
+                                                                            percentage_unattempted_user = parseFloat((total_unattempted_user/(test.test_taken_count*test.section_details.sections_question_count[i])*100)).toFixed(3)
                                                                             console.log(` % correct user - ${percentage_correct_user}`)
                                                                             console.log(` % wrong user - ${percentage_wrong_user}`)
                                                                             console.log(` % unattempted user - ${percentage_unattempted_user}`)
 
                                                                             // Percentages of Highest User
-                                                                            percentage_correct_highest = parseFloat((total_correct_highest/(test.test_taken_count*test.subject_details.subjects_question_count[i])*100)).toFixed(3)
-                                                                            percentage_wrong_highest = parseFloat((total_wrong_highest/(test.test_taken_count*test.subject_details.subjects_question_count[i])*100)).toFixed(3)
-                                                                            percentage_unattempted_highest = parseFloat((total_unattempted_highest/(test.test_taken_count*test.subject_details.subjects_question_count[i])*100)).toFixed(3)
+                                                                            percentage_correct_highest = parseFloat((total_correct_highest/(test.test_taken_count*test.section_details.sections_question_count[i])*100)).toFixed(3)
+                                                                            percentage_wrong_highest = parseFloat((total_wrong_highest/(test.test_taken_count*test.section_details.sections_question_count[i])*100)).toFixed(3)
+                                                                            percentage_unattempted_highest = parseFloat((total_unattempted_highest/(test.test_taken_count*test.section_details.sections_question_count[i])*100)).toFixed(3)
                                                                       
                                                                             analysisArea = document.getElementById(`analysisArea${i}`)
                                                                 analysisArea.innerHTML=`
