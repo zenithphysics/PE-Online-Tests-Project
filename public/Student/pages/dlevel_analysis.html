@@ -213,8 +213,8 @@ var test_name = getUrlParameter('test_name');
 // Links Management
 var result_page_link = document.getElementById("result_page_link");
 var subject_analysis_link = document.getElementById("subject_analysis_link");
-var topic_analysis_link = document.getElementById("topic_analysis_link");
-var topic_analysis_link = document.getElementById("topic_analysis_link");
+var section_analysis_link = document.getElementById("section_analysis_link");
+var chapter_analysis_link = document.getElementById("chapter_analysis_link");
 var topic_analysis_link = document.getElementById("topic_analysis_link");
 var dlevel_analysis_link = document.getElementById("dlevel_analysis_link");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -224,9 +224,9 @@ var donut_data_highest=[];
 var DLevels = ["Level 1","Level 2","Level 3"]
 result_page_link.href = `${domain_url}/Student/pages/test_result.html?test_name=${test_name}`;
 subject_analysis_link.href = `${domain_url}/Student/pages/subject_analysis.html?test_name=${test_name}`;
+section_analysis_link.href = `${domain_url}/Student/pages/section_analysis.html?test_name=${test_name}`;
+topic_analysis_link.href = `${domain_url}/Student/pages/chapter_analysis.html?test_name=${test_name}`;
 topic_analysis_link.href = `${domain_url}/Student/pages/topic_analysis.html?test_name=${test_name}`;
-topic_analysis_link.href = `${domain_url}/Student/pages/topic_analysis.html?test_name=${test_name}`;
-topic_analysis_link.href = `#`;
 dlevel_analysis_link = `${domain_url}/Student/pages/dlevel_analysis.html?test_name=${test_name}`;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 test_name_header.innerHTML=test_name;
