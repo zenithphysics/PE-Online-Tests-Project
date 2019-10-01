@@ -260,18 +260,11 @@ fetch(`${domain_url}/verifyStudent`,{
                         result = output.result;
                         test = output.test;
                         // Get All Results
-                        fetch(`${domain_url}/getAllResults`,{
-                            method:"POST",
-                            headers:{
-                                authorization:user_access_token,
-                                'Content-type':'application/json'
-                            },
-                            body:JSON.stringify({test_name:test_name})
-                        }).then(res=>res.json()).then(data=>{
-                            console.log(data)
-                            if(data.is_successful)
+                 
+                            console.log(output)
+                            if(output.is_successful)
                             {
-                                all_results = data.results;
+                                all_results = output.results;
                                           // Get Top Result
                                                 fetch(`${domain_url}/getTopResult`,{
                                                     method:"POST",
@@ -532,16 +525,8 @@ fetch(`${domain_url}/verifyStudent`,{
 
                                                                         var donutChartRightLegend = c3.generate(donutChartRightConfig);
                                                                         $().pfSetDonutChartTitle(`#donut-chart-${i}-highest`, "Highest");
-
                                                                         }
-                                                                   
-                                                                   
-                                                                   
-                                                                   
-                                                                    }
-
-
-                                                               
+                                                                    }                            
                                                                 }
 
                                                             }
@@ -555,12 +540,7 @@ fetch(`${domain_url}/verifyStudent`,{
                             else
                             {
                                 console.log("FAILED TO GET RESULTS")
-                            }
-                        })
-              
-
-
-                        
+                            }  
 
                     }
                     else
