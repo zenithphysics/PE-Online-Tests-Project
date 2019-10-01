@@ -323,7 +323,7 @@ fetch(`${domain_url}/verifyStudent`,{
 
                                                                     for(let j=0;j<test.questions.length;j++)
                                                                     {
-                                                                        if(test.questions[j].subject==test.section_details.sections[i]) // If Subject Matches
+                                                                        if(test.questions[j].section==test.section_details.sections[i]) // If Subject Matches
                                                                         {
                                                                             // Check if Correct
                                                                             if(result.answers[j]==1) // If answer is correct
