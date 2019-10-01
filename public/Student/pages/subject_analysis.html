@@ -217,7 +217,10 @@ var section_analysis_link = document.getElementById("section_analysis_link");
 var chapter_analysis_link = document.getElementById("chapter_analysis_link");
 var topic_analysis_link = document.getElementById("topic_analysis_link");
 var dlevel_analysis_link = document.getElementById("dlevel_analysis_link");
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+var donut_data_user=[];
+var donut_data_average=[];
+var donut_data_highest=[];
 result_page_link.href = `${domain_url}/Student/pages/test_result.html?test_name=${test_name}`;
 subject_analysis_link.href = `#`;
 section_analysis_link.href = `${domain_url}/Student/pages/section_analysis.html?test_name=${test_name}`;
@@ -439,7 +442,9 @@ fetch(`${domain_url}/verifyStudent`,{
 
                                                                         // For User 
                                                                         var c3ChartDefaults = $().c3ChartDefaults();
-                                                                        var donutData = {
+
+                                                                        donut_data_user.push(
+                                                                            {
                                                                         type : 'donut',
                                                                         columns: [
                                                                             ['% Correct', percentage_correct_user],
@@ -447,13 +452,14 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                             ['% Wrong', percentage_wrong_user]
                                                                         ],
                                                                       
-                                                                        };
-                                                                    
+                                                                        }
+                                                                        )
+
                                                                         // Right Legend
                                                                         var donutChartRightConfig = c3ChartDefaults.getDefaultRelationshipDonutConfig();
                                                                         donutChartRightConfig.bindto = `#donut-chart-${i}-user`;
                                                                         donutChartRightConfig.tooltip = {show: true};
-                                                                        donutChartRightConfig.data = donutData;
+                                                                        donutChartRightConfig.data = donut_data_user[j];
                                                                         donutChartRightConfig.legend = {
                                                                         show: true,
                                                                         position: 'right'
@@ -470,7 +476,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                         $().pfSetDonutChartTitle(`#donut-chart-${i}-user`, "User");
                                                                         // For Average
                                                                         var c3ChartDefaults = $().c3ChartDefaults();
-                                                                        var donutData = {
+                                                                        donut_data_average.push({
                                                                         type : 'donut',
                                                                         columns: [
                                                                             ['% Correct', percentage_correct_average],
@@ -478,13 +484,13 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                             ['% Wrong', percentage_wrong_average]
                                                                         ],
                                                                    
-                                                                        };
+                                                                        })
                                                                     
                                                                         // Right Legend
                                                                         var donutChartRightConfig = c3ChartDefaults.getDefaultRelationshipDonutConfig();
                                                                         donutChartRightConfig.bindto = `#donut-chart-${i}-average`;
                                                                         donutChartRightConfig.tooltip = {show: true};
-                                                                        donutChartRightConfig.data = donutData;
+                                                                        donutChartRightConfig.data = donut_data_average[j];
                                                                         donutChartRightConfig.legend = {
                                                                         show: true,
                                                                         position: 'right'
@@ -501,7 +507,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                         $().pfSetDonutChartTitle(`#donut-chart-${i}-average`, "Average");
                                                                         // For Highest
                                                                         var c3ChartDefaults = $().c3ChartDefaults();
-                                                                        var donutData = {
+                                                                        donut_data_highest.push({
                                                                         type : 'donut',
                                                                         columns: [
                                                                             ['% Correct', percentage_correct_highest],
@@ -509,13 +515,13 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                             ['% Wrong', percentage_wrong_highest]
                                                                         ],
                                                                    
-                                                                        };
+                                                                        })
                                                                     
                                                                         // Right Legend
                                                                         var donutChartRightConfig = c3ChartDefaults.getDefaultRelationshipDonutConfig();
                                                                         donutChartRightConfig.bindto = `#donut-chart-${i}-highest`;
                                                                         donutChartRightConfig.tooltip = {show: true};
-                                                                        donutChartRightConfig.data = donutData;
+                                                                        donutChartRightConfig.data = donut_data_highest[j];
                                                                         donutChartRightConfig.legend = {
                                                                         show: true,
                                                                         position: 'right'
