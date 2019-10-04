@@ -393,6 +393,8 @@ fetch(`${domain_url}/verifyStudent`,{
                                                     console.log(data)
                                                     if(data.is_successful)
                                                     {
+                                                        document.getElementById("overallAnalysisCard").style.display="";
+                                                        document.getElementById("loading_panel").style.display="none";
                                                         highest_result = data.topResult;
                                                          // Show Overall Analysis (IMP)
                                                             if(highest_result.length>0)
