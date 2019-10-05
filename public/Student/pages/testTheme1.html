@@ -609,7 +609,7 @@ fetch(`${domain_url}/verifyStudent`,{
             {
                 alert("Your Test has been submitted, you can now view answers below each question.");
                 var submitButton = document.getElementById("submitTestButton");
-                document.removeChild(submitButton)
+                submitButton.style.display="none";
                 var divs = document.getElementsByClassName("answer_panel");
                 divs.forEach(div=>{
                     div.style.display="block";
