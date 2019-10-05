@@ -23,6 +23,9 @@
 #test_holder_container{
     display: none;
 }
+.answer_panel {
+    display: none;
+}
     </style>
 </head>
 <body>
@@ -160,7 +163,7 @@
                         </table>
                     </div>
                     <div class="text-center">
-                        <button class="btn btn-success submit mb-0 w-50 mt-5"><b>Submit Test</b></button>
+                        <button class="btn btn-success submit mb-0 w-50 mt-5" id="submitTestButton"><b>Submit Test</b></button>
                     </div>
                 </div>
             </div>
@@ -602,7 +605,17 @@ fetch(`${domain_url}/verifyStudent`,{
             body:JSON.stringify({studentID:pe_username,test_name:test.test_name,user_answer_key:user_answer_key})
         }).then(res=>res.json()).then(output=>{
             console.log(output)
-
+            if(output.is_successful)
+            {
+                alert("Your Test has been submitted, you can now view answers below each question.");
+                var submitButton = document.getElementById("submitTestButton");
+                document.removeChild(submitButton)
+                var divs = document.getElementsByClassName("answer_panel");
+                divs.forEach(div=>{
+                    div.style.display="block";
+                })
+                
+            }
         })
 
     });
