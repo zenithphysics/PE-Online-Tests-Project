@@ -250,7 +250,7 @@ fetch(`${domain_url}/verifyStudent`,{
                 }
                 test_question_tab_buttons_panel.innerHTML=question_tab_html;
             
-
+                document.getElementById("loading_panel").style.display="none";
             }
         })
     }
