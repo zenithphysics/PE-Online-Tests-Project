@@ -41,6 +41,13 @@
         /* background-position: right center !important; */
     }
 
+    #loading_panel {
+    width:100%;
+    height:100%;
+}
+#test_holder_container{
+    display: none;
+}
     .radio-btn input {
         position: absolute;
         opacity: 0;
@@ -68,6 +75,12 @@
 </style>
 
 <body>
+    <div id="loading_panel" style="background-color: black;color:white;padding-top: 50px;height: 100vh">
+                <img src="../../assets/loading/loading_white.gif" width="40" height="40" style="margin-left:auto;margin-right:auto;display:block">
+                <br>
+                <h6 style="text-align: center;font-family: sans-serif"> Your Test Will Start Soon... </h6>
+    </div>   
+    <div id="test_holder_container">
     <div class="d-flex bg-dark justify-content-center align-items-center header">
         <div class="d-flex mt-1 mb-1 ml-2 Logo">
             <a href="index.html">
@@ -145,6 +158,7 @@
             </div>
         </div>
     </div>
+</div>
     <script>
             var pe_username;
             var domain_url = "https://photonecademy.com/tests"
@@ -204,7 +218,8 @@
             {
                 test = output.test;
                 showQuestionScript(test)
-               
+                document.getElementById("loading_panel").style.display="none";
+                document.getElementById("test_holder_container").style.display="block";
             }
         })
                 }
