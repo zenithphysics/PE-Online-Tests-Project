@@ -31,7 +31,7 @@
                 <br>
                 <h6 style="text-align: center;font-family: sans-serif"> Your Test Will Start Soon.. </h6>
         </div> 
-        <div id="test_holder_container">
+
         <div class="questions text-center" style="overflow: auto;">
            
         </div>   
@@ -167,7 +167,7 @@
             </div>
         </div>
     </div>
-    </div>
+
 <script>
 var pe_username;
 var domain_url = "https://photonecademy.com/tests"
@@ -257,7 +257,6 @@ fetch(`${domain_url}/verifyStudent`,{
                 test_question_tab_buttons_panel.innerHTML=question_tab_html;
             
                 document.getElementById("loading_panel").style.display="none";
-                document.getElementById("test_holder_container").style.display="";
             }
         })
     }
