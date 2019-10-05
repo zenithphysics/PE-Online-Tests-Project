@@ -20,6 +20,9 @@
     width:100%;
     height:100%;
 }
+#test_holder_container{
+    display: none;
+}
     </style>
 </head>
 <body>
@@ -27,7 +30,8 @@
                 <img src="../../assets/loading/loading_white.gif" width="40" height="40" style="margin-left:auto;margin-right:auto;display:block">
                 <br>
                 <h6 style="text-align: center;font-family: sans-serif"> Your Test Will Start Soon... </h6>
-        </div>    
+        </div>   
+    <div id="test_holder_container">
     <div class="hider">
         <i class="fa fa-angle-right fa-2x bg-dark text-light">
         </i>
@@ -162,6 +166,7 @@
             </div>
         </div>
     </div>
+</div> 
 <script>
 var pe_username;
 var domain_url = "https://photonecademy.com/tests"
@@ -249,8 +254,8 @@ fetch(`${domain_url}/verifyStudent`,{
 
                 }
                 test_question_tab_buttons_panel.innerHTML=question_tab_html;
-            
-
+                document.getElementById("loading_panel").style.display="none";
+                document.getElementById("test_holder_container").style.display="block";
             }
         })
     }
