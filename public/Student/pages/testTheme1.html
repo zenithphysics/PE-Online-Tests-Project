@@ -311,6 +311,9 @@ fetch(`${domain_url}/verifyStudent`,{
     var currentSecs = initialSecs;
     setTimeout(decrement, 1000);
 
+    function TestTimeOut(){
+        currentSecs = 0;
+    }
     function decrement() {
  
         var displayedSecs = currentSecs % 60;
@@ -628,6 +631,9 @@ fetch(`${domain_url}/verifyStudent`,{
                 {
                     divs[i].style.display="block";
                 }
+
+                // End the Test counter
+                TestTimeOut();
             }
             else
             {
