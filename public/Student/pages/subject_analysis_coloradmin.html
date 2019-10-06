@@ -321,6 +321,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                     card_div.style.width="83%";
                                                                     card_div.style.marginLeft="auto";
                                                                     card_div.style.marginRight="auto";
+                                                                    card_div.setAttribute("class","card");
                                                                     card_div.innerHTML=`
                                                                     <div class="card-header">
                                                                             <b> ${test.subject_details.subjects[i]} Analysis </b>
@@ -401,7 +402,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                       
                                                                             analysisArea = document.getElementById(`analysisArea${i}`)
                                                                 analysisArea.innerHTML=`
-                                                                <div class="chart_containter" style="display:inline-block;float:right;padding-top:-100px">
+                                                                <div class="chart_container" style="display:inline-block;float:right;margin-top:-23px">
                                                                     <div id="donut-chart-${i}-user"  class="donut_margin donut_other_margins"></div>
                                                                     <div id="donut-chart-${i}-average"  class="donut_margin donut_other_margins"></div>
                                                                     <div id="donut-chart-${i}-highest"  class="donut_margin donut_other_margins"></div>
