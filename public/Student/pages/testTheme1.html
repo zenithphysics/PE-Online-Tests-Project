@@ -162,7 +162,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="text-center">
+                    <div class="text-center" id="submitTestButtonDiv">
                         <button class="btn btn-success submit mb-0 w-50 mt-5" id="submitTestButton"><b>Submit Test</b></button>
                     </div>
                 </div>
@@ -611,12 +611,17 @@ fetch(`${domain_url}/verifyStudent`,{
                 // Remove Submit Button
                 var submitButton = document.getElementById("submitTestButton");
                 submitButton.style.display="none";
+                // Add Proceed to result button
+                var submitTestButtonDiv = document.getElementById("submitTestButtonDiv");
+                submitTestButtonDiv.innerHTML=`<button class="btn btn-green" onclick="location.href='${domain_url}/Student/pages/test_result.html?test_name=${test_name}'"> Proceed To Results </button> `
                 // Remove Save Answer Button
                 document.getElementById("saveAnsbtn").style.display="none";
                 // Remove Save and mark for review Button
                 document.getElementById("saveAnsReview").style.display="none";
                 // Remove Clear Response Button
                 document.getElementById("clearAns").style.display="none";
+                // Remove Review Button
+                document.getElementById("reviewbtn").style.display="none";
                 var divs = document.getElementsByClassName("answer_panel");
                 console.log(divs);
                 for(let i=0;i<divs.length;i++)
