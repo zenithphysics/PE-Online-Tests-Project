@@ -180,7 +180,7 @@
 		<div class="content" style="min-height:100vh;padding: 0">
                 <div id="loading_panel" style="background-color: black;color:white;padding-top: 50px">
                     <img src="../../assets/loading/loading_graph_gif.gif" width="40" height="40" style="margin-left:auto;margin-right:auto;display:block">
-                    <h6 style="text-align: center;font-family: sans-serif"> GENERATING REPORTS </h6>
+                    <h6 style="text-align: center;font-family: sans-serif;color:white"> GENERATING REPORTS </h6>
                 </div>   
                 <nav class="navbar navbar-dark bg-dark">
                             <a class="navbar-brand" href="#" style="float:right" id="student_marks_navbar"></a>
@@ -321,7 +321,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                     card_div.style.marginLeft="auto";
                                                                     card_div.style.marginRight="auto";
                                                                     card_div.setAttribute("class","card");
-                                                                    card_div.style.boxShadow="0px 0px 5px 0px black";
+                                                                    card_div.style.boxShadow="0px 0px 0.2px 0px black";
                                                                     card_div.innerHTML=`
                                                                     <div class="card-header">
                                                                             <b> ${test.subject_details.subjects[i]} Analysis </b>
