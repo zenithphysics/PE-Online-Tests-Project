@@ -611,10 +611,7 @@ fetch(`${domain_url}/verifyStudent`,{
                 var submitButton = document.getElementById("submitTestButton");
                 submitButton.style.display="none";
                 var divs = document.getElementsByClassName("answer_panel");
-                divs.forEach(div=>{
-                    div.style.display="block";
-                })
-                
+                console.log(divs);
             }
             else
             {
