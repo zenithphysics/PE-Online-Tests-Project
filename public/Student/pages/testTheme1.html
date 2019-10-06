@@ -612,6 +612,10 @@ fetch(`${domain_url}/verifyStudent`,{
                 submitButton.style.display="none";
                 var divs = document.getElementsByClassName("answer_panel");
                 console.log(divs);
+                for(let i=0;i<divs.length;i++)
+                {
+                    divs[i].style.display="block";
+                }
             }
             else
             {
