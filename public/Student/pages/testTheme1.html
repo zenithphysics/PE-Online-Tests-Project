@@ -613,7 +613,7 @@ fetch(`${domain_url}/verifyStudent`,{
                 submitButton.style.display="none";
                 // Add Proceed to result button
                 var submitTestButtonDiv = document.getElementById("submitTestButtonDiv");
-                submitTestButtonDiv.innerHTML=`<button class="btn btn-green" onclick="location.href='${domain_url}/Student/pages/test_result.html?test_name=${test_name}'"> Proceed To Results </button> `
+                submitTestButtonDiv.innerHTML=`<br><button class="btn bg-green" onclick="location.href='${domain_url}/Student/pages/test_result.html?test_name=${test_name}'"> Proceed To Results </button> `
                 // Remove Save Answer Button
                 document.getElementById("saveAnsbtn").style.display="none";
                 // Remove Save and mark for review Button
