@@ -700,8 +700,7 @@ fetch(`${domain_url}/verifyStudent`,{
                     questions.push(parseInt(selection_questions[i].id))
                 }
                 console.log(questions)
-                var selectionAnalysisArea = document.getElementById("selectionAnalysisArea")
-                overallAnalysisArea.innerHTML=`
+                selectionAnalysisArea.innerHTML=`
                                                                 <div class="chart_container" style="display:inline-block;float:right;margin-top:-23px;">
                                                                     <div id="donut-chart-selection-user"  class="donut_margin donut_other_margins"></div>
                                                                     <div id="donut-chart-selection-average"  class="donut_margin donut_other_margins"></div>
