@@ -389,6 +389,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                 resultDataTable.innerHTML=`${data_table_header_content}<tbody>${data_table_content}</tbody>${data_table_fotter_content}`;
                                 $('#resultDataTable thead th').each( function () {
                                 var title = $(this).text();
+                                $(this).html( `<h6> ${title} </h6><br>` );
                                 $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
                                 } );
  
