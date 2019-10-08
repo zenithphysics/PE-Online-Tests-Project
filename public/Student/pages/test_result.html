@@ -263,6 +263,7 @@ var data_table_header_content = `
 </thead>
 
 `
+var table;
 var data_table_content=``;
 
 var data_table_fotter_content = `
@@ -392,7 +393,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                 $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
                                 } );
  
-                                var table = $(`#resultDataTable`).DataTable();
+                                table = $(`#resultDataTable`).DataTable();
                                 show_result=1;
                             }
                         }
