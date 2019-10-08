@@ -61,6 +61,10 @@
             #overallAnalysisCard{
                 display: none;
             }
+
+            #selectionAnalysisCard{
+                display: none;
+            }
             </style>
 </head>
 <body>
@@ -191,6 +195,17 @@
             
             <br>
             <button class="btn bg-green" onclick="getSelectionAnalysis()"> Get Selection Analysis</button>
+
+            <div class="card" id="selectionAnalysisCard" style="width:83%;margin-left:auto;margin-right:auto">
+                <div class="card-header">
+                       <b>Selection Analysis</b>
+                </div>
+                <div class="card-body">
+                        <div id="selectionAnalysisArea" style="width:100%">
+    
+                        </div>
+                </div>
+            </div>
             <div class="card" id="overallAnalysisCard" style="width:83%;margin-left:auto;margin-right:auto">
                     <div class="card-header">
                            <b>Overall Analysis</b>
@@ -201,6 +216,7 @@
                             </div>
                     </div>
             </div>
+       
             <div id="selectionAnalysisArea" style="padding:10px;"> </div>
         
         </div>
@@ -652,6 +668,18 @@ fetch(`${domain_url}/verifyStudent`,{
 			}
         })
      
+        function getSelectionAnalysis(){
+            console.log("generating selection analysis");
+            if(selection_analysis_used==0)
+            {
+                document.getElementById("selectionAnalysisCard").style.display="block";
+                selection_analysis_used=1;
+            }
+            else
+            {
+                
+            }
+        }
 		$(document).ready(function() {
 			App.init();
 		});
