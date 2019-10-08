@@ -390,7 +390,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                 resultDataTable.innerHTML=`${data_table_header_content}<tbody>${data_table_content}</tbody>${data_table_fotter_content}`;
                                 $('#resultDataTable tfoot th').each( function () {
                                 var title = $(this).text();
-                                $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+                                $(this).html( '<input type="text" class="dtsearch" placeholder="Search '+title+'" />' );
                                 } );
  
                                 table = $(`#resultDataTable`).DataTable();
@@ -638,7 +638,7 @@ fetch(`${domain_url}/verifyStudent`,{
         table.columns().every( function () {
         var that = this;
  
-        $( 'input', this.footer() ).on( 'keyup change clear', function () {
+        $( '.dtsearch', this.footer() ).on( 'keyup change clear', function () {
             if ( that.search() !== this.value ) {
                 that
                     .search( this.value )
