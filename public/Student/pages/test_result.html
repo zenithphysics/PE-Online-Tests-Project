@@ -700,7 +700,9 @@ fetch(`${domain_url}/verifyStudent`,{
                     questions.push(parseInt(selection_questions[i].id))
                 }
                 console.log(questions)
-                selectionAnalysisArea.innerHTML=`
+              
+            }
+            selectionAnalysisArea.innerHTML=`
                                                                 <div class="chart_container" style="display:inline-block;float:right;margin-top:-23px;">
                                                                     <div id="donut-chart-selection-user"  class="donut_margin donut_other_margins"></div>
                                                                     <div id="donut-chart-selection-average"  class="donut_margin donut_other_margins"></div>
@@ -856,7 +858,6 @@ fetch(`${domain_url}/verifyStudent`,{
 
                                                                         var donutChartRightLegend = c3.generate(donutChartRightConfig);
                                                                         $().pfSetDonutChartTitle("#donut-chart-selection-highest", "Highest");
-            }
         }
 		$(document).ready(function() {
 			App.init();
