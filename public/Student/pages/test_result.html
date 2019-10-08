@@ -386,7 +386,7 @@ fetch(`${domain_url}/verifyStudent`,{
                             }
                             data_table_content+=`
                             <tr>
-                                <td class="table-question" id="${i+1}"> ${i+1} </td>
+                                <td class="table-question" id="${i}"> ${i+1} </td>
                                 <td> Q.${i+1} </td>
                                 <td> ${answer} </td>
                                 <td> ${marks_scored} </td>
@@ -673,35 +673,68 @@ fetch(`${domain_url}/verifyStudent`,{
             {
                 document.getElementById("selectionAnalysisCard").style.display="block";
                 selection_analysis_used=1;
-                var selection_questions = document.getElementsByClassName("table-question");
+            }
+            var selection_questions = document.getElementsByClassName("table-question");
                 var questions = [];
                 for(let i=0;i<selection_questions.length;i++)
                 {
                     questions.push(parseInt(selection_questions[i].id))
                 }
                 console.log(questions) 
-                // States of current user
-                var correct_count_user = 0;
-                var unattempted_count_user = 0;
-                var wrong_count_user = 0;
+ 
+               // States of current user
+               var correct_count_user = 0;
+               var unattempted_count_user = 0;
+               var wrong_count_user = 0;
                 // States of highest user
                 var correct_count_highest = 0;
                 var unattempted_count_highest = 0;
                 var wrong_count_highest = 0;
                 // States of average user
-                
-            }
-            else
-            {
-                var selection_questions = document.getElementsByClassName("table-question");
-                var questions = [];
-                for(let i=0;i<selection_questions.length;i++)
+                var total_correct_average = 0;
+                var total_wrong_average = 0;
+                var total_unattempted_average = 0;
+                for(let i=0;i<questions.length;i++)
                 {
-                    questions.push(parseInt(selection_questions[i].id))
+                    // For user
+                    if(result.answers[questions[i]]==1)
+                    {
+                        correct_count_user+=1;
+                    }
+                    else if(result.answers[questions[i]]==0)
+                    {
+                        wrong_count_user+=1;
+                    }
+                    else if(result.answers[questions[i]]==2)
+                    {
+                        unattempted_count_user+=1;
+                    }
+
+                    // For  Highest
+                    if(highest_result[0].answers[questions[i]]==1)
+                    {
+                        correct_count_highest+=1;
+                    }
+                    else if(highest_result[0].answers[questions[i]]==0)
+                    {
+                        wrong_count_highest+=1;
+                    }
+                    else if(highest_result[0].answers[questions[i]]==2)
+                    {
+                        unattempted_count_highest+=1;
+                    }
+
+                    // For Average
+
+                    total_correct_average+= test.question_details.questions_stats[questions[i]].total_correct;
+                    total_wrong_average+= test.question_details.questions_stats[questions[i]].total_wrong;
+                    total_unattempted_average+= test.question_details.questions_stats[questions[i]].total_unattempted;
+
                 }
-                console.log(questions)
-              
-            }
+                percentage_correct_average = parseFloat((total_correct_average/(test.test_taken_count*questions.length)*100)).toFixed(3)
+                percentage_wrong_average = parseFloat((total_wrong_average/(test.test_taken_count*questions.length)*100)).toFixed(3)
+                percentage_unattempted_average = parseFloat((total_unattempted_average/(test.test_taken_count*questions.length)*100)).toFixed(3)
+                
             selectionAnalysisArea.innerHTML=`
                                                                 <div class="chart_container" style="display:inline-block;float:right;margin-top:-23px;">
                                                                     <div id="donut-chart-selection-user"  class="donut_margin donut_other_margins"></div>
