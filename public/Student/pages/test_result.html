@@ -835,9 +835,9 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                 selectionAnalysisArea = document.getElementById("selectionAnalysisArea")
                                                                 selectionAnalysisArea.innerHTML=`
                                                                 <div class="chart_container" style="display:inline-block;float:right;margin-top:-23px;">
-                                                                    <div id="donut-chart-overall-user"  class="donut_margin donut_other_margins"></div>
-                                                                    <div id="donut-chart-overall-average"  class="donut_margin donut_other_margins"></div>
-                                                                    <div id="donut-chart-overall-highest"  class="donut_margin donut_other_margins"></div>
+                                                                    <div id="donut-chart-selection-user"  class="donut_margin donut_other_margins"></div>
+                                                                    <div id="donut-chart-selection-average"  class="donut_margin donut_other_margins"></div>
+                                                                    <div id="donut-chart-selection-highest"  class="donut_margin donut_other_margins"></div>
                                                                 </div>
                                                                 <div class="progress_bar_container" style="display:inline-block">
                                                                     <div class="progress_container" style="display:inline-block">
@@ -910,7 +910,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                     
                                                                         // Right Legend
                                                                         var donutChartRightConfig = c3ChartDefaults.getDefaultRelationshipDonutConfig();
-                                                                        donutChartRightConfig.bindto = '#donut-chart-overall-user';
+                                                                        donutChartRightConfig.bindto = '#donut-chart-selection-user';
                                                                         donutChartRightConfig.tooltip = {show: true};
                                                                         donutChartRightConfig.data = donutData;
                                                                         donutChartRightConfig.legend = {
@@ -926,7 +926,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                         };
 
                                                                         var donutChartRightLegend = c3.generate(donutChartRightConfig);
-                                                                        $().pfSetDonutChartTitle("#donut-chart-overall-user", "User");
+                                                                        $().pfSetDonutChartTitle("#donut-chart-selection-user", "User");
                                                                         // For Average
                                                                         var c3ChartDefaults = $().c3ChartDefaults();
                                                                         var donutData = {
@@ -941,7 +941,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                     
                                                                         // Right Legend
                                                                         var donutChartRightConfig = c3ChartDefaults.getDefaultRelationshipDonutConfig();
-                                                                        donutChartRightConfig.bindto = '#donut-chart-overall-average';
+                                                                        donutChartRightConfig.bindto = '#donut-chart-selection-average';
                                                                         donutChartRightConfig.tooltip = {show: true};
                                                                         donutChartRightConfig.data = donutData;
                                                                         donutChartRightConfig.legend = {
@@ -957,7 +957,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                         };
 
                                                                         var donutChartRightLegend = c3.generate(donutChartRightConfig);
-                                                                        $().pfSetDonutChartTitle("#donut-chart-overall-average", "Average");
+                                                                        $().pfSetDonutChartTitle("#donut-chart-selection-average", "Average");
                                                                         // For Highest
                                                                         var c3ChartDefaults = $().c3ChartDefaults();
                                                                         var donutData = {
@@ -972,7 +972,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                     
                                                                         // Right Legend
                                                                         var donutChartRightConfig = c3ChartDefaults.getDefaultRelationshipDonutConfig();
-                                                                        donutChartRightConfig.bindto = '#donut-chart-overall-highest';
+                                                                        donutChartRightConfig.bindto = '#donut-chart-selection-highest';
                                                                         donutChartRightConfig.tooltip = {show: true};
                                                                         donutChartRightConfig.data = donutData;
                                                                         donutChartRightConfig.legend = {
@@ -988,7 +988,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                                                         };
 
                                                                         var donutChartRightLegend = c3.generate(donutChartRightConfig);
-                                                                        $().pfSetDonutChartTitle("#donut-chart-overall-highest", "Highest");
+                                                                        $().pfSetDonutChartTitle("#donut-chart-selection-highest", "Highest");
 
                                                             }
                                                     }
