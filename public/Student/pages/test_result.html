@@ -386,10 +386,8 @@ fetch(`${domain_url}/verifyStudent`,{
                             if(i==output.test.questions.length-1)
                             {
                                 parsed_all=1;
-                               
- 
+                                resultDataTable.innerHTML=`${data_table_header_content}<tbody>${data_table_content}</tbody>${data_table_fotter_content}`;
                                 $(`#resultDataTable`).DataTable();
-                               
                                 show_result=1;
                             }
                         }
