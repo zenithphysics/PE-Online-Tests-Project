@@ -387,7 +387,12 @@ fetch(`${domain_url}/verifyStudent`,{
                             {
                                 parsed_all=1;
                                 resultDataTable.innerHTML=`${data_table_header_content}<tbody>${data_table_content}</tbody>${data_table_fotter_content}`;
-                                $(`#resultDataTable`).DataTable();
+                                $('#resultDataTable thead th').each( function () {
+                                var title = $(this).text();
+                                $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+                                } );
+ 
+                                var table = $(`#resultDataTable`).DataTable();
                                 show_result=1;
                             }
                         }
@@ -628,7 +633,16 @@ fetch(`${domain_url}/verifyStudent`,{
 			}
         })
         
-                       
+        table.columns().every( function () {
+        var that = this;
+ 
+        $( 'input', this.footer() ).on( 'keyup change clear', function () {
+            if ( that.search() !== this.value ) {
+                that
+                    .search( this.value )
+                    .draw();
+            }
+        } ); })
 		$(document).ready(function() {
 			App.init();
 		});
