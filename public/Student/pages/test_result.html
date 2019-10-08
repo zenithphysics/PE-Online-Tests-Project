@@ -387,7 +387,7 @@ fetch(`${domain_url}/verifyStudent`,{
                             }
                             data_table_content+=`
                             <tr>
-                                <td class="table-question"> ${i+1} </td>
+                                <td class="table-question" id="${i+1}"> ${i+1} </td>
                                 <td> Q.${i+1} </td>
                                 <td> ${answer} </td>
                                 <td> ${marks_scored} </td>
@@ -675,11 +675,20 @@ fetch(`${domain_url}/verifyStudent`,{
                 document.getElementById("selectionAnalysisCard").style.display="block";
                 selection_analysis_used=1;
                 var selection_questions = document.getElementsByClassName("table-question");
-                console.log(selection_questions);
+                var questions = [];
+                selection_questions.forEach(question=>{
+                    questions.push(selection_questions.id)
+                })
+                console.log(questions)
             }
             else
             {
-
+                var selection_questions = document.getElementsByClassName("table-question");
+                var questions = [];
+                selection_questions.forEach(question=>{
+                    questions.push(selection_questions.id)
+                })
+                console.log(questions)
             }
         }
 		$(document).ready(function() {
