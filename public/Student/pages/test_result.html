@@ -687,7 +687,7 @@ fetch(`${domain_url}/verifyStudent`,{
                 var questions = [];
                 for(let i=0;i<selection_questions.length;i++)
                 {
-                    questions.push(selection_questions[i].id)
+                    questions.push(parseInt(selection_questions[i].id))
                 }
                 console.log(questions)
             }
