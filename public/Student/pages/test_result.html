@@ -685,9 +685,10 @@ fetch(`${domain_url}/verifyStudent`,{
             {
                 var selection_questions = document.getElementsByClassName("table-question");
                 var questions = [];
-                selection_questions.forEach(question=>{
-                    questions.push(selection_questions.id)
-                })
+                for(let i=0;i<selection_questions.length;i++)
+                {
+                    questions.push(selection_questions[i].id)
+                }
                 console.log(questions)
             }
         }
