@@ -680,7 +680,17 @@ fetch(`${domain_url}/verifyStudent`,{
                 {
                     questions.push(parseInt(selection_questions[i].id))
                 }
-                console.log(questions)
+                console.log(questions) 
+                // States of current user
+                var correct_count_user = 0;
+                var unattempted_count_user = 0;
+                var wrong_count_user = 0;
+                // States of highest user
+                var correct_count_highest = 0;
+                var unattempted_count_highest = 0;
+                var wrong_count_highest = 0;
+                // States of average user
+                
             }
             else
             {
@@ -691,8 +701,313 @@ fetch(`${domain_url}/verifyStudent`,{
                     questions.push(parseInt(selection_questions[i].id))
                 }
                 console.log(questions)
+                fetch(`${domain_url}/getSpecificTestResult`,{
+                    method:"POST",
+                    headers:{
+                        authorization:user_access_token,
+                        'Content-type':'application/json'
+                    },
+                    body:JSON.stringify({studentID:pe_username,test_name:test_name})
+                }).then(res=>res.json()).then(output=>{
+                    console.log(output)
+                    if(output.is_successful)
+                    {
+                        var t_marks = output.result.test_correct_marks * output.result.answers.length;
+                        var score = `Your Score : ${output.result.total_marks} / ${t_marks}`
+                        result = output.result;
+                        test = output.test;
+                        student_marks_navbar.innerHTML=score;
+                        parsed_all = 0;
+                        show_result=0;
+                        for(let i=0;i<output.test.questions.length;i++)
+                        {
+                            var answer;
+                            var marks_scored=0;
+                            percent_correct = parseFloat((output.test.question_details.questions_stats[i].total_correct/output.test.test_taken_count)*100).toFixed(3);
+                            percent_wrong = parseFloat((output.test.question_details.questions_stats[i].total_wrong/output.test.test_taken_count)*100).toFixed(3);
+                            percent_unattempted = parseFloat((output.test.question_details.questions_stats[i].total_unattempted/output.test.test_taken_count)*100).toFixed(3);
+
+                            if(output.result.answers[i]==0)
+                            {
+                                answer="Wrong";
+                                marks_scored=marks_scored+output.test.wrong_marks;
+                            }
+                            else if(output.result.answers[i]==1)
+                            {
+                                answer="Correct";
+                                marks_scored=marks_scored+output.test.correct_marks;
+                            }
+                            else
+                            {
+                                answer="Unattempted";
+                                marks_scored=0;
+                            }
+                            data_table_content+=`
+                            <tr>
+                                <td class="table-question" id="${i+1}"> ${i+1} </td>
+                                <td> Q.${i+1} </td>
+                                <td> ${answer} </td>
+                                <td> ${marks_scored} </td>
+                                <td> ${output.test.questions[i].DLevel} </td>
+                                <td> ${output.test.questions[i].subject} </td>
+                                <td> ${output.test.questions[i].section} </td>
+                                <td> ${output.test.questions[i].chapter} </td>
+                                <td> ${output.test.questions[i].topic} </td>
+                                <td> ${percent_correct} %</td>
+                                <td> ${percent_wrong} %</td>
+                                <td> ${percent_unattempted} %</td>
+                            </tr>
+                            `
+                            if(i==output.test.questions.length-1)
+                            {
+                                parsed_all=1;
+                                resultDataTable.innerHTML=`${data_table_header_content}<tbody>${data_table_content}</tbody>${data_table_fotter_content}`;
+                               
+                                  // Setup - add a text input to each footer cell
+                                    $('#resultDataTable thead th').clone(true).appendTo( '#dt thead' );
+                                    $('#resultDataTable thead th').each( function (i) {
+                                        var title = $(this).text();
+                                        $(this).html( `<h6> ${title} </h6> <br><br><input type="text" placeholder="Search ${title}" />` );
+                                
+                                        $( 'input', this ).on( 'keyup change', function () {
+                                            if ( table.column(i).search() !== this.value ) {
+                                                table
+                                                    .column(i)
+                                                    .search( this.value )
+                                                    .draw();
+                                            }
+                                        } );
+                                    } );
+                                
+                                    var table = $('#resultDataTable').DataTable( {
+                                        orderCellsTop: true,
+                                        fixedHeader: true,
+                                        "ordering":false
+                                    } );
+                                        
+                                        show_result=1;
+                                    }
+                                }
+                
+                            console.log(data)
+                            if(data.is_successful)
+                            {
+                                all_results = data.results;
+                                          // Get Top Result
+                                                fetch(`${domain_url}/getTopResult`,{
+                                                    method:"POST",
+                                                    headers:{
+                                                        authorization:user_access_token,
+                                                        'Content-type':'application/json'
+                                                    },
+                                                    body:JSON.stringify({test_name:test_name})
+                                                }).then(res=>res.json()).then(data=>{
+                                                    console.log(data)
+                                                    if(data.is_successful)
+                                                    {
+                                                        document.getElementById("overallAnalysisCard").style.display="block";
+                                                        document.getElementById("loading_panel").style.display="none";
+                                                        highest_result = data.topResult;
+                                                         // Show Overall Analysis (IMP)
+                                                            if(highest_result.length>0)
+                                                            {
+                                                            // User Percentages
+                                                                percentage_correct_user = parseFloat((result.total_correct/test.questions.length)*100).toFixed(3)
+                                                                percentage_wrong_user = parseFloat((result.total_wrong/test.questions.length)*100).toFixed(3)
+                                                                percentage_unattempted_user = parseFloat((result.total_unattempted/test.questions.length)*100).toFixed(3)
+                                                            // Highest Percentages
+                                                                percentage_correct_highest = parseFloat((highest_result[0].total_correct/test.questions.length)*100).toFixed(3)
+                                                                percentage_wrong_highest = parseFloat((highest_result[0].total_wrong/test.questions.length)*100).toFixed(3)
+                                                                percentage_unattempted_highest = parseFloat((highest_result[0].total_unattempted/test.questions.length)*100).toFixed(3)
+                                                            //  Average Percentages
+                                                                total_correct_average = 0;
+                                                                total_wrong_average = 0;
+                                                                total_unattempted_average = 0;
+                                                                test.question_details.questions_stats.forEach(question=>{
+                                                                    total_correct_average += question.total_correct;
+                                                                    total_wrong_average += question.total_wrong;
+                                                                    total_unattempted_average += question.total_unattempted;
+                                                                })
+
+                                                                percentage_correct_average = parseFloat((total_correct_average/(test.test_taken_count*test.questions.length)*100)).toFixed(3)
+                                                                percentage_wrong_average = parseFloat((total_wrong_average/(test.test_taken_count*test.questions.length)*100)).toFixed(3)
+                                                                percentage_unattempted_average = parseFloat((total_unattempted_average/(test.test_taken_count*test.questions.length)*100)).toFixed(3)
+                                                                selectionAnalysisArea = document.getElementById("selectionAnalysisArea")
+                                                                selectionAnalysisArea.innerHTML=`
+                                                                <div class="chart_container" style="display:inline-block;float:right;margin-top:-23px;">
+                                                                    <div id="donut-chart-overall-user"  class="donut_margin donut_other_margins"></div>
+                                                                    <div id="donut-chart-overall-average"  class="donut_margin donut_other_margins"></div>
+                                                                    <div id="donut-chart-overall-highest"  class="donut_margin donut_other_margins"></div>
+                                                                </div>
+                                                                <div class="progress_bar_container" style="display:inline-block">
+                                                                    <div class="progress_container" style="display:inline-block">
+                                                                        <div class="progress-description">
+                                                                             Highest Performance
+                                                                        </div>
+                                                                        <div class="progress progress-label-top-right" style="height:20px;">
+                                                                            <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_correct_highest}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_correct_highest}%;background-color:#02006D"  data-toggle="tooltip" title="${percentage_correct_highest}% Correct">
+                                                                                <span><strong>${percentage_correct_highest} % </strong> Correct </span>
+                                                                            </div>
+                                                                            <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_unattempted_highest}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_unattempted_highest}%;background-color:#55DAFD"  data-toggle="tooltip" title="${percentage_unattempted_highest}% Unattempted">
+                                                                                <span><strong>${percentage_unattempted_highest} % </strong> Unattempted </span>
+                                                                            </div>
+                                                                            <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_wrong_highest}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_wrong_highest}%;background-color:#6F00FF"  data-toggle="tooltip" title="${percentage_wrong_highest}% Wrong">
+                                                                                <span><strong>${percentage_wrong_highest} % </strong> Wrong </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div id="usersPerformance" class="progress_container" style="display:inline-block;margin-top:0px;">
+                                                                        <div class="progress-description" >
+                                                                            Your Performance
+                                                                        </div>
+                                                                        <div class="progress progress-label-top-right" style="height:20px" >
+                                                                            <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_correct_user}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_correct_user}%;background-color:#02006D"  data-toggle="tooltip" title="${percentage_correct_user}% Correct">
+                                                                                <span><strong>${percentage_correct_user} % </strong> Correct </span>
+                                                                            </div>
+                                                                            <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_unattempted_user}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_unattempted_user}%;background-color:#55DAFD"  data-toggle="tooltip" title="${percentage_unattempted_user}% Unattempted">
+                                                                                <span><strong>${percentage_unattempted_user} % </strong> Unattempted </span>
+                                                                            </div>
+                                                                            <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_wrong_user}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_wrong_user}%;background-color:#6F00FF"  data-toggle="tooltip" title="${percentage_wrong_user}% Wrong">
+                                                                                <span><strong>${percentage_wrong_user} % </strong> Wrong </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="progress_container" style="display:inline-block">
+                                                                        <div class="progress-description">
+                                                                            Average Performance
+                                                                        </div>
+                                                                        <div class="progress progress-label-top-right" style="height:20px">
+                                                                            <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_correct_average}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_correct_average}%;background-color:#02006D"  data-toggle="tooltip" title="${percentage_correct_average}% Correct">
+                                                                                <span><strong>${percentage_correct_average} % </strong> Correct </span>
+                                                                            </div>
+                                                                            <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_unattempted_average}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_unattempted_average}%;background-color:#55DAFD"  data-toggle="tooltip" title="${percentage_unattempted_average}% Unattempted">
+                                                                                <span><strong>${percentage_unattempted_average} % </strong> Unattempted </span>
+                                                                            </div>
+                                                                            <div class="progress-bar unselectable"  role="progressbar" aria-valuenow="${percentage_wrong_average}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage_wrong_average}%;background-color:#6F00FF"  data-toggle="tooltip" title="${percentage_wrong_user}% Wrong">
+                                                                                <span><strong>${percentage_wrong_average} % </strong> Wrong </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                  
+                                                                
+                                                                `
+                                                                 //// DONUT CHARTS CONFIGURATION
+
+                                                                        // For User 
+                                                                        var c3ChartDefaults = $().c3ChartDefaults();
+                                                                        var donutData = {
+                                                                        type : 'donut',
+                                                                        columns: [
+                                                                            ['% Correct', percentage_correct_user],
+                                                                            ['% Unattempted', percentage_unattempted_user],
+                                                                            ['% Wrong', percentage_wrong_user]
+                                                                        ],
+                                                                      
+                                                                        };
+                                                                    
+                                                                        // Right Legend
+                                                                        var donutChartRightConfig = c3ChartDefaults.getDefaultRelationshipDonutConfig();
+                                                                        donutChartRightConfig.bindto = '#donut-chart-overall-user';
+                                                                        donutChartRightConfig.tooltip = {show: true};
+                                                                        donutChartRightConfig.data = donutData;
+                                                                        donutChartRightConfig.legend = {
+                                                                        show: true,
+                                                                        position: 'right'
+                                                                        };
+                                                                        donutChartRightConfig.size = {
+                                                                        width: 251,
+                                                                        height: 161
+                                                                        };
+                                                                        donutChartRightConfig.tooltip = {
+                                                                        contents: $().pfDonutTooltipContents
+                                                                        };
+
+                                                                        var donutChartRightLegend = c3.generate(donutChartRightConfig);
+                                                                        $().pfSetDonutChartTitle("#donut-chart-overall-user", "User");
+                                                                        // For Average
+                                                                        var c3ChartDefaults = $().c3ChartDefaults();
+                                                                        var donutData = {
+                                                                        type : 'donut',
+                                                                        columns: [
+                                                                            ['% Correct', percentage_correct_average],
+                                                                            ['% Unattempted', percentage_unattempted_average],
+                                                                            ['% Wrong', percentage_wrong_average]
+                                                                        ],
+                                                                   
+                                                                        };
+                                                                    
+                                                                        // Right Legend
+                                                                        var donutChartRightConfig = c3ChartDefaults.getDefaultRelationshipDonutConfig();
+                                                                        donutChartRightConfig.bindto = '#donut-chart-overall-average';
+                                                                        donutChartRightConfig.tooltip = {show: true};
+                                                                        donutChartRightConfig.data = donutData;
+                                                                        donutChartRightConfig.legend = {
+                                                                        show: true,
+                                                                        position: 'right'
+                                                                        };
+                                                                        donutChartRightConfig.size = {
+                                                                        width: 251,
+                                                                        height: 161
+                                                                        };
+                                                                        donutChartRightConfig.tooltip = {
+                                                                        contents: $().pfDonutTooltipContents
+                                                                        };
+
+                                                                        var donutChartRightLegend = c3.generate(donutChartRightConfig);
+                                                                        $().pfSetDonutChartTitle("#donut-chart-overall-average", "Average");
+                                                                        // For Highest
+                                                                        var c3ChartDefaults = $().c3ChartDefaults();
+                                                                        var donutData = {
+                                                                        type : 'donut',
+                                                                        columns: [
+                                                                            ['% Correct', percentage_correct_highest],
+                                                                            ['% Unattempted', percentage_unattempted_highest],
+                                                                            ['% Wrong', percentage_wrong_highest]
+                                                                        ],
+                                                                   
+                                                                        };
+                                                                    
+                                                                        // Right Legend
+                                                                        var donutChartRightConfig = c3ChartDefaults.getDefaultRelationshipDonutConfig();
+                                                                        donutChartRightConfig.bindto = '#donut-chart-overall-highest';
+                                                                        donutChartRightConfig.tooltip = {show: true};
+                                                                        donutChartRightConfig.data = donutData;
+                                                                        donutChartRightConfig.legend = {
+                                                                        show: true,
+                                                                        position: 'right'
+                                                                        };
+                                                                        donutChartRightConfig.size = {
+                                                                        width: 251,
+                                                                        height: 161
+                                                                        };
+                                                                        donutChartRightConfig.tooltip = {
+                                                                        contents: $().pfDonutTooltipContents
+                                                                        };
+
+                                                                        var donutChartRightLegend = c3.generate(donutChartRightConfig);
+                                                                        $().pfSetDonutChartTitle("#donut-chart-overall-highest", "Highest");
+
+                                                            }
+                                                    }
+                                                    else
+                                                    {
+                                                        console.log("FAILED TO GET RESULTS")
+                                                    }
+                                                })
+            
+ 
+                    }
+                    else
+                    {
+                        alert("Failed to get result")
+                    }
+                
             }
-        }
+        })}}
+
 		$(document).ready(function() {
 			App.init();
 		});
