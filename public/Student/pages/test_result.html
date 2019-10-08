@@ -393,7 +393,7 @@ fetch(`${domain_url}/verifyStudent`,{
                                     $('#resultDataTable thead th').clone(true).appendTo( '#dt thead' );
                                     $('#resultDataTable thead th').each( function (i) {
                                         var title = $(this).text();
-                                        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+                                        $(this).html( `<h6> ${title} </h6> <br><br><input type="text" placeholder="Search ${title}" />` );
                                 
                                         $( 'input', this ).on( 'keyup change', function () {
                                             if ( table.column(i).search() !== this.value ) {
