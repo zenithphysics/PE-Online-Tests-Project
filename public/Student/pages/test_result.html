@@ -390,8 +390,8 @@ fetch(`${domain_url}/verifyStudent`,{
                                 resultDataTable.innerHTML=`${data_table_header_content}<tbody>${data_table_content}</tbody>${data_table_fotter_content}`;
                                
                                   // Setup - add a text input to each footer cell
-                                    $('#resultDataTable thead tr').clone(true).appendTo( '#dt thead' );
-                                    $('#resultDataTable thead tr:eq(1) th').each( function (i) {
+                                    $('#resultDataTable thead th').clone(true).appendTo( '#dt thead' );
+                                    $('#resultDataTable thead th').each( function (i) {
                                         var title = $(this).text();
                                         $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
                                 
