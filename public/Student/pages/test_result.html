@@ -638,7 +638,8 @@ fetch(`${domain_url}/verifyStudent`,{
         table.columns().every( function () {
         var that = this;
  
-        $( '.dtsearch', this.footer() ).on( 'keyup change clear', function () {
+        $( 'dtsearch', this.footer() ).on( 'keyup change clear', function () {
+            console.log("Searching...")
             if ( that.search() !== this.value ) {
                 that
                     .search( this.value )
