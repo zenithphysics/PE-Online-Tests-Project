@@ -188,8 +188,9 @@
             <table id="resultDataTable" class="display" style="width:100%">
         
             </table>
-        
+            
             <br>
+            <button class="btn bg-green" onclick="getSelectionAnalysis()"> Get Selection Analysis</button>
             <div class="card" id="overallAnalysisCard" style="width:83%;margin-left:auto;margin-right:auto">
                     <div class="card-header">
                            <b>Overall Analysis</b>
@@ -240,7 +241,7 @@ var resultDataTable = document.getElementById(`resultDataTable`)
 var overallAnalysisArea = document.getElementById(`overallAnalysisArea`);
 var selectionAnalysisArea = document.getElementById(`selectionAnalysisArea`)
 var test_name_header = document.getElementById("sidebarNameHolder");
-
+var selection_analysis_used = 0;
 
 
 ///////////////////
