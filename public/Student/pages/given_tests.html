@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>Your Tests</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+	<link href="../../assets/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+	<link href="../../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link href="../../assets/plugins/animate/animate.min.css" rel="stylesheet" />
+	<link href="../../assets/css/default/style.min.css" rel="stylesheet" />
+	<link href="../../assets/css/default/style-responsive.min.css" rel="stylesheet" />
+	<link href="../../assets/css/default/theme/default.css" rel="stylesheet" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="../../assets/plugins/pace/pace.min.js"></script>
+	<!-- ================== END BASE JS ================== -->
+</head>
+<body>
+	<script>
+	
+
+	</script>
+	<!-- begin #page-loader -->
+	<div id="page-loader" class="fade show"><span class="spinner"></span></div>
+	<!-- end #page-loader -->
+	
+	<!-- begin #page-container -->
+	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+		<!-- begin #header -->
+		<div id="header" class="header navbar-default">
+			<!-- begin navbar-header -->
+			<div class="navbar-header">
+				<a  class="navbar-brand"><span ></span> <b>PE</b> Tests .</a>
+				<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<!-- end navbar-header -->
+			
+			<!-- begin header-nav -->
+			<ul class="navbar-nav navbar-right">
+				<li>
+					<form class="navbar-form">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Enter keyword" />
+							<button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+						</div>
+					</form>
+				</li>
+				
+				<li class="dropdown navbar-user">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<div class="image image-icon bg-black text-grey-darker">
+						<img src="../PE_Resources/paathshala_logo_512.png">
+						</div>
+						<span id="navbarNameHolder"></span>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right">
+						<a href="#" id="logoutButton" class="dropdown-item" style="cursor: pointer;" >Log Out</a>
+					</div>
+				</li>
+			</ul>
+			<!-- end header navigation right -->
+		</div>
+		<!-- end #header -->
+		
+		<!-- begin #sidebar -->
+		<div id="sidebar" class="sidebar">
+			<!-- begin sidebar scrollbar -->
+			<div data-scrollbar="true" data-height="100%">
+				<!-- begin sidebar user -->
+				<ul class="nav">
+					<li class="nav-profile">
+						<a href="javascript:;" data-toggle="nav-profile">
+							<div class="cover with-shadow"></div>
+							<div class="info">
+								<p id="sidebarNameHolder"></p>
+								<small>Student</small>
+							</div>
+						</a>
+					</li>
+
+				
+				</ul>
+				<!-- end sidebar user -->
+				<!-- begin sidebar nav -->
+				<ul class="nav">
+					<ul id="user_sidebar" class="nav">
+					<li class="nav-header">Navigation</li>
+					<li>
+						<a href="./dashboard.html">
+							<i class="fa fa-th-large"></i>
+							<span>Home</span>
+						</a>
+					</li>
+					
+			
+
+					<li class="has-sub">
+							<a href="javascript:;">
+								<i class="fa fa-pencil" aria-hidden="true"></i>
+								<span>Give Test</span>
+							</a>
+							<ul class="sub-menu">
+								<li><a href="./fst_selection.html">Full Syllabus Test</a></li>
+								<li><a href="./cwt_selection.html">Chapter Wise Test</a></li>
+								<li><a href="./swt_selection.html">Section Wise Test</a></li>
+							</ul>
+         			</li>
+					<li class="active">
+						<a href="#">
+							<i class="fa fa-line-chart" aria-hidden="true"></i>
+							<span>Test Results</span>
+						</a>
+				 	</li>
+				</ul>
+					<!-- menu 2-->
+					<!-- begin sidebar minify button -->
+					<li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
+					<!-- end sidebar minify button -->
+				</ul>
+				<!-- end sidebar nav -->
+			</div>
+			<!-- end sidebar scrollbar -->
+		</div>
+		<div class="sidebar-bg"></div>
+		<!-- end #sidebar -->
+		
+		<!-- begin #content -->
+		<div id="content" class="content">
+			<!-- begin breadcrumb -->
+			<ol class="breadcrumb pull-right">
+				<li class="breadcrumb-item active"><a href="#">Test Results</a></li>
+			</ol>
+			<!-- end breadcrumb -->
+			<!-- begin page-header -->
+			<h1 class="page-header">Your Tests</h1>
+			<!-- end page-header -->
+			
+			<!-- begin panel -->
+			<div class="panel panel-inverse">
+				<div class="panel-heading">
+					<div class="panel-heading-btn">
+					</div>
+					<h4 class="panel-title"></h4>
+				</div>
+				<div class="panel-body">
+
+                    <ul class="list-group" id="test_results_panel">
+                    You have not given any tests
+                    </ul>
+                    </div>
+			</div>
+			<!-- end panel -->
+		</div>
+		<!-- end #content -->
+		
+		<!-- begin scroll to top btn -->
+		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+		<!-- end scroll to top btn -->
+	</div>
+	<!-- end page container -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="../../assets/plugins/jquery/jquery-3.3.1.min.js"></script>
+	<script src="../../assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+	<script src="../../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="../../assets/crossbrowserjs/html5shiv.js"></script>
+		<script src="../../assets/crossbrowserjs/respond.min.js"></script>
+		<script src="../../../admin/template../../assets/crossbrowserjs/excanvas.min.js"></script>
+	<![endif]-->
+	<script src="../../assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="../../assets/plugins/js-cookie/js.cookie.js"></script>
+	<script src="../../../admin/template../../assets/js/theme/default.min.js"></script>
+	<script src="../../assets/js/apps.min.js"></script>
+	<!-- ================== END BASE JS ================== -->
+	
+	<script>
+	var pe_username;
+	var pe_email;
+	var user_access_token = localStorage.getItem("student_token");
+	var domain_url = "https://photonecademy.com/tests"
+    var user_sidebar = document.getElementById("user_sidebar");
+    var test_results_panel = document.getElementById("test_results_panel");
+	// All Nameplace holders
+
+		// Sidebar Name Holder
+		var sidebarNameHolder = document.getElementById("sidebarNameHolder");
+		// Logout functionality
+		var logout = document.getElementById("logoutButton");
+		logout.addEventListener("click",()=>{
+			localStorage.clear();
+			document.location.href=`${domain_url}`;
+
+		})
+		//Navbar name holder
+		var navNameHolder = document.getElementById("navbarNameHolder");
+	console.log("access token:-"+user_access_token)
+		if(user_access_token==null)
+		{
+			document.location.href=`${domain_url}`;
+
+		}
+
+		fetch(`${domain_url}/verifyStudent`,{
+			headers:{
+				method:"GET",
+				authorization:user_access_token
+			}
+		}).then(response=>response.json()).then(data=>{
+			console.log("is token verified? "+data.is_verified);
+			if(data.is_verified==false)
+			{
+				document.location.href=`${domain_url}`;
+			}
+			if(data.is_verified==true)
+			{
+				console.log(data);
+				var authDetails = data.student;
+				pe_username = authDetails.studentID;
+				pe_email = authDetails.email;
+				console.log("The Logged in user is :"+pe_username);
+				console.log("The logged in users email id is :"+pe_email);
+				sidebarNameHolder.innerHTML=pe_username;
+				navNameHolder.innerHTML=pe_username;
+				console.log("Student Packs Are - ");
+                
+                // Get Results
+                fetch(`${domain_url}/getAllTestResults`,{
+                    method:"POST",
+                    headers:{
+                        authorization:user_access_token,
+                        'Content-type':'application/json'
+                    },
+                    body:JSON.stringify({studentID:pe_username})
+                }).then(res=>res.json()).then(output=>{
+                    console.log(output);
+                    if(output.is_successful)
+                    {
+                        output.results.forEach(result=>{
+                        var date = new Date(result.taken_on);
+                        var total_marks = result.answers.length * result.test_correct_marks;
+                        var score = `${result.total_marks} / ${total_marks}`;
+                        test_results_panel.innerHTML="";
+                        var taken_on = `${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`
+                        var li = document.createElement('li')
+                        li.setAttribute("class","list-group-item");
+                        li.innerHTML=`${result.test_name} <button style="float:right;margin-left:15px" class="btn btn-green" onclick="showResult('${result.test_name}')"> View Result </button> <span style="float:right"> ${taken_on} <pre>        </pre></span><span style="float:right"> ${score}<pre>              </pre></span></li> `;
+                     
+                        test_results_panel.appendChild(li);
+                        })
+                      
+                    }
+                })
+			}
+        })
+        function showResult(test_name)
+        {
+            document.location.href=`${domain_url}/Student/pages/test_result.html?test_name=${test_name}`;
+        }
+		$(document).ready(function() {
+			App.init();
+		});
+	</script>
+</body>
+</html>

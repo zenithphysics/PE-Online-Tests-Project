@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title id="test_page_title">Quiz</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    	<!-- JQUERY -->
+	<script src="../../assets/plugins/jquery/jquery-3.3.1.min.js"></script>
+	<script src="../../assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <style>
+    
+#loading_panel {
+    width:100%;
+    height:100%;
+}
+#test_holder_container{
+    display: none;
+}
+.answer_panel {
+    display: none;
+}
+    </style>
+</head>
+<body>
+        <div id="loading_panel" style="background-color: black;color:white;padding-top: 50px;height: 100vh">
+                <img src="../../assets/loading/loading_white.gif" width="40" height="40" style="margin-left:auto;margin-right:auto;display:block">
+                <br>
+                <h6 style="text-align: center;font-family: sans-serif"> Your Test Will Start Soon... </h6>
+        </div>   
+    <div id="test_holder_container">
+    <div class="hider">
+        <i class="fa fa-angle-right fa-2x bg-dark text-light">
+        </i>
+    </div>
+    <div class="d-flex align-items-center bg-dark p-1">
+        <div class="d-flex ml-2 logo">
+            <a href="index.html">
+                <img src="../../assets/images/photon logo.png" alt="Quiz logo" class="w-100">
+            </a>
+        </div>
+        <div class="d-flex flex-1 align-items-center text-center thinBar text-light ml-auto mr-auto">
+            <a class="btn btn-primary mr-1 mt-1 mb-1 phybtn"><b>Physics</b></a>
+            <a class="btn btn-primary mr-1 mt-1 mb-1 chembtn"><b>Chemistry</b></a>
+            <a class="btn btn-primary mr-1 mt-1 mb-1 mathsbtn"><b>Mathematics</b></a>
+        </div>
+        <div class="d-flex flex-column thinBar text-light" style="font-size: 1vw;width:31%;">
+            <span class="d-flex mb-1 mr-2">Candidate Name &nbsp;<span ></span></span>
+            <span class="d-flex mb-1 mr-3"> Remaining Time : &nbsp;
+                <span class="remainCounter">[00:00:00]</span>
+            </span>
+        </div>
+        <div class="d-flex text-light align-self-center align-items-center justify-content-center ml-auto topVertical" style="font-size: 1vw;margin-right: 13%;">
+            <div class="d-flex p-2 align-self-center topVertical" style="border: 3px solid white;">
+                <i class="fa fa-user text-light" style="font-size:1.2vw;"></i>
+            </div>
+            <div class="d-flex flex-column pl-3">
+                <span>Candidate Name&nbsp;</span>
+                <span>Remaining Time</span>
+            </div>
+            <div class="d-flex flex-column pr-3">
+                <span class="text-warning" id="navbar-student-name">[Your Name]</span>
+                <span class="remainCounter text-warning">[00:00:00]</span>
+            </div>
+        </div>
+        <div class="d-flex mr-4">
+            <i class="fa fa-bars text-light toggleTop"></i>
+        </div>
+    </div>
+    <div class="p-1 d-flex justify-content-between bg-deepyellow topBar">
+        <div class="d-flex ml-3">
+            <span class="mr-3 text-light" style="font-size: 2vw;"><b id="test_domain_nav_holder"></b></span>
+        </div>
+        <div class="d-flex align-self-center subjectbtns">
+            <a class="btn btn-primary mr-1 phybtn active"><b>Physics</b></a>
+            <a class="btn btn-primary mr-1 chembtn"><b>Chemistry</b></a>
+            <a class="btn btn-primary mr-1 mathsbtn"><b>Mathematics</b></a>
+        </div>
+        <div class="d-flex mr-4 align-items-center langSelect">
+            <span class="text-right text-light mr-2">Paper Language</span>
+            <select class="custom-select" style="width: 10vw;">
+                <option value="eng">English</option>
+                <!-- <option value="hindi">Hindi</option> -->
+                <!-- <option value="mar">Marathi</option> -->
+            </select>
+        </div>
+    </div>
+    <div>
+        <div class="container-fluid wrapper mt-3 ml-1">
+            <div class="row">
+                <div class="col-lg-8 pt-2 w-100 QWrapper">
+                    <div class="row w-100">
+                        <div class="card questionsCard">
+                            <div class="card-body p-0">
+                                <div class="questions text-center" style="overflow: auto;">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2 mt-4 btnrow w-100 d-flex justify-content-center">
+                        <button class="btn btn-success saveAnsbtn" id="saveAnsbtn"><b>Save & Next</b></button>
+                        <button class="btn bg-deepyellow text-light saveAnsReview" id="saveAnsReview"><b>Save & Mark For
+                                Review</b>
+                        </button>
+                        <button class="btn clearAns" id="clearAns" style="border: 1px solid #ccc;"><b>Clear
+                                Response</b>
+                        </button>
+                        <button class="btn btn-primary reviewbtn" id="reviewbtn"><b>Mark For Review & Next</b></button>
+                    </div>
+                    <div class="row d-flex btnrow w-100 justify-content-center" style="left:0;">
+                        <button class="btn backbtn mt-3">
+                            <b>&lt;&lt; Back</b> 
+                        </button>
+                        <button class="btn nextbtn mt-3"><b>Next >></b></button>
+                    </div>
+                </div>
+                <div class="col-lg-4 p-0 Qselect">
+                    <div class="questionNo row m-0 pl-2 pr-1">
+                        <table class="queNo h-50 w-100 text-center">
+                            <tbody id="test_question_tab_buttons_panel">
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="legend mt-3">
+                        <table class="table table-light table-bordered" style="margin: 0 auto;">
+                            <thead>
+                                <tr>
+                                    <td class="p-0 w-25">ICON</td>
+                                    <td class="p-0">Tag</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="p-0"><span class="btn legend-icons p-1" style="display: inline-block; background-image: url(../../assets/images/Logo1.png) !important;
+                                        background-size: 110% 105%;background-position: center;"></span></td>
+                                    <td class="p-0 pt-2"><span>Not Visited</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0"><span class="btn legend-icons visited"></span></td>
+                                    <td class="p-0 pt-2"><span>Not Answered</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0"><span class="btn legend-icons answered"></span></td>
+                                    <td class="p-0 pt-2"><span>Answered</span></td>
+                                </tr>
+                                 <tr>
+                                    <td class="p-0"><span class="btn legend-icons remark ml-1"></span></td>
+                                    <td class="p-0 pt-2"><span>Marked for review</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-0 pt-2"><span class="btn legend-icons saveNremark ml-1"></span></td>
+                                    <td class="p-0 pt-2"><span>Answered & Marked for review<br>(will be considered for evaluation)</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center" id="submitTestButtonDiv">
+                        <button class="btn btn-success submit mb-0 w-50 mt-5" id="submitTestButton"><b>Submit Test</b></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+<script>
+var pe_username;
+var domain_url = "https://photonecademy.com/tests"
+var navbar_student_name = document.getElementById("navbar-student-name");
+var test_page_title = document.getElementById("test_page_title");
+var test_domain_nav_holder = document.getElementById("test_domain_nav_holder")
+var test_question_tab_buttons_panel = document.getElementById("test_question_tab_buttons_panel");
+console.log(navbar_student_name);
+var user_access_token = localStorage.getItem("student_token");
+var urlParams = new URLSearchParams(window.location.search);
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
+
+var test_name = getUrlParameter('test_name');
+test_page_title.innerHTML = test_name;
+var test="loading";
+var questionTheme = getUrlParameter('question_theme')
+console.log(`question theme is ${questionTheme}`)
+console.log(`test name from parameter ${test_name}`);
+fetch(`${domain_url}/verifyStudent`,{
+    method:"GET",
+    headers:{
+        authorization:user_access_token
+    }
+}).then(res => res.json()).then(data=>{
+    if(data.is_verified)
+    {
+        pe_username = data.student.studentID;
+        console.log(`Username is ${pe_username}`);
+        navbar_student_name.innerHTML=`: ${pe_username}`
+        fetch(`${domain_url}/VerifyPackAndGetTest`,{
+            method:"POST",
+            headers:{
+                authorization:user_access_token,
+                'Content-type':'application/json'
+            },
+            body:JSON.stringify({studentID:pe_username,test_name:test_name})
+        }).then(res=>res.json()).then(output=>{
+            console.log(output);
+            if(output.is_successful==false)
+            {
+                if(output.unauthorized)
+                {
+                    alert("You are not authorized to give this test!");
+                    document.location.href=`${domain_url}/Student/pages/fst_selection.html`;
+                }
+                else if(output.given_before)
+                {
+                    alert("You have already given this test before!")
+                    document.location.href=`${domain_url}/Student/pages/fst_selection.html`;
+
+                }
+            }
+            else
+            {
+                test = output.test;
+                showQuestionScript(test);
+                test_domain_nav_holder.innerHTML = test.domain.replace(/_/g,' ');
+                // (DYNAMIC) add tab buttons in question tab panel
+                var question_tab_html='';
+                for(var i=1;i<=test.questions.length;i++)
+                {
+                    if(i % 10 == 0) // number is divisible by 10;
+                    {
+                        console.log(`[10 counter] - number - ${i}`)
+                        question_tab_html+=`<td class="btn quebtn nvisit" data-div="${i}">${i}</td>`
+                        question_tab_html+=`</tr></tr>`
+                    }
+                    else
+                    {
+                        if(i==1)
+                        {
+                            question_tab_html=`<tr><td class="btn quebtn nvisit visited" data-div="${i}">${i}</td>`
+
+                        }
+                        else
+                        {
+                            question_tab_html+=`<td class="btn quebtn nvisit" data-div="${i}">${i}</td>`   
+                        }
+                    }
+
+                }
+                test_question_tab_buttons_panel.innerHTML=question_tab_html;
+                document.getElementById("loading_panel").style.display="none";
+                document.getElementById("test_holder_container").style.display="block";
+            }
+        })
+    }
+    else
+    {
+        document.location.href=`${domain_url}`;
+    }
+})
+
+
+// showQuestionScript
+  // subject selection buttons
+  function showQuestionScript(test) 
+    {
+    // alert("I'm ready")
+    $(".toggleTop").click(function (e) {
+        e.preventDefault();
+        // alert()
+        // $(".CadDetails").css("display", "none");
+        $(".topVertical").toggleClass("d-None")
+        $(".topBar").toggleClass("d-None");
+        $(".thinBar").toggleClass("d-inlineBlock")
+    });
+    width = $(window).width();
+    if (width < 990) {
+        $(".MainColumn").append(` <div class="d-flex">
+        <div class="btn answered">0</div>
+        <div class="btn d-inline">Answered</div>
+    </div>
+    <div class="d-flex">
+        <div class="btn remark" style="height: 35px;">0</div>
+        <div class="btn d-inline">Marked for Review</div>
+    </div>`);
+
+    }
+    viewdiv = 1
+    viewrow = 1
+    viewqueNo = 1
+    answers = {
+        "Question1": "2",
+        "Question2": "3",
+        "Question3": "4"
+    }
+ 
+    createDivs()
+    showdiv()
+   
+    // Counter
+    var initialSecs = 3600 * test.duration;
+    var currentSecs = initialSecs;
+    setTimeout(decrement, 1000);
+
+    function TestTimeOut(){
+        currentSecs = 0;
+    }
+    function decrement() {
+ 
+        var displayedSecs = currentSecs % 60;
+        var displayedMin = Math.floor(currentSecs / 60) % 60;
+        var displayedHrs = Math.floor(currentSecs / 60 / 60);
+        if (displayedMin <= 9) displayedMin = "0" + displayedMin;
+        if (displayedSecs <= 9) displayedSecs = "0" + displayedSecs;
+        currentSecs--;
+        $(".remainCounter").html("[" + displayedHrs + " : " + displayedMin + " : " +
+            displayedSecs + "]");
+        if (currentSecs !== -1) setTimeout(decrement, 1000);
+      
+    }
+
+    function createDivs() {
+        if(questionTheme=='questionWhite')
+        {
+        for (let index = 1; index <= test.questions.length; index++) {
+            console.log(`creating question ${index}`)
+            $(".questions").append(`<div class="question" style="border: 0px solid red;">
+            <h4 class="p-2" style="border-bottom: 3px solid #25b5e9;">Question ` + index + ` : </h4>
+            <img class="w-50" src="data:image/jpeg;base64,${test.question_images_white[index-1]}" alt="">
+            <table class="table table-borderless mt-2 p-5">
+                <tbody>
+                    <tr>
+                        <td> Option A <input type="radio" value="a" name="Question` + index + `" id="rOption1_1">
+                           
+                        </td>
+                        <td> Option B <input type="radio" value="b" name="Question` + index + `" id="rOption1_1">
+                            
+                        </td>
+                        <td> Option C <input type="radio" value="c" name="Question` + index + `" id="rOption1_1">
+                            
+                        </td>
+                        <td> Option D <input type="radio" value="d" name="Question` + index + `" id="rOption1_1">
+                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="answer_panel">
+                <hr/>
+                <h6 style="font-family:sans-serif;text-align:left;padding-left:40px"> ANSWER </h6>
+                <img class="w-50" src="data:image/jpeg;base64,${test.answer_images_white[index-1]}" alt="">
+            </div>
+        </div>`);
+        }
+        }
+        else
+        {
+            for (let index = 1; index <= test.questions.length; index++) {
+            console.log(`creating question ${index}`)
+            $(".questions").append(`<div class="question" style="border: 0px solid red;background-color:black;color:white">
+            <h4 class="p-2" style="border-bottom: 3px solid #25b5e9;">Question ` + index + ` : </h4>
+            <img class="w-50" src="data:image/jpeg;base64,${test.question_images_black[index-1]}" alt="">
+            <table class="table table-borderless mt-2 p-5">
+                <tbody>
+                    <tr>
+                        <td> Option A <input type="radio" value="a" name="Question` + index + `" id="rOption1_1">
+                           
+                        </td>
+                        <td> Option B <input type="radio" value="b" name="Question` + index + `" id="rOption1_1">
+                            
+                        </td>
+                        <td> Option C <input type="radio" value="c" name="Question` + index + `" id="rOption1_1">
+                            
+                        </td>
+                        <td> Option D <input type="radio" value="d" name="Question` + index + `" id="rOption1_1">
+                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="answer_panel">
+                <h5 style="font-family:sans-serif"> ANSWER </h5>
+                <img class="w-50" src="data:image/jpeg;base64,${test.answer_images_black[index-1]}" alt="">
+            </div>
+        </div>`);
+        }
+        }
+    }
+
+    function showdiv() {
+        if(test!="loading")
+        {
+        if (viewdiv <= 10) // changed to <=
+        {
+            viewrow = 1
+        } else {
+            viewrow = Math.floor(viewdiv / 10)
+            viewrow = +viewrow + 1
+        }
+        /* edit: added logic here */
+        if(viewdiv%10==0) //if viewdiv is a multiple of 10
+        {
+        viewqueNo = 10;
+        }
+        else
+        {
+            viewqueNo = viewdiv%10;
+        }
+        // alert(viewrow)
+        $(".question").css("display", "none");
+        $(".question:nth-child(" + viewdiv + ")").css("display", "block");
+        if (!$(".queNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").hasClass("answered")) {
+            if (!$(".queNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").hasClass("saveNremark")) {
+                if (!$(".queNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").hasClass("remark")) {
+                    $(".queNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").addClass("visited");
+                }
+            }
+        }
+        }
+    }
+
+    function saveNreview() {
+        if ($(".question:nth-child(" + viewdiv + ") table tbody td input").is(":checked")) {
+            if (viewdiv <= 10) {
+                viewrow = 1
+                viewqueNo = viewdiv
+            } else {
+                viewrow = Math.floor(viewdiv / 10)
+                viewrow = +viewrow + 1
+                viewqueNo = (viewdiv % 10)
+            }
+            $(".queNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").removeClass("visited");
+            $(".queNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").addClass("saveNremark");
+            viewdiv = +viewdiv + 1
+            showdiv()
+        } else {
+            if (viewdiv <= 10) {
+                viewrow = 1
+                viewqueNo = viewdiv
+            } else {
+                viewrow = Math.floor(viewdiv / 10)
+                viewrow = +viewrow + 1
+                viewqueNo = (viewdiv % 10)
+            }
+            $(".queNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").removeClass("visited");
+            $(".queNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").addClass("remark");
+            viewdiv = +viewdiv + 1
+            showdiv()
+        }
+    }
+
+  
+    $(".phybtn").click(function (e) {
+        e.preventDefault();
+        $(this).addClass("active")
+        $(".chembtn").removeClass("active");
+        $(".mathsbtn").removeClass("active");
+        viewdiv = 1
+        showdiv()
+    });
+    $(".chembtn").click(function (e) {
+        e.preventDefault();
+        $(this).addClass("active")
+        $(".phybtn").removeClass("active");
+        $(".mathsbtn").removeClass("active");
+        viewdiv = 31
+        showdiv()
+    });
+    $(".mathsbtn").click(function (e) {
+        e.preventDefault();
+        $(this).addClass("active")
+        $(".phybtn").removeClass("active");
+        $(".chembtn").removeClass("active");
+        viewdiv = 61
+        showdiv()
+    });
+    // Save Answer Button
+    $(".saveAnsbtn").click(function (e) {
+        e.preventDefault();
+        if ($(".question:nth-child(" + viewdiv + ") table tbody td input").is(":checked")) {
+            if (viewdiv <= 10) {
+                viewrow = 1
+                viewqueNo = viewdiv
+            } else {
+                viewrow = Math.floor(viewdiv / 10)
+                viewrow = +viewrow + 1
+                viewqueNo = (viewdiv % 10)
+            }
+            $(".queNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").removeClass("visited");
+            $(".queNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").addClass("answered text-light");
+            viewdiv = +viewdiv + 1
+            showdiv()
+        } else {
+            alert("Select answer first to save it")
+        }
+    });
+
+    // Question answered and review
+    $(".saveAnsReview").click(function (e) {
+        e.preventDefault();
+        saveNreview()
+    });
+
+    // Clear response
+    $(".clearAns").click(function (e) {
+        e.preventDefault();
+        if ($(".question:nth-child(" + viewdiv + ") input").is(":checked")) {
+            $(".question:nth-child(" + viewdiv + ") input").prop("checked", false);
+        }
+        if (viewdiv <= 10) {
+            viewrow = 1
+            viewqueNo = viewdiv
+        } else {
+            viewrow = Math.floor(viewdiv / 10)
+            viewrow = +viewrow + 1
+            viewqueNo = (viewdiv % 10)
+        }
+        $(".queNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").removeClass("saveNremark remark answered text-light")
+        $(".queNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").addClass("visited")
+    });
+
+    // review button to mark question
+    $(".reviewbtn").click(function (e) {
+        e.preventDefault();
+        saveNreview()
+    });
+
+    // back/next question buttons
+    $(".nextbtn").click(function (e) {
+        e.preventDefault();
+        if(viewdiv<=test.questions.length){
+            viewdiv = +viewdiv + 1
+        }
+        showdiv()
+    });
+
+    $(".backbtn").click(function (e) {
+        e.preventDefault();
+        if(viewdiv>=1){
+            viewdiv = +viewdiv - 1
+        }
+        showdiv()
+    });
+    // Question selection 
+    $(document).delegate('.quebtn','click',function (e) {
+        console.log("Quebtn clicked");
+        e.preventDefault();
+        viewdiv = $(this).attr("data-div");
+        if (!$(this).hasClass("answered")) {
+            $(this).addClass("visited")
+            // alert(viewdiv)
+        }
+        $(".question").css("display", "none");
+        $(".question:nth-child(" + viewdiv + ")").css("display", "block");
+    });
+
+    // Submit the test for result
+    $(".submit").click(function (e) {
+        /*
+        e.preventDefault();
+        data = $(".question input").serialize()
+        data = data.split("&")
+        // alert(data)
+        result = {}
+        $.each(data, function (index, val) {
+            question = val.split("=")[0];
+            answer = val.split("=")[1]
+            // alert(question+":"+answer)
+            result["" + question + ""] = "" + answer + "";
+            // alert(JSON.stringify(result))
+        });
+        console.log(result); */
+        
+        var user_answer_key=[];
+        for(let i=1;i<=test.questions.length;i++)
+        {
+            // check for each question
+            var is_checked=false;
+            var answer="na"
+            var radio_buttons = document.getElementsByName(`Question${i}`);
+            radio_buttons.forEach(button=>{
+                if(button.checked)
+                {
+                    answer = button.value;
+                }
+            })
+            user_answer_key.push(answer)
+            
+        }
+        console.log("Test result is");
+        console.log(user_answer_key);
+
+        fetch(`${domain_url}/submitTest`,{
+            method:"POST",
+            headers:{
+                authorization:user_access_token,
+                'Content-type':'application/json'
+            },
+            body:JSON.stringify({studentID:pe_username,test_name:test.test_name,user_answer_key:user_answer_key})
+        }).then(res=>res.json()).then(output=>{
+            console.log(output)
+            if(output.is_successful)
+            {
+                alert("Your Test has been submitted, you can now view answers below each question.");
+                // Remove Submit Button
+                var submitButton = document.getElementById("submitTestButton");
+                submitButton.style.display="none";
+                // Add Proceed to result button
+                var submitTestButtonDiv = document.getElementById("submitTestButtonDiv");
+                submitTestButtonDiv.innerHTML=`<br><button class="btn bg-green" onclick="location.href='${domain_url}/Student/pages/test_result.html?test_name=${test_name}'"> Proceed To Results </button> `
+                // Remove Save Answer Button
+                document.getElementById("saveAnsbtn").style.display="none";
+                // Remove Save and mark for review Button
+                document.getElementById("saveAnsReview").style.display="none";
+                // Remove Clear Response Button
+                document.getElementById("clearAns").style.display="none";
+                // Remove Review Button
+                document.getElementById("reviewbtn").style.display="none";
+                var divs = document.getElementsByClassName("answer_panel");
+                console.log(divs);
+                for(let i=0;i<divs.length;i++)
+                {
+                    divs[i].style.display="block";
+                }
+
+                // End the Test counter
+                TestTimeOut();
+            }
+            else
+            {
+                alert("Failed to submit test")
+            }
+        })
+
+    });
+}
+  
+</script>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+</script>
+<script src="../../assets/js/sideHide.js"></script>
+
+</html>

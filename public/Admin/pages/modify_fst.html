@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>Modify FST</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+	<link href="../../assets/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+	<link href="../../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link href="../../assets/plugins/animate/animate.min.css" rel="stylesheet" />
+	<link href="../../assets/css/default/style.min.css" rel="stylesheet" />
+	<link href="../../assets/css/default/style-responsive.min.css" rel="stylesheet" />
+	<link href="../../assets/css/default/theme/default.css" rel="stylesheet" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="../../assets/plugins/pace/pace.min.js"></script>
+	<!-- ================== END BASE JS ================== -->
+</head>
+<style>
+.tests-list:hover{
+    background-color:green;
+    cursor: pointer;
+}
+</style>
+<body>
+	<script>
+	
+
+	</script>
+	<!-- begin #page-loader -->
+	<div id="page-loader" class="fade show"><span class="spinner"></span></div>
+	<!-- end #page-loader -->
+	
+	<!-- begin #page-container -->
+	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+		<!-- begin #header -->
+		<div id="header" class="header navbar-default">
+			<!-- begin navbar-header -->
+			<div class="navbar-header">
+				<a  class="navbar-brand"><span ></span> <b>PE</b> Tests Admin.</a>
+				<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<!-- end navbar-header -->
+			
+			<!-- begin header-nav -->
+			<ul class="navbar-nav navbar-right">
+				<li>
+					<form class="navbar-form">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Enter keyword" />
+							<button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+						</div>
+					</form>
+				</li>
+				
+				<li class="dropdown navbar-user">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<div class="image image-icon bg-black text-grey-darker">
+						<img src="../PE_Resources/paathshala_logo_512.png">
+						</div>
+						<span id="navbarNameHolder"></span>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right">
+						<a href="#" id="logoutButton" class="dropdown-item" style="cursor: pointer;" >Log Out</a>
+					</div>
+				</li>
+			</ul>
+			<!-- end header navigation right -->
+		</div>
+		<!-- end #header -->
+		
+		<!-- begin #sidebar -->
+		<div id="sidebar" class="sidebar">
+			<!-- begin sidebar scrollbar -->
+			<div data-scrollbar="true" data-height="100%">
+				<!-- begin sidebar user -->
+				<ul class="nav">
+					<li class="nav-profile">
+						<a href="javascript:;" data-toggle="nav-profile">
+							<div class="cover with-shadow"></div>
+							<div class="info">
+								<p id="sidebarNameHolder"></p>
+								<small>PE Admin</small>
+							</div>
+						</a>
+					</li>
+
+				
+				</ul>
+				<!-- end sidebar user -->
+				<!-- begin sidebar nav -->
+				<ul class="nav">
+					<li class="nav-header">Navigation</li>
+					<li>
+						<a href="./dashboard.html">
+							<i class="fa fa-th-large"></i>
+							<span>Home</span>
+						</a>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<i class="fa fa-user" aria-hidden="true"></i>
+							<span>Admin Settings</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="./create_admin.html">Create Admins</a></li>
+							<li><a href="./manage_admins.html">Manage Admins</a></li>
+						</ul>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<i class="fa fa-graduation-cap" aria-hidden="true"></i>
+							<span>Student Settings</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="./register_student.html">Register Student</a></li>
+							<li><a href="./manage_students.html">Manage Students</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="./manage_syllabus.html">
+							<i class="fa fa-book" aria-hidden="true"></i>
+							<span>Syllabus Manager</span>
+						</a>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<i class="fa fa-plus-circle" aria-hidden="true"></i>
+							<span>Create NEET Tests</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="./create_neet_fst.html"> FST Test</a></li>
+							<li><a href="./create_neet_cwt.html"> CWT Test</a></li>
+							<li><a href="./create_neet_swt.html"> SWT Test</a></li>
+						</ul>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<i class="fa fa-plus-circle" aria-hidden="true"></i>
+							<span>Create JEE MAINS Tests</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="./create_jee_mains_fst.html"> FST Test</a></li>
+							<li><a href="./create_jee_mains_cwt.html"> CWT Test</a></li>
+							<li><a href="./create_jee_mains_swt.html"> SWT Test</a></li>
+						</ul>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<i class="fa fa-plus-circle" aria-hidden="true"></i>
+							<span>Create JEE ADVANCED Tests</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="./create_jee_advanced_fst.html"> FST Test</a></li>
+							<li><a href="./create_jee_advanced_cwt.html"> CWT Test</a></li>
+							<li><a href="./create_jee_advanced_swt.html"> SWT Test</a></li>
+						</ul>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<i class="fa fa-plus-circle" aria-hidden="true"></i>
+							<span>Create STATE ENTRANCES Tests</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="./create_state_entrances_fst.html"> FST Test</a></li>
+							<li><a href="./create_state_entrances_cwt.html"> CWT Test</a></li>
+							<li><a href="./create_state_entrances_swt.html"> SWT Test</a></li>
+						</ul>
+					</li>
+					<li class="has-sub active">
+						<a href="javascript:;">
+						<i class="fa fa-pencil" aria-hidden="true"></i>
+						<span> Modify Tests </span>
+						</a>
+						<ul class="sub-menu">
+							<li class="active"><a href="#">Modify FST Tests</a></li>
+							<li><a href="./modify_cwt.html">Modify CWT Tests</a></li>
+							<li><a href="./modify_swt.html">Modify SWT Tests</a></li>
+						</ul>
+					</li>
+					<!-- menu 2-->
+					<!-- begin sidebar minify button -->
+					<li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
+					<!-- end sidebar minify button -->
+				</ul>
+				<!-- end sidebar nav -->
+			</div>
+			<!-- end sidebar scrollbar -->
+		</div>
+		<div class="sidebar-bg"></div>
+		<!-- end #sidebar -->
+		
+		<!-- begin #content -->
+		<div id="content" class="content">
+			<!-- begin breadcrumb -->
+			<ol class="breadcrumb pull-right">
+                <li class="breadcrumb-item active"><a href="#">Edit Test</a></li>
+                <li class="breadcrumb-item active"><a href="#">Modify FST</a></li>
+
+			</ol>
+			<!-- end breadcrumb -->
+			<!-- begin page-header -->
+			<h1 class="page-header">Modify FST</h1>
+            <!-- end page-header -->
+            
+			<!-- begin panel -->
+			<div class="panel panel-inverse">
+				<div class="panel-heading">
+					<div class="panel-heading-btn">
+                    </div>
+                    <label class="text-white"> Select FST To Modify</label>
+                    <div class="row">
+                            <div class="col-9">     
+                                    <select id="test_lists" class="form-control">
+                                    
+                                    </select>
+                            </div>
+                            <div class="col-3">
+                                <button class="btn btn-green" id="modifyButton" onclick="modifyTest()"> Modify FST</button>
+                            </div>
+                    </div>
+				</div>
+				<div class="panel-body" id="test_panel">
+                 
+                </div>
+				</div>
+			<!-- end panel -->
+		</div>
+		<!-- end #content -->
+		
+		<!-- begin scroll to top btn -->
+		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+		<!-- end scroll to top btn -->
+	</div>
+	<!-- end page container -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="../../assets/plugins/jquery/jquery-3.3.1.min.js"></script>
+	<script src="../../assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+	<script src="../../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="../../assets/crossbrowserjs/html5shiv.js"></script>
+		<script src="../../assets/crossbrowserjs/respond.min.js"></script>
+		<script src="../../../admin/template../../assets/crossbrowserjs/excanvas.min.js"></script>
+	<![endif]-->
+	<script src="../../assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="../../assets/plugins/js-cookie/js.cookie.js"></script>
+	<script src="../../../admin/template../../assets/js/theme/default.min.js"></script>
+	<script src="../../assets/js/apps.min.js"></script>
+	<!-- ================== END BASE JS ================== -->
+	
+	<script>
+	var pe_username;
+	var pe_email;
+	var user_access_token = localStorage.getItem("admin_token");
+	var domain_url = "https://photonecademy.com/tests"
+    var test_lists = document.getElementById(`test_lists`);
+	var test_panel = document.getElementById(`test_panel`);
+	var test_name;
+	// All Nameplace holders
+
+		// Sidebar Name Holder
+		var sidebarNameHolder = document.getElementById("sidebarNameHolder");
+		// Logout functionality
+		var logout = document.getElementById("logoutButton");
+		logout.addEventListener("click",()=>{
+			localStorage.clear();
+			document.location.href=`${domain_url}/admin`;
+
+		})
+		//Navbar name holder
+		var navNameHolder = document.getElementById("navbarNameHolder");
+	console.log("access token:-"+user_access_token)
+		if(user_access_token==null)
+		{
+			document.location.href=`${domain_url}/admin`;
+
+		}
+
+		fetch(`${domain_url}/verifyAdmin`,{
+			headers:{
+				method:"GET",
+				authorization:user_access_token
+			}
+		}).then(response=>response.json()).then(data=>{
+			console.log("is token verified? "+data.is_verified);
+			if(data.is_verified==false)
+			{
+				document.location.href=`${domain_url}/admin`;
+			}
+			if(data.is_verified==true)
+			{
+				pe_username = data.admin.adminID;
+				console.log("The Logged in user is :"+pe_username);
+				sidebarNameHolder.innerHTML=pe_username;
+                navNameHolder.innerHTML=pe_username;
+                
+                fetch(`${domain_url}/getAllFST`,{
+                    method:"GET",
+                    headers:{
+                        authorization:user_access_token,
+                    }
+                }).then(response => response.json()).then(data=>{
+                    if(data.is_successful)
+                    {
+                       data.fst_tests.forEach(test=>{
+                           test_lists.innerHTML+=`
+                          <option value="${test.test_name}"> ${test.test_name} </option>`;
+                       })
+                    }
+                })
+                
+
+
+
+			}
+		
+        })
+        
+        function modifyTest()
+        {
+            test_name = document.getElementById(`test_lists`).value;
+            fetch(`${domain_url}/getTest`,{
+                method:"POST",
+                headers:{
+                    authorization:user_access_token,
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({"test_name":test_name})
+            }).then(response=>response.json()).then(data=>{
+                if(data.is_successful)
+                {
+					console.log(data.test);
+					test_panel.innerHTML=`<h3> ${data.test.test_name} </h3>`;
+					test_panel.innerHTML+=`<br>
+					<br>
+					<label> Test Duration (in hours) </label>
+					<input type="number" value="${data.test.duration}" class="form-control" id="duration">
+					<br>`;
+                    for(i=0;i<data.test.questions.length;i++)
+                    {
+                        var question_element = document.createElement('div');
+                        question_element.setAttribute("id",`question-${i+1}`);
+                        question_element.setAttribute("class","card");
+                        question_element.innerHTML+=`
+                        <div class="card-header card-primary text-white">
+                         Question ${i+1}
+                    </div>
+					<div class="card-body" style="height:wrap;box-shadow:0px 0px 2px 0px black">
+						<div class="row">
+						<div class="col-md-6">
+                        <h4 style='display:inline-block')">Add / Change Question White Image</h4> : <input type="file" id="question-white-${i+1}-input" name="question-${i+1}-input" onchange="changeQuestionWhiteImage(this,'${i+1}')">
+                        <br>
+                        <img class="image_panel" style="width:100%;height:200px" id="question-white-${i+1}-image">
+						</img>
+						</div>
+						<div class="col-md-6">
+						<h4 style='display:inline-block')">Add / Change Question Black Image</h4> : <input type="file" id="question-black-${i+1}-input" name="question-black-${i+1}-input" onchange="changeQuestionBlackImage(this,'${i+1}')">
+						<br>
+						<img class="image_panel" style="width:100%;height:200px"id="question-black-${i+1}-image">
+                           
+						</img>
+						</div>
+						</div>
+						<br>
+						<br>
+						<div class="row">
+						<div class="col-md-6">
+                        <h4 style='display:inline-block')">Add / Change Answer White Image</h4> : <input type="file" id="answer-white-${i+1}-input" name="question-${i+1}-input" onchange="changeAnswerWhiteImage(this,'${i+1}')">
+                        <br>
+                        <img class="image_panel" style="width:100%;height:300px" id="answer-white-${i+1}-image">
+						</img>
+						</div>
+						<div class="col-md-6">
+						<h4 style='display:inline-block')">Add / Change Answer Black Image</h4> : <input type="file" id="answer-black-${i+1}-input" name="answer-black-${i+1}-input" onchange="changeAnswerBlackImage(this,'${i+1}')">
+						<br>
+						<img class="image_panel" style="width:100%;height:300px"id="answer-black-${i+1}-image">
+                           
+						</img>
+						</div>
+						</div>
+						<br>
+						<h4><label> Correct Answer </label></h4>
+						<select class="form-control" id="question-${i+1}-correctselect_box">
+						</select>
+						<br>
+						<br>
+						<h4><label> Solution Video </label></h4>
+						<input class="form-control" value="${data.test.answer_videos[i]}" id="answer-${i+1}-video" type="text" placeholder=" Enter Solution Video URL">
+                    </div>
+                    </div>
+                        `
+    
+                        test_panel.appendChild(question_element);
+                        
+                        // Load Image of Question White Image
+                        var question_image_white = document.getElementById(`question-white-${i+1}-image`);
+                        question_image_white.src = 'data:image/jpeg;base64,'+data.test.question_images_white[i];
+                        
+                        // Load Image of Question Black Image
+                        var question_image_black = document.getElementById(`question-black-${i+1}-image`);
+                        question_image_black.src = 'data:image/jpeg;base64,'+data.test.question_images_black[i];
+
+                        // Load Image of Answer White Image
+                        var answer_image_white = document.getElementById(`answer-white-${i+1}-image`);
+                        answer_image_white.src = 'data:image/jpeg;base64,'+data.test.answer_images_white[i]
+
+                        // Load Image of Answer White Image
+                        var answer_image_black = document.getElementById(`answer-black-${i+1}-image`);
+                        answer_image_black.src = 'data:image/jpeg;base64,'+data.test.answer_images_black[i]
+					   
+						var correct_selectbox = document.getElementById(`question-${i+1}-correctselect_box`);
+						var optionA = document.createElement('option');
+						var optionB = document.createElement('option');
+						var optionC = document.createElement('option');
+						var optionD = document.createElement('option');
+
+						// Load Correct Answer in selectbox
+						optionA.textContent=" A";
+						optionA.value="a";
+						if("a"==data.test.answer_key[i])
+						{	
+							console.log("answer is a");
+							optionA.setAttribute("selected","selected");
+							correct_selectbox.appendChild(optionA);
+							correct_selectbox.appendChild(optionB);
+							correct_selectbox.appendChild(optionC);
+							correct_selectbox.appendChild(optionD);
+						}
+						else
+						{
+							optionA.selected=false
+						}
+						optionB.textContent=" B";
+						optionB.value="b";
+						if("b"==data.test.answer_key[i])
+						{
+							console.log("answer is b")
+							optionB.setAttribute("selected","selected");
+							correct_selectbox.appendChild(optionB);
+							correct_selectbox.appendChild(optionA);
+							correct_selectbox.appendChild(optionC);
+							correct_selectbox.appendChild(optionD);
+						}
+						else
+						{
+							optionB.selected=false
+						}
+						optionC.textContent=" C";
+						optionC.value="c";
+						if("c"==data.test.answer_key[i])
+						{
+							console.log("answer is c")
+							optionC.setAttribute("selected","selected")
+							correct_selectbox.appendChild(optionC);
+							correct_selectbox.appendChild(optionA);
+							correct_selectbox.appendChild(optionB);
+							correct_selectbox.appendChild(optionD);
+						}
+						else
+						{
+							optionC.selected=false;
+						}
+						optionD.textContent=" D";
+						optionD.value="d";
+						if("d"==data.test.answer_key[i])
+						{
+							console.log("answer is d")
+							optionD.setAttribute("selected","selected")
+							correct_selectbox.appendChild(optionD);
+							correct_selectbox.appendChild(optionA);
+							correct_selectbox.appendChild(optionB);
+							correct_selectbox.appendChild(optionC);
+						
+						}
+						else
+						{
+							optionD.selected=false;
+						}
+					
+                        if(i==data.test.questions.length-1)
+                        {
+                            test_panel.innerHTML+= `<br>
+                            <h2><button class="btn btn-green" onclick="saveModifications('${data.test.questions.length}')"> <i class="fa fa-floppy-o" aria-hidden="true"></i>
+ Save Modifications </button></h2>`
+                        }
+                    }
+
+                }
+                else
+                {
+                    alert("Failed to fetch test details");
+                }
+            })
+        }
+		// Change Question White;
+        function changeQuestionWhiteImage(input,question_number)
+        {
+            var question_image_panel = document.getElementById(`question-white-${question_number}-image`);
+                var question_image = input.files[0];
+                var reader = new FileReader();
+                reader.readAsDataURL(question_image);
+                reader.onload =  function () {
+                    question_image_panel.src=reader.result;
+                };
+                reader.onerror = ()=> {
+                    alert("failed to change image")
+                }
+		}
+		// Change Question Black;
+		function changeQuestionBlackImage(input,question_number)
+			{
+				var question_image_panel = document.getElementById(`question-black-${question_number}-image`);
+				var question_image = input.files[0];
+                var reader = new FileReader();
+                reader.readAsDataURL(question_image);
+                reader.onload =  function () {
+                    question_image_panel.src=reader.result;
+                };
+                reader.onerror = ()=> {
+                    alert("failed to change image")
+                }
+			}
+		// Change Answer White
+		function changeAnswerWhiteImage(input,question_number)
+			{
+				var answer_image_panel = document.getElementById(`answer-white-${question_number}-image`);
+				var answer_image = input.files[0];
+				var reader = new FileReader();
+                reader.readAsDataURL(answer_image);
+                reader.onload =  function () {
+                    answer_image_panel.src=reader.result;
+                };
+                reader.onerror = ()=> {
+                    alert("failed to change image")
+                }
+			}
+		// Change Answer White
+		function changeAnswerBlackImage(input,question_number)
+		{
+			var answer_image_panel = document.getElementById(`answer-black-${question_number}-image`);
+			var answer_image = input.files[0];
+			var reader = new FileReader();
+                reader.readAsDataURL(answer_image);
+                reader.onload =  function () {
+                    answer_image_panel.src=reader.result;
+                };
+                reader.onerror = ()=> {
+                    alert("failed to change image")
+                }
+		}
+
+		$(document).ready(function() {
+			App.init();
+		});
+
+		function saveModifications(questions_length)
+		{
+			// Get New Duration
+			var duration = document.getElementById("duration").value;
+			// Initialize Arrays
+			var question_images_white = [];
+			var question_images_black = [];
+			var answer_images_white = [];
+			var answer_images_black = [];
+			var answer_videos = [];
+			var answer_key = [];
+			for(i=0;i<questions_length;i++)
+			{
+				question_images_white.push(document.getElementById(`question-white-${i+1}-image`).src);
+				question_images_black.push(document.getElementById(`question-black-${i+1}-image`).src);
+				answer_images_white.push(document.getElementById(`answer-white-${i+1}-image`).src);
+				answer_images_black.push(document.getElementById(`answer-black-${i+1}-image`).src);
+				answer_videos.push(document.getElementById(`answer-${i+1}-video`).value);
+				answer_key.push(document.getElementById(`question-${i+1}-correctselect_box`).value);
+			}
+
+			console.log(`answer white`);
+			console.log(answer_images_white);
+			console.log(`answer_black`);
+			console.log(answer_images_black);
+			console.log(`question white`);
+			console.log(question_images_white);
+			console.log(`question black`);
+			console.log(question_images_black);
+			console.log(`videos`);
+			console.log(answer_videos);
+			console.log(`answer key`);
+			console.log(answer_key);
+
+			// Save The Modifications
+			fetch(`${domain_url}/modifyTest`,{
+				method:"POST",
+				headers:{
+					authorization:user_access_token,
+					'Content-type':'application/json'
+				},
+				body:JSON.stringify({test_name:test_name,duration:duration,answer_images_white:answer_images_white,answer_images_black:answer_images_black,question_images_white:question_images_white,question_images_black:question_images_black,answer_key:answer_key,answer_videos:answer_videos})
+			}).then(response=>response.json()).then(data=>{
+				console.log(data);
+					if(data.is_successful)
+					{
+						alert("Test has been Modified");
+						window.location.reload();
+					}
+					else
+					{
+						alert("Failed to change modified changes");
+					}
+				})
+		}
+	</script>
+</body>
+</html>

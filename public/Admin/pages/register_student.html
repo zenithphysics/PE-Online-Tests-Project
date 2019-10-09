@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>Register Student</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+	<link href="../../assets/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+	<link href="../../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link href="../../assets/plugins/animate/animate.min.css" rel="stylesheet" />
+	<link href="../../assets/css/default/style.min.css" rel="stylesheet" />
+	<link href="../../assets/css/default/style-responsive.min.css" rel="stylesheet" />
+	<link href="../../assets/css/default/theme/default.css" rel="stylesheet" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="../../assets/plugins/pace/pace.min.js"></script>
+	<!-- ================== END BASE JS ================== -->
+</head>
+<body>
+	<script>
+	
+
+	</script>
+	<!-- begin #page-loader -->
+	<div id="page-loader" class="fade show"><span class="spinner"></span></div>
+	<!-- end #page-loader -->
+	
+	<!-- begin #page-container -->
+	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+		<!-- begin #header -->
+		<div id="header" class="header navbar-default">
+			<!-- begin navbar-header -->
+			<div class="navbar-header">
+				<a  class="navbar-brand"><span ></span> <b>PE</b> Tests Admin.</a>
+				<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<!-- end navbar-header -->
+			
+			<!-- begin header-nav -->
+			<ul class="navbar-nav navbar-right">
+				<li>
+					<form class="navbar-form">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Enter keyword" />
+							<button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+						</div>
+					</form>
+				</li>
+				
+				<li class="dropdown navbar-user">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<div class="image image-icon bg-black text-grey-darker">
+						<img src="../PE_Resources/paathshala_logo_512.png">
+						</div>
+						<span id="navbarNameHolder"></span>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right">
+						<a href="#" id="logoutButton" class="dropdown-item" style="cursor: pointer;" >Log Out</a>
+					</div>
+				</li>
+			</ul>
+			<!-- end header navigation right -->
+		</div>
+		<!-- end #header -->
+		
+		<!-- begin #sidebar -->
+		<div id="sidebar" class="sidebar">
+			<!-- begin sidebar scrollbar -->
+			<div data-scrollbar="true" data-height="100%">
+				<!-- begin sidebar user -->
+				<ul class="nav">
+					<li class="nav-profile">
+						<a href="javascript:;" data-toggle="nav-profile">
+							<div class="cover with-shadow"></div>
+							<div class="info">
+								<p id="sidebarNameHolder"></p>
+								<small>PE Admin</small>
+							</div>
+						</a>
+					</li>
+
+				
+				</ul>
+				<!-- end sidebar user -->
+				<!-- begin sidebar nav -->
+				<ul class="nav">
+					<li class="nav-header">Navigation</li>
+					<li>
+						<a href="./dashboard.html">
+							<i class="fa fa-th-large"></i>
+							<span>Home</span>
+						</a>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<i class="fa fa-user" aria-hidden="true"></i>
+							<span>Admin Settings</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="./create_admin.html">Create Admins</a></li>
+							<li><a href="./manage_admins.html">Manage Admins</a></li>
+						</ul>
+					</li>
+					<li class="has-sub active">
+						<a href="javascript:;">
+							<i class="fa fa-graduation-cap" aria-hidden="true"></i>
+							<span>Student Settings</span>
+						</a>
+						<ul class="sub-menu">
+							<li class="active"><a href="./register_student.html">Register Student</a></li>
+							<li><a href="./manage_students.html">Manage Students</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="./manage_syllabus.html">
+							<i class="fa fa-book" aria-hidden="true"></i>
+							<span>Syllabus Manager</span>
+						</a>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<i class="fa fa-plus-circle" aria-hidden="true"></i>
+							<span>Create NEET Tests</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="./create_neet_fst.html"> FST Test</a></li>
+							<li><a href="./create_neet_cwt.html"> CWT Test</a></li>
+							<li><a href="./create_neet_swt.html"> SWT Test</a></li>
+						</ul>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+						<i class="fa fa-pencil" aria-hidden="true"></i>
+						<span> Modify Tests </span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="./modify_fst.html">Modify FST Tests</a></li>
+							<li><a href="./modify_cwt.html">Modify CWT Tests</a></li>
+							<li><a href="./modify_swt.html">Modify SWT Tests</a></li>
+						</ul>
+					</li>
+					<!-- menu 2-->
+					<!-- begin sidebar minify button -->
+					<li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
+					<!-- end sidebar minify button -->
+				</ul>
+				<!-- end sidebar nav -->
+			</div>
+			<!-- end sidebar scrollbar -->
+		</div>
+		<div class="sidebar-bg"></div>
+		<!-- end #sidebar -->
+		
+		<!-- begin #content -->
+		<div id="content" class="content">
+			<!-- begin breadcrumb -->
+			<ol class="breadcrumb pull-right">
+                <li class="breadcrumb-item "><a href="#">Student Settings</a></li>
+                <li class="breadcrumb-item active"><a href="#">Register Student</a></li>
+
+			</ol>
+			<!-- end breadcrumb -->
+			<!-- begin page-header -->
+			<h1 class="page-header">Register Student</h1>
+			<!-- end page-header -->
+			
+			<!-- begin panel -->
+            <form id="createStudentForm" name="createStudentForm">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>&nbspStudent Full Name</label>
+                        <input type="text" id="studentName" placeholder="Full Name " class="form-control" required>
+                        <br>
+                        <label>&nbspStudentID</label>
+                        <input type="text" id="studentID" placeholder="Set Student ID (Unique) " class="form-control" required>
+                        <br>
+                        <label>&nbspPassword</label>
+                        <input type="password" id="password" placeholder="Set Password" class="form-control" required>
+                        <br>
+                        <label>&nbspEmail Address</label>
+                        <input type="email" id="studentEmail" placeholder="Set EmailID" class="form-control" required>
+                        <br>
+                        <label>&nbspContact No.</label>
+                        <input type="number" min=0 id="studentContact" placeholder="Student's Contact number" class="form-control" required>
+                        <br>
+                        <label>&nbsp Select Student Packs</label>
+                        <br>
+						<br>
+						<h4>
+                        &nbsp&nbsp<input type="checkbox" class="packs" value="JEE_MAINS_P" ><b>&nbsp&nbspJEE MAINS PHYSICS (JEE_MAINS_P)</b>
+                        <br>
+                        <br>
+                        &nbsp&nbsp<input type="checkbox" class="packs" value="JEE_MAINS_C" ><b>&nbsp&nbspJEE MAINS CHEMISTRY (JEE_MAINS_C)</b>
+                        <br>
+                        <br>
+                        &nbsp&nbsp<input type="checkbox" class="packs" value="JEE_MAINS_M" ><b>&nbsp&nbspJEE MAINS MATHS (JEE_MAINS_M)</b>
+                        <br>
+                        <br>           
+						&nbsp&nbsp<input type="checkbox" class="packs" value="JEE_MAINS_PCM" ><b>&nbsp&nbspJEE MAINS PCM</b>
+                        <br>
+                        <br>          
+						&nbsp&nbsp<input type="checkbox" class="packs" value="JEE_ADVANCED_P" ><b>&nbsp&nbspJEE ADVANCED PHYSICS (JEE_ADVANCED_P)</b>
+                        <br>
+                        <br> 
+                        &nbsp&nbsp<input type="checkbox" class="packs" value="JEE_ADVANCED_C" ><b>&nbsp&nbspJEE ADVANCED CHEMISTRY (JEE_ADVANCED_C)</b>
+                        <br>
+						<br>   
+						&nbsp&nbsp<input type="checkbox" class="packs" value="JEE_ADVANCED_M" ><b>&nbsp&nbspJEE ADVANCED MATHS (JEE_ADVANCED_M)</b>
+						<br>
+						<br>   
+						&nbsp&nbsp<input type="checkbox" class="packs" value="JEE_ADVANCED_PCM" ><b>&nbsp&nbspJEE ADVANCED PCM </b>
+                        <br>
+						<br> 
+						&nbsp&nbsp<input type="checkbox" class="packs" value="NEET_P" ><b>&nbsp&nbspNEET PHYSICS (NEET_P)</b>
+                        <br>
+						<br>     
+						&nbsp&nbsp<input type="checkbox" class="packs" value="NEET_C" ><b>&nbsp&nbspNEET CHEMISTRY (NEET_C)</b>
+						<br>
+						<br>
+						&nbsp&nbsp<input type="checkbox" class="packs" value="NEET_B" ><b>&nbsp&nbspNEET BIOLOGY (NEET_B)</b>
+						<br>
+						<br>
+						&nbsp&nbsp<input type="checkbox" class="packs" value="NEET_PCB" ><b>&nbsp&nbspNEET PCB</b>
+						<br>
+						<br>
+						&nbsp&nbsp<input type="checkbox" class="packs" value="STATE_ENTRANCES_P" ><b>&nbsp&nbspSTATE ENTRANCES PHYSICS (STATE_ENTRANCES_P)</b>
+						<br>
+						<br>
+						&nbsp&nbsp<input type="checkbox" class="packs" value="STATE_ENTRANCES_C" ><b>&nbsp&nbspSTATE ENTRANCES CHEMISTRY (STATE_ENTRANCES_C)</b>
+						<br>
+						<br>
+						&nbsp&nbsp<input type="checkbox" class="packs" value="STATE_ENTRANCES_M" ><b>&nbsp&nbspSTATE ENTRANCES MATHS (STATE_ENTRANCES_M)
+						<br>
+						<br>
+						&nbsp&nbsp<input type="checkbox" class="packs" value="STATE_ENTRANCES_B" ><b>&nbsp&nbspSTATE ENTRANCES BIOLOGY (STATE_ENTRANCES_B)</b>
+						<br>
+						<br>
+						&nbsp&nbsp<input type="checkbox" class="packs" value="STATE_ENTRANCES_PCM" ><b>&nbsp&nbspSTATE ENTRANCES PCM </b>
+						<br>
+						<br>
+						&nbsp&nbsp<input type="checkbox" class="packs" value="STATE_ENTRANCES_PCB" ><b>&nbsp&nbspSTATE ENTRANCES PCB </b>
+						</b>
+						</h4>
+						<br>
+                        <input type="submit" value="Register Student" class="btn btn-green"></button>
+                    </div>
+                </div>
+            </form>
+			<!-- end panel -->
+		</div>
+		<!-- end #content -->
+		
+		<!-- begin scroll to top btn -->
+		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+		<!-- end scroll to top btn -->
+	</div>
+	<!-- end page container -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="../../assets/plugins/jquery/jquery-3.3.1.min.js"></script>
+	<script src="../../assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+	<script src="../../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="../../assets/crossbrowserjs/html5shiv.js"></script>
+		<script src="../../assets/crossbrowserjs/respond.min.js"></script>
+		<script src="../../../admin/template../../assets/crossbrowserjs/excanvas.min.js"></script>
+	<![endif]-->
+	<script src="../../assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="../../assets/plugins/js-cookie/js.cookie.js"></script>
+	<script src="../../../admin/template../../assets/js/theme/default.min.js"></script>
+	<script src="../../assets/js/apps.min.js"></script>
+	<!-- ================== END BASE JS ================== -->
+	
+	<script>
+	var pe_username;
+	var pe_email;
+	var domain_url = "https://photonecademy.com/tests";
+	var user_access_token = localStorage.getItem("admin_token");
+		// Related To Register_Student.html
+		var studentID = document.getElementById("studentID");
+		var studentName = document.getElementById("studentName");
+		var studentContact = document.getElementById("studentContact");
+		var studentEmail = document.getElementById("studentEmail");
+		var password = document.getElementById("password");
+		var packs = document.getElementsByClassName('packs')
+		var registration_form = document.getElementById("createStudentForm");
+
+
+		// Event on Submitting the form
+
+		registration_form.addEventListener("submit",(e)=>{
+			e.preventDefault();
+			studentID = document.getElementById("studentID").value;
+			studentName = document.getElementById("studentName").value;
+			studentContact = document.getElementById("studentContact").value;
+			studentEmail = document.getElementById("studentEmail").value;
+			password = document.getElementById("password").value;
+			selected_packs=[];
+			for(i=0;i<packs.length;i++)
+			{
+				if(packs[i].checked)
+				{
+					selected_packs.push(packs[i].value);
+				}
+			}
+			if(selected_packs.length==0)
+			{
+				alert("Student Must be assigned atleast one pack");
+			}
+			else
+			{
+				console.log("%c Creating Student...","color:blue;font-weight:bold");
+				fetch(`${domain_url}/createStudent`,{
+					method:"POST",
+					headers:{
+						authorization:user_access_token,
+						'Content-Type': 'application/json'
+					},
+					body:JSON.stringify({"studentID":studentID,"studentName":studentName,"studentContact":studentContact,"studentEmail":studentEmail,"password":password,"packs":selected_packs})
+				}).then(response=>response.json()).then(data=>{
+					if(data.is_successful)
+					{
+						console.log(`%c Student ${studentID} Created Successfully`,"color:green;font-weight:bold");
+						alert("Student Created Successfully");
+						window.location.href="./manage_students.html";
+					}
+					else
+					{
+						console.log(`%c Failed to create student`,"color:red;font-weight:bold");
+						alert("failed to create student");
+					}
+				})
+			}
+		})
+
+
+
+		// Sidebar Name Holder
+		var sidebarNameHolder = document.getElementById("sidebarNameHolder");
+		// Logout functionality
+		var logout = document.getElementById("logoutButton");
+		logout.addEventListener("click",()=>{
+			localStorage.clear();
+			document.location.href=`${domain_url}/admin`;
+
+		})
+		//Navbar name holder
+		var navNameHolder = document.getElementById("navbarNameHolder");
+	console.log("access token:-"+user_access_token)
+		if(user_access_token==null)
+		{
+			document.location.href=`${domain_url}/admin`;
+
+		}
+
+		fetch(`${domain_url}/verifyAdmin`,{
+			headers:{
+				method:"GET",
+				authorization:user_access_token
+			}
+		}).then(response=>response.json()).then(data=>{
+			console.log("is token verified? "+data.is_verified);
+			if(data.is_verified==false)
+			{
+				document.location.href=`${domain_url}/admin`;
+			}
+			if(data.is_verified==true)
+			{
+				pe_username = data.admin.adminID;
+				sidebarNameHolder.innerHTML=pe_username;
+				navNameHolder.innerHTML=pe_username;
+			}
+		
+		})
+		$(document).ready(function() {
+			App.init();
+		});
+	</script>
+</body>
+</html>

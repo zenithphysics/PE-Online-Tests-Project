@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>Create Admin</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+	<link href="../../assets/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+	<link href="../../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link href="../../assets/plugins/animate/animate.min.css" rel="stylesheet" />
+	<link href="../../assets/css/default/style.min.css" rel="stylesheet" />
+	<link href="../../assets/css/default/style-responsive.min.css" rel="stylesheet" />
+	<link href="../../assets/css/default/theme/default.css" rel="stylesheet" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="../../assets/plugins/pace/pace.min.js"></script>
+	<!-- ================== END BASE JS ================== -->
+</head>
+<body>
+	<script>
+	
+
+	</script>
+	<!-- begin #page-loader -->
+	<div id="page-loader" class="fade show"><span class="spinner"></span></div>
+	<!-- end #page-loader -->
+	
+	<!-- begin #page-container -->
+	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+		<!-- begin #header -->
+		<div id="header" class="header navbar-default">
+			<!-- begin navbar-header -->
+			<div class="navbar-header">
+				<a  class="navbar-brand"><span ></span> <b>PE</b> Tests Admin.</a>
+				<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<!-- end navbar-header -->
+			
+			<!-- begin header-nav -->
+			<ul class="navbar-nav navbar-right">
+				<li>
+					<form class="navbar-form">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Enter keyword" />
+							<button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+						</div>
+					</form>
+				</li>
+				
+				<li class="dropdown navbar-user">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<div class="image image-icon bg-black text-grey-darker">
+						<img src="../PE_Resources/paathshala_logo_512.png">
+						</div>
+						<span id="navbarNameHolder"></span>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right">
+						<a href="#" id="logoutButton" class="dropdown-item" style="cursor: pointer;" >Log Out</a>
+					</div>
+				</li>
+			</ul>
+			<!-- end header navigation right -->
+		</div>
+		<!-- end #header -->
+		
+		<!-- begin #sidebar -->
+		<div id="sidebar" class="sidebar">
+			<!-- begin sidebar scrollbar -->
+			<div data-scrollbar="true" data-height="100%">
+				<!-- begin sidebar user -->
+				<ul class="nav">
+					<li class="nav-profile">
+						<a href="javascript:;" data-toggle="nav-profile">
+							<div class="cover with-shadow"></div>
+							<div class="info">
+								<p id="sidebarNameHolder"></p>
+								<small>PE Admin</small>
+							</div>
+						</a>
+					</li>
+
+				
+				</ul>
+				<!-- end sidebar user -->
+				<!-- begin sidebar nav -->
+				<ul class="nav">
+					<li class="nav-header">Navigation</li>
+					<li>
+						<a href="./dashboard.html">
+							<i class="fa fa-th-large"></i>
+							<span>Home</span>
+						</a>
+					</li>
+					<li class="has-sub active">
+						<a href="javascript:;">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <span>Admin Settings</span>
+						</a>
+						<ul class="sub-menu">
+							<li class="active"><a href="#">Create Admin</a></li>
+							<li><a href="manage_admins.html">Manage Admin</a></li>
+						</ul>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<i class="fa fa-graduation-cap" aria-hidden="true"></i>
+							<span>Student Settings</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="./register_student.html">Register Student</a></li>
+							<li><a href="./manage_students.html">Manage Students</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="./manage_syllabus.html">
+							<i class="fa fa-book" aria-hidden="true"></i>
+							<span>Syllabus Manager</span>
+						</a>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<i class="fa fa-plus-circle" aria-hidden="true"></i>
+							<span>Create NEET Tests</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="./create_neet_fst.html"> FST Test</a></li>
+							<li><a href="./create_neet_cwt.html"> CWT Test</a></li>
+							<li><a href="./create_neet_swt.html"> SWT Test</a></li>
+						</ul>
+					</li>
+					li class="has-sub">
+						<a href="javascript:;">
+							<i class="fa fa-plus-circle" aria-hidden="true"></i>
+							<span>Create JEE MAINS Tests</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="./create_jee_mains_fst.html"> FST Test</a></li>
+							<li><a href="./create_jee_mains_cwt.html"> CWT Test</a></li>
+							<li><a href="./create_jee_mains_swt.html"> SWT Test</a></li>
+						</ul>
+					</li>
+					<li class="has-sub active">
+						<a href="javascript:;">
+							<i class="fa fa-plus-circle" aria-hidden="true"></i>
+							<span>Create JEE ADVANCED Tests</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="./create_jee_advanced_fst.html"> FST Test</a></li>
+							<li class="active"><a href="#"> CWT Test</a></li>
+							<li><a href="./create_jee_advanced_swt.html"> SWT Test</a></li>
+						</ul>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<i class="fa fa-plus-circle" aria-hidden="true"></i>
+							<span>Create STATE ENTRANCES Tests</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="./create_state_entrances_fst.html"> FST Test</a></li>
+							<li><a href="./create_state_entrances_cwt.html"> CWT Test</a></li>
+							<li><a href="./create_state_entrances_swt.html"> SWT Test</a></li>
+						</ul>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+						<i class="fa fa-pencil" aria-hidden="true"></i>
+						<span> Modify Tests </span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="./modify_fst.html">Modify FST Tests</a></li>
+							<li><a href="./modify_cwt.html">Modify CWT Tests</a></li>
+							<li><a href="./modify_swt.html">Modify SWT Tests</a></li>
+						</ul>
+					</li>
+					<!-- menu 2-->
+					<!-- begin sidebar minify button -->
+					<li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
+					<!-- end sidebar minify button -->
+				</ul>
+				<!-- end sidebar nav -->
+			</div>
+			<!-- end sidebar scrollbar -->
+		</div>
+		<div class="sidebar-bg"></div>
+		<!-- end #sidebar -->
+		
+		<!-- begin #content -->
+		<div id="content" class="content">
+			<!-- begin breadcrumb -->
+			<ol class="breadcrumb pull-right">
+                <li class="breadcrumb-item"><a href="#">Admin Settings</a></li>
+                <li class="breadcrumb-item active"><a href="#">Create Admin</a></li>
+
+			</ol>
+			<!-- end breadcrumb -->
+            <!-- begin page-header -->
+            <h1 class="page-header">Create New Admin</h1>
+			<!-- end page-header -->
+     
+
+            <form id="createAdminForm" name="createAdminForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>&nbspAdminID</label>
+                            <input type="text" id="aID" placeholder="Set Admin ID (Unique) " class="form-control">
+                            <br>
+                            <label>&nbspPassword</label>
+                            <input type="password" id="pd" placeholder="Set Password" class="form-control">
+                            <br>
+                            <input type="submit" value="Create Admin" class="btn btn-green"></button>
+                        </div>
+                    </div>
+                </form>
+		</div>
+		<!-- end #content -->
+		
+		<!-- begin scroll to top btn -->
+		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+		<!-- end scroll to top btn -->
+	</div>
+	<!-- end page container -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="../../assets/plugins/jquery/jquery-3.3.1.min.js"></script>
+	<script src="../../assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+	<script src="../../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="../../assets/crossbrowserjs/html5shiv.js"></script>
+		<script src="../../assets/crossbrowserjs/respond.min.js"></script>
+		<script src="../../../admin/template../../assets/crossbrowserjs/excanvas.min.js"></script>
+	<![endif]-->
+	<script src="../../assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="../../assets/plugins/js-cookie/js.cookie.js"></script>
+	<script src="../../../admin/template../../assets/js/theme/default.min.js"></script>
+	<script src="../../assets/js/apps.min.js"></script>
+	<!-- ================== END BASE JS ================== -->
+	
+	<script>
+	var pe_username;
+	var pe_email;
+	var domain_url = "https://photonecademy.com/tests";
+    var user_access_token = localStorage.getItem("admin_token");
+    var adminID = document.getElementById("aID").value;
+        console.log(`${adminID}`);
+        var password = document.getElementById("pd").value;
+        console.log(`${password}`)
+		// All Nameplace holders
+
+		// Sidebar Name Holder
+		var sidebarNameHolder = document.getElementById("sidebarNameHolder");
+		// Logout functionality
+		var logout = document.getElementById("logoutButton");
+		logout.addEventListener("click",()=>{
+			localStorage.clear();
+			document.location.href=`${domain_url}/admin`;
+
+		})
+		//Navbar name holder
+		var navNameHolder = document.getElementById("navbarNameHolder");
+	console.log("access token:-"+user_access_token)
+		if(user_access_token==null)
+		{
+			document.location.href=`${domain_url}/admin`;
+
+		}
+
+		fetch(`${domain_url}/verifyAdmin`,{
+			headers:{
+				method:"GET",
+				authorization:user_access_token
+			}
+		}).then(response=>response.json()).then(data=>{
+			console.log("is token verified? "+data.is_verified);
+			if(data.is_verified==false)
+			{
+				document.location.href=`${domain_url}/admin`;
+			}
+			if(data.is_verified==true)
+			{
+                var admin = data.admin;
+				pe_username = admin.adminID;
+				sidebarNameHolder.innerHTML=pe_username;
+				navNameHolder.innerHTML=pe_username;
+			}
+		
+        })
+        
+        var createAdminForm = document.getElementById("createAdminForm");
+      
+        createAdminForm.addEventListener('submit',(e)=>{
+            e.preventDefault();
+        adminID = document.getElementById("aID").value;
+        console.log(`${adminID}`);
+        password = document.getElementById("pd").value;
+        console.log(`${password}`)
+            console.log("%c Creating Admin...",'color:blue;font-weight:bold');
+            fetch(`${domain_url}/createAdmin`,{
+                method:"POST",
+                headers:{
+                authorization:user_access_token,
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({"adminID":adminID,"password":password})
+            }).then(response => response.json()).then(data=>{
+                if(data.is_successful==true){
+                    console.log("%c Admin Created Successfully","color:green;font-weight:bold");
+                    alert(`Admin ${adminID} has been successfully created`);
+                    document.getElementById("aID").value='';
+                    document.getElementById("pd").value='';
+                }
+                else
+                {
+                    console.log("%c Failed to Create Admin :(","color:red;font-weight:bold");
+                    alert(`Error Creating Admin`);
+                }
+            })
+        })
+		$(document).ready(function() {
+			App.init();
+		});
+	</script>
+</body>
+</html>

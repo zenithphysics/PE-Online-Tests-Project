@@ -1,0 +1,95 @@
+const mongoose = require("mongoose")
+
+var Schema = mongoose.Schema;
+
+var syllabusSchema = new Schema(    {
+        name:{
+            type:String,
+            unique:true
+        },
+        required:false,
+        "Subjects":{
+            type:Array,
+            required:false,
+            name:{
+                type:String,
+                required:false,
+                unique:true
+            },
+            "Chapters":{
+                name:{
+                    type:String,
+                    unique:true
+                },
+                type:Array,
+                required:false
+            },
+            "Sections":{
+                name:{
+                    type:String,
+                    unique:true
+                },
+                type:Array,
+                required:false
+            },
+            "Topics":{
+                type:Array,
+                required:false,
+                name:{
+                    type:String,
+                    required:false,
+                    unique:true
+                },
+                chapter:{
+                    type:String,
+                    required:false,
+                    unique:false
+                }
+            }
+        }
+        ,
+        "States":{
+            name:{
+                type:String,
+                required:false,
+                unique:true
+            },
+            type:Array,
+            required:false,
+            "Subjects":{
+                type:Array,
+                required:false,
+                name:{
+                    type:String,
+                    required:false,
+                    unique:true
+                },
+                "Chapters":{
+                    type:Array,
+                    required:false,
+                    "Topics":{
+                        name:{
+                            type:String,
+                            required:false,
+                            unique:true
+                        },
+                        type:Array,
+                        required:false
+                    }
+                },
+                "Sections":{
+                    name:{
+                        type:String,
+                        required:false,
+                        unique:true
+                    },
+                    type:Array,
+                    required:false
+                }
+            }
+           
+        }
+    }
+)
+
+module.exports = mongoose.model("Syllabus",syllabusSchema)

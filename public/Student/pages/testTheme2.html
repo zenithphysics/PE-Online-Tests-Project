@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title id="test_page_title">Quiz</title>
+    	<!-- JQUERY -->
+	<script src="../../assets/plugins/jquery/jquery-3.3.1.min.js"></script>
+	<script src="../../assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<style>
+    .radio-btn {
+        border: 1px solid #079ad9;
+        width: 98%;
+        padding-top: .2vw;
+        font-size: 1.2vw;
+        padding-bottom: .3vw;
+        text-align: center;
+        font-weight: bold;
+        cursor: pointer;
+        /* border-radius: 40%; */
+        border-radius: 5px;
+        box-shadow: 0 .5vw #00023d;
+    }
+
+    /* .btn{
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    } */
+    .radio-btn:active {
+        /* border:1px solid red; */
+        background-color: #008ff8;
+        box-shadow: 0 5px #00023d;
+        transform: translateY(.2vw);
+        /* background-position: right center !important; */
+    }
+
+    #loading_panel {
+    width:100%;
+    height:100%;
+}
+#test_holder_container{
+    display: none;
+}
+    .radio-btn input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    @media (max-width:629px) {
+        .radio-btn {
+            width: 100%;
+            font-size: 2.5vw;
+        }
+        .TopTime{
+            font-size: 2vw;
+        }
+        .QuestionImg{
+            width: 100%;
+        }
+    }
+
+    .bg-radio-btn {
+        background-image: linear-gradient(to right, #00c6ff 0%, #0072ff 51%, #00c6ff 100%);
+        transform: scale(1.2) !important;
+        color: white;
+    }
+</style>
+
+<body>
+    <div id="loading_panel" style="background-color: black;color:white;padding-top: 50px;height: 100vh">
+                <img src="../../assets/loading/loading_white.gif" width="40" height="40" style="margin-left:auto;margin-right:auto;display:block">
+                <br>
+                <h6 style="text-align: center;font-family: sans-serif"> Your Test Will Start Soon... </h6>
+    </div>   
+    <div id="test_holder_container">
+    <div class="d-flex bg-dark justify-content-center align-items-center header">
+        <div class="d-flex mt-1 mb-1 ml-2 Logo">
+            <a href="index.html">
+                <img src="../../assets/images/photon logo.png" alt="" srcset="" style="width: 70%;height: auto;">
+            </a>
+        </div>
+        <div class="d-flex flex-1 TopTime mr-5 justify-content-end">
+            <span class="text-light mr-3">Student Name :&nbsp;
+                <span class="text-light" id="navbar-student-name"></span>
+            </span>
+            <span class="text-light">Remaining Time :&nbsp;
+                <span class="remainCounter text-light"> [00:00:00]</span>
+            </span>
+        </div>
+        <span class="d-flex slider text-light mr-3" style="flex: -1;"><i class="fa fa-bars text-right"></i></span>
+    </div>
+    <div class="container-fluid mainContainer h-100" style="position:fixed">
+        <div class="d-flex flex-row">
+            <div class="col-lg-8 pl-2 pr-2 mt-1 leftSide">
+                <div class="d-flex flex-row btnrow2 justify-content-center">
+                    <a href="#" class="btn m-1 active phybtn">Physics</a>
+                    <a href="#" class="btn m-1 chembtn">Chemistry</a>
+                    <a href="#" class="btn m-1 biobtn">Biology</a>
+                </div>
+                <div class="row Qwrapper">
+                    <div class="w-100 p-2 Questions">
+
+                    </div>
+                </div>
+                <div class="d-flex flex-row flex-wrap justify-content-center btnrow2 Qfooter mt-2 mb-1">
+                    <button class="btn flex-1 m-1 prevbtn fsbtns"> &lt;&lt; Previous</button>
+                    <button class="btn flex-1 m-1 saveAnsbtn">Save & Next</button>
+                    <button class="btn flex-1 m-1 reviewbtn">Review Later</button>
+                    <button class="btn flex-1 m-1 clearAns">Clear Selection</button>
+                    <button class="btn flex-1 m-1 nextbtn fsbtns">Next >></button>
+                    <div class="d-flex text-center">
+                        <button class="btn flex-1 m-1 prevbtn respbtns justify-content-center"> &lt;&lt; Previous</button>
+                        <button class="btn flex-1 m-1 nextbtn respbtns justify-content-center">Next >></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 ml-2 p-0 pr-3 pl-1 rightSide">
+                <h5 class="text-center">Question[s] Navigation:</h5>
+                <div class="QuestionNo row mt-2 pt-2 ml-1" style="overflow: auto;height: 60%;">
+                    <table class="QueNo h-50 w-100">
+                        <tbody class="QnOwrapper">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-2 ml-3">
+                    <table class="table table-light table-borderless legends">
+                        <tbody>
+                            <tr>
+                                <td><div class="attempted"></div><span>Answered</span></td>
+                                <td><div class="unattempted"></div><span>Not Answered</span></td>
+                            </tr>
+                            <tr>
+                                <td><div class="review"></div><span>Marked for Review</span></td>
+                                <td><div class="unseen"></div><span>Not Visited</span></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="pb-1"><div class="Ansreview"></div><span>Answered & Marked for Review</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="rightBottomBtns" style="position: absolute;bottom: 0px;width: 98%;margin-bottom: .7vh;">
+                    <a href="instructions2.html" class="w-100 mt-3 btn bg-light text-dark"
+                        style="border:1px solid #ccc;">Instructions</a>
+                    <a class="w-100 mt-1 btn bg-light text-dark" style="border:1px solid #ccc;">Questions</a>
+                    <a href="summary.html" class="w-100 mt-1 btn bg-light text-dark submit"
+                        style="border:1px solid #ccc;">Submit Finished Test</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+            var pe_username;
+            var domain_url = "https://photonecademy.com/tests"
+            var navbar_student_name = document.getElementById("navbar-student-name");
+            var test_page_title = document.getElementById("test_page_title");
+            var test;
+            console.log(navbar_student_name);
+            var user_access_token = localStorage.getItem("student_token");
+            var urlParams = new URLSearchParams(window.location.search);
+            function getUrlParameter(name) {
+                name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                var results = regex.exec(location.search);
+                return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+            };
+            
+            var test_name = getUrlParameter('test_name');
+            test_page_title.innerHTML = test_name;
+            console.log(`test name from parameter ${test_name}`);
+            var questionTheme = getUrlParameter('question_theme')
+            console.log(`question theme is ${questionTheme}`)
+            fetch(`${domain_url}/verifyStudent`,{
+                method:"GET",
+                headers:{
+                    authorization:user_access_token
+                }
+            }).then(res => res.json()).then(data=>{
+                if(data.is_verified)
+                {
+                    pe_username = data.student.studentID;
+                    console.log(`Username is ${pe_username}`);
+                    navbar_student_name.innerHTML=`: ${pe_username}`
+                    fetch(`${domain_url}/VerifyPackAndGetTest`,{
+            method:"POST",
+            headers:{
+                authorization:user_access_token,
+                'Content-type':'application/json'
+            },
+            body:JSON.stringify({studentID:pe_username,test_name:test_name})
+        }).then(res=>res.json()).then(output=>{
+            console.log(output);
+            if(output.is_successful==false)
+            {
+                if(output.unauthorized)
+                {
+                    alert("You are not authorized to give this test!");
+                    document.location.href=`${domain_url}/Student/pages/fst_selection.html`;
+                }
+                else if(output.given_before)
+                {
+                    alert("You have already given this test before!")
+                    document.location.href=`${domain_url}/Student/pages/fst_selection.html`;
+
+                }
+            }
+            else
+            {
+                test = output.test;
+                showQuestionScript(test)
+                document.getElementById("loading_panel").style.display="none";
+                document.getElementById("test_holder_container").style.display="block";
+            }
+        })
+                }
+                else
+                {
+                    document.location.href=`${domain_url}`;
+                }
+            })
+
+
+        function showQuestionScript(test)
+        {
+            
+    // alert("I'm ready")
+    // Exam Logic
+    viewdiv = 1
+    viewrow = 1
+    viewqueNo = 1
+    answers = {
+        "Question1": "2",
+        "Question2": "3",
+        "Question3": "4"
+    }
+    createDivs()
+    createQNo()
+    showdiv()
+
+    // Page Logic
+    height = $(".header").height();
+    $(".mainContainer").css("top", height);
+    Width = $(window).width();
+    if (Width > 1000) {
+        $(".slider").click(function (e) {
+            e.preventDefault();
+            // alert()
+            $(".rightSide").toggleClass("sideLength1");
+            $(".leftSide").toggleClass("col-xl-12 col-lg-12 col-md-12 ")
+        });
+    }
+    else {
+        $(".slider").click(function (e) {
+            e.preventDefault();
+            // alert()
+            $(".rightSide").toggleClass("sideLength");
+        });
+    }
+
+    $(".radio-btn").click(function (e) {
+        e.preventDefault();
+        // alert()
+        if (!$(".radio-btn").hasClass("btn-primary")) {
+            $(this).children("input").attr('checked', true)
+            $(this).toggleClass("btn-primary");
+        } else {
+            $(".radio-btn input").attr('checked', false)
+            $(".radio-btn ").removeClass("btn-primary")
+            $(this).children("input").attr('checked', true)
+            $(this).toggleClass("btn-primary");
+        }
+    });
+    // $(".radio-btn").css("transition", "transform .3s ease-in-out");
+
+    // $(".radio-btn").hover(
+    //     // Handler for mouseenter
+    //     function () {
+    //         $(this).css("transform", "scale(1.2)");
+    //         $(this).css("background-position", "right center");
+
+    //     },
+    //     // Handler for mouseleave
+    //     function () {
+    //         $(this).css("transform", "scale(1)");
+    //     }
+    // );
+
+
+    // Counter
+    var initialSecs = 3600 * test.duration;
+    var currentSecs = initialSecs;
+    setTimeout(decrement, 1000);
+
+    function decrement() {
+        var displayedSecs = currentSecs % 60;
+        var displayedMin = Math.floor(currentSecs / 60) % 60;
+        var displayedHrs = Math.floor(currentSecs / 60 / 60);
+        if (displayedMin <= 9) displayedMin = "0" + displayedMin;
+        if (displayedSecs <= 9) displayedSecs = "0" + displayedSecs;
+        currentSecs--;
+        $(".remainCounter").html("[" + displayedHrs + ":" + displayedMin + ":" +
+            displayedSecs + "]");
+        if (currentSecs !== -1) setTimeout(decrement, 1000);
+    }
+
+    function createDivs() {
+        if(questionTheme=="questionWhite")
+        {
+        for (let index = 1; index <= test.questions.length; index++) {
+            $(".Questions").append(`<div class="Question">
+            <div class="d-flex justify-content-between row ml-1 pb-2 w-100" style="border-bottom: 3px solid #25b5e9;color: #333;font-size:1.5vw">
+                <div class="flex-1 font-weight-bold">Question No: ` + index + `</div>
+                <div class="flex-1 text-right font-weight-bold">Single Choice Type Question</div>
+            </div>
+            <div class="row w-100 ml-1">
+                <img class="QuestionImg" src="data:image/jpeg;base64,${test.question_images_white[index-1]}"` + index + `.png" alt="">
+                <table class="table table-borderless mt-2">
+                    <tbody>
+                    <tr class="d-flex justify-content-center">
+                    <td class="d-flex flex-1 justify-content-center align-items-center">
+                        <label class="radio-btn">
+                            <input type="radio" value="a" id="Question${index}" name="Question` + index + `" >
+                            Option A
+                        </label>
+                    </td>
+                    <td class="d-flex flex-1 justify-content-center align-items-center">
+                        <label class="radio-btn">
+                            <input type="radio" value="b" id="Question${index}" name="Question` + index + `" >
+                            Option B
+                        </label>
+                    </td>
+                    <td class="d-flex flex-1 justify-content-center align-items-center">
+                        <label class="radio-btn">
+                            <input type="radio" value="c" id="Question${index}" name="Question` + index + `" >
+                            Option C
+                        </label>
+                    </td>
+                    <td class="d-flex flex-1 justify-content-center align-items-center">
+                        <label class="radio-btn">
+                            <input type="radio" value="d" id="Question${index}" name="Question` + index + `" >
+                            Option D
+                        </label>
+                    </td>
+                </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>`);
+        }
+    }
+    else
+    {
+        for (let index = 1; index <= test.questions.length; index++) {
+            $(".Questions").append(`<div class="Question">
+            <div class="d-flex justify-content-between row ml-1 pb-2 w-100" style="border-bottom: 3px solid #25b5e9;color: #333;font-size:1.5vw">
+                <div class="flex-1 font-weight-bold">Question No: ` + index + `</div>
+                <div class="flex-1 text-right font-weight-bold">Single Choice Type Question</div>
+            </div>
+            <div class="row w-100 ml-1" style="background-color:black;color:white">
+                <img class="QuestionImg" src="data:image/jpeg;base64,${test.question_images_black[index-1]}"` + index + `.png" alt="">
+                <table class="table table-borderless mt-2">
+                    <tbody>
+                    <tr class="d-flex justify-content-center">
+                    <td class="d-flex flex-1 justify-content-center align-items-center">
+                        <label class="radio-btn">
+                            <input type="radio" value="a" id="Question${index}" name="Question` + index + `" >
+                            Option A
+                        </label>
+                    </td>
+                    <td class="d-flex flex-1 justify-content-center align-items-center">
+                        <label class="radio-btn">
+                            <input type="radio" value="b" id="Question${index}" name="Question` + index + `">
+                            Option B
+                        </label>
+                    </td>
+                    <td class="d-flex flex-1 justify-content-center align-items-center">
+                        <label class="radio-btn">
+                            <input type="radio" value="c" id="Question${index}" name="Question` + index + `" >
+                            Option C
+                        </label>
+                    </td>
+                    <td class="d-flex flex-1 justify-content-center align-items-center">
+                        <label class="radio-btn">
+                            <input type="radio" value="d" id="Question${index}" name="Question` + index + `" >
+                            Option D
+                        </label>
+                    </td>
+                </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>`);
+        }
+    }
+    }
+
+    function createQNo() { //QuestionTabs
+        count = 1;
+        for (var i = 0; i < Math.floor(test.questions.length/10); i++) {
+            var $row = $(".QnOwrapper").append("<tr class='w-100'> < td/>").children("tr:eq(" + (i) + ")");
+            for (var k = 1; k <= 10; k++) {
+                $row.append(`<td class="btn Quebtn unseen" data-div="` + count + `">` + count + `</td>`);
+                count++;
+            }
+        } 
+    }
+
+    function showdiv() {
+        if (viewdiv <= 10) {
+            viewrow = 1
+        } else {
+            viewrow = Math.floor(viewdiv / 10)
+            viewrow = +viewrow + 1
+        }
+        /* edit: added logic here */
+        if(viewdiv%10==0) //if viewdiv is a multiple of 10
+        {
+        viewqueNo = 10;
+        }
+        else
+        {
+            viewqueNo = viewdiv%10;
+        }
+        $(".Question").css("display", "none");
+        $(".Question:nth-child(" + viewdiv + ")").css("display", "block");
+        if (!$(".QueNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").hasClass("attempted")) {
+            if (!$(".QueNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").hasClass("Ansreview")) {
+                if (!$(".QueNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").hasClass("review")) {
+                    $(".QueNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").addClass("unattempted");
+                }
+            }
+        }
+    }
+
+    function saveNreview() {
+        if ($(".Question:nth-child(" + viewdiv + ") table tbody td input").is(":checked")) {
+            if (viewdiv <= 10) {
+                viewrow = 1
+                viewqueNo = viewdiv
+            } else {
+                viewrow = Math.floor(viewdiv / 10)
+                viewrow = +viewrow + 1
+                viewqueNo = (viewdiv % 10)
+            }
+            $(".QueNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").removeClass("unattempted");
+            $(".QueNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").addClass("Ansreview");
+            viewdiv = +viewdiv + 1
+            showdiv()
+        } 
+        else {
+            if (viewdiv <= 10) {
+                viewrow = 1
+                viewqueNo = viewdiv
+            } else {
+                viewrow = Math.floor(viewdiv / 10)
+                viewrow = +viewrow + 1
+                viewqueNo = (viewdiv % 10)
+            }
+            $(".QueNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").removeClass("unattempted");
+            $(".QueNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").addClass("review");
+            viewdiv = +viewdiv + 1
+            showdiv()
+        }
+    }
+
+    // subject selection buttons 
+    $(".phybtn").click(function (e) {
+        e.preventDefault();
+        viewdiv = 1
+        $(".btnrow2 .btn").removeClass("active");
+        $(this).addClass("active");
+        showdiv()
+    });
+    $(".chembtn").click(function (e) {
+        e.preventDefault();
+        viewdiv = 31
+        $(".btnrow2 .btn").removeClass("active");
+        $(this).addClass("active");
+        showdiv()
+    });
+    $(".biobtn").click(function (e) {
+        e.preventDefault();
+        viewdiv = 61
+        $(".btnrow2 .btn").removeClass("active");
+        $(this).addClass("active");
+        showdiv()
+    });
+    // Save Answer Button
+    $(".saveAnsbtn").click(function (e) {
+        e.preventDefault();
+        if ($(".Question:nth-child(" + viewdiv + ") table tbody td input").is(":checked")) {
+            if (viewdiv <= 10) {
+                viewrow = 1
+                viewqueNo = viewdiv
+            } else {
+                viewrow = Math.floor(viewdiv / 10)
+                viewrow = +viewrow + 1
+                viewqueNo = (viewdiv % 10)
+            }
+            $(".QueNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").removeClass("unattempted");
+            $(".QueNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").addClass("attempted");
+            viewdiv = +viewdiv + 1
+            showdiv()
+        } else {
+            alert("Select answer first to save it")
+        }
+    });
+    // Clear response
+    $(".clearAns").click(function (e) {
+        e.preventDefault();
+        if ($(".Question:nth-child(" + viewdiv + ") input").is(":checked")) {
+            $(".Question:nth-child(" + viewdiv + ") input").prop("checked", false);
+            $(".Question:nth-child(" + viewdiv + ") label").removeClass("btn-primary");
+        }
+        if (viewdiv <= 10) {
+            viewrow = 1
+            viewqueNo = viewdiv
+        } else {
+            viewrow = Math.floor(viewdiv / 10)
+            viewrow = +viewrow + 1
+            viewqueNo = (viewdiv % 10)
+        }
+        $(".QueNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").removeClass("Ansreviewns review attempted")
+        $(".QueNo tbody tr:nth-child(" + viewrow + ") td.btn:nth-child(" + viewqueNo + ")").addClass("unattempted")
+    });
+
+    // review button to mark question
+    $(".reviewbtn").click(function (e) {
+        e.preventDefault();
+        saveNreview()
+    });
+
+     // back/next question buttons
+     $(".nextbtn").click(function (e) {
+        e.preventDefault();
+        if(viewdiv<=test.questions.length){ //viewdiv default = 90
+            viewdiv = +viewdiv + 1
+        }
+        showdiv()
+    });
+
+    $(".prevbtn").click(function (e) {
+        e.preventDefault();
+        if(viewdiv>=1){
+            viewdiv = +viewdiv - 1
+        }
+        showdiv()
+    });
+
+    // Question selection 
+    $(".Quebtn").click(function (e) {
+        e.preventDefault();
+        viewdiv = $(this).attr("data-div");
+        if (!$(this).hasClass("attempted") && !$(this).hasClass("review") && !$(this).hasClass("Ansreview")) {
+            $(this).addClass("unattempted")
+            // alert(viewdiv)
+            viewqueNo = 1 + $(this).index()
+        }
+        $(".Question").css("display", "none");
+        $(".Question:nth-child(" + viewdiv + ")").css("display", "block");
+    });
+
+    
+     $(".submit").click(function (e) {
+       e.preventDefault();
+     /*  data = $(".Question input").serialize()
+       console.log(data);
+
+       data = data.split("&")
+       result = {}
+      $.each(data, function (index, val) {
+         question = val.split("=")[0];
+       answer = val.split("=")[1]
+       // alert(question+":"+answer)
+       result["" + question + ""] = "" + answer + "";
+    //         // alert(JSON.stringify(result))
+      console.log(result)
+       }); */
+
+       var user_answer_key=[];
+       for(let i=1;i<=test.questions.length;i++)
+       {
+           var input = document.getElementById(`Question${i}`);
+           console.log(input);
+           if(input.checked)
+           {
+               answer = input.value;
+           }
+           else
+           {
+               answer = "na";
+           }
+           user_answer_key.push(answer);
+       }
+       console.log(user_answer_key)
+     });
+
+        }
+            </script>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+<!-- <script src="assets/js/sideHide.js"></script> -->
+
+</html>
