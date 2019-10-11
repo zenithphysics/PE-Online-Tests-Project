@@ -73,7 +73,7 @@ const testSchema = mongoose.Schema({
     }
 ], 
 answer_key:{
- type:Array,
+ type:mongoose.Schema.Types.Mixed,
  required:false  
 },
 question_images_white:[
