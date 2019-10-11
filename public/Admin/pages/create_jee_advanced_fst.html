@@ -926,6 +926,25 @@
 							</select>
 				`
 			}
+			else if(questionType=="mcq_single")
+			{
+				questionAnswerPanel.innerHTML=`
+				<label> Correct Answer : </label>
+							<select class="form-control" id="question-${no_of_questions}-question_answer">
+								<option value="a"> A </option>
+								<option value="b"> B </option>
+								<option value="c"> C </option>
+								<option value="d"> D </option>
+							</select>
+				`	
+			}
+			else if(questionType=="number")
+			{
+				questionAnswerPanel.innerHTML=`
+				<label> Correct Answer : </label>
+				<input type="number" class="form-control" id="question-${no_of_questions}-question_answer">	
+				`	
+			}
 
 		}
 		$(document).ready(function() {
