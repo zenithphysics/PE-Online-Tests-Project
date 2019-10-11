@@ -795,7 +795,7 @@
 								// Get Correct Answer
 								if(question_type=="mcq_single" || question_type=="mcq_multiple" || question_type=="number")
 								{
-								var correct_answer = document.getElementById(`question-${i}-question_answer`).value;
+								var correct_answer = $(`#question-${i}-question_answer`).val();
 								console.log(correct_answer);
 								error=1; // Just for testing
 								}
