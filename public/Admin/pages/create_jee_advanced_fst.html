@@ -913,6 +913,20 @@
 		{
 			var questionType = document.getElementById(`question-${question_number}-question_type`).value;
 			console.log(`Question Type is ${questionType}`)
+			var questionAnswerPanel = document.getElementById(`question-${question_number}-question_answer_panel`)
+			if(questionType=="mcq_multiple")
+			{
+				questionAnswerPanel.innerHTML=`
+				<label> Correct Answer : </label>
+							<select class="form-control" multiple="mutiple" id="question-${no_of_questions}-question_answer">
+								<option value="a"> A </option>
+								<option value="b"> B </option>
+								<option value="c"> C </option>
+								<option value="d"> D </option>
+							</select>
+				`
+			}
+
 		}
 		$(document).ready(function() {
 			App.init();
