@@ -985,6 +985,8 @@
 			var questionAnswerPanel = document.getElementById(`question-${question_number}-question_answer_panel`)
 			var noOfOptions = document.getElementById(`question-${question_number}-number_of_options`).value;
 			document.getElementById(`question-${question_number}-number_of_options`).disabled="disabled"
+			document.getElementById(`question-${question_number}-number_of_options`).value=noOfOptions;
+
 			for(let i=1;i<=noOfOptions;i++)
 			{
 				questionAnswerPanel.innerHTML+=`
