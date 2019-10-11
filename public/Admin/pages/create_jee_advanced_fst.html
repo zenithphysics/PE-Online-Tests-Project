@@ -806,7 +806,8 @@
 									var no_of_options = document.getElementById(`question-${i}-number_of_options`).value;
 									for(let j=1;j<=no_of_options;j++)
 									{
-										correct_answer.push(document.getElementById(`question-${i}-option${j}`).value)
+										var option = document.getElementById(`question-${i}-option${j}`).value;
+										correct_answer.push(option)
 									}
 									error=1 // Just for testing
 									console.log(correct_answer)
