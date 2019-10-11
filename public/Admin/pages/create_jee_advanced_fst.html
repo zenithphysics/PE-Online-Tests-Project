@@ -799,6 +799,19 @@
 								console.log(correct_answer);
 								error=1; // Just for testing
 								}
+								else if(question_type=="match_the_following")
+								{
+									var correct_answer=[];
+									// First get the number of options
+									var no_of_options = document.getElementById(`question-${i}-number_of_options`).value;
+									for(let j=1;j<=no_of_options;j++)
+									{
+										correct_answer.push(document.getElementById(`question-${i}-option${j}`).value)
+									}
+									error=1 // Just for testing
+									console.log(correct_answer)
+									
+								}
 								answer_key.push(correct_answer);
 								// Get Question Image
 								var question_white_image = document.getElementById(`question-white-${i}-input`).files[0];
