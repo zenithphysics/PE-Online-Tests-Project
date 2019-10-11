@@ -945,6 +945,17 @@
 				<input type="number" class="form-control" id="question-${no_of_questions}-question_answer">	
 				`	
 			}
+			else if(questionType="match_the_following")
+			{
+				questionAnswerPanel.setAttribute("class","col-9");
+				questionAnswerPanel.innerHTML=`
+				<div class="col-1">
+					<label> No. of Options </label>
+					<input type="number" class="form-control" id="question-${no_of_questions}-number_of_options">	
+				</div>
+			
+				`
+			}
 
 		}
 		$(document).ready(function() {
