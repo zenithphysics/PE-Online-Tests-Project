@@ -495,7 +495,7 @@
 					<div class="row">
 						<div class="col-3">
 							<label> Question Type : </label>
-							<select class="form-control" id="question-${no_of_questions}-question_type">
+							<select class="form-control" onchange="questionTypeChanged('${no_of_questions}')" id="question-${no_of_questions}-question_type">
 								<option value="mcq_single"> MCQ Single Option </option>
 								<option value="mcq_multiple"> MCQ Multiple Option </option>
 								<option value="number"> Number Type </option>
@@ -907,6 +907,13 @@
 				}
 				
 			}
+
+
+		function questionTypeChanged(question_number)
+		{
+			var questionType = document.getElementById(`question-${question_number}-question_type`).value;
+			console.log(`Question Type is ${questionType}`)
+		}
 		$(document).ready(function() {
 			App.init();
 		});
