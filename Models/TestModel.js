@@ -68,6 +68,10 @@ const testSchema = mongoose.Schema({
       DLevel:{
           type:String,
           required:false
+      },
+      type:{
+          type:String,
+          required:false
       }
    
     }
