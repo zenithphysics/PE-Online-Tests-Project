@@ -363,13 +363,32 @@ fetch(`${domain_url}/verifyStudent`,{
             </div>
         </div>`);
         }
+        else if(test.questions[index-1].question_type=="mcq_multiple")
+        {
+            $(".questions").append(`<div class="question" style="border: 0px solid red;">
+            <h4 class="p-2" style="border-bottom: 3px solid #25b5e9;">Question ` + index + ` : </h4>
+            <img class="w-50" src="data:image/jpeg;base64,${test.question_images_white[index-1]}" alt="">
+            <table class="table table-borderless mt-2 p-5">
+                <span class="badge badge-secondary"> Multiple Answers Applicable </span>
+                <br>
+                <label> Select Correct Answers </label>
+              <select class="form-control" multiple="multiple" name="Question` + index + `" >
+              </select>
+            </table>
+            <div class="answer_panel">
+                <hr/>
+                <h6 style="font-family:sans-serif;text-align:left;padding-left:40px"> ANSWER </h6>
+                <img class="w-50" src="data:image/jpeg;base64,${test.answer_images_white[index-1]}" alt="">
+            </div>
+        </div>`);
+        }
         }
         }
         else
         {
             for (let index = 1; index <= test.questions.length; index++) {
             console.log(`creating question ${index}`)
-            if(test.questions[index-1].question_type=="mcq_single")
+            if(test.questions[index-1].question_type=="mcq_single") // IF SINGLE MCQ
             {
             $(".questions").append(`<div class="question" style="border: 0px solid red;background-color:black;color:white">
             <h4 class="p-2" style="border-bottom: 3px solid #25b5e9;">Question ` + index + ` : </h4>
@@ -390,6 +409,26 @@ fetch(`${domain_url}/verifyStudent`,{
                             
                         </td>
                     </tr>
+                </tbody>
+            </table>
+            <div class="answer_panel">
+                <h5 style="font-family:sans-serif"> ANSWER </h5>
+                <img class="w-50" src="data:image/jpeg;base64,${test.answer_images_black[index-1]}" alt="">
+            </div>
+        </div>`);
+        }
+        else if(test.questions[index-1].question_type=="mcq_multiple")
+        {
+            $(".questions").append(`<div class="question" style="border: 0px solid red;background-color:black;color:white">
+            <h4 class="p-2" style="border-bottom: 3px solid #25b5e9;">Question ` + index + ` : </h4>
+            <img class="w-50" src="data:image/jpeg;base64,${test.question_images_black[index-1]}" alt="">
+            <table class="table table-borderless mt-2 p-5">
+                <tbody>
+                    <span class="badge badge-secondary"> Multiple Answers Applicable </span>
+                <br>
+                <label> Select Correct Answers </label>
+              <select class="form-control" multiple="multiple" name="Question` + index + `" >
+              </select>
                 </tbody>
             </table>
             <div class="answer_panel">
