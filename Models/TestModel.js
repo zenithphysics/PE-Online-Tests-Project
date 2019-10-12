@@ -69,7 +69,7 @@ const testSchema = mongoose.Schema({
           type:String,
           required:false
       },
-      type:{
+      question_type:{
           type:String,
           required:false
       }
