@@ -333,7 +333,7 @@ fetch(`${domain_url}/verifyStudent`,{
         {
         for (let index = 1; index <= test.questions.length; index++) {
             console.log(`creating question ${index}`)
-            if(test.questions[index-1].type=="mcq_single")
+            if(test.questions[index-1].question_type=="mcq_single")
             {
             $(".questions").append(`<div class="question" style="border: 0px solid red;">
             <h4 class="p-2" style="border-bottom: 3px solid #25b5e9;">Question ` + index + ` : </h4>
@@ -369,7 +369,7 @@ fetch(`${domain_url}/verifyStudent`,{
         {
             for (let index = 1; index <= test.questions.length; index++) {
             console.log(`creating question ${index}`)
-            if(test.questions[index-1].type=="mcq_single")
+            if(test.questions[index-1].question_type=="mcq_single")
             {
             $(".questions").append(`<div class="question" style="border: 0px solid red;background-color:black;color:white">
             <h4 class="p-2" style="border-bottom: 3px solid #25b5e9;">Question ` + index + ` : </h4>
