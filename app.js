@@ -1064,6 +1064,7 @@ app.get('/admin',(req,res)=>{
                     }
                 })
                 console.log(req.body);
+                Test.syncIndexes();
                 var test = new Test();
                 test.test_name = req.body.test_name;
                 test.test_type = req.body.test_type;
