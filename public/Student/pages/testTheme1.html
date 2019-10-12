@@ -333,7 +333,7 @@ fetch(`${domain_url}/verifyStudent`,{
         {
         for (let index = 1; index <= test.questions.length; index++) {
             console.log(`creating question ${index}`)
-            if(test.questions[index-1].question_type=="mcq_single")
+            if(test.questions[index-1].question_type=="mcq_single") // If Question is of Single MCQ Type
             {
             $(".questions").append(`<div class="question" style="border: 0px solid red;">
             <h4 class="p-2" style="border-bottom: 3px solid #25b5e9;">Question ` + index + ` : </h4>
@@ -363,7 +363,7 @@ fetch(`${domain_url}/verifyStudent`,{
             </div>
         </div>`);
         }
-        else if(test.questions[index-1].question_type=="mcq_multiple")
+        else if(test.questions[index-1].question_type=="mcq_multiple") // IF Question is of Multiple MCQ Type
         {
             $(".questions").append(`<div class="question" style="border: 0px solid red;">
             <h4 class="p-2" style="border-bottom: 3px solid #25b5e9;">Question ` + index + ` : </h4>
@@ -379,6 +379,25 @@ fetch(`${domain_url}/verifyStudent`,{
                 <option value="c"> C </option>
                 <option value="d"> D </option>
               </select>
+            </table>
+            <div class="answer_panel">
+                <hr/>
+                <h6 style="font-family:sans-serif;text-align:left;padding-left:40px"> ANSWER </h6>
+                <img class="w-50" src="data:image/jpeg;base64,${test.answer_images_white[index-1]}" alt="">
+            </div>
+        </div>`);
+        }
+        else if(test.questions[index-1].question_type=="number") // If Question answer is numeric
+        {
+            $(".questions").append(`<div class="question" style="border: 0px solid red;">
+            <h4 class="p-2" style="border-bottom: 3px solid #25b5e9;">Question ` + index + ` : </h4>
+            <img class="w-50" src="data:image/jpeg;base64,${test.question_images_white[index-1]}" alt="">
+            <table class="table table-borderless mt-2 p-5">
+                <br>
+                    <span class="badge badge-success" style="float:left"> Numeric </span>
+                <br>
+                <label style="float:left"><b> Please type your answer below : </b></label>
+              <input class="form-control" type="number" name="Question` + index + `" >
             </table>
             <div class="answer_panel">
                 <hr/>
@@ -422,13 +441,12 @@ fetch(`${domain_url}/verifyStudent`,{
             </div>
         </div>`);
         }
-        else if(test.questions[index-1].question_type=="mcq_multiple")
+        else if(test.questions[index-1].question_type=="mcq_multiple") // If Question is Multiple MCQ Type
         {
             $(".questions").append(`<div class="question" style="border: 0px solid red;background-color:black;color:white">
             <h4 class="p-2" style="border-bottom: 3px solid #25b5e9;">Question ` + index + ` : </h4>
             <img class="w-50" src="data:image/jpeg;base64,${test.question_images_black[index-1]}" alt="">
             <table class="table table-borderless mt-2 p-5">
-                <tbody>
                 <br>
                     <span class="badge badge-success" style="float:left"> Multiple Answers Applicable </span>
                 <br>
@@ -439,6 +457,25 @@ fetch(`${domain_url}/verifyStudent`,{
                 <option value="c"> C </option>
                 <option value="d"> D </option>
               </select>
+            </table>
+            <div class="answer_panel">
+                <h5 style="font-family:sans-serif"> ANSWER </h5>
+                <img class="w-50" src="data:image/jpeg;base64,${test.answer_images_black[index-1]}" alt="">
+            </div>
+        </div>`);
+        }
+        else if(test.questions[index-1].question_type=="number") // If Question is numeric type
+        {
+            $(".questions").append(`<div class="question" style="border: 0px solid red;background-color:black;color:white">
+            <h4 class="p-2" style="border-bottom: 3px solid #25b5e9;">Question ` + index + ` : </h4>
+            <img class="w-50" src="data:image/jpeg;base64,${test.question_images_black[index-1]}" alt="">
+            <table class="table table-borderless mt-2 p-5">
+                <tbody>
+                    <br>
+                    <span class="badge badge-success" style="float:left"> Numeric </span>
+                    <br>
+                    <label style="float:left"><b> Please type your answer below : </b></label>
+                    <input class="form-control" type="number" name="Question` + index + `" >
                 </tbody>
             </table>
             <div class="answer_panel">
