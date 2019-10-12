@@ -369,10 +369,15 @@ fetch(`${domain_url}/verifyStudent`,{
             <h4 class="p-2" style="border-bottom: 3px solid #25b5e9;">Question ` + index + ` : </h4>
             <img class="w-50" src="data:image/jpeg;base64,${test.question_images_white[index-1]}" alt="">
             <table class="table table-borderless mt-2 p-5">
-                <span class="badge badge-secondary"> Multiple Answers Applicable </span>
                 <br>
-                <label> Select Correct Answers </label>
+                    <span class="badge badge-secondary"> Multiple Answers Applicable </span>
+                <br>
+                <label style="float:left"><b> Select Correct Answers : </b></label>
               <select class="form-control" multiple="multiple" name="Question` + index + `" >
+                <option value="a"> A </option>
+                <option value="b"> B </option>
+                <option value="c"> C </option>
+                <option value="d"> D </option>
               </select>
             </table>
             <div class="answer_panel">
@@ -424,10 +429,15 @@ fetch(`${domain_url}/verifyStudent`,{
             <img class="w-50" src="data:image/jpeg;base64,${test.question_images_black[index-1]}" alt="">
             <table class="table table-borderless mt-2 p-5">
                 <tbody>
+                <br>
                     <span class="badge badge-secondary"> Multiple Answers Applicable </span>
                 <br>
-                <label> Select Correct Answers </label>
+                <label style="float:left"><b> Select Correct Answers : </b></label>
               <select class="form-control" multiple="multiple" name="Question` + index + `" >
+                <option value="a"> A </option>
+                <option value="b"> B </option>
+                <option value="c"> C </option>
+                <option value="d"> D </option>
               </select>
                 </tbody>
             </table>
