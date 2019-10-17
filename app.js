@@ -1070,8 +1070,11 @@ app.get('/admin',(req,res)=>{
                 test.test_type = req.body.test_type;
                 test.domain = req.body.domain;
                 test.questions = JSON.parse(req.body.questions);
+                if(test.domain!="JEE_ADVANCED")
+                {
                 test.correct_marks = req.body.correct_marks;
                 test.wrong_marks = req.body.wrong_marks;
+                }
                 test.answer_key = JSON.parse(req.body.answer_key);
                 test.DLevel_details = JSON.parse(req.body.DLevel_details);
                 test.subject_details = JSON.parse(req.body.subject_details);
