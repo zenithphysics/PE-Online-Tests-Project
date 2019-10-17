@@ -40,12 +40,10 @@ const testSchema = mongoose.Schema({
   correct_marks:{
       type:Number,
       required:false,
-      default:4
   },
   wrong_marks:{
       type:Number,
       required:false,
-      default:-1
   },
   questions:[
     {
