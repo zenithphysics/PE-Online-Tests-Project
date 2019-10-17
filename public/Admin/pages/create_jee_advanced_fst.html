@@ -777,7 +777,9 @@
 								var question_type = document.getElementById(`question-${i}-question_type`).value
 								// Get Question Difficulty Level 
 								var question_DLevel = document.getElementById(`question-${i}-DLevel_selectbox`).value;
-
+								// Get Question Correct And Wrong Answers
+								var question_correct_marks = document.getElementById(`question-${i}-correct_marks`);
+								var question_wrong_marks = document.getElementById(`question-${i}-wrong_marks`)
 								// Update Counter
 									if(question_DLevel=="Level 1")
 									{

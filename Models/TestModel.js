@@ -69,6 +69,14 @@ const testSchema = mongoose.Schema({
           type:String,
           required:false
       },
+      correct_marks:{
+          type:Number,
+          required:false
+      },
+      wrong_marks:{
+          type:Number,
+          required:false
+      }
       question_type:{
           type:String,
           required:false
