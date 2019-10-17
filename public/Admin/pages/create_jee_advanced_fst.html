@@ -635,9 +635,7 @@
 					error=1;
 					alert("Please Enter A Valid Test Name")
 				}
-				//  Get Marks For Correct & Wrong Answers
-				var correct_marks = document.getElementById("correct_marks").value;
-				var wrong_marks = document.getElementById("wrong_marks").value;
+
 				// Get Duration
 				var duration = document.getElementById("duration").value
 				if(duration==null || duration=="")
@@ -880,8 +878,6 @@
 									formData.append('domain',"JEE_ADVANCED");
 									formData.append('duration',duration);
 									formData.append('questions',JSON.stringify(questions));
-									formData.append('correct_marks',correct_marks);
-									formData.append('wrong_marks',wrong_marks);
 									formData.append(`answer_videos`,JSON.stringify(answer_videos));
 									formData.append(`answer_key`,JSON.stringify(answer_key));
 									formData.append(`DLevel_details`,JSON.stringify(DLevel_Details));
