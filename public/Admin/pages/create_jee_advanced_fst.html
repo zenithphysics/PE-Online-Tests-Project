@@ -504,6 +504,14 @@
 								<option value="d"> D </option>
 							</select>
 						</div>
+						<div class="col-3" id="question-${no_of_questions}-question_answer_panel">
+							<label> Correct Marks : </label>
+							<input type="number" placeholder="Enter Marks for Correct Answer" class="form-control" id="question-${no_of_questions}-correct_marks">
+						</div>
+						<div class="col-3" id="question-${no_of_questions}-question_answer_panel">
+							<label> Wrong Marks : </label>
+							<input type="number" placeholder="Enter Marks for Wrong Answer" class="form-control" id="question-${no_of_questions}-wrong_marks">
+						</div>
 					</div>
 				`
 				questions_panel.appendChild(question_element)
