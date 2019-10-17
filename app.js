@@ -1072,6 +1072,7 @@ app.get('/admin',(req,res)=>{
                 test.questions = JSON.parse(req.body.questions);
                 if(test.domain!="JEE_ADVANCED")
                 {
+                    console.log("TEST DOMAIN is "+test.domain)
                 test.correct_marks = req.body.correct_marks;
                 test.wrong_marks = req.body.wrong_marks;
                 }
