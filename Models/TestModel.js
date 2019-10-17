@@ -76,7 +76,7 @@ const testSchema = mongoose.Schema({
       wrong_marks:{
           type:Number,
           required:false
-      }
+      },
       question_type:{
           type:String,
           required:false
