@@ -514,7 +514,9 @@
 							<input type="number" placeholder="Enter Marks for Wrong Answer" class="form-control" id="question-${no_of_questions}-wrong_marks">
 						</div>
 					</div>
-					<div class="row" id="question-${no_of_questions}-matrixMatchAnswerArea">
+					<div class="row" >
+						<div class="col-12" id="question-${no_of_questions}-matrixMatchAnswerArea">
+						</div>
 						</div>
 				`
 				questions_panel.appendChild(question_element)
@@ -998,7 +1000,9 @@
 			var no_of_options_in_lhs = document.getElementById(`question-${question_number}-number_of_lhs_options`).value;
 			// Get No. of Options in RHS.
 			var no_of_options_in_rhs = document.getElementById(`question-${question_number}-number_of_rhs_options`).value;
-			matrix_match_area.innerHTML=``;
+			matrix_match_area.innerHTML=`<br>`;
+			matrix_match_area.innerHTML=`Assign Answers`;
+
 			if(no_of_options_in_lhs>=2 && no_of_options_in_rhs>=2)
 			{
 			for(let i=1;i<=no_of_options_in_lhs;i++)
