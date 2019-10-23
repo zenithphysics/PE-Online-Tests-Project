@@ -373,7 +373,7 @@ fetch(`${domain_url}/verifyStudent`,{
                     <span class="badge badge-success" style="float:left"> Multiple Answers Applicable </span>
                 <br>
                 <label style="float:left"><b> Select Correct Answers : </b></label>
-              <select class="form-control" multiple="multiple" name="Question` + index + `" >
+              <select class="form-control" multiple="multiple" id="Question`+index+`" name="Question` + index + `" >
                 <option value="a"> A </option>
                 <option value="b"> B </option>
                 <option value="c"> C </option>
@@ -397,7 +397,7 @@ fetch(`${domain_url}/verifyStudent`,{
                     <span class="badge badge-success" style="float:left"> Numeric </span>
                 <br>
                 <label style="float:left"><b> Please type your answer below : </b></label>
-              <input class="form-control" type="number" name="Question` + index + `" >
+              <input class="form-control" type="number" id="Question`+index+`" name="Question` + index + `" >
             </table>
             <div class="answer_panel">
                 <hr/>
@@ -512,7 +512,7 @@ fetch(`${domain_url}/verifyStudent`,{
                     <span class="badge badge-success" style="float:left"> Multiple Answers Applicable </span>
                 <br>
                 <label style="float:left"><b> Select Correct Answers : </b></label>
-              <select class="form-control" multiple="multiple" name="Question` + index + `" >
+              <select class="form-control" multiple="multiple"  id="Question`+index+`"  name="Question` + index + `" >
                 <option value="a"> A </option>
                 <option value="b"> B </option>
                 <option value="c"> C </option>
@@ -535,7 +535,7 @@ fetch(`${domain_url}/verifyStudent`,{
                     <span class="badge badge-success" style="float:left"> Numeric </span>
                     <br>
                     <label style="float:left"><b> Please type your answer below : </b></label>
-                    <input class="form-control" type="number" name="Question` + index + `" >
+                    <input class="form-control" id="Question`+index+`" type="number" name="Question` + index + `" >
             </table>
             <div class="answer_panel">
                 <h5 style="font-family:sans-serif"> ANSWER </h5>
@@ -760,7 +760,56 @@ fetch(`${domain_url}/verifyStudent`,{
         });
         console.log(result); */
         
-        var user_answer_key=[];
+        if(test.domain=="JEE_ADVANCED") // if it is advanced test
+        {
+            var user_answer_key=[];
+
+            for(let i=1;i<=test.questions.length;i++)
+        {
+            // If Question Type Is MCQ Single 
+            if(test.questions[i-1].question_type=="mcq_single")
+            {
+                var is_checked=false;
+                var answer="na"
+                var radio_buttons = document.getElementsByName(`Question${i}`);
+                radio_buttons.forEach(button=>{
+                if(button.checked)
+                {
+                    answer = button.value;
+                }
+            })
+            }
+            else if(test.questions[i-1].question_type=="mcq_multiple")
+            {
+                var answer = $(`#Question${i}`).val();
+            }
+            else if(test.questions[i-1].question_type=="number")
+            {
+                var answer = document.getElementById(`Question${i}`).value;
+            }
+            else if(test.questions[i-1].question_type=="match_the_following")
+            {
+                var answer = [];
+                for(let j=1;j<=test.questions[i-1].no_of_lhs_options;j++)
+                {
+                var option_checkboxes = document.getElementsByClassName(`matrix${i}option${j}`);
+                for(let k=0;k<option_checkboxes.length;k++)
+										{
+											if(option_checkboxes[k].checked==true)
+											{
+												answer.push(option_checkboxes[k].value)
+											}
+										}
+                }
+            }
+            user_answer_key.push(answer)     
+        }
+
+        }
+        else // If it is not an advanced test
+        {
+            var user_answer_key=[];
+
         for(let i=1;i<=test.questions.length;i++)
         {
             // check for each question
@@ -773,12 +822,12 @@ fetch(`${domain_url}/verifyStudent`,{
                     answer = button.value;
                 }
             })
-            user_answer_key.push(answer)
-            
+            user_answer_key.push(answer)     
+        }
         }
         console.log("Test result is");
         console.log(user_answer_key);
-
+   /*
         fetch(`${domain_url}/submitTest`,{
             method:"POST",
             headers:{
@@ -819,7 +868,7 @@ fetch(`${domain_url}/verifyStudent`,{
             {
                 alert("Failed to submit test")
             }
-        })
+        }) */
 
     });
 }
