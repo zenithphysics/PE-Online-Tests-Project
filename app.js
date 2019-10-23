@@ -1902,6 +1902,28 @@ app.get('/admin',(req,res)=>{
                             var taken_count = test.test_taken_count+1;
                             var test_result = []; // 0 - Wrong, 1- Correct, 2 - Unattempted
                             // Calculation of User Question Stats
+                            if(test.domain=="JEE_ADVANCED") // If Test is of advanced type
+                            {
+                                for(let i=0;i<test.answer_key.length;i++)
+                                {
+                                    if(user_answer_key[i]==test.answer_key[i])
+                                    {
+                                        test_result.push(1); // Answer Is Correct;
+                                        total_marks = total_marks + test.questions[i].correct_marks;
+                                    }
+                                    else if(user_answer_key[i]=="na")
+                                    {
+                                        test_result.push(2) // Unattempted
+                                    }
+                                    else
+                                    {
+                                        test_result.push(0); // Answer is wrong
+                                        total_marks = total_marks + test.questions[i].wrong_marks; // + because wrong marks is in '-'
+                                    }
+                                }
+                            }
+                            else
+                            {
                             for(let i=0;i<test.answer_key.length;i++)
                             {
                                 // Compare with user answer key
@@ -1920,6 +1942,7 @@ app.get('/admin',(req,res)=>{
                                     total_marks = total_marks + test.wrong_marks; // + because wrong marks is in '-'
                                 }
                             }
+                        }
                     
                        
                                 var subject_stats = [];
