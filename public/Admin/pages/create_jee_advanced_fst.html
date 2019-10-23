@@ -818,7 +818,7 @@
 									for(let j=1;j<=no_of_lhs_options;j++)
 									{
 										var option_answer_array=[];
-										var option_checkboxes = document.getElementsByClassName(`option${j}`);
+										var option_checkboxes = document.getElementsByClassName(`matrix${i}option${j}`);
 										for(let k=0;k<option_checkboxes.length;k++)
 										{
 											if(option_checkboxes[k].checked==true)
@@ -1040,7 +1040,7 @@
 				matrix_match_area.innerHTML+=`Option ${i}`
 				for(let j=1;j<=no_of_options_in_rhs;j++)
 				{
-					matrix_match_area.innerHTML+=`&nbsp&nbsp&nbsp&nbsp <input type="checkbox" class="option${i}" value="${String.fromCharCode(64+j)}" name="option${i}checkbox${j}"> ${String.fromCharCode(64+j)}`
+					matrix_match_area.innerHTML+=`&nbsp&nbsp&nbsp&nbsp <input type="checkbox" class="matrix${question_number}option${i}" value="${String.fromCharCode(64+j)}" name="option${i}checkbox${j}"> ${String.fromCharCode(64+j)}`
 				}
 				matrix_match_area.innerHTML+=`<br>`
 			}
