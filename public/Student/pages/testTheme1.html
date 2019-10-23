@@ -426,7 +426,7 @@ fetch(`${domain_url}/verifyStudent`,{
             </div>
         </div>`);
 
-        var matrixMatchArea = document.getElementById(`question-${index}-matrixMatcharea`);
+        var matrixMatchArea = document.getElementById(`question-${index}-matrixMatchArea`);
         for(let i=1;i<=test.questions[index-1].no_of_lhs_options;i++)
         {
             matrixMatchArea.innerHTML+=`Option ${i}`;
