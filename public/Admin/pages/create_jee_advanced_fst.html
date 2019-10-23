@@ -999,6 +999,8 @@
 			// Get No. of Options in RHS.
 			var no_of_options_in_rhs = document.getElementById(`question-${question_number}-number_of_rhs_options`).value;
 			matrix_match_area.innerHTML=``;
+			if(no_of_options_in_lhs>=2 && no_of_options_in_rhs>=2)
+			{
 			for(let i=1;i<=no_of_options_in_lhs;i++)
 			{
 				matrix_match_area.innerHTML+=`Option ${i}`
@@ -1008,6 +1010,7 @@
 				}
 				matrix_match_area.innerHTML+=`<br>`
 			}
+		}
 		}
 	
 		$(document).ready(function() {
