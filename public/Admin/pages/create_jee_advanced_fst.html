@@ -946,6 +946,8 @@
 			var questionAnswerPanel = document.getElementById(`question-${question_number}-question_answer_panel`)
 			if(questionType=="mcq_multiple")
 			{
+				var matrix_match_area = document.getElementById(`question-${question_number}-matrixMatchAnswerArea`);
+				matrix_match_area.innerHTML=``;
 				questionAnswerPanel.innerHTML=`
 				<label> Correct Answer : </label>
 							<select class="form-control" multiple="mutiple" id="question-${no_of_questions}-question_answer">
@@ -958,6 +960,8 @@
 			}
 			else if(questionType=="mcq_single")
 			{
+				var matrix_match_area = document.getElementById(`question-${question_number}-matrixMatchAnswerArea`);
+				matrix_match_area.innerHTML=``;
 				questionAnswerPanel.innerHTML=`
 				<label> Correct Answer : </label>
 							<select class="form-control" id="question-${no_of_questions}-question_answer">
@@ -970,6 +974,8 @@
 			}
 			else if(questionType=="number")
 			{
+				var matrix_match_area = document.getElementById(`question-${question_number}-matrixMatchAnswerArea`);
+				matrix_match_area.innerHTML=``;
 				questionAnswerPanel.innerHTML=`
 				<label> Correct Answer : </label>
 				<input type="number" class="form-control" id="question-${no_of_questions}-question_answer">	
