@@ -792,14 +792,17 @@ fetch(`${domain_url}/verifyStudent`,{
                 var answer = [];
                 for(let j=1;j<=test.questions[i-1].no_of_lhs_options;j++)
                 {
+                    var selected_answer_array =[];
+
                 var option_checkboxes = document.getElementsByClassName(`matrix${i}option${j}`);
                 for(let k=0;k<option_checkboxes.length;k++)
 										{
 											if(option_checkboxes[k].checked==true)
 											{
-												answer.push(option_checkboxes[k].value)
-											}
-										}
+												selected_answer_array.push(option_checkboxes[k].value)
+                                            }
+                                        }
+                                        answer.push(selected_answer_array)
                 }
             }
             user_answer_key.push(answer)     
