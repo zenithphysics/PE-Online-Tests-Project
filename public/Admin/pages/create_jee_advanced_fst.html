@@ -976,32 +976,21 @@
 				questionAnswerPanel.setAttribute("class","col-9");
 				questionAnswerPanel.innerHTML=`
 				<div class="col-2">
-					<label> No. of Options </label>
-					<input type="number" class="form-control" onchange="noOfOptionsChanged('${no_of_questions}')" id="question-${no_of_questions}-number_of_options">	
+					<label> No. of Options in L.H.S </label>
+					<input type="number" class="form-control" onchange="updateMatrixMatchArea('${no_of_questions}')" id="question-${no_of_questions}-number_of_lhs_options">	
 				</div>
-			
+				<div class="col-2">
+					<label> No. of Options in R.H.S </label>
+					<input type="number" class="form-control" onchange="updateMatrixMatchArea('${no_of_questions}')" id="question-${no_of_questions}-number_of_lhs_options">	
+
+				</div>
+
 				`
 			}
 
 		}
 
-		function noOfOptionsChanged(question_number)
-		{
-			var questionAnswerPanel = document.getElementById(`question-${question_number}-question_answer_panel`)
-			var noOfOptions = document.getElementById(`question-${question_number}-number_of_options`).value;
-			document.getElementById(`question-${question_number}-number_of_options`).setAttribute("value",noOfOptions);
-			document.getElementById(`question-${question_number}-number_of_options`).disabled="disabled"
-			for(let i=1;i<=noOfOptions;i++)
-			{
-				questionAnswerPanel.innerHTML+=`
-			<div class="col-2">
-					<label> Option ${i} </label>
-					<input type="text" class="form-control")" id="question-${question_number}-option${i}">	
-				</div>
-			`
-			}
-		
-		}
+	
 		$(document).ready(function() {
 			App.init();
 		});
