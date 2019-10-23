@@ -764,7 +764,7 @@ fetch(`${domain_url}/verifyStudent`,{
         {
             var user_answer_key=[];
 
-            for(let i=1;i<=test.questions.length;i++)
+        for(let i=1;i<=test.questions.length;i++)
         {
             // If Question Type Is MCQ Single 
             if(test.questions[i-1].question_type=="mcq_single")
@@ -804,7 +804,8 @@ fetch(`${domain_url}/verifyStudent`,{
             }
             user_answer_key.push(answer)     
         }
-
+        console.log("Test result is");
+        console.log(user_answer_key);
         }
         else // If it is not an advanced test
         {
@@ -824,9 +825,10 @@ fetch(`${domain_url}/verifyStudent`,{
             })
             user_answer_key.push(answer)     
         }
-        }
         console.log("Test result is");
         console.log(user_answer_key);
+        }
+       
    /*
         fetch(`${domain_url}/submitTest`,{
             method:"POST",
