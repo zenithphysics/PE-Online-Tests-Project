@@ -814,8 +814,20 @@
 									// Get No. of LHS Options
 									var no_of_lhs_options = document.getElementById(`question-${i}-number_of_lhs_options`).value;
 									// Get No. of RHS Options
-									var no_of_rhs_options = document.getElementById(`question-${i}-number_of_rhs_options`)
-								// 	error=1 Just for testing
+									var no_of_rhs_options = document.getElementById(`question-${i}-number_of_rhs_options`).value;
+									for(let j=1;j<=no_of_lhs_options;j++)
+									{
+										var option_answer_array=[];
+										var option_checkboxes = document.getElementsByClassName(`option${j}`);
+										option_checkboxes.forEach(option=>{
+											if(option.checked==true)
+											{
+												option_answer_array.push(option.value)
+											}
+										})
+										correct_answer.push(option_answer_array)
+									}
+									error=1  // Just for testing
 									console.log(correct_answer)
 									
 								}
@@ -1028,7 +1040,7 @@
 				matrix_match_area.innerHTML+=`Option ${i}`
 				for(let j=1;j<=no_of_options_in_rhs;j++)
 				{
-					matrix_match_area.innerHTML+=`&nbsp&nbsp&nbsp&nbsp <input type="checkbox" class="option${i}" name="option${i}checkbox${j}"> ${String.fromCharCode(64+j)}`
+					matrix_match_area.innerHTML+=`&nbsp&nbsp&nbsp&nbsp <input type="checkbox" class="option${i}" value="${String.fromCharCode(64+j)}" name="option${i}checkbox${j}"> ${String.fromCharCode(64+j)}`
 				}
 				matrix_match_area.innerHTML+=`<br>`
 			}
