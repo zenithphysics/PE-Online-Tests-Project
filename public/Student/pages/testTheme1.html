@@ -430,7 +430,7 @@ fetch(`${domain_url}/verifyStudent`,{
         for(let i=1;i<=test.questions[index-1].no_of_lhs_options;i++)
         {
             matrixMatchArea.innerHTML+=`Option ${i}`;
-            for(let j=1;j<=test.questions[index-1].no_of_options_in_rhs;j++)
+            for(let j=1;j<=test.questions[index-1].no_of_rhs_options;j++)
 				{
 					matrixMatchArea.innerHTML+=`&nbsp&nbsp&nbsp&nbsp <input type="checkbox" class="matrix${index}option${i}" value="${String.fromCharCode(64+j)}" name="option${i}checkbox${j}"> ${String.fromCharCode(64+j)}`
                 }
