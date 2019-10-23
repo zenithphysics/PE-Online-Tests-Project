@@ -543,6 +543,24 @@ fetch(`${domain_url}/verifyStudent`,{
             </div>
         </div>`);
         }
+        else if(test.questions[index-1].question_type=="match_the_following")
+        {
+            $(".questions").append(`<div class="question" style="border: 0px solid red;background-color:black;color:white">
+            <h4 class="p-2" style="border-bottom: 3px solid #25b5e9;">Question ` + index + ` : </h4>
+            <img class="w-50" src="data:image/jpeg;base64,${test.question_images_black[index-1]}" alt="">
+            <table class="table table-borderless mt-2 p-5" style="padding:10px">
+                    <br>
+                    <span class="badge badge-success" style="float:left"> Matrix Match / Match The Following </span>
+                    <br>
+                    <div id="question-${index}-matrixMatchArea">
+              </div>
+            </table>
+            <div class="answer_panel">
+                <h5 style="font-family:sans-serif"> ANSWER </h5>
+                <img class="w-50" src="data:image/jpeg;base64,${test.answer_images_black[index-1]}" alt="">
+            </div>
+        </div>`);
+        }
         else
         {
             $(".questions").append(`<div class="question" style="border: 0px solid red;background-color:black;color:white">
@@ -782,14 +800,23 @@ fetch(`${domain_url}/verifyStudent`,{
             else if(test.questions[i-1].question_type=="mcq_multiple")
             {
                 var answer = $(`#Question${i}`).val();
+                if(answer==[])
+                {
+                    answer="na"
+                }
             }
             else if(test.questions[i-1].question_type=="number")
             {
                 var answer = document.getElementById(`Question${i}`).value;
+                if(answer=="")
+                {
+                    answer="na"
+                }
             }
             else if(test.questions[i-1].question_type=="match_the_following")
             {
                 var answer = [];
+                var none_checked=true;
                 for(let j=1;j<=test.questions[i-1].no_of_lhs_options;j++)
                 {
                     var selected_answer_array =[];
@@ -799,10 +826,15 @@ fetch(`${domain_url}/verifyStudent`,{
 										{
 											if(option_checkboxes[k].checked==true)
 											{
+                                                none_checked=false;
 												selected_answer_array.push(option_checkboxes[k].value)
                                             }
                                         }
                                         answer.push(selected_answer_array)
+                }
+                if(none_checked==true)
+                {
+                    answer="na";
                 }
             }
             user_answer_key.push(answer)     

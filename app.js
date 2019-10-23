@@ -1896,8 +1896,6 @@ app.get('/admin',(req,res)=>{
                         }
                         else
                         {
-                          
-
                             var total_marks=0;
                             var taken_count = test.test_taken_count+1;
                             var test_result = []; // 0 - Wrong, 1- Correct, 2 - Unattempted
