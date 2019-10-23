@@ -1008,7 +1008,7 @@
 			for(let i=1;i<=no_of_options_in_lhs;i++)
 			{
 				matrix_match_area.innerHTML+=`Option ${i}`
-				for(let i=j;j<=no_of_options_in_rhs;ji++)
+				for(let j=1;j<=no_of_options_in_rhs;j++)
 				{
 					matrix_match_area.innerHTML+=`&nbsp&nbsp&nbsp&nbsp <input type="checkbox" class="option${i}" name="option${i}checkbox${j}"> ${String.fromCharCode(64+j)}`
 				}
