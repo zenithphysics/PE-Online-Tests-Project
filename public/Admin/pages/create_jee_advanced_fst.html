@@ -1001,10 +1001,10 @@
 			matrix_match_area.innerHTML=``;
 			for(let i=1;i<=no_of_options_in_lhs;i++)
 			{
-				matrix_match_area.innerHTML+=`${i}`
+				matrix_match_area.innerHTML+=`Option ${i}`
 				for(let i=1;i<=no_of_options_in_rhs;i++)
 				{
-					matrix_match_area.innerHTML+=`&nbsp&nbsp${String.fromCharCode(64+i)} &nbsp&nbsp`
+					matrix_match_area.innerHTML+=`&nbsp&nbsp&nbsp&nbsp${String.fromCharCode(64+i)} &nbsp&nbsp`
 				}
 				matrix_match_area.innerHTML+=`<br>`
 			}
