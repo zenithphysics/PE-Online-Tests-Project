@@ -78,8 +78,15 @@ const testSchema = mongoose.Schema({
       question_type:{
           type:String,
           required:false
+      },
+      no_of_lhs_options:{
+          type:Number,
+          required:false
+      },
+      no_of_rhs_options:{
+          type:Number,
+          required:false
       }
-   
     }
 ], 
 answer_key:{

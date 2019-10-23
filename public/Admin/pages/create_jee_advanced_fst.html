@@ -811,14 +811,10 @@
 								else if(question_type=="match_the_following")
 								{
 									var correct_answer=[];
-									// First get the number of options
-									var no_of_options = document.getElementById(`question-${i}-number_of_options`).value;
-									console.log(`No. of options is ${no_of_options}`)
-									for(let j=1;j<=no_of_options;j++)
-									{
-										var option = document.getElementById(`question-${i}-option${j}`).value;
-										correct_answer.push(option)
-									}
+									// Get No. of LHS Options
+									var no_of_lhs_options = document.getElementById(`question-${i}-number_of_lhs_options`).value;
+									// Get No. of RHS Options
+									var no_of_rhs_options = document.getElementById(`question-${i}-number_of_rhs_options`)
 								// 	error=1 Just for testing
 									console.log(correct_answer)
 									
@@ -850,6 +846,8 @@
 								if(error==0)
 								{
 								// Create The Question Object
+								if(question_type=="match_the_following")
+								{
 								var Question = {"subject":question_subject,
 												"section":question_section,
 												"chapter":question_chapter,
@@ -857,7 +855,21 @@
 												"correct_marks":question_correct_marks,
 												"wrong_marks":question_wrong_marks,		
 												"question_type":question_type,
+												"no_of_lhs_options":no_of_lhs_options,
+												"no_of_rhs_options":no_of_rhs_options,
 												"DLevel":question_DLevel}
+								}
+								else
+								{
+									var Question = {"subject":question_subject,
+												"section":question_section,
+												"chapter":question_chapter,
+												"topic":question_topic,
+												"correct_marks":question_correct_marks,
+												"wrong_marks":question_wrong_marks,		
+												"question_type":question_type,
+												"DLevel":question_DLevel}
+								}
 								questions.push(Question);
 								}
 							}
