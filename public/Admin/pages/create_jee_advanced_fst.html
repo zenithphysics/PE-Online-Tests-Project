@@ -976,11 +976,11 @@
 				questionAnswerPanel.innerHTML=`
 
 					<label> No. of Options in L.H.S </label>
-					<input type="number" class="form-control" onchange="updateMatrixMatchArea('${no_of_questions}')" id="question-${no_of_questions}-number_of_lhs_options">	
+					<input type="number" class="form-control" min=2 step="1" onchange="updateMatrixMatchArea('${no_of_questions}')" id="question-${no_of_questions}-number_of_lhs_options">	
 
 
 					<label> No. of Options in R.H.S </label>
-					<input type="number" class="form-control" onchange="updateMatrixMatchArea('${no_of_questions}')" id="question-${no_of_questions}-number_of_lhs_options">	
+					<input type="number" class="form-control" min=2 step="1" onchange="updateMatrixMatchArea('${no_of_questions}')" id="question-${no_of_questions}-number_of_rhs_options">	
 
 
 				`
@@ -988,6 +988,25 @@
 
 		}
 
+
+		function updateMatrixMatchArea(question_number)
+		{
+			var matrix_match_area = document.getElementById(`question-${question_number}-matrixMatchAnswerArea`)
+			// Get No. of Options in LHS
+			var no_of_options_in_lhs = document.getElementById(`question-${question_number}-number_of_lhs_options`).value;
+			// Get No. of Options in RHS.
+			var no_of_options_in_rhs = document.getElementById(`question-${question_number}-number_of_rhs_options`).value;
+			matrix_match_area.innerHTML=``;
+			for(let i=1;i<=no_of_options_in_lhs;i++)
+			{
+				matrix_match_area.innerHTML+=`${i}`
+				for(let i=1;i<=no_of_options;i++)
+				{
+					matrix_match_area.innerHTML=`${String.fromCharCode(64+i)} &nbsp&nbsp`
+				}
+				matrix_match_area.innerHTML+=`<br>`
+			}
+		}
 	
 		$(document).ready(function() {
 			App.init();
