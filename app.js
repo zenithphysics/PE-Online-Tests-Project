@@ -1904,6 +1904,8 @@ app.get('/admin',(req,res)=>{
                             {
                                 for(let i=0;i<test.answer_key.length;i++)
                                 {
+                                    if(test.questions[i].question_type=="mcq_single" || test.questions[i].question_type=="number")
+                                    {
                                     if(user_answer_key[i]==test.answer_key[i])
                                     {
                                         test_result.push(1); // Answer Is Correct;
@@ -1917,6 +1919,34 @@ app.get('/admin',(req,res)=>{
                                     {
                                         test_result.push(0); // Answer is wrong
                                         total_marks = total_marks + test.questions[i].wrong_marks; // + because wrong marks is in '-'
+                                    }
+                                    }
+                                    else if(test.questions[i].question_type=="mcq_multiple")
+                                    {
+                                        if(user_answer_key[i]=="na") // If Question is Unattempted
+                                        {
+                                            test_result.push(2)
+                                        }
+                                        else
+                                        {
+                                            let correct=true;
+                                            for(let k=0;k<user_answer_key[i].length;k++)
+                                            {
+                                                if(user_answer_key[i][k]!=test.answer_key[i][k])
+                                                {
+                                                    correct=false;
+                                                }
+                                            }
+                                            if(correct==true)
+                                            {
+                                                test_result.push(1)
+                                            }
+                                            else
+                                            {
+                                                test_result.push(0)
+                                            }
+                                        }
+                                       
                                     }
                                 }
                             }
