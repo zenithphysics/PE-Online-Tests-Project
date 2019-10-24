@@ -894,7 +894,14 @@ aria-hidden="true">
 			{
 				alert("Please Select Themes")
 			}
-        }
+		}
+		
+		var logout = document.getElementById("logoutButton");
+		logout.addEventListener("click",()=>{
+			localStorage.clear();
+			document.location.href=`${domain_url}`;
+
+		})
 		$(document).ready(function() {
 			App.init();
 		});

@@ -267,7 +267,13 @@
                     }
                 })
 			}
-        })
+		})
+		var logout = document.getElementById("logoutButton");
+		logout.addEventListener("click",()=>{
+			localStorage.clear();
+			document.location.href=`${domain_url}`;
+
+		})
         function showResult(test_name)
         {
             document.location.href=`${domain_url}/Student/pages/test_result.html?test_name=${test_name}`;

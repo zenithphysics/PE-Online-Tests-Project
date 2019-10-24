@@ -227,7 +227,12 @@ var selectionAnalysisArea = document.getElementById(`selectionAnalysisArea`)
 var test_name_header = document.getElementById("sidebarNameHolder");
 var resultContainer = document.getElementById("resultContainer");
 
+var logout = document.getElementById("logoutButton");
+		logout.addEventListener("click",()=>{
+			localStorage.clear();
+			document.location.href=`${domain_url}`;
 
+		})
 
 
 function getUrlParameter(name) {

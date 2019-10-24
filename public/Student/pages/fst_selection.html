@@ -274,7 +274,14 @@ var quizTheme1 = document.getElementById("quizTheme1");
     questionTheme2.addEventListener("click",()=>{
         questionTheme2.setAttribute("class","question-theme-selected");
         questionTheme1.removeAttribute("class","question-theme-selected");
-    })
+	})
+	
+	var logout = document.getElementById("logoutButton");
+		logout.addEventListener("click",()=>{
+			localStorage.clear();
+			document.location.href=`${domain_url}`;
+
+		})
 		// Sidebar Name Holder
 		var sidebarNameHolder = document.getElementById("sidebarNameHolder");
 		// Logout functionality
