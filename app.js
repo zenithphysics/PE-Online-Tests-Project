@@ -1961,7 +1961,7 @@ app.get('/admin',(req,res)=>{
                                             {
                                                 for(let p=0;p<test.answer_key[i][k].length;p++)
                                                 {
-                                                    if(user_answer_key[i][k][p]!=test.answer_key[i[k][p]])
+                                                    if(user_answer_key[i][k][p]!=test.answer_key[i][k][p]])
                                                     {
                                                         correct=false;
                                                     }
