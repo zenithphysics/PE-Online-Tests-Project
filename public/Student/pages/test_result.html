@@ -354,7 +354,20 @@ fetch(`${domain_url}/verifyStudent`,{
                     console.log(output)
                     if(output.is_successful)
                     {
-                        var t_marks = output.result.test_correct_marks * output.result.answers.length;
+                        var t_marks
+                        if(output.test.domain=="JEE_ADVANCED")
+                        {
+                             t_marks= 0;
+                            for(let i=0;i<output.test.questions.length;i++)
+                            {
+                                t_marks=t_marks+output.test.questions[i].correct_marks;
+                            }
+                        }
+                        else
+                        {
+                           t_marks = output.result.test_correct_marks * output.result.answers.length;
+
+                        }
                         var score = `Your Score : ${output.result.total_marks} / ${t_marks}`
                         result = output.result;
                         test = output.test;
