@@ -654,9 +654,7 @@
 				{
 					alert("Please select test chapter ")
 				}
-				//  Get Marks For Correct & Wrong Answers
-				var correct_marks = document.getElementById("correct_marks").value;
-				var wrong_marks = document.getElementById("wrong_marks").value;
+	
 				// Get Duration
 			    duration = document.getElementById("duration").value
 				if(duration==null || duration=="")
@@ -796,7 +794,11 @@
 
 								// Get Question Difficulty Level 
 								var question_DLevel = document.getElementById(`question-${i}-DLevel_selectbox`).value;
-
+								// Get Question Type
+								var question_type = document.getElementById(`question-${i}-question_type`).value
+								// Get Question Correct And Wrong Answers
+								var question_correct_marks = document.getElementById(`question-${i}-correct_marks`).value;
+								var question_wrong_marks = document.getElementById(`question-${i}-wrong_marks`).value;
 								// Update Counter
 									if(question_DLevel=="Level 1")
 									{
@@ -812,7 +814,40 @@
 									}
 
 								// Get Correct Answer
-								var correct_answer = document.getElementById(`question-${i}-correct_answer`).value;
+									// Get Correct Answer
+									if(question_type=="mcq_single" || question_type=="mcq_multiple" )
+								{
+								var correct_answer = $(`#question-${i}-question_answer`).val();
+								console.log(correct_answer);
+								 //	error=1 Just for testing
+								}
+								else if(question_type=="number")
+								{
+									var correct_answer= document.getElementById(`question-${i}-question_answer`).value;
+								}
+								else if(question_type=="match_the_following")
+								{
+									var correct_answer=[];
+									// Get No. of LHS Options
+									var no_of_lhs_options = document.getElementById(`question-${i}-number_of_lhs_options`).value;
+									// Get No. of RHS Options
+									var no_of_rhs_options = document.getElementById(`question-${i}-number_of_rhs_options`).value;
+									for(let j=1;j<=no_of_lhs_options;j++)
+									{
+										var option_answer_array=[];
+										var option_checkboxes = document.getElementsByClassName(`matrix${i}option${j}`);
+										for(let k=0;k<option_checkboxes.length;k++)
+										{
+											if(option_checkboxes[k].checked==true)
+											{
+												option_answer_array.push(option_checkboxes[k].value)
+											}
+										}
+										correct_answer.push(option_answer_array)
+									}
+									console.log(correct_answer)
+									
+								}
 								answer_key.push(correct_answer);
 								// Get Question Image
 								var question_white_image = document.getElementById(`question-white-${i}-input`).files[0];
@@ -840,9 +875,21 @@
 								if(error==0)
 								{
 								// Create The Question Object
-								var Question = {"section":question_section,
+								if(question_type=="match_the_following")
+								{
+									var Question = {"section":question_section,
+												"topic":question_topic,		
+												"DLevel":question_DLevel,
+											"no_of_lhs_options":no_of_lhs_options,
+											"no_of_rhs_options":no_of_rhs_options}
+								}
+								else
+								{
+									var Question = {"section":question_section,
 												"topic":question_topic,		
 												"DLevel":question_DLevel}
+								}
+							
 								questions.push(Question);
 								}
 							}
@@ -870,8 +917,6 @@
 									formData.append('subject',test_subject);
 									formData.append(`chapter`,test_chapter);
 									formData.append('questions',JSON.stringify(questions));
-									formData.append('correct_marks',correct_marks);
-									formData.append('wrong_marks',wrong_marks);
 									formData.append(`answer_videos`,JSON.stringify(answer_videos));
 									formData.append(`answer_key`,JSON.stringify(answer_key));
 									formData.append(`DLevel_details`,JSON.stringify(DLevel_Details));
