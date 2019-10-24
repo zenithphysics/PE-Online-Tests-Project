@@ -1948,6 +1948,35 @@ app.get('/admin',(req,res)=>{
                                         }
                                        
                                     }
+                                    else if(test.questions[i].question_type=="match_the_following")
+                                    {
+                                        if(user_answer_key[i]=="na")
+                                        {
+                                            test_result.push(2)
+                                        }
+                                        else
+                                        {
+                                            let correct=true;
+                                            for(let k=0;k<test.answer_key[i].length;k++)
+                                            {
+                                                for(let p=0;p<test.answer_key[i][k].length;p++)
+                                                {
+                                                    if(user_answer_key[i][k][p]!=test.answer_key[i[k][p]])
+                                                    {
+                                                        correct=false;
+                                                    }
+                                                }
+                                            }
+                                            if(correct==true)
+                                            {
+                                                test_result.push(1)
+                                            }
+                                            else
+                                            {
+                                                test_result.push(0)
+                                            }
+                                        }
+                                    }
                                 }
                             }
                             else
