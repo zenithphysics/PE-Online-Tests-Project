@@ -1940,10 +1940,14 @@ app.get('/admin',(req,res)=>{
                                             if(correct==true)
                                             {
                                                 test_result.push(1)
+                                                total_marks = total_marks + test.questions[i].correct_marks;
+
                                             }
                                             else
                                             {
                                                 test_result.push(0)
+                                                total_marks = total_marks + test.questions[i].wrong_marks;
+
                                             }
                                         }
                                        
@@ -1970,10 +1974,14 @@ app.get('/admin',(req,res)=>{
                                             if(correct==true)
                                             {
                                                 test_result.push(1)
+                                                total_marks = total_marks + test.questions[i].correct_marks;
+
                                             }
                                             else
                                             {
                                                 test_result.push(0)
+                                                total_marks = total_marks + test.questions[i].wrong_marks;
+
                                             }
                                         }
                                     }
