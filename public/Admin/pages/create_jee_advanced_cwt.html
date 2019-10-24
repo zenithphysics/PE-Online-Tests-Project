@@ -528,8 +528,7 @@
 								<option value="mcq_single"> MCQ Single Option </option>
 								<option value="mcq_multiple"> MCQ Multiple Option </option>
 								<option value="number"> Number Type </option>
-								<option value="match_the_following"> Match The Following Type </option>
-								<option value="matrix"> Matrix Type </option>
+								<option value="match_the_following"> Match The Following / Matrix Match </option>
 							</select>
 						</div>
 						<div class="col-3" id="question-${no_of_questions}-question_answer_panel">
@@ -923,6 +922,90 @@
 				}
 				
 			}
+
+			function questionTypeChanged(question_number)
+		{
+			var questionType = document.getElementById(`question-${question_number}-question_type`).value;
+			console.log(`Question Type is ${questionType}`)
+			var questionAnswerPanel = document.getElementById(`question-${question_number}-question_answer_panel`)
+			if(questionType=="mcq_multiple")
+			{
+				var matrix_match_area = document.getElementById(`question-${question_number}-matrixMatchAnswerArea`);
+				matrix_match_area.innerHTML=``;
+				questionAnswerPanel.innerHTML=`
+				<label> Correct Answer : </label>
+							<select class="form-control" multiple="mutiple" id="question-${no_of_questions}-question_answer">
+								<option value="a"> A </option>
+								<option value="b"> B </option>
+								<option value="c"> C </option>
+								<option value="d"> D </option>
+							</select>
+				`
+			}
+			else if(questionType=="mcq_single")
+			{
+				var matrix_match_area = document.getElementById(`question-${question_number}-matrixMatchAnswerArea`);
+				matrix_match_area.innerHTML=``;
+				questionAnswerPanel.innerHTML=`
+				<label> Correct Answer : </label>
+							<select class="form-control" id="question-${no_of_questions}-question_answer">
+								<option value="a"> A </option>
+								<option value="b"> B </option>
+								<option value="c"> C </option>
+								<option value="d"> D </option>
+							</select>
+				`	
+			}
+			else if(questionType=="number")
+			{
+				var matrix_match_area = document.getElementById(`question-${question_number}-matrixMatchAnswerArea`);
+				matrix_match_area.innerHTML=``;
+				questionAnswerPanel.innerHTML=`
+				<label> Correct Answer : </label>
+				<input type="number" class="form-control" id="question-${no_of_questions}-question_answer">	
+				`	
+			}
+			else if(questionType="match_the_following")
+			{
+				questionAnswerPanel.innerHTML=`
+
+					<label> No. of Options in L.H.S </label>
+					<input type="number" class="form-control" min=2 step="1" onchange="updateMatrixMatchArea('${no_of_questions}')" id="question-${no_of_questions}-number_of_lhs_options">	
+
+
+					<label> No. of Options in R.H.S </label>
+					<input type="number" class="form-control" min=2 step="1" onchange="updateMatrixMatchArea('${no_of_questions}')" id="question-${no_of_questions}-number_of_rhs_options">	
+
+
+				`
+			}
+
+		}
+
+
+		function updateMatrixMatchArea(question_number)
+		{
+			var matrix_match_area = document.getElementById(`question-${question_number}-matrixMatchAnswerArea`)
+			// Get No. of Options in LHS
+			var no_of_options_in_lhs = document.getElementById(`question-${question_number}-number_of_lhs_options`).value;
+			// Get No. of Options in RHS.
+			var no_of_options_in_rhs = document.getElementById(`question-${question_number}-number_of_rhs_options`).value;
+			matrix_match_area.innerHTML=`<br><br>`;
+			matrix_match_area.innerHTML+=`Assign Answers: <br><br>`;
+
+			if(no_of_options_in_lhs>=2 && no_of_options_in_rhs>=2)
+			{
+			for(let i=1;i<=no_of_options_in_lhs;i++)
+			{
+				matrix_match_area.innerHTML+=`Option ${i}`
+				for(let j=1;j<=no_of_options_in_rhs;j++)
+				{
+					matrix_match_area.innerHTML+=`&nbsp&nbsp&nbsp&nbsp <input type="checkbox" class="matrix${question_number}option${i}" value="${String.fromCharCode(64+j)}" name="option${i}checkbox${j}"> ${String.fromCharCode(64+j)}`
+				}
+				matrix_match_area.innerHTML+=`<br>`
+			}
+		}
+		}
 		$(document).ready(function() {
 			App.init();
 		});
