@@ -369,21 +369,43 @@ fetch(`${domain_url}/verifyStudent`,{
                             percent_wrong = parseFloat((output.test.question_details.questions_stats[i].total_wrong/output.test.test_taken_count)*100).toFixed(3);
                             percent_unattempted = parseFloat((output.test.question_details.questions_stats[i].total_unattempted/output.test.test_taken_count)*100).toFixed(3);
 
-                            if(output.result.answers[i]==0)
+                            if(output.test.domain=="JEE_ADVANCED") // If Advanced Test
                             {
-                                answer="Wrong";
-                                marks_scored=marks_scored+output.test.wrong_marks;
-                            }
-                            else if(output.result.answers[i]==1)
-                            {
-                                answer="Correct";
-                                marks_scored=marks_scored+output.test.correct_marks;
+                                if(output.result.answers[i]==0)
+                                {
+                                    answer="Wrong";
+                                    marks_scored=marks_scored+output.test.questions[i].wrong_marks;
+                                }
+                                else if(output.result.answers[i]==1)
+                                {
+                                    answer="Correct";
+                                    marks_scored=marks_scored+output.test.questions[i].correct_marks;
+                                }
+                                else
+                                {
+                                    answer="Unattempted";
+                                    marks_scored=0;
+                                }
                             }
                             else
                             {
-                                answer="Unattempted";
-                                marks_scored=0;
+                                if(output.result.answers[i]==0)
+                                {
+                                    answer="Wrong";
+                                    marks_scored=marks_scored+output.test.wrong_marks;
+                                }
+                                else if(output.result.answers[i]==1)
+                                {
+                                    answer="Correct";
+                                    marks_scored=marks_scored+output.test.correct_marks;
+                                }
+                                else
+                                {
+                                    answer="Unattempted";
+                                    marks_scored=0;
+                                }
                             }
+                          
                             data_table_content+=`
                             <tr>
                                 <td class="table-question" id="${i}"> ${i+1} </td>
